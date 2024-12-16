@@ -10,5 +10,6 @@ AssetOrigin:
   productId: 286644
   packageName: Lux Instant Vegetation
   packageVersion: 0.93
-  assetPath: Assets/Forst/Lux Instant Vegetation/Demo/Content/Shared/_Particle System.prefab
+  assetPath: Assets/Imports/Forst/Lux Instant Vegetation/Demo/Content/Shared/_Particle
+    System.prefab
   uploadId: 685707

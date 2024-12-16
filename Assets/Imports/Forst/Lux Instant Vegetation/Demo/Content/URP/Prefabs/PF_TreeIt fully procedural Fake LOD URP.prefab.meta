@@ -10,6 +10,6 @@ AssetOrigin:
   productId: 286644
   packageName: Lux Instant Vegetation
   packageVersion: 0.93
-  assetPath: Assets/Forst/Lux Instant Vegetation/Demo/Content/URP/Prefabs/PF_TreeIt
+  assetPath: Assets/Imports/Forst/Lux Instant Vegetation/Demo/Content/URP/Prefabs/PF_TreeIt
     fully procedural Fake LOD URP.prefab
   uploadId: 685707
