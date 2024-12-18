@@ -122,6 +122,9 @@
         },
         {
             "m_Id": "f2eace493bd8459384dfd8784184ff01"
+        },
+        {
+            "m_Id": "1d2b65b953cb4c1c8a5e1c7678d493e6"
         }
     ],
     "m_Keywords": [],
@@ -1537,6 +1540,29 @@
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.BooleanShaderProperty",
+    "m_ObjectId": "1d2b65b953cb4c1c8a5e1c7678d493e6",
+    "m_Guid": {
+        "m_GuidSerialized": "7f408e19-843f-4fcf-8d2b-ff90bfe81657"
+    },
+    "m_Name": "Nature Renderer Instancing",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Nature Renderer Instancing",
+    "m_DefaultReferenceName": "_Nature_Renderer_Instancing",
+    "m_OverrideReferenceName": "_NatureRendererInstancing",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": true
 }
 
 {
@@ -6281,7 +6307,11 @@
     "m_Type": "UnityEditor.ShaderGraph.CategoryData",
     "m_ObjectId": "fd560782338a46a298ffd09d3b39b313",
     "m_Name": "",
-    "m_ChildObjectList": []
+    "m_ChildObjectList": [
+        {
+            "m_Id": "1d2b65b953cb4c1c8a5e1c7678d493e6"
+        }
+    ]
 }
 
 {

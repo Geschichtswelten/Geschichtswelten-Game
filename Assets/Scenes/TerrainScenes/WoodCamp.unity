@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 198732212}
   - component: {fileID: 198732211}
   - component: {fileID: 198732210}
+  - component: {fileID: 198732213}
   m_Layer: 0
   m_Name: Terrain_(500.00, 0.00, 900.00)
   m_TagString: Untagged
@@ -180,7 +181,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 1
+  m_DrawTreesAndFoliage: 0
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -212,6 +213,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &198732213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198732209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1448045563, guid: b04c77e0938d27643b3f69f2dd39ce77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _autoRefreshTerrainAtRuntime: 1
+  _enableUnityRendererWhenDisabled: 1
+  _delayInitialize: 1
+  _onlyInitializeWithinRenderingDistance: 1
+  _renderingDistanceLimit: 5000
+  _renderTreesWithNatureRenderer: 1
+  _renderDetailsWithNatureRenderer: 1
+  _optimizePatchSize: 1
+  _format: 202200
 --- !u!1 &396637554
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,6 +245,7 @@ GameObject:
   - component: {fileID: 396637557}
   - component: {fileID: 396637556}
   - component: {fileID: 396637555}
+  - component: {fileID: 396637558}
   m_Layer: 0
   m_Name: Terrain_(400.00, 0.00, 900.00)
   m_TagString: Untagged
@@ -273,7 +296,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 1
+  m_DrawTreesAndFoliage: 0
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -305,6 +328,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &396637558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396637554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1448045563, guid: b04c77e0938d27643b3f69f2dd39ce77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _autoRefreshTerrainAtRuntime: 1
+  _enableUnityRendererWhenDisabled: 1
+  _delayInitialize: 1
+  _onlyInitializeWithinRenderingDistance: 1
+  _renderingDistanceLimit: 5000
+  _renderTreesWithNatureRenderer: 1
+  _renderDetailsWithNatureRenderer: 1
+  _optimizePatchSize: 1
+  _format: 202200
 --- !u!1 &1117962007
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,6 +360,7 @@ GameObject:
   - component: {fileID: 1117962010}
   - component: {fileID: 1117962009}
   - component: {fileID: 1117962008}
+  - component: {fileID: 1117962011}
   m_Layer: 0
   m_Name: Terrain_(400.00, 0.00, 800.00)
   m_TagString: Untagged
@@ -366,7 +411,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 1
+  m_DrawTreesAndFoliage: 0
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -398,6 +443,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1117962011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117962007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1448045563, guid: b04c77e0938d27643b3f69f2dd39ce77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _autoRefreshTerrainAtRuntime: 1
+  _enableUnityRendererWhenDisabled: 1
+  _delayInitialize: 1
+  _onlyInitializeWithinRenderingDistance: 1
+  _renderingDistanceLimit: 5000
+  _renderTreesWithNatureRenderer: 1
+  _renderDetailsWithNatureRenderer: 1
+  _optimizePatchSize: 1
+  _format: 202200
 --- !u!1 &1134179242
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,6 +475,7 @@ GameObject:
   - component: {fileID: 1134179245}
   - component: {fileID: 1134179244}
   - component: {fileID: 1134179243}
+  - component: {fileID: 1134179246}
   m_Layer: 0
   m_Name: Terrain_(500.00, 0.00, 800.00)
   m_TagString: Untagged
@@ -459,7 +526,7 @@ Terrain:
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 1
+  m_DrawTreesAndFoliage: 0
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
@@ -491,6 +558,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1134179246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134179242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1448045563, guid: b04c77e0938d27643b3f69f2dd39ce77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _autoRefreshTerrainAtRuntime: 1
+  _enableUnityRendererWhenDisabled: 1
+  _delayInitialize: 1
+  _onlyInitializeWithinRenderingDistance: 1
+  _renderingDistanceLimit: 5000
+  _renderTreesWithNatureRenderer: 1
+  _renderDetailsWithNatureRenderer: 1
+  _optimizePatchSize: 1
+  _format: 202200
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

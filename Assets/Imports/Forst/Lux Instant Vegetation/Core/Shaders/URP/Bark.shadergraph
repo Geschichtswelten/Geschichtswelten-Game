@@ -110,6 +110,9 @@
         },
         {
             "m_Id": "285e91dbcbf14e96a8a8dbd7b416d700"
+        },
+        {
+            "m_Id": "fa9302cecf1348d8a51bc1f368950101"
         }
     ],
     "m_Keywords": [],
@@ -4845,6 +4848,29 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.BooleanShaderProperty",
+    "m_ObjectId": "fa9302cecf1348d8a51bc1f368950101",
+    "m_Guid": {
+        "m_GuidSerialized": "55ad7770-7d7d-453a-93cd-58713f36d2d9"
+    },
+    "m_Name": "Nature Renderer Instancing",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Nature Renderer Instancing",
+    "m_DefaultReferenceName": "_Nature_Renderer_Instancing",
+    "m_OverrideReferenceName": "_NatureRendererInstancing",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": true
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.IsFrontFaceNode",
     "m_ObjectId": "fb0965cf9919483b9baccafadc0a03e6",
     "m_Group": {
@@ -4943,7 +4969,11 @@
     "m_Type": "UnityEditor.ShaderGraph.CategoryData",
     "m_ObjectId": "fd560782338a46a298ffd09d3b39b313",
     "m_Name": "",
-    "m_ChildObjectList": []
+    "m_ChildObjectList": [
+        {
+            "m_Id": "fa9302cecf1348d8a51bc1f368950101"
+        }
+    ]
 }
 
 {

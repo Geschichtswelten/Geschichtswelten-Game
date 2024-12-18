@@ -47,6 +47,9 @@
         },
         {
             "m_Id": "b8fe2cd7a8254c1d95ca25655f3b699a"
+        },
+        {
+            "m_Id": "5d112b3fdb23445bbe2b849d327ae107"
         }
     ],
     "m_Keywords": [],
@@ -155,6 +158,9 @@
         },
         {
             "m_Id": "9ea07529dbdc46068d0869e20a6d7ff4"
+        },
+        {
+            "m_Id": "0595a278d5d3404484c12bb6878fc168"
         }
     ],
     "m_GroupDatas": [],
@@ -173,6 +179,20 @@
         }
     ],
     "m_Edges": [
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "0595a278d5d3404484c12bb6878fc168"
+                },
+                "m_SlotId": 1
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "1bef7b44c5a74f10b73dbdca0742e2c2"
+                },
+                "m_SlotId": 0
+            }
+        },
         {
             "m_OutputSlot": {
                 "m_Node": {
@@ -238,9 +258,9 @@
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "1bef7b44c5a74f10b73dbdca0742e2c2"
+                    "m_Id": "0595a278d5d3404484c12bb6878fc168"
                 },
-                "m_SlotId": 0
+                "m_SlotId": -1021233190
             }
         },
         {
@@ -694,7 +714,7 @@
     "m_DefaultValue": {
         "x": 0.0,
         "y": 0.0,
-        "z": 0.0
+        "z": 1.0
     },
     "m_Labels": []
 }
@@ -720,6 +740,51 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": false
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.SubGraphNode",
+    "m_ObjectId": "0595a278d5d3404484c12bb6878fc168",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Procedural Instancing",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": 117.4999771118164,
+            "y": -972.0000610351563,
+            "width": 169.50003051757813,
+            "height": 94.99993896484375
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "55db76d4bc714f1590dede911a0f232e"
+        },
+        {
+            "m_Id": "7838253eb6a34b49a382d0d6bf12810c"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": false,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_SerializedSubGraph": "{\n    \"subGraph\": {\n        \"fileID\": -5475051401550479605,\n        \"guid\": \"159794dee5aed4948ab4faae4edf6a9a\",\n        \"type\": 3\n    }\n}",
+    "m_PropertyGuids": [
+        "ea7c3015-e1b0-4cd2-8af0-a7c5f51628a0"
+    ],
+    "m_PropertyIds": [
+        -1021233190
+    ],
+    "m_Dropdowns": [],
+    "m_DropdownSelectedEntries": []
 }
 
 {
@@ -919,7 +984,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "m_SerializedTexture": "{\"texture\":{\"instanceID\":0}}",
+        "m_SerializedTexture": "",
         "m_Guid": ""
     },
     "isMainTexture": false,
@@ -975,6 +1040,9 @@
         },
         {
             "m_Id": "04c80e2087994283b5a3e50eb7c77f04"
+        },
+        {
+            "m_Id": "5d112b3fdb23445bbe2b849d327ae107"
         }
     ]
 }
@@ -997,7 +1065,7 @@
     "m_DefaultValue": {
         "x": 0.0,
         "y": 0.0,
-        "z": 0.0
+        "z": 1.0
     },
     "m_Labels": []
 }
@@ -1194,6 +1262,7 @@
     "m_SourceType": 0,
     "m_FunctionName": "CTI_BillboardVert",
     "m_FunctionSource": "135f75a97ae2e2e43b2cc94a2ee0898d",
+    "m_FunctionSourceUsePragmas": true,
     "m_FunctionBody": "Enter function body here..."
 }
 
@@ -1572,6 +1641,29 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "55db76d4bc714f1590dede911a0f232e",
+    "m_Id": -1021233190,
+    "m_DisplayName": "In",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Vector3_FA16D4B1",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.BlockNode",
     "m_ObjectId": "5a0d62d0241f423faa05d35f77d0c46e",
     "m_Group": {
@@ -1630,6 +1722,29 @@
         "x": 0.0,
         "y": 1.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.BooleanShaderProperty",
+    "m_ObjectId": "5d112b3fdb23445bbe2b849d327ae107",
+    "m_Guid": {
+        "m_GuidSerialized": "2f5ec918-0603-4b23-ba5c-44b6dbecc18a"
+    },
+    "m_Name": "Nature Renderer Instancing",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Nature Renderer Instancing",
+    "m_DefaultReferenceName": "_Nature_Renderer_Instancing",
+    "m_OverrideReferenceName": "_NatureRendererInstancing",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": true
 }
 
 {
@@ -1895,7 +2010,7 @@
     "hlslDeclarationOverride": 2,
     "m_Hidden": false,
     "m_Value": {
-        "m_SerializedTexture": "{\"texture\":{\"instanceID\":0}}",
+        "m_SerializedTexture": "",
         "m_Guid": ""
     },
     "isMainTexture": false,
@@ -1925,6 +2040,29 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": false
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "7838253eb6a34b49a382d0d6bf12810c",
+    "m_Id": 1,
+    "m_DisplayName": "Out",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": []
 }
 
 {
@@ -2114,6 +2252,7 @@
     "m_SourceType": 0,
     "m_FunctionName": "CTI_SimpleTranslucentLighting",
     "m_FunctionSource": "f091e92bb3c3a8346a1a082b1b1260dc",
+    "m_FunctionSourceUsePragmas": true,
     "m_FunctionBody": "Enter function body here..."
 }
 
@@ -2437,7 +2576,7 @@
     "m_DefaultValue": {
         "x": 0.0,
         "y": 0.0,
-        "z": 0.0
+        "z": 1.0
     },
     "m_Labels": []
 }
@@ -2586,6 +2725,9 @@
     "m_AlphaClip": true,
     "m_CastShadows": true,
     "m_ReceiveShadows": true,
+    "m_DisableTint": false,
+    "m_AdditionalMotionVectorMode": 0,
+    "m_AlembicMotionVectors": false,
     "m_SupportsLODCrossFade": true,
     "m_CustomEditorGUI": "",
     "m_SupportVFX": false
@@ -2713,7 +2855,7 @@
     "m_DefaultValue": {
         "x": 0.0,
         "y": 0.0,
-        "z": 0.0
+        "z": 1.0
     },
     "m_Labels": []
 }
@@ -2972,6 +3114,7 @@
     "m_SourceType": 0,
     "m_FunctionName": "CTIBillboardFragment",
     "m_FunctionSource": "068055334d98c4f488fc319e9ee2ed4f",
+    "m_FunctionSourceUsePragmas": true,
     "m_FunctionBody": "Enter function body here..."
 }
 
