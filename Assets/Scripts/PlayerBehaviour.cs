@@ -1,8 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+    #region type_defs
+
     private Vector3 startPosition;
     [Header("Movement")]
     private float moveSpeed;
@@ -16,6 +19,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public float groundDrag;
 
+    [Header("Jumping")]
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
@@ -38,6 +42,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private InputActionReference jump;
     [SerializeField] private InputActionReference sprintKey;
     [SerializeField] private InputActionReference crouchKey;
+    [SerializeField] private InputActionReference interactKey;
 
     float horizontalInput;
     float verticalInput;
@@ -45,6 +50,17 @@ public class PlayerBehaviour : MonoBehaviour
     Vector3 moveDirection;
 
     Rigidbody rb;
+
+    [Header("UI_stuff")]
+    public Image fadenkreuz;
+    public Sprite normal_fadenkreuz;
+    public Sprite interactable_fadenkreuz;
+    private bool fadenkreuz_ist_interactable;
+
+    [Header("Interact")]
+    [SerializeField] private float interactRange;
+
+    [Header("Misc")]
 
     public Movementstate state;
     public enum Movementstate
@@ -57,12 +73,15 @@ public class PlayerBehaviour : MonoBehaviour
     }
     public bool freeze;
 
+    #endregion
+
     private void OnEnable()
     {
         movement.action.Enable();
         jump.action.Enable();
         sprintKey.action.Enable();
         crouchKey.action.Enable();
+        interactKey.action.Enable();
     }
 
     private void OnDisable()
@@ -71,6 +90,7 @@ public class PlayerBehaviour : MonoBehaviour
         jump.action.Disable();
         sprintKey.action.Disable();
         crouchKey.action.Disable();
+        interactKey.action.Disable();
     }
     // Start is called before the first frame update
     void Start()
@@ -92,6 +112,7 @@ public class PlayerBehaviour : MonoBehaviour
         MyInput();
         SpeedControl();
         StateHandler();
+        Interact();
 
         //handle drag
         if (grounded)
@@ -173,6 +194,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
+    #region movement
     private void MovePlayer()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
@@ -244,5 +266,30 @@ public class PlayerBehaviour : MonoBehaviour
     private Vector3 GetSlopeMoveDirection()
     {
         return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
+    }
+    #endregion
+
+    private void Interact()
+    {
+        GameObject target;
+        var ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, interactRange, LayerMask.GetMask("Interactable")))
+        {
+            target = hit.collider.gameObject;
+            fadenkreuz.sprite = interactable_fadenkreuz;
+            fadenkreuz_ist_interactable = true;
+            if(interactKey.action.WasReleasedThisFrame()) 
+            {
+                OnInteract doShit = target.GetComponent<OnInteract>();
+                if (doShit != null)
+                    doShit.Interact();
+            }
+        }
+        else if (fadenkreuz_ist_interactable)
+        {
+            fadenkreuz.sprite = normal_fadenkreuz;
+            fadenkreuz_ist_interactable = false;
+        }
     }
 }
