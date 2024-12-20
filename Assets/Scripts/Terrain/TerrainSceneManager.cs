@@ -15,17 +15,15 @@ public class TerrainSceneManager : MonoBehaviour
     [Header("Read only")]
     [SerializeField] private int chunk;
     [SerializeField] private int scene;
-    [SerializeField] private string sceneName;
 
     private int lastScene;
     private Vector3 playerPosition;
-    private Scene activeScene;
     private int[] sceneList;
     int[] scenesToBeLoaded;
 
     private void Start()
     {
-        sceneList = new int[32];
+        sceneList = new int[33];
         scenesToBeLoaded = new int[25];
         lastScene = 0;
         StartCoroutine(nameof(cor));
@@ -39,7 +37,7 @@ public class TerrainSceneManager : MonoBehaviour
         {
             playerPosition = player.transform.position;
             GetChunk();
-            GetScene();
+            scene = GetScene(chunk);
             if (lastScene != scene)
             {
                 SceneLoader();
@@ -62,53 +60,50 @@ public class TerrainSceneManager : MonoBehaviour
         
     }
 
-    private void GetScene()
+    private int GetScene(int currChunk)
     {
+        int currScene;
         //wood camp?
-        if (chunk == 175 || chunk == 176 || chunk == 195 || chunk == 196)
+        if (currChunk == 175 || currChunk == 176 || currChunk == 195 || currChunk == 196)
         {
-            scene = 175;
-            activeScene = SceneManager.GetSceneByBuildIndex(chunk);
-            sceneName = activeScene.name;
-            return;
+            currScene = 175;
+            
+            return currScene;
         }
 
         //arminius camp?
-        if (chunk == 182 || chunk == 183 || chunk == 202 || chunk == 203)
+        if (currChunk == 182 || currChunk == 183 || currChunk == 202 || currChunk == 203)
         {
-            scene = 181;
-            activeScene = SceneManager.GetSceneByBuildIndex(chunk);
-            sceneName = activeScene.name;
-            return;
+            currScene = 181;
+            
+            return currScene;
         }
 
         //copper camp?
-        if (chunk == 312 || chunk == 313 || chunk == 332 || chunk == 333)
+        if (currChunk == 312 || currChunk == 313 || currChunk == 332 || currChunk == 333)
         {
-            scene = 306;
-            activeScene = SceneManager.GetSceneByBuildIndex(chunk);
-            sceneName = activeScene.name;
-            return;
+            currScene = 306;
+            
+            return currScene;
         }
 
-        scene = chunk;
+        currScene = currChunk;
         
         //Wood
-        scene -= chunk > 175 ? 1 : 0;
-        scene -= chunk > 195 ? 2 : 0;
+        currScene -= currChunk > 175 ? 1 : 0;
+        currScene -= currChunk > 195 ? 2 : 0;
         //Arminius
-        scene -= chunk > 182 ? 1 : 0;
-        scene -= chunk > 202 ? 2 : 0;
+        currScene -= currChunk > 182 ? 1 : 0;
+        currScene -= currChunk > 202 ? 2 : 0;
         //Copper
-        scene -= chunk > 312 ? 1 : 0;
-        scene -= chunk > 332 ? 2 : 0;
-
-        activeScene = SceneManager.GetSceneByBuildIndex(chunk);
-        sceneName = activeScene.name;
+        currScene -= currChunk > 312 ? 1 : 0;
+        currScene -= currChunk > 332 ? 2 : 0;
+        return currScene;
+        
     }
     private void SceneLoader()
     {
-        scenesToBeLoaded = new int[32];
+        scenesToBeLoaded = new int[33];
 
 
         //Wood Camp
@@ -234,141 +229,115 @@ public class TerrainSceneManager : MonoBehaviour
 
 
             //right side
-            right = scene +1;
+            right = GetScene(scene + 1);
 
-            if (right % 20 >1)
-            {
-                scenesToBeLoaded[1] = (right);
-                top = right+20;
-                if (top < 392)
-                {
-                    scenesToBeLoaded[2] = (top);
-                }
-                bottom = right-20;
-                if (bottom > 0)
-                {
-                    scenesToBeLoaded[3] = (bottom);
-                }
-                right = right + 1;
-                if (right % 20 > 1 && right <392)
-                {
-                    scenesToBeLoaded[4] = (right);
-                    top = right + 20;
-                    bottom = right - 20;
-                    if (bottom > 0)
-                    {
-                        scenesToBeLoaded[5] = (bottom);
-                    }
-                    if (top < 392)
-                    {
-                        scenesToBeLoaded[6] = (top);
-                    }
-                }
-            }
+
+            scenesToBeLoaded[1] = (right);
+            top = GetScene(scene + 1 + 20);
+
+            scenesToBeLoaded[2] = (top);
+
+            bottom = GetScene(scene + 1 - 20);
+
+            scenesToBeLoaded[3] = (bottom);
+
+            right = GetScene(scene + 1 + 1);
+
+            scenesToBeLoaded[4] = (right);
+            top = GetScene(scene + 2 + 20);
+            bottom = GetScene(scene + 2 - 20);
+
+            scenesToBeLoaded[5] = (bottom);
+
+            scenesToBeLoaded[6] = (top);
+
+
+
             //left side
-            left = scene - 1;
+            left = GetScene(scene - 1);
 
-            if (left % 20 < 19)
-            {
-                scenesToBeLoaded[7] = (left);
-                top = left + 20;
-                if (top < 392)
-                {
-                    scenesToBeLoaded[8] = (top);
-                }
-                bottom = left - 20;
-                if (bottom > 0)
-                {
-                    scenesToBeLoaded[9] = (bottom);
-                }
-                left = left-1;
-                if (left % 20 < 19 && left > 0)
-                {
-                    scenesToBeLoaded[10] = (left);
-                    top = left + 20;
-                    bottom = left-20;
-                    if (bottom >0)
-                    {
-                        scenesToBeLoaded[11] = (bottom);
-                    }
-                    if (top < 392)
-                    {
-                        scenesToBeLoaded[12] = (top);
-                    }
-                }
-            }
+
+            scenesToBeLoaded[7] = (left);
+            top = GetScene(scene - 1 + 20);
+
+            scenesToBeLoaded[8] = (top);
+
+            bottom = GetScene(scene - 1 - 20);
+
+            scenesToBeLoaded[9] = (bottom);
+
+            left = GetScene(scene - 1 - 1);
+
+            scenesToBeLoaded[10] = (left);
+            top = GetScene(scene - 2 + 20);
+            bottom = GetScene(scene - 2 - 20);
+
+            scenesToBeLoaded[11] = (bottom);
+
+
+            scenesToBeLoaded[12] = (top);
+
+
+
 
             //top
-            top = scene + 20;
+            top = GetScene(scene + 20);
 
-            if (top < 392)
-            {
-                scenesToBeLoaded[13] = (top);
-                top = top + 20;
-                if (top < 392)
-                {
-                    scenesToBeLoaded[14] = (top);
-                    right = top + 1;
-                    if (right % 20 > 1)
-                    {
-                        scenesToBeLoaded[15] = (right);
-                        right = right + 1;
-                        if (right % 20 > 1)
-                        {
-                            scenesToBeLoaded[16] = (right);
-                        }
-                    }
 
-                    left = top - 1;
-                    if (left % 20 < 19)
-                    {
-                        scenesToBeLoaded[17] = (left);
-                        left = left - 1;
-                        if (left % 20 < 19)
-                        {
-                            scenesToBeLoaded[18] = (left);
-                        }
-                    }
+            scenesToBeLoaded[13] = (top);
+            top = GetScene(scene + 20 + 20);
 
-                }
-            }
+            scenesToBeLoaded[14] = (top);
+            right = GetScene(scene + 40 + 1);
+
+            scenesToBeLoaded[15] = (right);
+            right = GetScene(scene + 40 + 1 + 1);
+
+            scenesToBeLoaded[16] = (right);
+
+
+
+            left = GetScene(scene + 20 + 20 - 1);
+
+            scenesToBeLoaded[17] = (left);
+            left = GetScene(scene + 20 + 20 - 1 - 1);
+
+            scenesToBeLoaded[18] = (left);
+
+
+
+
+
 
             //bottom
-            bottom = scene - 20;
+            bottom = GetScene(scene - 20);
 
-            if (bottom >0)
-            {
-                scenesToBeLoaded[19] = (bottom);
-                bottom = bottom - 20;
-                if (bottom > 0)
-                {
-                    scenesToBeLoaded[20] = (bottom);
-                    right = bottom + 1;
-                    if (right % 20 > 1)
-                    {
-                        scenesToBeLoaded[21] = (right);
-                        right = right + 1;
-                        if (right % 20 > 1)
-                        {
-                            scenesToBeLoaded[22] = (right);
-                        }
-                    }
 
-                    left = bottom - 1;
-                    if (left % 20 < 19)
-                    {
-                        scenesToBeLoaded[23] = (left);
-                        left = left - 1;
-                        if (left % 20 < 19)
-                        {
-                            scenesToBeLoaded[24] = (left);
-                        }
-                    }
+            scenesToBeLoaded[19] = (bottom);
+            bottom = GetScene(scene - 20 - 20);
 
-                }
-            }
+            scenesToBeLoaded[20] = (bottom);
+            right = GetScene(scene - 40 + 1);
 
-        }
+            scenesToBeLoaded[21] = (right);
+            right = GetScene(scene - 40 + 1 + 1);
+
+            scenesToBeLoaded[22] = (right);
+
+
+            left = GetScene(scene - 40 - 1);
+
+            scenesToBeLoaded[23] = (left);
+            left = GetScene(scene - 41 - 1);
+
+            scenesToBeLoaded[24] = (left);
+
+
+
+        }    
+            
+
+        
 
 
 
@@ -402,7 +371,7 @@ public class TerrainSceneManager : MonoBehaviour
 
 
         foreach (int scenee in scenesToBeLoaded) {
-            if (scenee > 0)
+            if (scenee > 0 && scenee < 392)
             {
               
                 if (!SceneManager.GetSceneByBuildIndex(scenee).isLoaded)

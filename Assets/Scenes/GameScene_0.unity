@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 206926455512355682, guid: 7db62a633f034b74388d5a0b13bf8905, type: 3}
+      propertyPath: sprintSpeed
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 994572323342620643, guid: 7db62a633f034b74388d5a0b13bf8905, type: 3}
       propertyPath: m_LocalPosition.x
       value: 48
@@ -224,7 +228,6 @@ MonoBehaviour:
   chunk: 0
   scene: 0
   sceneName: 
-  terrain: {fileID: 1632078006}
 --- !u!1 &1543494745 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6460963162903597767, guid: 7db62a633f034b74388d5a0b13bf8905, type: 3}
