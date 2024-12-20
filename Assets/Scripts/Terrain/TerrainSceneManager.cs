@@ -1,5 +1,6 @@
 using Sirenix.Config;
 using System.Collections.Generic;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
@@ -15,45 +16,48 @@ public class TerrainSceneManager : MonoBehaviour
     [SerializeField] private int chunk;
     [SerializeField] private int scene;
     [SerializeField] private string sceneName;
-    [SerializeField] private Terrain terrain;
 
+    private int lastScene;
     private Vector3 playerPosition;
     private Scene activeScene;
-    private List<Scene> sceneList;
-    List<Scene> scenesToBeLoaded;
+    private int[] sceneList;
+    int[] scenesToBeLoaded;
 
-    private void Awake()
+    private void Start()
     {
-        sceneList = new List<Scene>();
-        scenesToBeLoaded = new List<Scene>();
-
+        sceneList = new int[32];
+        scenesToBeLoaded = new int[25];
+        lastScene = 0;
+        StartCoroutine(nameof(cor));
     }
 
 
 
-    private void Update()
+    IEnumerator cor()
     {
-        playerPosition = player.transform.position;
-        GetChunk();
-        GetScene();
-        SceneLoader();
+        while (true)
+        {
+            playerPosition = player.transform.position;
+            GetChunk();
+            GetScene();
+            if (lastScene != scene)
+            {
+                SceneLoader();
+            }
+            yield return new WaitForSeconds(1);
+        }
+        
     }
 
     private void GetChunk()
     {
         //get relative player Position
         int p_x = (int) Mathf.Ceil(playerPosition.x / 100F);
-        int p_z = (int) Mathf.Ceil(playerPosition.z / 100F);
+        int p_z = (int) Mathf.Ceil(playerPosition.z / 100F) - 1;
 
         chunk = (20 * p_z) + p_x;
-        chunk = chunk == 0 ? 1 : chunk;
+        chunk = chunk <= 0 ? 1 : chunk;
 
-        Collider[] colliders = Physics.OverlapSphere(playerPosition, 5, 6, QueryTriggerInteraction.UseGlobal);
-
-        if (colliders.Length > 0)
-        {
-            terrain = colliders[0].gameObject.GetComponent<Terrain>();
-        }
         
         
     }
@@ -64,7 +68,7 @@ public class TerrainSceneManager : MonoBehaviour
         if (chunk == 175 || chunk == 176 || chunk == 195 || chunk == 196)
         {
             scene = 175;
-            activeScene = SceneManager.GetSceneAt(chunk);
+            activeScene = SceneManager.GetSceneByBuildIndex(chunk);
             sceneName = activeScene.name;
             return;
         }
@@ -73,7 +77,7 @@ public class TerrainSceneManager : MonoBehaviour
         if (chunk == 182 || chunk == 183 || chunk == 202 || chunk == 203)
         {
             scene = 181;
-            activeScene = SceneManager.GetSceneAt(chunk);
+            activeScene = SceneManager.GetSceneByBuildIndex(chunk);
             sceneName = activeScene.name;
             return;
         }
@@ -82,7 +86,7 @@ public class TerrainSceneManager : MonoBehaviour
         if (chunk == 312 || chunk == 313 || chunk == 332 || chunk == 333)
         {
             scene = 306;
-            activeScene = SceneManager.GetSceneAt(chunk);
+            activeScene = SceneManager.GetSceneByBuildIndex(chunk);
             sceneName = activeScene.name;
             return;
         }
@@ -99,230 +103,230 @@ public class TerrainSceneManager : MonoBehaviour
         scene -= chunk > 312 ? 1 : 0;
         scene -= chunk > 332 ? 2 : 0;
 
-        activeScene = SceneManager.GetSceneAt(chunk);
+        activeScene = SceneManager.GetSceneByBuildIndex(chunk);
         sceneName = activeScene.name;
     }
     private void SceneLoader()
     {
-        scenesToBeLoaded.Clear();
+        scenesToBeLoaded = new int[32];
 
 
         //Wood Camp
         if (scene == 175)
         {
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(173));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(174));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(175));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(176));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(177));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(191));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(192));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(193));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(194));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(207));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(208));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(209));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(210));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(211));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(212));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(227));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(228));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(229));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(230));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(231));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(232));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(153));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(154));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(155));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(156));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(157));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(158));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(133));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(134));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(135));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(136));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(137));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(138));
+            scenesToBeLoaded[0] = (173);
+            scenesToBeLoaded[1] = (174);
+            scenesToBeLoaded[2] = (175);
+            scenesToBeLoaded[3] = (176);
+            scenesToBeLoaded[4] = (177);
+            scenesToBeLoaded[5] = (191);
+            scenesToBeLoaded[6] = (192);
+            scenesToBeLoaded[7] = (193);
+            scenesToBeLoaded[8] = (194);
+            scenesToBeLoaded[9] = (207);
+            scenesToBeLoaded[10] = (208);
+            scenesToBeLoaded[11] = (209);
+            scenesToBeLoaded[12] = (210);
+            scenesToBeLoaded[13] = (211);
+            scenesToBeLoaded[14] = (212);
+            scenesToBeLoaded[15] = (227);
+            scenesToBeLoaded[16] = (228);
+            scenesToBeLoaded[17] = (229);
+            scenesToBeLoaded[18] = (230);
+            scenesToBeLoaded[19] = (231);
+            scenesToBeLoaded[20] = (232);
+            scenesToBeLoaded[21] = (153);
+            scenesToBeLoaded[22] = (154);
+            scenesToBeLoaded[23] = (155);
+            scenesToBeLoaded[24] = (156);
+            scenesToBeLoaded[25] = (157);
+            scenesToBeLoaded[26] = (158);
+            scenesToBeLoaded[27] = (133);
+            scenesToBeLoaded[28] = (134);
+            scenesToBeLoaded[29] = (135);
+            scenesToBeLoaded[30] = (136);
+            scenesToBeLoaded[31] = (137);
+            scenesToBeLoaded[32] = (138);
 
         }
         else if (scene == 181)
         {
             //Arminius camp
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(141));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(142));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(143));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(144));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(145));
+            scenesToBeLoaded[0] = (141);
+            scenesToBeLoaded[1] = (142);
+            scenesToBeLoaded[2] = (143);
+            scenesToBeLoaded[3] = (144);
+            scenesToBeLoaded[4] = (145);
 
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(161));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(162));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(163));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(164));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(165));
+            scenesToBeLoaded[5] = (161);
+            scenesToBeLoaded[6] = (162);
+            scenesToBeLoaded[7] = (163);
+            scenesToBeLoaded[8] = (164);
+            scenesToBeLoaded[9] = (165);
 
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(180));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(181));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(182));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(183));
+            scenesToBeLoaded[10] = (180);
+            scenesToBeLoaded[11] = (181);
+            scenesToBeLoaded[12] = (182);
+            scenesToBeLoaded[13] = (183);
 
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(197));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(198));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(199));
+            scenesToBeLoaded[14] = (197);
+            scenesToBeLoaded[15] = (198);
+            scenesToBeLoaded[16] = (199);
 
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(215));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(216));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(217));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(218));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(219));
+            scenesToBeLoaded[17] = (215);
+            scenesToBeLoaded[18] = (216);
+            scenesToBeLoaded[19] = (217);
+            scenesToBeLoaded[20] = (218);
+            scenesToBeLoaded[21] = (219);
 
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(235));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(236));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(237));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(238));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(239));
+            scenesToBeLoaded[22] = (235);
+            scenesToBeLoaded[23] = (236);
+            scenesToBeLoaded[24] = (237);
+            scenesToBeLoaded[25] = (238);
+            scenesToBeLoaded[26] = (239);
         }
         else if (scene == 306)
         {
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(264));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(265));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(266));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(267));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(268));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(269));
+            scenesToBeLoaded[0] = (264);
+            scenesToBeLoaded[1] = (265);
+            scenesToBeLoaded[2] = (266);
+            scenesToBeLoaded[3] = (267);
+            scenesToBeLoaded[4] = (268);
+            scenesToBeLoaded[5] = (269);
 
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(284));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(285));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(286));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(287));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(288));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(289));
+            scenesToBeLoaded[6] = (284);
+            scenesToBeLoaded[7] = (285);
+            scenesToBeLoaded[8] = (286);
+            scenesToBeLoaded[9] = (287);
+            scenesToBeLoaded[10] = (288);
+            scenesToBeLoaded[11] = (289);
 
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(304));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(305));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(306));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(307));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(308));
+            scenesToBeLoaded[12] = (304);
+            scenesToBeLoaded[13] = (305);
+            scenesToBeLoaded[14] = (306);
+            scenesToBeLoaded[15] = (307);
+            scenesToBeLoaded[16] = (308);
 
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(323));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(324));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(325));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(326));
+            scenesToBeLoaded[17] = (323);
+            scenesToBeLoaded[18] = (324);
+            scenesToBeLoaded[19] = (325);
+            scenesToBeLoaded[20] = (326);
 
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(341));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(342));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(343));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(344));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(345));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(346));
+            scenesToBeLoaded[21] = (341);
+            scenesToBeLoaded[22] = (342);
+            scenesToBeLoaded[23] = (343);
+            scenesToBeLoaded[24] = (344);
+            scenesToBeLoaded[25] = (345);
+            scenesToBeLoaded[26] = (346);
 
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(361));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(362));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(363));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(364));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(365));
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(366));
+            scenesToBeLoaded[27] = (361);
+            scenesToBeLoaded[28] = (362);
+            scenesToBeLoaded[29] = (363);
+            scenesToBeLoaded[30] = (364);
+            scenesToBeLoaded[31] = (365);
+            scenesToBeLoaded[32] = (366);
         }
         else
         {
-            scenesToBeLoaded.Add(SceneManager.GetSceneByBuildIndex(scene));
+            scenesToBeLoaded[0] = (scene);
 
-            Terrain right, top, bottom, left;
+            int right, top, bottom, left;
 
 
             //right side
-            right = terrain.rightNeighbor;
+            right = scene +1;
 
-            if (right != null)
+            if (right % 20 >1)
             {
-                scenesToBeLoaded.Add(right.gameObject.scene);
-                top = right.topNeighbor;
-                if (top != null)
+                scenesToBeLoaded[1] = (right);
+                top = right+20;
+                if (top < 392)
                 {
-                    scenesToBeLoaded.Add(top.gameObject.scene);
+                    scenesToBeLoaded[2] = (top);
                 }
-                bottom = right.bottomNeighbor;
-                if (bottom != null)
+                bottom = right-20;
+                if (bottom > 0)
                 {
-                    scenesToBeLoaded.Add(bottom.gameObject.scene);
+                    scenesToBeLoaded[3] = (bottom);
                 }
-                right = right.rightNeighbor;
-                if (right != null)
+                right = right + 1;
+                if (right % 20 > 1 && right <392)
                 {
-                    scenesToBeLoaded.Add(right.gameObject.scene);
-                    top = right.topNeighbor;
-                    bottom = right.bottomNeighbor;
-                    if (bottom != null)
+                    scenesToBeLoaded[4] = (right);
+                    top = right + 20;
+                    bottom = right - 20;
+                    if (bottom > 0)
                     {
-                        scenesToBeLoaded.Add(bottom.gameObject.scene);
+                        scenesToBeLoaded[5] = (bottom);
                     }
-                    if (top != null)
+                    if (top < 392)
                     {
-                        scenesToBeLoaded.Add(top.gameObject.scene);
+                        scenesToBeLoaded[6] = (top);
                     }
                 }
             }
             //left side
-            left = terrain.leftNeighbor;
+            left = scene - 1;
 
-            if (left != null)
+            if (left % 20 < 19)
             {
-                scenesToBeLoaded.Add(left.gameObject.scene);
-                top = left.topNeighbor;
-                if (top != null)
+                scenesToBeLoaded[7] = (left);
+                top = left + 20;
+                if (top < 392)
                 {
-                    scenesToBeLoaded.Add(top.gameObject.scene);
+                    scenesToBeLoaded[8] = (top);
                 }
-                bottom = left.bottomNeighbor;
-                if (bottom != null)
+                bottom = left - 20;
+                if (bottom > 0)
                 {
-                    scenesToBeLoaded.Add(bottom.gameObject.scene);
+                    scenesToBeLoaded[9] = (bottom);
                 }
-                left = left.leftNeighbor;
-                if (left != null)
+                left = left-1;
+                if (left % 20 < 19 && left > 0)
                 {
-                    scenesToBeLoaded.Add(left.gameObject.scene);
-                    top = left.topNeighbor;
-                    bottom = left.bottomNeighbor;
-                    if (bottom != null)
+                    scenesToBeLoaded[10] = (left);
+                    top = left + 20;
+                    bottom = left-20;
+                    if (bottom >0)
                     {
-                        scenesToBeLoaded.Add(bottom.gameObject.scene);
+                        scenesToBeLoaded[11] = (bottom);
                     }
-                    if (top != null)
+                    if (top < 392)
                     {
-                        scenesToBeLoaded.Add(top.gameObject.scene);
+                        scenesToBeLoaded[12] = (top);
                     }
                 }
             }
 
             //top
-            top = terrain.topNeighbor;
+            top = scene + 20;
 
-            if (top != null)
+            if (top < 392)
             {
-                scenesToBeLoaded.Add(top.gameObject.scene);
-                top = top.topNeighbor;
-                if (top != null)
+                scenesToBeLoaded[13] = (top);
+                top = top + 20;
+                if (top < 392)
                 {
-                    scenesToBeLoaded.Add(top.gameObject.scene);
-                    right = top.rightNeighbor;
-                    if (right != null)
+                    scenesToBeLoaded[14] = (top);
+                    right = top + 1;
+                    if (right % 20 > 1)
                     {
-                        scenesToBeLoaded.Add(right.gameObject.scene);
-                        right = right.rightNeighbor;
-                        if (right != null)
+                        scenesToBeLoaded[15] = (right);
+                        right = right + 1;
+                        if (right % 20 > 1)
                         {
-                            scenesToBeLoaded.Add(right.gameObject.scene);
+                            scenesToBeLoaded[16] = (right);
                         }
                     }
 
-                    left = top.leftNeighbor;
-                    if (left != null)
+                    left = top - 1;
+                    if (left % 20 < 19)
                     {
-                        scenesToBeLoaded.Add(left.gameObject.scene);
-                        left = left.leftNeighbor;
-                        if (left != null)
+                        scenesToBeLoaded[17] = (left);
+                        left = left - 1;
+                        if (left % 20 < 19)
                         {
-                            scenesToBeLoaded.Add(left.gameObject.scene);
+                            scenesToBeLoaded[18] = (left);
                         }
                     }
 
@@ -330,34 +334,34 @@ public class TerrainSceneManager : MonoBehaviour
             }
 
             //bottom
-            bottom = terrain.bottomNeighbor;
+            bottom = scene - 20;
 
-            if (bottom != null)
+            if (bottom >0)
             {
-                scenesToBeLoaded.Add(bottom.gameObject.scene);
-                bottom = bottom.bottomNeighbor;
-                if (bottom != null)
+                scenesToBeLoaded[19] = (bottom);
+                bottom = bottom - 20;
+                if (bottom > 0)
                 {
-                    scenesToBeLoaded.Add(bottom.gameObject.scene);
-                    right = bottom.rightNeighbor;
-                    if (right != null)
+                    scenesToBeLoaded[20] = (bottom);
+                    right = bottom + 1;
+                    if (right % 20 > 1)
                     {
-                        scenesToBeLoaded.Add(right.gameObject.scene);
-                        right = right.rightNeighbor;
-                        if (right != null)
+                        scenesToBeLoaded[21] = (right);
+                        right = right + 1;
+                        if (right % 20 > 1)
                         {
-                            scenesToBeLoaded.Add(right.gameObject.scene);
+                            scenesToBeLoaded[22] = (right);
                         }
                     }
 
-                    left = bottom.leftNeighbor;
-                    if (left != null)
+                    left = bottom - 1;
+                    if (left % 20 < 19)
                     {
-                        scenesToBeLoaded.Add(left.gameObject.scene);
-                        left = left.leftNeighbor;
-                        if (left != null)
+                        scenesToBeLoaded[23] = (left);
+                        left = left - 1;
+                        if (left % 20 < 19)
                         {
-                            scenesToBeLoaded.Add(left.gameObject.scene);
+                            scenesToBeLoaded[24] = (left);
                         }
                     }
 
@@ -366,32 +370,50 @@ public class TerrainSceneManager : MonoBehaviour
 
         }
 
-        List<Scene> tempList = new List<Scene>();
 
-        scenesToBeLoaded.ForEach(scene =>
+
+
+        for (int i = 0; i < sceneList.Length; i++) 
         {
-            if(sceneList.Contains(scene))
+            if (sceneList[i]<=0 || sceneList[i] >= 392)
             {
-                sceneList.Remove(scene);
-                tempList.Add(scene);
-                scenesToBeLoaded.Remove(scene);
+                continue;
             }
 
-        });
+                for (int j = 0; j < scenesToBeLoaded.Length; j++)
+                {
+                    if (sceneList[i] == scenesToBeLoaded[j])
+                    {
 
-        sceneList.ForEach(scene =>
-        {
-            SceneManager.UnloadSceneAsync(scene, UnloadSceneOptions.None);
-        });
+                        break;
+                    }else
+                    {
+                        if(j == scenesToBeLoaded.Length-1)
+                        {
+                            SceneManager.UnloadSceneAsync(sceneList[i]);
+                        }
 
-        scenesToBeLoaded.ForEach(scene =>
-        {
-            sceneList.Add(scene);
-            SceneManager.LoadSceneAsync(scene.buildIndex, LoadSceneMode.Additive);
-        });
+                        continue;
+                    }
+                }
+        }
 
-        scenesToBeLoaded.AddRange(tempList);
 
+
+
+        foreach (int scenee in scenesToBeLoaded) {
+            if (scenee > 0)
+            {
+              
+                if (!SceneManager.GetSceneByBuildIndex(scenee).isLoaded)
+                {
+                    SceneManager.LoadSceneAsync(scenee, LoadSceneMode.Additive);
+                }
+            }
+        }
+
+        sceneList = scenesToBeLoaded;
+        
     }
 
     }
