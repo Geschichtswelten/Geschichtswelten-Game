@@ -1,6 +1,7 @@
 using Sirenix.Config;
 using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
@@ -229,23 +230,23 @@ public class TerrainSceneManager : MonoBehaviour
 
 
             //right side
-            right = GetScene(scene + 1);
+            right = GetScene(chunk + 1);
 
 
             scenesToBeLoaded[1] = (right);
-            top = GetScene(scene + 1 + 20);
+            top = GetScene(chunk + 1 + 20);
 
             scenesToBeLoaded[2] = (top);
 
-            bottom = GetScene(scene + 1 - 20);
+            bottom = GetScene(chunk + 1 - 20);
 
             scenesToBeLoaded[3] = (bottom);
 
-            right = GetScene(scene + 1 + 1);
+            right = GetScene(chunk + 1 + 1);
 
             scenesToBeLoaded[4] = (right);
-            top = GetScene(scene + 2 + 20);
-            bottom = GetScene(scene + 2 - 20);
+            top = GetScene(chunk + 2 + 20);
+            bottom = GetScene(chunk + 2 - 20);
 
             scenesToBeLoaded[5] = (bottom);
 
@@ -254,23 +255,23 @@ public class TerrainSceneManager : MonoBehaviour
 
 
             //left side
-            left = GetScene(scene - 1);
+            left = GetScene(chunk - 1);
 
 
             scenesToBeLoaded[7] = (left);
-            top = GetScene(scene - 1 + 20);
+            top = GetScene(chunk - 1 + 20);
 
             scenesToBeLoaded[8] = (top);
 
-            bottom = GetScene(scene - 1 - 20);
+            bottom = GetScene(chunk - 1 - 20);
 
             scenesToBeLoaded[9] = (bottom);
 
-            left = GetScene(scene - 1 - 1);
+            left = GetScene(chunk - 1 - 1);
 
             scenesToBeLoaded[10] = (left);
-            top = GetScene(scene - 2 + 20);
-            bottom = GetScene(scene - 2 - 20);
+            top = GetScene(chunk - 2 + 20);
+            bottom = GetScene(chunk - 2 - 20);
 
             scenesToBeLoaded[11] = (bottom);
 
@@ -281,26 +282,26 @@ public class TerrainSceneManager : MonoBehaviour
 
 
             //top
-            top = GetScene(scene + 20);
+            top = GetScene(chunk + 20);
 
 
             scenesToBeLoaded[13] = (top);
-            top = GetScene(scene + 20 + 20);
+            top = GetScene(chunk + 20 + 20);
 
             scenesToBeLoaded[14] = (top);
-            right = GetScene(scene + 40 + 1);
+            right = GetScene(chunk + 40 + 1);
 
             scenesToBeLoaded[15] = (right);
-            right = GetScene(scene + 40 + 1 + 1);
+            right = GetScene(chunk + 40 + 1 + 1);
 
             scenesToBeLoaded[16] = (right);
 
 
 
-            left = GetScene(scene + 20 + 20 - 1);
+            left = GetScene(chunk + 20 + 20 - 1);
 
             scenesToBeLoaded[17] = (left);
-            left = GetScene(scene + 20 + 20 - 1 - 1);
+            left = GetScene(chunk + 20 + 20 - 1 - 1);
 
             scenesToBeLoaded[18] = (left);
 
@@ -310,25 +311,25 @@ public class TerrainSceneManager : MonoBehaviour
 
 
             //bottom
-            bottom = GetScene(scene - 20);
+            bottom = GetScene(chunk - 20);
 
 
             scenesToBeLoaded[19] = (bottom);
-            bottom = GetScene(scene - 20 - 20);
+            bottom = GetScene(chunk - 20 - 20);
 
             scenesToBeLoaded[20] = (bottom);
-            right = GetScene(scene - 40 + 1);
+            right = GetScene(chunk - 40 + 1);
 
             scenesToBeLoaded[21] = (right);
-            right = GetScene(scene - 40 + 1 + 1);
+            right = GetScene(chunk - 40 + 1 + 1);
 
             scenesToBeLoaded[22] = (right);
 
 
-            left = GetScene(scene - 40 - 1);
+            left = GetScene(chunk - 40 - 1);
 
             scenesToBeLoaded[23] = (left);
-            left = GetScene(scene - 41 - 1);
+            left = GetScene(chunk - 41 - 1);
 
             scenesToBeLoaded[24] = (left);
 
@@ -367,7 +368,17 @@ public class TerrainSceneManager : MonoBehaviour
                 }
         }
 
-
+        for (int i = 0; i < scenesToBeLoaded.Length; i++)
+        {
+            for (int j = i + 1; j < scenesToBeLoaded.Length; j++)
+            {
+                if (scenesToBeLoaded[i] == scenesToBeLoaded[j])
+                {
+                    scenesToBeLoaded[j] = - 1;
+                }
+            }
+        }
+        
 
 
         foreach (int scenee in scenesToBeLoaded) {
