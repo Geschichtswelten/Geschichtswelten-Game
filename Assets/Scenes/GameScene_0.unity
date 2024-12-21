@@ -227,7 +227,6 @@ MonoBehaviour:
   player: {fileID: 1543494745}
   chunk: 0
   scene: 0
-  sceneName: 
 --- !u!1 &1543494745 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6460963162903597767, guid: 7db62a633f034b74388d5a0b13bf8905, type: 3}
