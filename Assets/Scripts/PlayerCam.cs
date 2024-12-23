@@ -17,7 +17,7 @@ public class PlayerCam : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
+        Cursor.visible = false;
     }
 
     private void OnEnable()
@@ -33,8 +33,6 @@ public class PlayerCam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Cursor.visible = true;
-
         Vector2 mouseDelta = look.action.ReadValue<Vector2>();
         float mouseX = mouseDelta.x * Time.deltaTime * sensX;
         float mouseY = mouseDelta.y * Time.deltaTime * sensY;
