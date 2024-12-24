@@ -26,19 +26,12 @@ Material:
   m_Shader: {fileID: -631450621483338060, guid: 84b8f46f4cd6746478c0cbedd8bdc869, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _GLOSSYREFLECTIONS_OFF
-  - _METALLICGLOSSMAP
-  - _NORMALMAP
-  m_InvalidKeywords:
-  - _DISABLE_SSR_TRANSPARENT
-  - _DOUBLESIDED_ON
-  - _MATERIAL_FEATURE_TRANSMISSION
-  - _METALLICSPECGLOSSMAP
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
-  m_CustomRenderQueue: 2225
+  m_CustomRenderQueue: -1
   stringTagMap:
     MotionVector: User
   disabledShaderPasses:
@@ -50,6 +43,22 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_8713F080:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_9DCAAA49:
+        m_Texture: {fileID: 2800000, guid: 8f251482df167b54a80ce8a91ec829a2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_A5E0646:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_E1B0D043:
+        m_Texture: {fileID: 2800000, guid: 3dd15d49c118f61499885324a339f8d5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Albedo:
         m_Texture: {fileID: 2800000, guid: 3dd15d49c118f61499885324a339f8d5, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -136,6 +145,20 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - Animation_Cutoff: 100
+    - Distance_Fade_End: 150
+    - Distance_Fade_Start: 40
+    - Vector1_593c5cea6c4a42e993ed03ced4685732: 0.5
+    - Vector1_8651797e3e304e108dbd25f9d5a426ba: 0.5
+    - Vector1_a5b8b09028ce49a39f4d090894c89e22: 0.5
+    - Vector1_a6983181c8dc4691ba6a28a34c4223a6: 3.78
+    - Wind_Blast: 0.05
+    - Wind_Intensity: 0.1
+    - Wind_Ripples: 0.05
+    - Wind_Speed: 5
+    - Wind_Turbulence: 0
+    - Wind_Wavelength: 10
+    - Wind_Yaw: 180
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaCutoffEnable: 0
@@ -144,8 +167,17 @@ Material:
     - _AlphaTest: 0
     - _AlphaTestThreshold: 0.036
     - _AlphaToMask: 0
+    - _BUILTIN_AlphaClip: 1
+    - _BUILTIN_Blend: 0
+    - _BUILTIN_CullMode: 2
+    - _BUILTIN_DstBlend: 0
     - _BUILTIN_QueueControl: 1
     - _BUILTIN_QueueOffset: 0
+    - _BUILTIN_SrcBlend: 1
+    - _BUILTIN_Surface: 0
+    - _BUILTIN_ZTest: 4
+    - _BUILTIN_ZWrite: 1
+    - _BUILTIN_ZWriteControl: 0
     - _BakedMeshData: 1
     - _BendAmplitude: 0.105
     - _BendFrequency: 0.334
@@ -153,6 +185,7 @@ Material:
     - _BlendMode: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
+    - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _ColorCorrection: 1
@@ -170,6 +203,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DiffuseContrast: 0
     - _DiffusionProfileHash: 2.6486764
+    - _Diffusion_Profile: 0
     - _DoubleSidedEnable: 1
     - _DoubleSidedGIMode: 0
     - _DoubleSidedMode: 0
@@ -208,6 +242,7 @@ Material:
     - _Mode: 0
     - _MotionVectors: 1
     - _NatureRendererDistanceControl: 1
+    - _NatureRendererInstancing: 1
     - _Nature_Renderer_Instancing: 1
     - _NoBendingUnderPivot: 1
     - _NormalMapScale: 1
@@ -286,11 +321,13 @@ Material:
     - _WindVariation: 0
     - _WorkflowMode: 1
     - _WorldPosPhaseIncidence: 1
+    - _ZTest: 4
     - _ZTestDepthEqualForOpaque: 3
     - _ZTestForward: 4
     - _ZTestGBuffer: 4
     - _ZTestTransparent: 4
     - _ZWrite: 1
+    - _ZWriteControl: 0
     - __strip__additional_light_shadows: 1
     - __strip__additional_lights: 0
     - __strip__debug: 0
@@ -304,9 +341,11 @@ Material:
     - __strip__reflection_probe_box_projection: 1
     - __strip__shadow_mask: 1
     m_Colors:
+    - Fade_Color: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DiffusionProfileAsset: {r: -3.698545e+22, g: 20.616848, b: -5.291675e-28, a: -1.3520143e+18}
+    - _Diffusion_Profile_Asset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _FloatingOriginOffset_Color: {r: 0, g: 0, b: 0, a: 0}
@@ -316,7 +355,9 @@ Material:
     - _OcclusionRemap: {r: 0, g: 1, b: 0, a: 0}
     - _ScaleFade: {r: 500, g: 20, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _Subsurface_Scattering_Color: {r: 1, g: 1, b: 1, a: 0}
     - _ThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
+    - _Thickness_Remap: {r: 0, g: 1, b: 0, a: 0}
     - _Tint: {r: 1, g: 1, b: 1, a: 1}
     - _TintVariation: {r: 1, g: 1, b: 1, a: 1}
     - _TranslucencyColor: {r: 1, g: 1, b: 1, a: 1}
