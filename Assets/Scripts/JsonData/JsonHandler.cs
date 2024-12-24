@@ -9,7 +9,7 @@ public class JsonHandler : MonoBehaviour
     {
         try
         {
-            TextAsset file = Resources.Load(jsonString) as TextAsset;
+            TextAsset file = AssetDatabase.LoadAssetAtPath(jsonString, typeof(TextAsset)) as TextAsset;
             return JsonUtility.FromJson<GameProfile>(file.text);
         }
         catch (NullReferenceException e)
@@ -22,8 +22,8 @@ public class JsonHandler : MonoBehaviour
     {
         string jsonString = JsonUtility.ToJson(profile);
         TextAsset file = new TextAsset(jsonString);
-        AssetDatabase.DeleteAsset("Assets/profile.json");
-        AssetDatabase.CreateAsset(file, "Assets/profile.json");
+        AssetDatabase.DeleteAsset("Assets/profile.asset");
+        AssetDatabase.CreateAsset(file, "Assets/profile.asset");
     }
 
 

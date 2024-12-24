@@ -1,13 +1,14 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonHandler : MonoBehaviour
 {
-    private JsonHandler handler;
 
-    void Start()
+    void Awake()
     {
-        
+        DontDestroyOnLoad(this.gameObject);
     }
 
     public void Settings()
@@ -15,13 +16,67 @@ public class ButtonHandler : MonoBehaviour
 
     }
 
+    /*
+     *
+     *TODO: Loading Screen and load remaining values
+     *
+     */
     public void LoadGame()
     {
-
+        StartCoroutine(LoadSceneAsync());
     }
+
+    /*
+     *
+     *TODO: Loading Screen, load the correct scene, e.g. the cutscenes
+     *
+     */
 
     public void CreateNewGame()
     {
+        AsyncOperation loadScene = SceneManager.LoadSceneAsync(392);
+        GameProfile prof = new GameProfile();
+        prof.playerPosY = 55f;
+        prof.playerPosZ = 100f;
+        prof.playerPosX = 100f;
+        prof.playerRotX = 0f;
+        prof.playerRotY = 0f;
+        prof.playerRotZ = 0f;
+        JsonHandler.WriteGameProfile(prof);
+    }
+
+    IEnumerator LoadSceneAsync()
+    {
+        AsyncOperation loadScene = SceneManager.LoadSceneAsync(392);
+        GameProfile profile = JsonHandler.readGameProfile("Assets/profile.asset");
+
+        if (profile == null)
+        {
+            Debug.Log("No profile found, creating a new one");
+            //Have to test that
+            yield break;
+        }
+
+        while (!loadScene.isDone)
+        {
+            yield return new WaitForSeconds(1f);
+        }
+
+        Scene actScene = SceneManager.GetSceneByName("GameScene_0");
+        GameObject[] roots = actScene.GetRootGameObjects();
+
+        foreach (GameObject root in roots)
+        {
+            if (root.CompareTag("Player"))
+            {
+                Debug.Log("Found a profile");
+                root.transform.position = new Vector3(profile.playerPosX, profile.playerPosY, profile.playerPosZ);
+                root.transform.rotation = new Quaternion(profile.playerRotX, profile.playerRotY, profile.playerRotZ, 1);
+                //load the remaining values once they are implemented
+            }
+        }
+
+        
 
     }
 }

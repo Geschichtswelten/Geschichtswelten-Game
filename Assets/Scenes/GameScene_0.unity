@@ -976,6 +976,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player-Cam-Wrapper
       objectReference: {fileID: 0}
+    - target: {fileID: 7507581119735856918, guid: 7db62a633f034b74388d5a0b13bf8905, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
