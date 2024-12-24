@@ -23,7 +23,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Detailed Grass 01 LOD0
-  m_Shader: {fileID: -631450621483338060, guid: 84b8f46f4cd6746478c0cbedd8bdc869, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 0b92964611b8cef40ba78bc98629ef5a, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -34,11 +34,13 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap:
     MotionVector: User
+    RenderType: Opaque
   disabledShaderPasses:
   - TransparentBackface
   - TransparentDepthPostpass
   - TransparentDepthPrepass
   - RayTracingPrepass
+  - MOTIONVECTORS
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -60,6 +62,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Albedo:
+        m_Texture: {fileID: 2800000, guid: 3dd15d49c118f61499885324a339f8d5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseColorMap:
         m_Texture: {fileID: 2800000, guid: 3dd15d49c118f61499885324a339f8d5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -89,6 +95,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 3dd15d49c118f61499885324a339f8d5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskMap:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -166,7 +176,9 @@ Material:
     - _AlphaSrcBlend: 1
     - _AlphaTest: 0
     - _AlphaTestThreshold: 0.036
+    - _AlphaThreshold: 0.6
     - _AlphaToMask: 0
+    - _AmbientTranslucency: 1
     - _BUILTIN_AlphaClip: 1
     - _BUILTIN_Blend: 0
     - _BUILTIN_CullMode: 2
@@ -184,6 +196,7 @@ Material:
     - _Blend: 0
     - _BlendMode: 0
     - _BlendModePreserveSpecular: 1
+    - _BranchWindSpeed: 4.12
     - _BumpScale: 1
     - _CastShadows: 1
     - _ClearCoatMask: 0
@@ -217,13 +230,24 @@ Material:
     - _EmissionAffectedByAlbedo: 0
     - _EmissionExposureWeight: 1
     - _EmissionIntensity: 0
+    - _EnableBakedPhase: 0
+    - _EnableBakedWindMask: 0
     - _EnableBlendModePreserveSpecularLighting: 1
+    - _EnableBranchWind: 0
+    - _EnableFlutter: 0
     - _EnableFogOnTransparent: 1
+    - _EnableProceduralPhase: 1
     - _EnableTouchReact: 0
+    - _EnableTransmission: 0
     - _EnableWetness: 1
     - _EnableWind: 1
     - _EnvironmentReflections: 1
     - _ExcludeFromTUAndAA: 0
+    - _FlipBackfaceNormals: 0
+    - _FlutterMask: 1
+    - _FlutterSpeed: 1
+    - _FlutterStrength: 0.1
+    - _FlutterTiling: 0.1
     - _GlossMapScale: 0.891
     - _Glossiness: 0.5
     - _GlossyReflections: 0
@@ -236,6 +260,11 @@ Material:
     - _LeafSwingFrequency: 0.324
     - _LightingQuality: 0
     - _LinkMapTilingOffset: 1
+    - _MainBendingPower: 0.67
+    - _MainBendingSpeed: 1
+    - _MainBendingStrength: 9.15
+    - _MainScaleXZ: 0.1
+    - _MaskVCChannel: 0
     - _MaterialID: 5
     - _MaterialTypeMask: 34
     - _Metallic: 0
@@ -255,7 +284,10 @@ Material:
     - _Parallax: 0.02
     - _PerPixelSorting: 0
     - _PerspectiveCorrection: 0
+    - _PhaseChannel: 0
+    - _PhaseScale: 1
     - _Porosity: 0.266
+    - _ProceduralTiling: 0.05
     - _QueueControl: 1
     - _QueueOffset: 0
     - _RayTracing: 0
@@ -266,6 +298,10 @@ Material:
     - _RefractionModel: 0
     - _RenderQueueType: 1
     - _RequireSplitLighting: 0
+    - _Rolling: 1
+    - _RollingDirectionalMask: 0.5
+    - _RollingDisplacement: 0.69
+    - _RollingProceduralStrength: 1
     - _SampleAlphaOverlay: 1
     - _SampleColorOverlay: 1
     - _ShowBlueChannel: 0
@@ -291,7 +327,9 @@ Material:
     - _Surface: 0
     - _SurfaceMapMethod: 2
     - _SurfaceType: 0
+    - _TVEFlutterMask: 0
     - _TemporalAntiAliasing: 0
+    - _Thickness: 1
     - _TouchReactForce: 0.2
     - _Translucency: 1
     - _TranslucencyAmbient: 1
@@ -311,12 +349,17 @@ Material:
     - _TransparentZWrite: 0
     - _TurbulenceStrength: 1
     - _UVSec: 0
+    - _UseHemisphere: 0
     - _UseShadowThreshold: 0
+    - _VertexAO: 1
+    - _VertexAOChannel: 3
     - _VertexNormalStrength: 1
     - _VerticalEdgeFlutter: 1
     - _Wetness: 0.814
     - _WetnessType: 0
     - _Wind: 1
+    - _WindMask: 1
+    - _WindMaskFalloff: 0.75
     - _WindStrength: 1
     - _WindVariation: 0
     - _WorkflowMode: 1
@@ -352,6 +395,8 @@ Material:
     - _GlossRemap: {r: 0, g: 0.51202095, b: 0, a: 0}
     - _HSL: {r: -0.020996857, g: -0.15886068, b: -0.028326571, a: 0}
     - _HSLVariation: {r: -0.06099685, g: -0.25886065, b: -0.07790327, a: 0}
+    - _HueVariation: {r: 0.9, g: 0.5, b: 0, a: 0.1019608}
+    - _MaskScale: {r: 15, g: 1, b: 15, a: 0}
     - _OcclusionRemap: {r: 0, g: 1, b: 0, a: 0}
     - _ScaleFade: {r: 500, g: 20, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
@@ -361,6 +406,7 @@ Material:
     - _Tint: {r: 1, g: 1, b: 1, a: 1}
     - _TintVariation: {r: 1, g: 1, b: 1, a: 1}
     - _TranslucencyColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Transmission: {r: 1, g: 8, b: 0.1, a: 0}
     - _TrunkBendFactor: {r: 1, g: 0, b: 0, a: 0}
     - _WindFade: {r: 50, g: 20, b: 0, a: 0}
   m_BuildTextureStacks: []
