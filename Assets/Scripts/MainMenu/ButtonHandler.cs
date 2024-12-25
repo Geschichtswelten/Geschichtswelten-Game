@@ -28,7 +28,12 @@ public class ButtonHandler : MonoBehaviour
         OnSettingsChanged?.Invoke();
     }
 
-    //Setter for SettingsClass
+    public void CloseMenu()
+    {
+        Time.timeScale = 1f;
+    }
+
+    
 
     /*
      *

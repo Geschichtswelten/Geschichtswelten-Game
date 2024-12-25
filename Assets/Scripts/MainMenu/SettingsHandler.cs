@@ -1,3 +1,4 @@
+using NUnit.Framework.Constraints;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine.UI;
 
 public class SettingsHandler : MonoBehaviour
 {
+
     [Header("Children")] 
     [SerializeField] private GameObject backButton;
     [SerializeField] private GameObject scrollView;
@@ -26,19 +28,23 @@ public class SettingsHandler : MonoBehaviour
     void Awake()
     {
         ButtonHandler.OnSettingsChanged += HandleSettingsChanged;
-        backButton.SetActive(false);
-        scrollView.SetActive(false);
+            backButton.SetActive(false);
+            scrollView.SetActive(false);
+        
     }
 
     private void HandleSettingsChanged()
     {
+        
         if (masterVolume != null && dialogueVolume != null && musicVolume != null && resolution != null)
         {
-            masterVolume.value = ButtonHandler.settings.masterVolume;
-            dialogueVolume.value = ButtonHandler.settings.dialogueVolume;
-            musicVolume.value = ButtonHandler.settings.musicVolume;
+                masterVolume.value = ButtonHandler.settings.masterVolume;
+                dialogueVolume.value = ButtonHandler.settings.dialogueVolume;
+                musicVolume.value = ButtonHandler.settings.musicVolume;
 
-            resolution.value = ButtonHandler.settings.resolution;
+                resolution.value = ButtonHandler.settings.resolution;
+            
+            
         }
 
     }
