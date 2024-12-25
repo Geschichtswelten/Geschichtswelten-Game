@@ -1,20 +1,34 @@
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class ButtonHandler : MonoBehaviour
 {
-
-    void Awake()
+    public static SettingsClass settings;
+    public static event Action OnSettingsChanged;
+    void Start()
     {
         DontDestroyOnLoad(this.gameObject);
+        LoadSettings();
     }
 
-    public void Settings()
+    private void LoadSettings()
     {
-
+        SettingsClass settingsClass = JsonHandler.ReadSettings("Assets/Settings/player_settings.asset");
+        settingsClass ??= new SettingsClass(100f, 100f, 100f, 0);
+        settings = settingsClass;
+        OnSettingsChanged?.Invoke();
     }
+
+    public static void InvokeOnSettingsChanged()
+    {
+        OnSettingsChanged?.Invoke();
+    }
+
+    //Setter for SettingsClass
 
     /*
      *
