@@ -22,7 +22,13 @@ public class SettingsClass
         this.dialogueVolume = dialogueVolume;
         this.musicVolume = musicVolume;
         this.resolution = resolution;
-        this.resolution = resolution;
+    }
+    public SettingsClass()
+    {
+        this.masterVolume = 0;
+        this.dialogueVolume = 0;
+        this.musicVolume = 0;
+        this.resolution = 0;
     }
 
     public void SetMasterVolume(float volume)

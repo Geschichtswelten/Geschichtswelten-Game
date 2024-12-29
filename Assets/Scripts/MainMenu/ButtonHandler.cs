@@ -7,8 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class ButtonHandler : MonoBehaviour
 {
-    public static SettingsClass settings;
+    public static SettingsClass settings = new SettingsClass();
     public static event Action OnSettingsChanged;
+
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -61,15 +62,16 @@ public class ButtonHandler : MonoBehaviour
 
     IEnumerator LoadSceneAsync()
     {
-        AsyncOperation loadScene = SceneManager.LoadSceneAsync(392);
         GameProfile profile = JsonHandler.readGameProfile("Assets/profile.asset");
 
         if (profile == null)
         {
             Debug.Log("No profile found, creating a new one");
+            CreateNewGame();
             //Have to test that
             yield break;
         }
+        AsyncOperation loadScene = SceneManager.LoadSceneAsync(392);
 
         while (!loadScene.isDone)
         {
