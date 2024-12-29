@@ -1,3 +1,5 @@
+using System.Collections;
+using Mono.CSharp;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -23,7 +25,7 @@ public class PlayerBehaviour : MonoBehaviour
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
-    bool readyToJump;
+    private Coroutine jumpCoroutine;
 
     [Header("Ground Check")]
     public float playerHeight;
@@ -93,36 +95,31 @@ public class PlayerBehaviour : MonoBehaviour
         interactKey.action.Disable();
     }
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         startPosition = transform.position;
 
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
-        readyToJump = true;
+        jumpCoroutine = null;
+        UnityEngine.Physics.gravity = new Vector3(0, -18.62f, 0);
 
         startYScale = transform.localScale.y;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
-        MyInput();
+        grounded = Physics.Raycast(transform.position, Vector3.down,
+            playerHeight * 0.5f + 0.2f, whatIsGround);
+        HandleMovementState();
+        HandleInput();
         SpeedControl();
-        StateHandler();
         Interact();
 
         //handle drag
-        if (grounded)
-        {
-            rb.linearDamping = groundDrag;
-        }
-        else
-        {
-            rb.linearDamping = 0f;
-        }
+        rb.linearDamping = grounded ? groundDrag : 0f;
     }
 
     private void FixedUpdate()
@@ -136,41 +133,37 @@ public class PlayerBehaviour : MonoBehaviour
         transform.position = startPosition;
     }
 
-    private void MyInput()
+    private void HandleInput()
     {
         horizontalInput = movement.action.ReadValue<Vector2>().x;
         verticalInput = movement.action.ReadValue<Vector2>().y;
 
-        bool playerJumped = jump.action.IsPressed();
-        if (playerJumped && readyToJump && grounded)
+        var playerJumped = jump.action.IsPressed();
+
+        // Invoke() ist teuer
+        if (playerJumped && jumpCoroutine == null && grounded)
         {
-            readyToJump = false;
-
-            Jump();
-
-            Invoke(nameof(ResetJump), jumpCooldown);    //um durchgehend zu springen, wenn man gedr�ckt h�lt
+            jumpCoroutine = StartCoroutine(Jump());
         }
-
+        
         //start crouch
         if (crouchKey.action.WasPressedThisFrame())
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);  //um den schwebenden player schnell wieder auf den boden zu dr�cken
-        }
-
-        //stop crouch
-        if (crouchKey.action.WasReleasedThisFrame())
+        } //stop crouch
+        else if (crouchKey.action.WasReleasedThisFrame())
         {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
         }
     }
 
-    private void StateHandler()
+    private void HandleMovementState()
     {
         if (freeze)
         {
             state = Movementstate.freeze;
-            moveSpeed = 0;
+            moveSpeed = 0f;
             rb.linearVelocity = Vector3.zero;
         }
         else if (crouchKey.action.IsPressed())
@@ -197,70 +190,67 @@ public class PlayerBehaviour : MonoBehaviour
     #region movement
     private void MovePlayer()
     {
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        moveDirection = (orientation.forward * verticalInput + orientation.right * horizontalInput).normalized;
 
-        if (OnSlope() && !exitingSlope)
+        var isOnSlope = OnSlope();
+        if (isOnSlope && !exitingSlope)
         {
-            rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
-            if (rb.linearVelocity.y > 0)                                  //wenn der player nach oben geht
-                rb.AddForce(Vector3.down * 80f, ForceMode.Force);   //weil gravity aus ist, damit man nicht durchgehen nach oben bounced
+            //moveDirection = GetSlopeMoveDirection();
+            rb.AddForce(GetSlopeMoveDirection() * (moveSpeed * 20f), ForceMode.Force);
+            if (rb.linearVelocity.y > 0 /*wenn der player nach oben geht*/)
+                rb.AddForce(Vector3.down * 80f, ForceMode.Force);   //weil gravity aus ist, damit man nicht durchgehend nach oben bounced
+                
+        }
+        else switch (grounded)
+        {
+            case true:
+                rb.AddForce(moveDirection.normalized * (moveSpeed * 10f), ForceMode.Force);
+                break;
+            case false:
+                rb.AddForce(moveDirection.normalized * (moveSpeed * 10f * airMultiplier), ForceMode.Force);
+                break;
         }
 
-        else if (grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-
-        else if (!grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
-
-        rb.useGravity = !OnSlope();
+        rb.useGravity = !isOnSlope;
     }
 
     private void SpeedControl()
     {
-        //limiting speed on slope
-        if (OnSlope() && !exitingSlope)
+        if (OnSlope() && !exitingSlope) //limit speed on slope
         {
             if (rb.linearVelocity.magnitude > moveSpeed)
                 rb.linearVelocity = rb.linearVelocity.normalized * moveSpeed;
-        }
-
-        //limiting speed on ground and in air
-        else
+        } 
+        else //limit speed on ground and in air
         {
-            Vector3 flatVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+            var flatVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
 
-            if (flatVelocity.magnitude > moveSpeed)
-            {
-                Vector3 limitedVelocity = flatVelocity.normalized * moveSpeed;
-                rb.linearVelocity = new Vector3(limitedVelocity.x, rb.linearVelocity.y, limitedVelocity.z);
-            }
+            if (flatVelocity.magnitude <= moveSpeed)
+                return;
+            var limitedVelocity = flatVelocity.normalized * moveSpeed;
+            rb.linearVelocity = new Vector3(limitedVelocity.x, rb.linearVelocity.y, limitedVelocity.z);
         }
     }
 
-    private void Jump()
+    private IEnumerator Jump()
     {
         exitingSlope = true;
-
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-    }
-    private void ResetJump()
-    {
-        readyToJump = true;
-
+        
+        yield return new WaitForSeconds(jumpCooldown);
+        
         exitingSlope = false;
+        
+        jumpCoroutine = null;
     }
 
     private bool OnSlope()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
-        {
-            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);   //slopehit.normal == normale vom boden, auf dem man steht
-            return angle < maxSlopeAngle && angle != 0;
-        }
-
-        return false;
+        if (!Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f)) 
+            return false;
+        var angle = Vector3.Angle(Vector3.up, slopeHit.normal);   //slopehit.normal == normale vom boden, auf dem man steht
+        return angle != 0 && angle < maxSlopeAngle;
     }
 
     private Vector3 GetSlopeMoveDirection()
@@ -269,24 +259,22 @@ public class PlayerBehaviour : MonoBehaviour
     }
     #endregion
 
+    // ReSharper disable Unity.PerformanceAnalysis
     private void Interact()
     {
-        GameObject target;
         var ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, interactRange, LayerMask.GetMask("Interactable")))
+        if (Physics.Raycast(ray, out var hit, interactRange, LayerMask.GetMask("Interactable")))
         {
-            target = hit.collider.gameObject;
+            var target = hit.collider.gameObject;
             fadenkreuz.sprite = interactable_fadenkreuz;
             fadenkreuz_ist_interactable = true;
-            if(interactKey.action.WasReleasedThisFrame()) 
-            {
-                OnInteract doShit = target.GetComponent<OnInteract>();
-                if (doShit != null)
-                    doShit.Interact();
-            }
-        }
-        else if (fadenkreuz_ist_interactable)
+            
+            if (!interactKey.action.WasPressedThisFrame()) 
+                return;
+            var action = target.GetComponent<OnInteract>();
+            action?.Interact();
+        } // reset UI:
+        else if (fadenkreuz_ist_interactable) 
         {
             fadenkreuz.sprite = normal_fadenkreuz;
             fadenkreuz_ist_interactable = false;
