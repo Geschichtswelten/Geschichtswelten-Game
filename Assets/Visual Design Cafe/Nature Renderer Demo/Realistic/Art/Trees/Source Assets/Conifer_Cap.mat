@@ -37,32 +37,34 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Conifer_Cap
-  m_Shader: {fileID: -631450621483338060, guid: 84b8f46f4cd6746478c0cbedd8bdc869, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: b82d12de3514985498e272eeed3f5b52, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _GLOSSYREFLECTIONS_OFF
-  - _NORMALMAP
-  m_InvalidKeywords:
-  - _DISABLE_SSR_TRANSPARENT
-  - _DOUBLESIDED_ON
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
   m_CustomRenderQueue: -1
   stringTagMap:
     MotionVector: User
+    RenderType: Opaque
   disabledShaderPasses:
   - TransparentDepthPrepass
   - TransparentDepthPostpass
   - TransparentBackface
   - RayTracingPrepass
   - ForwardEmissiveForDeferred
+  - MOTIONVECTORS
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo:
+        m_Texture: {fileID: 2800000, guid: 357c917d325bcf24982efec540bbc87a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseColorMap:
         m_Texture: {fileID: 2800000, guid: 357c917d325bcf24982efec540bbc87a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -96,6 +98,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 357c917d325bcf24982efec540bbc87a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskMap:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -175,6 +181,7 @@ Material:
     - _AlphaSrcBlend: 1
     - _AlphaTest: 0
     - _AlphaTestThreshold: 0.5
+    - _AlphaThreshold: 0.6
     - _AlphaToMask: 0
     - _AlphaToMaskInspectorValue: 0
     - _BUILTIN_QueueControl: 1
@@ -183,7 +190,9 @@ Material:
     - _Blend: 0
     - _BlendMode: 0
     - _BlendModePreserveSpecular: 1
+    - _BranchWindSpeed: 0.1
     - _BumpScale: 1
+    - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _ColorCorrection: 0
@@ -208,10 +217,19 @@ Material:
     - _EmissionAffectedByAlbedo: 0
     - _EmissionExposureWeight: 1
     - _EmissionIntensity: 0
+    - _EnableBakedPhase: 0
+    - _EnableBakedWindMask: 0
     - _EnableBlendModePreserveSpecularLighting: 1
+    - _EnableBranchWind: 0
+    - _EnableFlutter: 0
     - _EnableFogOnTransparent: 1
+    - _EnableProceduralPhase: 1
     - _EnvironmentReflections: 1
     - _ExcludeFromTUAndAA: 0
+    - _FlutterMask: 1
+    - _FlutterSpeed: 1
+    - _FlutterStrength: 0.1
+    - _FlutterTiling: 0.1
     - _ForceForwardEmissive: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -219,6 +237,11 @@ Material:
     - _HueVariationKwToggle: 1
     - _LightingQuality: 0
     - _LinkMapTilingOffset: 1
+    - _MainBendingPower: 1.2
+    - _MainBendingSpeed: 1
+    - _MainBendingStrength: 0.2
+    - _MainScaleXZ: 0.1
+    - _MaskVCChannel: 0
     - _MaterialID: 1
     - _MaterialTypeMask: 34
     - _Metallic: 0
@@ -235,6 +258,9 @@ Material:
     - _Overlay: 1
     - _Parallax: 0.005
     - _PerPixelSorting: 0
+    - _PhaseChannel: 0
+    - _PhaseScale: 1
+    - _ProceduralTiling: 0.05
     - _QueueControl: 1
     - _QueueOffset: 0
     - _RayTracing: 0
@@ -245,6 +271,10 @@ Material:
     - _RefractionModel: 0
     - _RenderQueueType: 1
     - _RequireSplitLighting: 0
+    - _Rolling: 1
+    - _RollingDirectionalMask: 0.5
+    - _RollingDisplacement: 0.3
+    - _RollingProceduralStrength: 1
     - _SampleAlphaOverlay: 1
     - _SampleColorOverlay: 1
     - _SecondaryGlossiness: 0.2
@@ -271,7 +301,9 @@ Material:
     - _Surface: 0
     - _SurfaceMapMethod: 0
     - _SurfaceType: 0
+    - _TVEFlutterMask: 0
     - _TemporalAntiAliasing: 0
+    - _Thickness: 1
     - _TransmissionEnable: 1
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
@@ -282,19 +314,26 @@ Material:
     - _TransparentZWrite: 0
     - _TurbulenceStrength: 1
     - _UVSec: 0
+    - _UseHemisphere: 0
     - _UseShadowThreshold: 0
+    - _VertexAO: 1
+    - _VertexAOChannel: 3
     - _VertexNormalStrength: 1
     - _WINDQUALITY: 4
     - _Wind: 1
+    - _WindMask: 1
+    - _WindMaskFalloff: 0.75
     - _WindQuality: 0
     - _WindStrength: 1
     - _WindVariation: 0.3
     - _WorkflowMode: 1
+    - _ZTest: 4
     - _ZTestDepthEqualForOpaque: 3
     - _ZTestForward: 4
     - _ZTestGBuffer: 3
     - _ZTestTransparent: 4
     - _ZWrite: 1
+    - _ZWriteControl: 0
     - __strip__additional_light_shadows: 1
     - __strip__additional_lights: 0
     - __strip__debug: 0
@@ -318,7 +357,9 @@ Material:
     - _GlossRemap: {r: 0, g: 0, b: 0, a: 0}
     - _HSL: {r: 0.02, g: 0.05, b: 0.1, a: 0}
     - _HSLVariation: {r: -0.02, g: -0.05, b: -0.1, a: 0}
+    - _HueVariation: {r: 0.9, g: 0.5, b: 0, a: 0.1019608}
     - _HueVariationColor: {r: 1, g: 0.5, b: 0, a: 0.1}
+    - _MaskScale: {r: 1, g: 1, b: 1, a: 0}
     - _OcclusionRemap: {r: 0, g: 1, b: 0, a: 0}
     - _SecondaryGlossRemap: {r: 0, g: 1, b: 0, a: 0}
     - _SecondaryOcclusionRemap: {r: 0, g: 1, b: 0, a: 0}

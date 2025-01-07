@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class ButtonHandler : MonoBehaviour
 {
     public static SettingsClass settings = new SettingsClass();
+    public static GameProfile profile = null;
     public static event Action OnSettingsChanged;
 
     void Start()
@@ -50,19 +51,19 @@ public class ButtonHandler : MonoBehaviour
     public void CreateNewGame()
     {
         AsyncOperation loadScene = SceneManager.LoadSceneAsync(392);
-        GameProfile prof = new GameProfile();
-        prof.playerPosY = 55f;
-        prof.playerPosZ = 100f;
-        prof.playerPosX = 100f;
-        prof.playerRotX = 0f;
-        prof.playerRotY = 0f;
-        prof.playerRotZ = 0f;
-        JsonHandler.WriteGameProfile(prof);
+        profile = new GameProfile();
+        profile.playerPosY = 55f;
+        profile.playerPosZ = 100f;
+        profile.playerPosX = 100f;
+        profile.playerRotX = 0f;
+        profile.playerRotY = 0f;
+        profile.playerRotZ = 0f;
+        JsonHandler.WriteGameProfile(profile);
     }
 
     IEnumerator LoadSceneAsync()
     {
-        GameProfile profile = JsonHandler.readGameProfile("Assets/profile.asset");
+         profile = JsonHandler.readGameProfile("Assets/profile.asset");
 
         if (profile == null)
         {
