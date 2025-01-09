@@ -15,7 +15,7 @@ public class GameProfile
     public float playerRotZ;
 
     //1. index: item id ; 2. index: amount; 3. index: inventory Position
-    public int[] playerItems;
+    public int[][] playerItems;
     public bool woodCampBeaten;
     public bool copperCampBeaten;
     public bool arminiusBeaten;
@@ -23,14 +23,28 @@ public class GameProfile
     //might want to save constructions
 
     //save world stuff
-    public float timeH, timeM, timeS;
+    public float time;
     public int day;
 
     public GameProfile()
     {
-        timeH = 6f;
-        timeM = 0f;
-        timeS = 0f;
+        time = 21600f;
         day = 0;
+    }
+
+    public GameProfile(float playerPosX, float playerPosY, float playerPosZ, float playerRotX, float playerRotY, float playerRotZ, int[][] playerItems, bool woodCampBeaten, bool copperCampBeaten, bool arminiusBeaten, float time, int day)
+    {
+        this.playerPosX = playerPosX;
+        this.playerPosY = playerPosY;
+        this.playerPosZ = playerPosZ;
+        this.playerRotX = playerRotX;
+        this.playerRotY = playerRotY;
+        this.playerRotZ = playerRotZ;
+        this.playerItems = playerItems;
+        this.woodCampBeaten = woodCampBeaten;
+        this.copperCampBeaten = copperCampBeaten;
+        this.arminiusBeaten = arminiusBeaten;
+        this.time = time;
+        this.day = day;
     }
 }

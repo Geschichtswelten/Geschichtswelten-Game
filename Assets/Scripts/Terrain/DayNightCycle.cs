@@ -34,8 +34,7 @@ public class DayNightCycle : MonoBehaviour
     
     void Start()
     {
-        hourMinuteSecond = new Vector3(ButtonHandler.profile.timeH, ButtonHandler.profile.timeM, ButtonHandler.profile.timeS);
-        time = HMS_to_Time(hourMinuteSecond.x, hourMinuteSecond.y, hourMinuteSecond.z);
+        time = ButtonHandler.profile.time;
         sunSet = HMS_to_Time(hasSunSet.x, hasSunSet.y, hasSunSet.z);
         days = ButtonHandler.profile.day;
         sunRise = 86400f - sunSet;
