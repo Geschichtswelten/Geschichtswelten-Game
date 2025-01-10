@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2377108}
   - component: {fileID: 6497744}
   - component: {fileID: 1059018869272276207}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Old_Chair_1A
-  m_TagString: Untagged
+  m_TagString: Wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

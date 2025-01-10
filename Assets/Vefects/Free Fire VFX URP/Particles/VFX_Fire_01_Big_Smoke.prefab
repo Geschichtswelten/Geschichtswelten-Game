@@ -43736,6 +43736,7 @@ GameObject:
   - component: {fileID: 8829451551789304536}
   - component: {fileID: 8829451551789304543}
   - component: {fileID: 6667402393872249569}
+  - component: {fileID: 2603345126642110674}
   m_Layer: 0
   m_Name: VFX_Fire_01_Big_Smoke
   m_TagString: Untagged
@@ -48590,7 +48591,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 15
+  MaxDistance: 65.92
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -48674,6 +48675,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2603345126642110674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8829451551789304542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d8e9d8c781a6e64eba929fad27bbe4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 447e97f44e7d0fd4eb6ddec82c319992, type: 3}
 --- !u!1 &8986170565123019627
 GameObject:
   m_ObjectHideFlags: 0

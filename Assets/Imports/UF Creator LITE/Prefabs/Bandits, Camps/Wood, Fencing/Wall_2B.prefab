@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2340024}
   - component: {fileID: 6427170}
   - component: {fileID: 6728687456449319221}
+  - component: {fileID: 8869215283620318140}
   m_Layer: 0
   m_Name: Wall_2B
   m_TagString: Untagged
@@ -129,3 +130,19 @@ LODGroup:
     renderers:
     - renderer: {fileID: 2340024}
   m_Enabled: 1
+--- !u!208 &8869215283620318140
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172752}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 3.016, y: 2.075, z: 3.0170002}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 1.256, y: 0.058000002, z: 1.2540001}
+  m_TimeToStationary: 0.5

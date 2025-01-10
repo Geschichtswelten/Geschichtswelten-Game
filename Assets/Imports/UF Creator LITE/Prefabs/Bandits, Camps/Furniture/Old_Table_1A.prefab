@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2348526}
   - component: {fileID: 6468202}
   - component: {fileID: 6231419465504925791}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Old_Table_1A
-  m_TagString: Untagged
+  m_TagString: Wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

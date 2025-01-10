@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 440972}
   - component: {fileID: 6571620}
   - component: {fileID: 967778298059963663}
+  - component: {fileID: 7094866153131503805}
   m_Layer: 0
   m_Name: Log_Pile_1A
   m_TagString: Untagged
@@ -74,6 +75,22 @@ LODGroup:
     renderers:
     - renderer: {fileID: 733266576728239829}
   m_Enabled: 1
+--- !u!208 &7094866153131503805
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106608}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.105, y: 1.04, z: 3}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.16, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &498151889333627547
 GameObject:
   m_ObjectHideFlags: 0

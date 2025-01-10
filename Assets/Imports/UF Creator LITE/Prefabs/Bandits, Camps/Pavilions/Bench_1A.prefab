@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 2358532}
   - component: {fileID: 6446658}
   - component: {fileID: 1591829549302027651}
-  m_Layer: 0
+  - component: {fileID: 5883226896402474603}
+  m_Layer: 6
   m_Name: Bench_1A
-  m_TagString: Untagged
+  m_TagString: Wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,7 +108,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300014, guid: 7f823d270321b864dbd5487291d969fc, type: 3}
 --- !u!205 &1591829549302027651
@@ -129,3 +130,19 @@ LODGroup:
     renderers:
     - renderer: {fileID: 2358532}
   m_Enabled: 1
+--- !u!208 &5883226896402474603
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156688}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.47500002, y: 0.41900003, z: 1.718}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.012, y: -0.16000001, z: 0.0050000004}
+  m_TimeToStationary: 0.5

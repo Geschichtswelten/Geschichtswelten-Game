@@ -4854,6 +4854,7 @@ GameObject:
   - component: {fileID: 1255053967005034565}
   - component: {fileID: 1255053967005034562}
   - component: {fileID: 3388423825752734067}
+  - component: {fileID: 8719466160253452693}
   m_Layer: 0
   m_Name: VFX_Fire_Floor_02_Smoke
   m_TagString: Untagged
@@ -9707,7 +9708,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 5
+  MaxDistance: 19.7
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -9791,6 +9792,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8719466160253452693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255053967005034563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d8e9d8c781a6e64eba929fad27bbe4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 94bc8546fe222904c9fd6e0438c1b6fc, type: 3}
 --- !u!1 &1542355214491319100
 GameObject:
   m_ObjectHideFlags: 0

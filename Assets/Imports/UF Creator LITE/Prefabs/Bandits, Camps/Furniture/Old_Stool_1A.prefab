@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 2316056}
   - component: {fileID: 6428462}
   - component: {fileID: 6408739112358399177}
-  m_Layer: 0
+  - component: {fileID: 2949263125825279617}
+  m_Layer: 6
   m_Name: Old_Stool_1A
-  m_TagString: Untagged
+  m_TagString: Wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,3 +130,19 @@ LODGroup:
     renderers:
     - renderer: {fileID: 2316056}
   m_Enabled: 1
+--- !u!208 &2949263125825279617
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140080}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.35000002, y: 0.31800002, z: 0.35000002}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: -0.14500001, z: 0}
+  m_TimeToStationary: 0.5
