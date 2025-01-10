@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2367512}
   - component: {fileID: 6457046}
   - component: {fileID: 8916527932976283105}
+  - component: {fileID: 4296273987213426274}
   m_Layer: 0
   m_Name: Barrel_1A
   m_TagString: Untagged
@@ -129,3 +130,21 @@ LODGroup:
     renderers:
     - renderer: {fileID: 2367512}
   m_Enabled: 1
+--- !u!114 &4296273987213426274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01b6211a1e671d04ca726179942f540e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 0}
+  storageItems: []
+  itemDatabase: {fileID: 11400000, guid: 964f317a23cc9f0418bb3778fccd8ebb, type: 2}
+  distanceToOpenStorage: 0
+  timeToOpenStorage: 0
+  itemAmount: 0

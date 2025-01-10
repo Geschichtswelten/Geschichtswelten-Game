@@ -84,16 +84,19 @@ public class ButtonHandler : MonoBehaviour
 
         foreach (GameObject root in roots)
         {
-            if (root.CompareTag("Player"))
+            if (root.CompareTag("PlayerWrapper"))
             {
-                Debug.Log("Found a profile");
-                root.transform.position = new Vector3(profile.playerPosX, profile.playerPosY, profile.playerPosZ);
-                root.transform.rotation = new Quaternion(profile.playerRotX, profile.playerRotY, profile.playerRotZ, 1);
-                //load the remaining values once they are implemented
+                root.GetComponent<WrapperScript>().LoadProfile();
+               
             }
         }
 
         
 
     }
+
+    
+
+
+
 }
