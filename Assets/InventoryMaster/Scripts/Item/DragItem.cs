@@ -606,8 +606,11 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
             {
                 GameObject dropItem = (GameObject)Instantiate(GetComponent<ItemOnObject>().item.itemModel);
                 dropItem.AddComponent<PickUpItem>();
-                dropItem.GetComponent<PickUpItem>().item = this.gameObject.GetComponent<ItemOnObject>().item;               
-                dropItem.transform.localPosition = GameObject.FindGameObjectWithTag("Player").transform.localPosition;
+                dropItem.GetComponent<PickUpItem>().item = this.gameObject.GetComponent<ItemOnObject>().item;    
+                var player = GameObject.FindGameObjectWithTag("Player");
+                var pos = Vector3.zero;
+                if (player != null) pos = player.transform.position; 
+                dropItem.transform.localPosition = pos;
                 inventory.OnUpdateItemList();
                 if (oldSlot.transform.parent.parent.GetComponent<EquipmentSystem>() != null)
                     inventory.GetComponent<Inventory>().UnEquipItem1(dropItem.GetComponent<PickUpItem>().item);

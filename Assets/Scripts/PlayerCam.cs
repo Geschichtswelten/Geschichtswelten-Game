@@ -13,13 +13,6 @@ public class PlayerCam : MonoBehaviour
 
     [SerializeField] private InputActionReference look;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
-
     private void OnEnable()
     {
         look.action.Enable();
@@ -30,14 +23,13 @@ public class PlayerCam : MonoBehaviour
         look.action.Disable();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        Vector2 mouseDelta = look.action.ReadValue<Vector2>();
-        float mouseX = mouseDelta.x * Time.deltaTime * sensX;
-        float mouseY = mouseDelta.y * Time.deltaTime * sensY;
+        var mouseDelta = look.action.ReadValue<Vector2>();
+        var mouseX = mouseDelta.x * Time.deltaTime * (sensX / 3);
+        var mouseY = mouseDelta.y * Time.deltaTime * (sensY / 3);
 
-        yRotation += mouseX;
+        yRotation = (yRotation + mouseX) % 360f;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);

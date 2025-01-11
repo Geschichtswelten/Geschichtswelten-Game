@@ -4,7 +4,24 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Wood
+  - killbox
+  - shootable
+  - Slot
+  - Slots
+  - Hotbar
+  - EquipmentSystem
+  - Panel
+  - Tooltip
+  - DraggingItem
+  - ItemIcon
+  - Item
+  - CraftSystem
+  - ResultSlot
+  - Canvas
+  - EventSystem
+  - MainInventory
+  - PlayerWrapper
+  - Enemy
   layers:
   - Default
   - TransparentFX

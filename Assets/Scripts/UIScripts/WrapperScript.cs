@@ -56,10 +56,11 @@ public class WrapperScript : MonoBehaviour
         }
 
         Vector3 pos = new Vector3(profile.playerPosX, profile.playerPosY, profile.playerPosZ);
-        Quaternion rot = new Quaternion(profile.playerRotX, profile.playerRotY, profile.playerRotZ, 1);
+        Quaternion rot = new Quaternion();
+        rot.eulerAngles = new Vector3(profile.playerRotX, profile.playerRotY, profile.playerRotZ);
 
         playerBehaviour.LoadPosition(pos, rot);
-
+        
 
     }
 

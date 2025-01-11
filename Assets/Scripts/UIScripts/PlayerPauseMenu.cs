@@ -25,15 +25,12 @@ public class PlayerPauseMenu : MonoBehaviour
 
     public void ActivatePauseMenu()
     {
-        while (Time.timeScale != 0f)
-        {
-            Time.timeScale -= Time.deltaTime;
-            if ( Time.timeScale < 0f ) Time.timeScale = 0f;
-        }
-
-        _canvas.SetActive( true );
+        _canvas.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        Time.timeScale = 0;
+
+        
     }
 
     public void ReturnToGame()
@@ -42,11 +39,7 @@ public class PlayerPauseMenu : MonoBehaviour
         Cursor.visible = false;
         _canvas.SetActive( false );
 
-        while (Time.timeScale != 1f)
-        {
-            Time.timeScale += Time.deltaTime;
-            if (Time.timeScale > 1f) Time.timeScale = 1f;
-        }
+        Time.timeScale = 1;
     }
 
     public void SaveGame()
@@ -106,14 +99,17 @@ public class PlayerPauseMenu : MonoBehaviour
             }
         }
 
+        Vector3 rot = _player.transform.rotation.eulerAngles;
+
         GameProfile profile = new GameProfile(_player.transform.position.x, _player.transform.position.y, _player.transform.position.z, 
-            _player.transform.rotation.x, _player.transform.position.y, _player.transform.position.z, items_inv, false, false, false, _cycle.time, _cycle.days);
+            rot.x, rot.y, rot.z, items_inv, false, false, false, _cycle.time, _cycle.days);
         JsonHandler.WriteGameProfile(profile);
     }
 
     public void SaveAndQuitToMainMenu()
     {
         SaveGame();
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 

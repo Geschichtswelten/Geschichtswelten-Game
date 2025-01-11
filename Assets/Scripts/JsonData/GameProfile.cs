@@ -14,7 +14,7 @@ public class GameProfile
     public float playerRotY;
     public float playerRotZ;
 
-    //1. index: item id ; 2. index: amount; 3. index: inventory Position
+    //1. index: item id ; 2. index: amount
     public int[][] playerItems;
     public bool woodCampBeaten;
     public bool copperCampBeaten;
@@ -28,8 +28,15 @@ public class GameProfile
 
     public GameProfile()
     {
-        time = 21600f;
+        time = 21600f; //6 am
         day = 0;
+        playerItems = new int[34][];
+        for (int i = 0; i<playerItems.Length; i++)
+        {
+            playerItems[i] = new int[2];
+            playerItems[i][0] = -1;
+            playerItems[i][1] = 0;
+        }
     }
 
     public GameProfile(float playerPosX, float playerPosY, float playerPosZ, float playerRotX, float playerRotY, float playerRotZ, int[][] playerItems, bool woodCampBeaten, bool copperCampBeaten, bool arminiusBeaten, float time, int day)

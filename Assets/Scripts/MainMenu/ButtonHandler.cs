@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -11,6 +12,15 @@ public class ButtonHandler : MonoBehaviour
     public static GameProfile profile = null;
     public static event Action OnSettingsChanged;
 
+    private void Awake()
+    {
+        ButtonHandler[] ls = Resources.FindObjectsOfTypeAll<ButtonHandler>();
+        if (ls.Length > 1 )
+        {
+            if ( ls[0] == this ) {
+                Destroy(ls[1].gameObject);
+            }
+    }
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -86,7 +96,8 @@ public class ButtonHandler : MonoBehaviour
         {
             if (root.CompareTag("PlayerWrapper"))
             {
-                root.GetComponent<WrapperScript>().LoadProfile();
+                Debug.Log("FoundPlayer");
+                root.GetComponent<WrapperScript>().LoadProfile(profile);
                
             }
         }
