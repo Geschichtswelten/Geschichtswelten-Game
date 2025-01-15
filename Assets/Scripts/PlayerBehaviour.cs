@@ -92,7 +92,7 @@ public class PlayerBehaviour : MonoBehaviour
     //in order of ids
     [SerializeField] private List<GameObject> itemPrefabs;
     
-    private bool _inventoryOpen;
+    public bool _inventoryOpen;
     [SerializeField] private Inventory inventory;
     [SerializeField] private Inventory equipment;
     [SerializeField] private Inventory hotbar;

@@ -9,7 +9,7 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
 {
     [Header("Behaviour")]
     [SerializeField] protected Behaviour _behaviour;
-    [SerializeField] protected GameObject _target;
+    [SerializeField] public GameObject _target;
     [SerializeField] protected GameObject[] _patrollingTargets;
     [SerializeField] private float movementPredictionTime;
     [SerializeField] protected float movementPredictionThreshold;
