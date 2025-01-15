@@ -15,11 +15,13 @@ public class ButtonHandler : MonoBehaviour
     private void Awake()
     {
         ButtonHandler[] ls = Resources.FindObjectsOfTypeAll<ButtonHandler>();
-        if (ls.Length > 1 )
+        if (ls.Length > 1)
         {
-            if ( ls[0] == this ) {
+            if (ls[0] == this)
+            {
                 Destroy(ls[1].gameObject);
             }
+        }
     }
     void Start()
     {

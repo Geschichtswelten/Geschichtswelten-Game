@@ -25,6 +25,9 @@ public class PlayerCam : MonoBehaviour
 
     private void Update()
     {
+        if (Inventory.inventoryOpen) 
+            return;
+        
         var mouseDelta = look.action.ReadValue<Vector2>();
         var mouseX = mouseDelta.x * Time.deltaTime * (sensX / 3);
         var mouseY = mouseDelta.y * Time.deltaTime * (sensY / 3);

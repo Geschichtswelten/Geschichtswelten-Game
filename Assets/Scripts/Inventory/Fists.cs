@@ -1,10 +1,9 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
 namespace DefaultNamespace
 {
-    public class sword : ItemBehaviour
+    public class Fists : ItemBehaviour
     {
         private Coroutine attackRoutine;
         [SerializeField] private Collider hitbox;
@@ -17,17 +16,16 @@ namespace DefaultNamespace
 
         private void Awake()
         {
-            id = 1;
+            id = 0;
             type = itemType.weapon;
-            name = "Sword";
+            name = "Fists";
         }
-
-        public override void action1() //attack
+        public override void action1()
         {
             if (attackRoutine == null) 
                 attackRoutine = StartCoroutine(attack());
         }
-
+        
         private IEnumerator attack()
         {
             Debug.Log("Attacking maybe");
@@ -38,18 +36,17 @@ namespace DefaultNamespace
             hitbox.enabled = false;
             attackRoutine = null;
         }
-
-        public override void action2()
-        {
-            Debug.Log("Blocking or smth");
-        }
-
-
+        
         private void OnCollisionEnter(Collision other)
         {
             if (!other.gameObject.CompareTag("Enemy")) return;
             Debug.Log("Hit an Enemy");
             //other.gameObject.GetComponent<AbstractEnemyBehaviour>().AttackEnemy(damage, null);
+        }
+
+        public override void action2()
+        {
+            Debug.Log("Interacting or smth");
         }
     }
 }

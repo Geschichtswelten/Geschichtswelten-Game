@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -8,9 +9,12 @@ using System.Linq;
 
 public class Hotbar : MonoBehaviour
 {
-
+     [SerializeField] private Inventory items;
+     [SerializeField] private PlayerBehaviour player;
+     
      public KeyCode[] keyCodesForSlots = new KeyCode[999];
      public int slotsInTotal;
+     
 
 #if UNITY_EDITOR
     [MenuItem("Master System/Create/Hotbar")]        //creating the menu item
@@ -50,20 +54,33 @@ public class Hotbar : MonoBehaviour
     }
 #endif
 
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>();
+        items = GetComponent<Inventory>();
+    }
+
     void Update()
     {
         for (int i = 0; i < slotsInTotal; i++)
         {
             if (Input.GetKeyDown(keyCodesForSlots[i]))
             {
-                if (transform.GetChild(1).GetChild(i).childCount != 0 && transform.GetChild(1).GetChild(i).GetChild(0).GetComponent<ItemOnObject>().item.itemType != ItemType.UFPS_Ammo)
+                /*if (transform.GetChild(1).GetChild(i).childCount != 0 && transform.GetChild(1).GetChild(i).GetChild(0).GetComponent<ItemOnObject>().item.itemType != ItemType.UFPS_Ammo)
                 {
                     if (transform.GetChild(1).GetChild(i).GetChild(0).GetComponent<ConsumeItem>().duplication != null && transform.GetChild(1).GetChild(i).GetChild(0).GetComponent<ItemOnObject>().item.maxStack == 1)
                     {
                         Destroy(transform.GetChild(1).GetChild(i).GetChild(0).GetComponent<ConsumeItem>().duplication);
                     }
                     transform.GetChild(1).GetChild(i).GetChild(0).GetComponent<ConsumeItem>().consumeIt();
-                }
+                } //what da hellll*/
+                
+                /*  TODO!!
+                 Hier Hotbarslot umfärben/markieren whatever */
+                ushort item_id = (ushort)items.getItemIdForSlot(i);
+                Debug.Log("Trying to equip item " + item_id);
+                player.equipItem(item_id);
+                //Debug.Log("hotbar contains " + items.getItemList().Count + " items");
             }
         }
     }

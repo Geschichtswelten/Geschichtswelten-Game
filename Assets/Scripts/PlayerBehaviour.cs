@@ -52,6 +52,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private InputActionReference action1Key;
     [SerializeField] private InputActionReference action2Key;
     [SerializeField] private InputActionReference pauseMenuKey;
+    [SerializeField] private InputActionReference escKey;
 
     float horizontalInput;
     float verticalInput;
@@ -93,6 +94,8 @@ public class PlayerBehaviour : MonoBehaviour
     
     private bool _inventoryOpen;
     [SerializeField] private Inventory inventory;
+    [SerializeField] private Inventory equipment;
+    [SerializeField] private Inventory hotbar;
     
 
     #endregion
@@ -107,6 +110,7 @@ public class PlayerBehaviour : MonoBehaviour
         action1Key.action.Enable();
         action2Key.action.Enable();
         pauseMenuKey.action.Enable();
+        escKey.action.Enable();
     }
 
     private void OnDisable()
@@ -119,6 +123,7 @@ public class PlayerBehaviour : MonoBehaviour
         action1Key.action.Disable();
         action2Key.action.Disable();
         pauseMenuKey.action.Disable();
+        escKey.action.Disable();
     }
     // Start is called before the first frame update
     private void Start()
@@ -139,8 +144,6 @@ public class PlayerBehaviour : MonoBehaviour
         equipItem(0);
         if (equippedItem)
         {
-            _equippedItemBehaviour = equippedItem.GetComponent<ItemBehaviour>();
-            _equippedItemId = _equippedItemBehaviour.Id;
             //add item to inventory
         }
         
@@ -151,19 +154,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (_inventoryOpen != Inventory.inventoryOpen)
         {
-            _inventoryOpen = Inventory.inventoryOpen;
-            if (_inventoryOpen)
-            {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-                HUD_Canvas.gameObject.SetActive(false);
-            }
-            else
-            {
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-                HUD_Canvas.gameObject.SetActive(true);
-            }
+            toggleInventory();
         }
         
         var targetRotation = orientation.rotation;
@@ -191,8 +182,39 @@ public class PlayerBehaviour : MonoBehaviour
         transform.position = startPosition;
     }
 
+    private void toggleInventory()
+    {
+        _inventoryOpen = Inventory.inventoryOpen;
+        if (_inventoryOpen)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            HUD_Canvas.gameObject.SetActive(false);
+        }
+        else
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            HUD_Canvas.gameObject.SetActive(true);
+        }
+    }
+
     private void HandleInput()
     {
+        var pauseMenuOpened = pauseMenuKey.action.WasPressedThisFrame() || escKey.action.WasPressedThisFrame();
+        switch (pauseMenuOpened)
+        {
+            case true when _inventoryOpen:
+                inventory.closeInventory();
+                equipment.closeInventory();
+                toggleInventory();
+                break;
+            case true:
+                pauseMenu.tooglePauseMenu();
+                break;
+            case false when _inventoryOpen:
+                return;
+        }
         var action1Input = action1Key.action.WasPressedThisFrame();
         var action2Input = action2Key.action.WasPressedThisFrame();
         if (action1Input)
@@ -226,11 +248,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
         }
-        var pauseMenuOpened = pauseMenuKey.action.WasPressedThisFrame();
-        if (pauseMenuOpened)
-        {
-            pauseMenu.ActivatePauseMenu();
-        }
+        
     }
 
     private void HandleMovementState()
@@ -266,6 +284,12 @@ public class PlayerBehaviour : MonoBehaviour
     #region movement
     private void MovePlayer()
     {
+        if (_inventoryOpen)
+        {
+            verticalInput = 0;
+            horizontalInput = 0;
+        }
+        
         moveDirection = (orientation.forward * verticalInput + orientation.right * horizontalInput).normalized;
 
         var isOnSlope = OnSlope();
@@ -336,7 +360,7 @@ public class PlayerBehaviour : MonoBehaviour
     #endregion
 
     // ReSharper disable Unity.PerformanceAnalysis
-    private void Interact()
+    public void Interact()
     {
         var ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f);
         if (Physics.Raycast(ray, out var hit, interactRange, LayerMask.GetMask("Interactable")))
@@ -344,9 +368,9 @@ public class PlayerBehaviour : MonoBehaviour
             var target = hit.collider.gameObject;
             fadenkreuz.sprite = interactable_fadenkreuz;
             fadenkreuz_ist_interactable = true;
-            
-            if (!interactKey.action.WasPressedThisFrame()) 
-                return;
+
+            if (!interactKey.action.WasPressedThisFrame() && 
+                (_equippedItemId != 0 || !action2Key.action.WasPressedThisFrame())) return;
             var action = target.GetComponent<OnInteract>();
             action?.Interact();
         } // reset UI:
@@ -357,13 +381,17 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
-    private void equipItem(ushort id)
+    // ReSharper disable Unity.PerformanceAnalysis
+    public void equipItem(ushort id)
     {
         if (id >= itemPrefabs.Count) 
             return;
         
+        Debug.Log("equipped item " + id);
         Destroy(itemAnker.GetChild(0).gameObject);
         equippedItem = Instantiate(itemPrefabs[id], itemAnker.transform, false);
+        _equippedItemBehaviour = equippedItem.GetComponent<ItemBehaviour>();
+        _equippedItemId = _equippedItemBehaviour.Id;
         //possibly do some inventory logic here
     }
     

@@ -577,7 +577,6 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                                     firstItemRectTransform.localPosition = Vector3.zero;
                                 }
                             }
-
                         }
                     }
                     else
@@ -596,17 +595,15 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                                 oldSlot.transform.parent.parent.GetComponent<Inventory>().UnEquipItem1(firstItem);
                         }
                     }
-
                 }
-
-
             }
-
             else
             {
                 GameObject dropItem = (GameObject)Instantiate(GetComponent<ItemOnObject>().item.itemModel);
                 dropItem.AddComponent<PickUpItem>();
-                dropItem.GetComponent<PickUpItem>().item = this.gameObject.GetComponent<ItemOnObject>().item;    
+                dropItem.GetComponent<PickUpItem>().item = this.gameObject.GetComponent<ItemOnObject>().item;
+                dropItem.AddComponent<Rigidbody>();
+                Destroy(dropItem.GetComponent<Rigidbody>(), 1);
                 var player = GameObject.FindGameObjectWithTag("Player");
                 var pos = Vector3.zero;
                 if (player != null) pos = player.transform.position; 
@@ -615,10 +612,8 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                 if (oldSlot.transform.parent.parent.GetComponent<EquipmentSystem>() != null)
                     inventory.GetComponent<Inventory>().UnEquipItem1(dropItem.GetComponent<PickUpItem>().item);
                 Destroy(this.gameObject);
-
             }
         }
         inventory.OnUpdateItemList();
     }
-
 }

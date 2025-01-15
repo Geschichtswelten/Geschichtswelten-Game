@@ -8,12 +8,6 @@ public class OnInteract : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Interactable");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Interact()
     {
         Debug.Log("did something lol");

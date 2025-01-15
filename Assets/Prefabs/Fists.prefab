@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7960789110634908141
+--- !u!1 &6874154338659428006
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,53 +8,53 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8710054041787112659}
-  - component: {fileID: 8238778022480512307}
-  - component: {fileID: 2271236708465459559}
-  - component: {fileID: 8852541003879489494}
-  - component: {fileID: 5768519452834227454}
-  - component: {fileID: 1402804328309984624}
-  - component: {fileID: 3839327622314694529}
-  - component: {fileID: 3254971706028213469}
-  - component: {fileID: 5392971201141368203}
+  - component: {fileID: 1155533146138560803}
+  - component: {fileID: 6729890869696338250}
+  - component: {fileID: 3714414535685544276}
+  - component: {fileID: 5946484407507932227}
+  - component: {fileID: 2973846138204633833}
+  - component: {fileID: 258586285504673165}
+  - component: {fileID: 5459764504950770816}
+  - component: {fileID: 6068044633664103975}
+  - component: {fileID: 1385574275580125341}
   m_Layer: 0
-  m_Name: sword
+  m_Name: Fists
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8710054041787112659
+--- !u!4 &1155533146138560803
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7960789110634908141}
+  m_GameObject: {fileID: 6874154338659428006}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.31533778, y: -0.562259, z: -0.22626261, w: 0.7302275}
-  m_LocalPosition: {x: -0.734, y: -1.19, z: -0.42}
+  m_LocalRotation: {x: -0.31533796, y: -0.5622579, z: -0.2262624, w: 0.7302283}
+  m_LocalPosition: {x: -0.36400002, y: -1.2490001, z: 12.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -45.641, y: -104.849, z: 1.98}
---- !u!33 &8238778022480512307
+  m_LocalEulerAnglesHint: {x: -45.641, y: -76.024, z: 1.98}
+--- !u!33 &6729890869696338250
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7960789110634908141}
-  m_Mesh: {fileID: 5282876915247479997, guid: 0c3ecd2444afbd04a8f75e79cb1d100f, type: 3}
---- !u!23 &2271236708465459559
+  m_GameObject: {fileID: 6874154338659428006}
+  m_Mesh: {fileID: -8526397150566351534, guid: e1666cc0a56f4e142a71e92159798b9c, type: 3}
+--- !u!23 &3714414535685544276
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7960789110634908141}
-  m_Enabled: 1
+  m_GameObject: {fileID: 6874154338659428006}
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -92,13 +92,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8852541003879489494
+--- !u!65 &5946484407507932227
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7960789110634908141}
+  m_GameObject: {fileID: 6874154338659428006}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -113,37 +113,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5768519452834227454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7960789110634908141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6f98cfd69ce415c89a90c395e5c3b00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 1
-  amt: 1
-  type: 0
-  name: Sword
-  animationHandler: {fileID: 3254971706028213469}
-  itemSfxHandler: {fileID: 5392971201141368203}
-  hitbox: {fileID: 8852541003879489494}
---- !u!82 &1402804328309984624
+--- !u!82 &2973846138204633833
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7960789110634908141}
+  m_GameObject: {fileID: 6874154338659428006}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5343720960445620663, guid: b89d5b0260573894a8ccd1fcac713e9b, type: 2}
-  m_audioClip: {fileID: 8300000, guid: baf1fa6e0feae804caa45317770f9214, type: 3}
-  m_Resource: {fileID: 8300000, guid: baf1fa6e0feae804caa45317770f9214, type: 3}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.85
   m_Pitch: 1
@@ -247,14 +228,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!95 &3839327622314694529
+--- !u!95 &258586285504673165
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7960789110634908141}
+  m_GameObject: {fileID: 6874154338659428006}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 0}
@@ -269,28 +250,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3254971706028213469
+--- !u!114 &5459764504950770816
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7960789110634908141}
+  m_GameObject: {fileID: 6874154338659428006}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e8e70edbc054dff8e151a2a864a852c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 3839327622314694529}
+  animator: {fileID: 258586285504673165}
   controller: {fileID: 0}
   animations: []
---- !u!114 &5392971201141368203
+--- !u!114 &6068044633664103975
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7960789110634908141}
+  m_GameObject: {fileID: 6874154338659428006}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91e8df131f629444385655b0df45c916, type: 3}
@@ -299,4 +280,24 @@ MonoBehaviour:
   action1Sounds:
   - {fileID: 8300000, guid: 559411e1b2a6d244a82ad899a556e955, type: 3}
   - {fileID: 8300000, guid: baf1fa6e0feae804caa45317770f9214, type: 3}
-  source: {fileID: 1402804328309984624}
+  source: {fileID: 2973846138204633833}
+--- !u!114 &1385574275580125341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6874154338659428006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48d47347af114c098e054fda2708d9fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  amt: 1
+  type: 1
+  name: Fists
+  animationHandler: {fileID: 5459764504950770816}
+  itemSfxHandler: {fileID: 6068044633664103975}
+  hitbox: {fileID: 5946484407507932227}
+  damage: 0

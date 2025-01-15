@@ -286,7 +286,7 @@ public class PlayerInventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(inputManagerDatabase.CharacterSystemKeyCode))
+        if (Input.GetKeyDown(inputManagerDatabase.CharacterSystemKeyCode) || Input.GetKeyDown(inputManagerDatabase.InventoryKeyCode))
         {
             if (!characterSystem.activeSelf)
             {

@@ -293,10 +293,7 @@ public class Inventory : MonoBehaviour
 
     public bool characterSystem()
     {
-        if (GetComponent<EquipmentSystem>() != null)
-            return true;
-        else
-            return false;
+        return GetComponent<EquipmentSystem>() != null;
     }
 
 
@@ -728,6 +725,18 @@ public class Inventory : MonoBehaviour
         }
         return theList;
     }
+    
+    public List<Item> getFlatItemGrid()
+    {
+        List<Item> theList = new List<Item>();
+        for (int i = 0; i < SlotContainer.transform.childCount; i++)
+        {
+            if (SlotContainer.transform.GetChild(i).childCount != 0)
+                theList.Add(SlotContainer.transform.GetChild(i).GetChild(0).GetComponent<ItemOnObject>().item);
+            else theList.Add(null);
+        }
+        return theList;
+    }
 
     public void stackableSettings()
     {
@@ -885,14 +894,20 @@ public class Inventory : MonoBehaviour
         updateItemList();
     }
 
-
-
-
     public void updateItemIndex()
     {
         for (int i = 0; i < ItemsInInventory.Count; i++)
         {
             ItemsInInventory[i].indexItemInList = i;
         }
+    }
+    
+    // item ids MUST be identical to index in prefab list in playerBehaviour or else there be funky dragons
+    public int getItemIdForSlot(int slot)
+    {
+        if (slot is >= 5 or < 0) 
+            return 0;
+        var item = getFlatItemGrid()[slot];
+        return item?.itemID ?? 0;
     }
 }

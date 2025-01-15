@@ -29,17 +29,26 @@ public class PlayerPauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 0;
-
-        
     }
 
     public void ReturnToGame()
     {
+        _canvas.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        _canvas.SetActive( false );
-
         Time.timeScale = 1;
+    }
+
+    public void tooglePauseMenu()
+    {
+        if (_canvas.activeSelf)
+        {
+            ReturnToGame();
+        }
+        else
+        {
+            ActivatePauseMenu();
+        }
     }
 
     public void SaveGame()
@@ -47,7 +56,7 @@ public class PlayerPauseMenu : MonoBehaviour
         List<Item> armorList = _characterSlots.ItemsInInventory;
         List<Item> hotbarList = _hotbar.ItemsInInventory;
         List<Item> inventoryList = _playerInventory.ItemsInInventory;
-        //4 Rüstung, 5 Hotbar, 25 Inventar
+        //4 Rï¿½stung, 5 Hotbar, 25 Inventar
         int[][] items_inv = new int[34][];
         for (int i = 0; i < items_inv.Length; i++) 
         {
@@ -118,5 +127,4 @@ public class PlayerPauseMenu : MonoBehaviour
         SaveGame();
         Application.Quit();
     }
-
 }
