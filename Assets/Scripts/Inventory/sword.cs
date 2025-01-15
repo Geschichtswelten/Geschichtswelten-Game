@@ -45,11 +45,12 @@ namespace DefaultNamespace
         }
 
 
+        //Dis dun work
         private void OnCollisionEnter(Collision other)
         {
             if (!other.gameObject.CompareTag("Enemy")) return;
             Debug.Log("Hit an Enemy");
-            //other.gameObject.GetComponent<AbstractEnemyBehaviour>().AttackEnemy(damage, null);
+            other.gameObject.GetComponent<AbstractEnemyBehaviour>().AttackEnemy(damage);
         }
     }
 }
