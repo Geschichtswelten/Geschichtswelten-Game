@@ -5,26 +5,6 @@ using UnityEngine;
 
 public class JsonHandler : MonoBehaviour
 {
-    public static TerrainDataClass ReadTerrainData(string jsonString)
-    {
-        try
-        {
-            TextAsset file = AssetDatabase.LoadAssetAtPath(jsonString, typeof(TextAsset)) as TextAsset;
-            return JsonUtility.FromJson<TerrainDataClass>(file.text);
-        }
-        catch (NullReferenceException)
-        {
-            return null;
-        }
-    }
-
-    public static void WriteTerrainData(TerrainDataClass data)
-    {
-        string jsonString = JsonUtility.ToJson(data);
-        TextAsset file = new TextAsset(jsonString);
-        AssetDatabase.DeleteAsset("Assets/TerrainData/terrain_data.asset");
-        AssetDatabase.CreateAsset(file, "Assets/TerrainData/terrain_data.asset");
-    }
 
     public static SettingsClass ReadSettings(string jsonString)
     {

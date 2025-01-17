@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -68,39 +69,24 @@ public class ButtonHandler : MonoBehaviour
 
     IEnumerator LoadNewGameAsync()
     {
+        
+        //ProgressBar
+
+        
         AsyncOperation loadScene = SceneManager.LoadSceneAsync(392);
         loadScene.allowSceneActivation = false;
-        //ProgressBar
         profile = new GameProfile();
-        TerrainData[] terrainDatas = (TerrainData[])AssetDatabase.LoadAllAssetsAtPath("Assets/TerrainData/TerrainDataAssets/");
-        TerrainDataClass dataClass = JsonHandler.ReadTerrainData("Assets/TerrainData/terrain_data.asset");
-        string[] names = dataClass.names;
-        List<TreeInstance[]> instances = dataClass.treeInstances;
-        List<TreePrototype[]> protos = dataClass.treePrototypes;
-        foreach (TerrainData terrainData in terrainDatas)
-        {
-            for (int i = 0; i < names.Length; i++)
-            {
-                if (names[i] == terrainData.name)
-                {
-                    terrainData.treeInstances = instances[i];
-                    terrainData.treePrototypes = protos[i];
-                    break;
-                }
-            }
-        }
         JsonHandler.WriteGameProfile(profile);
         while (!loadScene.isDone)
         {
-            //update Progress, for now Debug.Log
             Debug.Log(loadScene.progress);
             yield return new WaitForSeconds(0.5f);
-            if(loadScene.progress >= 0.9)
+            if (loadScene.progress >= 0.9f)
             {
                 loadScene.allowSceneActivation = true;
             }
         }
-        
+
     }
 
 
@@ -123,7 +109,7 @@ public class ButtonHandler : MonoBehaviour
         {
             Debug.Log(loadScene.progress);
             yield return new WaitForSeconds(0.5f);
-            if (loadScene.progress >= 0.9)
+            if (loadScene.progress >= 0.9f)
             {
                 loadScene.allowSceneActivation = true;
             }

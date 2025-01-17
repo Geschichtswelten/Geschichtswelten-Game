@@ -21,6 +21,14 @@ public class SetTerrainObstaclesEditor : EditorWindow
         {
             BakeObstacles();
         }
+
+        GUILayout.Label("add component", EditorStyles.boldLabel);
+
+        if (GUILayout.Button("add"))
+        {
+            AddComp();
+        }
+
     }
 
     private void BakeObstacles()
@@ -30,23 +38,51 @@ public class SetTerrainObstaclesEditor : EditorWindow
         {
             scenes[i] = SceneManager.GetSceneAt(i);
         }
-        List<Terrain>terrains = new List<Terrain>();
+        List<Terrain> terrains = new List<Terrain>();
 
         foreach (Scene scene in scenes)
         {
             GameObject[] objects = scene.GetRootGameObjects();
             foreach (GameObject obj in objects)
             {
-                if(obj.TryGetComponent<Terrain>(out Terrain t))
+                if (obj.TryGetComponent<Terrain>(out Terrain t))
                 {
                     terrains.Add(t);
                 }
             }
         }
+        Debug.Log(terrains.Count);
+        // Call the function to set terrain obstacles
+        SetTerrainObstaclesStatic.BakeTreeObstacles(terrains);
 
+        //SetTerrainObstaclesStatic.WriteSavestate(terrains);
+    }
+
+    private void AddComp()
+    {
+        Scene[] scenes = new Scene[SceneManager.loadedSceneCount];
+        for (int i = 0; i < SceneManager.loadedSceneCount; i++)
+        {
+            scenes[i] = SceneManager.GetSceneAt(i);
+        }
+        List<Terrain> terrains = new List<Terrain>();
+
+        foreach (Scene scene in scenes)
+        {
+            GameObject[] objects = scene.GetRootGameObjects();
+            foreach (GameObject obj in objects)
+            {
+                if (obj.TryGetComponent<Terrain>(out Terrain t))
+                {
+                    terrains.Add(t);
+                }
+            }
+        }
+        Debug.Log(terrains.Count);
         // Call the function to set terrain obstacles
         //SetTerrainObstaclesStatic.BakeTreeObstacles(terrains);
-        
-        SetTerrainObstaclesStatic.WriteSavestate(terrains);
+
+        SetTerrainObstaclesStatic.SetScripts(terrains);
     }
+
 }

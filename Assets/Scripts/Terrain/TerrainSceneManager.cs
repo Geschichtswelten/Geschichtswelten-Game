@@ -360,6 +360,17 @@ public class TerrainSceneManager : MonoBehaviour
                     {
                         if(j == scenesToBeLoaded.Length-1)
                         {
+
+                            var children = SceneManager.GetSceneByBuildIndex(sceneList[i]).GetRootGameObjects();
+                            foreach (var child in children)
+                            {
+                            if(child.TryGetComponent<TerrainMemory>(out TerrainMemory mem))
+                                {
+                                    mem.RestoreTrees();
+                                    break;
+                                }
+                            }
+
                             SceneManager.UnloadSceneAsync(sceneList[i]);
                         }
 

@@ -7,4 +7,4 @@ TextAsset:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: profile
-  m_Script: '{"playerPosX":235.5736846923828,"playerPosY":-543.2279663085938,"playerPosZ":1010.121826171875,"playerRotX":1.2680804850617733e-8,"playerRotY":346.3518371582031,"playerRotZ":1.0596564692377797e-7,"woodCampBeaten":false,"copperCampBeaten":false,"arminiusBeaten":false,"time":47429.25,"day":2}'
+  m_Script: '{"playerPosX":0.0,"playerPosY":0.0,"playerPosZ":0.0,"playerRotX":0.0,"playerRotY":0.0,"playerRotZ":0.0,"woodCampBeaten":false,"copperCampBeaten":false,"arminiusBeaten":false,"time":21600.0,"day":0}'
