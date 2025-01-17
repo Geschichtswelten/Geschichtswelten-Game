@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Conifer
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 84780ae5ff5a1ca4985fc4b147cd81a6, type: 3}
+      propertyPath: m_TagString
+      value: Tree
+      objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: 84780ae5ff5a1ca4985fc4b147cd81a6, type: 3}
       propertyPath: m_FadeMode
       value: 0

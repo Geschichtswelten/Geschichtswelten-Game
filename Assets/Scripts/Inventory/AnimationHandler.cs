@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace DefaultNamespace
 {
+    [RequireComponent(typeof(Animator))]
     public class AnimationHandler : MonoBehaviour
     {
         [SerializeField] private Animator animator;

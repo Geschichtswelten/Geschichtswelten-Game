@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -24,7 +26,7 @@ namespace DefaultNamespace
 
         public override void action1() //attack
         {
-            if (attackRoutine == null) 
+            if (attackRoutine == null)
                 attackRoutine = StartCoroutine(attack());
         }
 
@@ -32,7 +34,7 @@ namespace DefaultNamespace
         {
             Debug.Log("Attacking maybe");
             hitbox.enabled = true;
-            animationHandler.playAnimation((int) animationIds.attack1);
+            animationHandler.playAnimation((int)animationIds.attack1);
             itemSfxHandler.PlayAction1();
             yield return new WaitForSeconds(0.5f);
             hitbox.enabled = false;
@@ -53,4 +55,6 @@ namespace DefaultNamespace
             other.gameObject.GetComponent<AbstractEnemyBehaviour>().AttackEnemy(damage);
         }
     }
+
+        
 }

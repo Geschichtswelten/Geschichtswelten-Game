@@ -22,6 +22,8 @@ TagManager:
   - MainInventory
   - PlayerWrapper
   - Enemy
+  - Wood
+  - Tree
   layers:
   - Default
   - TransparentFX
