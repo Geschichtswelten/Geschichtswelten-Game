@@ -90,6 +90,7 @@ public class AxeScript : ItemBehaviour
                     var temp = Instantiate(treePrefab, worldPosition, tempRot);
                     temp.AddComponent<Rigidbody>();
                     break;
+                    
                 }
 
             }

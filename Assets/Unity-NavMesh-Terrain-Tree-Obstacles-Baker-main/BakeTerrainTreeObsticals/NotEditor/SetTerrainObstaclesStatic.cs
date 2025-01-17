@@ -12,6 +12,24 @@ public class SetTerrainObstaclesStatic : MonoBehaviour
     static float lenght;
     static float hight;
     static bool isError;
+
+    public static void WriteSavestate(List<Terrain> terrains)
+    {
+        List<TreeInstance[]> instances = new List<TreeInstance[]>();
+        string[] names = new string[terrains.Count];
+        List<TreePrototype[]> protos = new List<TreePrototype[]>();
+        for (int i = 0; i < terrains.Count; i++)
+        {
+            var trees = terrains[i].terrainData.treeInstances;
+            var treePrototypes = terrains[i].terrainData.treePrototypes;
+            names[i] = terrains[i].terrainData.name;
+            instances.Add(trees);
+            protos.Add(treePrototypes);
+            
+        }
+        TerrainDataClass terrainData = new TerrainDataClass(names, instances, protos);
+        JsonHandler.WriteTerrainData(terrainData);
+    }
     public static void BakeTreeObstacles(List<Terrain> terrains)
     {
         foreach (Terrain terrain in terrains)

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
@@ -62,20 +63,53 @@ public class ButtonHandler : MonoBehaviour
 
     public void CreateNewGame()
     {
-        AsyncOperation loadScene = SceneManager.LoadSceneAsync(392);
-        profile = new GameProfile();
-        profile.playerPosY = 55f;
-        profile.playerPosZ = 100f;
-        profile.playerPosX = 100f;
-        profile.playerRotX = 0f;
-        profile.playerRotY = 0f;
-        profile.playerRotZ = 0f;
-        JsonHandler.WriteGameProfile(profile);
+        StartCoroutine(LoadNewGameAsync());
     }
+
+    IEnumerator LoadNewGameAsync()
+    {
+        AsyncOperation loadScene = SceneManager.LoadSceneAsync(392);
+        loadScene.allowSceneActivation = false;
+        //ProgressBar
+        profile = new GameProfile();
+        TerrainData[] terrainDatas = (TerrainData[])AssetDatabase.LoadAllAssetsAtPath("Assets/TerrainData/TerrainDataAssets/");
+        TerrainDataClass dataClass = JsonHandler.ReadTerrainData("Assets/TerrainData/terrain_data.asset");
+        string[] names = dataClass.names;
+        List<TreeInstance[]> instances = dataClass.treeInstances;
+        List<TreePrototype[]> protos = dataClass.treePrototypes;
+        foreach (TerrainData terrainData in terrainDatas)
+        {
+            for (int i = 0; i < names.Length; i++)
+            {
+                if (names[i] == terrainData.name)
+                {
+                    terrainData.treeInstances = instances[i];
+                    terrainData.treePrototypes = protos[i];
+                    break;
+                }
+            }
+        }
+        JsonHandler.WriteGameProfile(profile);
+        while (!loadScene.isDone)
+        {
+            //update Progress, for now Debug.Log
+            Debug.Log(loadScene.progress);
+            yield return new WaitForSeconds(0.5f);
+            if(loadScene.progress >= 0.9)
+            {
+                loadScene.allowSceneActivation = true;
+            }
+        }
+        
+    }
+
 
     IEnumerator LoadSceneAsync()
     {
-         profile = JsonHandler.readGameProfile("Assets/profile.asset");
+        AsyncOperation loadScene = SceneManager.LoadSceneAsync(392);
+        loadScene.allowSceneActivation = false;
+        //ProgressBar
+        profile = JsonHandler.readGameProfile("Assets/profile.asset");
 
         if (profile == null)
         {
@@ -84,11 +118,15 @@ public class ButtonHandler : MonoBehaviour
             //Have to test that
             yield break;
         }
-        AsyncOperation loadScene = SceneManager.LoadSceneAsync(392);
-
+        
         while (!loadScene.isDone)
         {
-            yield return new WaitForSeconds(1f);
+            Debug.Log(loadScene.progress);
+            yield return new WaitForSeconds(0.5f);
+            if (loadScene.progress >= 0.9)
+            {
+                loadScene.allowSceneActivation = true;
+            }
         }
 
         Scene actScene = SceneManager.GetSceneByName("GameScene_0");
@@ -100,7 +138,9 @@ public class ButtonHandler : MonoBehaviour
             {
                 Debug.Log("FoundPlayer");
                 root.GetComponent<WrapperScript>().LoadProfile(profile);
-               
+                root.GetComponentInChildren<PlayerBehaviour>().freeze = true;
+                yield return new WaitForSeconds(2f);
+                root.GetComponentInChildren<PlayerBehaviour>().freeze = false;
             }
         }
 
