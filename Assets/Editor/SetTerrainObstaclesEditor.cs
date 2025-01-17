@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class SetTerrainObstaclesEditor : EditorWindow
 {
-
+    
     [MenuItem("Tools/Set Terrain Tree Obstacles")]
     public static void ShowWindow()
     {
@@ -21,6 +21,8 @@ public class SetTerrainObstaclesEditor : EditorWindow
         {
             BakeObstacles();
         }
+
+        
     }
 
     private void BakeObstacles()

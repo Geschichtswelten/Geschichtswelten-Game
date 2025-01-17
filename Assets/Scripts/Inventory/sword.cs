@@ -52,5 +52,7 @@ namespace DefaultNamespace
             Debug.Log("Hit an Enemy");
             other.gameObject.GetComponent<AbstractEnemyBehaviour>().AttackEnemy(damage);
         }
+
+       
     }
 }

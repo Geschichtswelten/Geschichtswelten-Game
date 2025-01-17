@@ -1,8 +1,11 @@
+using DefaultNamespace;
 using System;
 using UnityEngine;
 
+
 namespace DefaultNamespace
 {
+    [RequireComponent(typeof(AnimationHandler), typeof(ItemSfxHandler))]
     public abstract class ItemBehaviour : MonoBehaviour
     {
         [SerializeField] protected ushort id;

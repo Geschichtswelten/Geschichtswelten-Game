@@ -4,16 +4,22 @@ using UnityEngine;
 
 namespace DefaultNamespace
 {
+    [RequireComponent(typeof(Animator))]
     public class AnimationHandler : MonoBehaviour
     {
         [SerializeField] private Animator animator;
         [SerializeField] private AnimatorController controller;
         [SerializeField] private List<Animation> animations;
 
+        private void Start()
+        {
+            animator = GetComponent<Animator>();
+        }
+
         public bool playAnimation(int id)
         {
             //Debug.Log("playing animation " + id);
-            if (id >= animations.Count || animations[id] is null) return false; 
+            if (id >= animations.Count || animations[id] is null ) return false; 
             
             animator.SetTrigger(animations[id].name);
             return true;
