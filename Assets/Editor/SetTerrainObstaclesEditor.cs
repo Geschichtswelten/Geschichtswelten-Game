@@ -46,6 +46,7 @@ public class SetTerrainObstaclesEditor : EditorWindow
 
         // Call the function to set terrain obstacles
         //SetTerrainObstaclesStatic.BakeTreeObstacles(terrains);
+        
         SetTerrainObstaclesStatic.WriteSavestate(terrains);
     }
 }
