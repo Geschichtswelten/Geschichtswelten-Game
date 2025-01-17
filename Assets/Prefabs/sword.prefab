@@ -133,9 +133,6 @@ MonoBehaviour:
   itemSfxHandler: {fileID: 5392971201141368203}
   hitbox: {fileID: 8852541003879489494}
   damage: 0
-  timberDistance: 5
-  maxTimberAngle: 40
-  treePrefab: {fileID: 1620417488002718097, guid: cce4d8667f2436a479759f07084d8ff4, type: 3}
 --- !u!82 &1402804328309984624
 AudioSource:
   m_ObjectHideFlags: 0
