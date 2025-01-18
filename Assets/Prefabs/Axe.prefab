@@ -278,7 +278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2
   amt: 1
-  type: 0
+  type: 1
   name: Axe
   animationHandler: {fileID: 4421014091716076132}
   itemSfxHandler: {fileID: 1486787314247272797}

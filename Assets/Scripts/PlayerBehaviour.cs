@@ -163,18 +163,19 @@ public class PlayerBehaviour : MonoBehaviour
         grounded = Physics.Raycast(transform.position, Vector3.down,
             playerHeight * 0.5f + 0.2f, whatIsGround);
         HandleMovementState();
-        HandleInput();
-        SpeedControl();
         Interact();
 
-        //handle drag
-        rb.linearDamping = grounded ? groundDrag : 0f;
     }
 
     private void FixedUpdate()
     {
+        HandleInput();
+        SpeedControl();
         MovePlayer();
         //Debug.Log(state + " " + moveSpeed);
+        
+        //handle drag
+        rb.linearDamping = grounded ? groundDrag : 0f;
     }
 
     public void resetPosition()
