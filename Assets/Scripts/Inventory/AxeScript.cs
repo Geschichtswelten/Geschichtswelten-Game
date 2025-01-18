@@ -1,6 +1,7 @@
 using DefaultNamespace;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class AxeScript : ItemBehaviour
@@ -74,10 +75,7 @@ public class AxeScript : ItemBehaviour
         {
             if (prototypes[treeArray[i].prototypeIndex].prefab.CompareTag("Tree"))
             {
-                var treePos = treeArray[i].position;
-                var xTree = treePos.x * terrainData.size.x + terrain.transform.position.x;
-                var zTree = treePos.z * terrainData.size.z + terrain.transform.position.z;
-                var worldPosition = new Vector3(xTree, transform.position.y, zTree);
+                Vector3 worldPosition = Vector3.Scale(treeArray[i].position, terrainData.size) + terrain.transform.position;
 
                 if (Vector3.Distance(worldPosition, gameObject.transform.position) <= timberDistance && Vector3.Angle(worldPosition, gameObject.transform.position) <= maxTimberAngle)
                 {
