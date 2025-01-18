@@ -30,7 +30,7 @@ public class TerrainDataCloner
 
         
 
-        dup.terrainLayers = CloneSplatPrototypes(original.terrainLayers);
+        dup.terrainLayers = CloneTerrainLayers(original.terrainLayers);
 
         
         dup.wavingGrassAmount = original.wavingGrassAmount;
@@ -57,7 +57,7 @@ public class TerrainDataCloner
     /// </summary>
     /// <param name="original">Prototypes to clone</param>
     /// <returns>Cloned array</returns>
-    static TerrainLayer[] CloneSplatPrototypes(TerrainLayer[] original)
+    static TerrainLayer[] CloneTerrainLayers(TerrainLayer[] original)
     {
         TerrainLayer[] splatDup = new TerrainLayer[original.Length];
 
@@ -98,7 +98,6 @@ public class TerrainDataCloner
         {
             protoDuplicate[n] = new DetailPrototype
             {
-                //bendFactor = original[n].bendFactor,
                 dryColor = original[n].dryColor,
                 healthyColor = original[n].healthyColor,
                 maxHeight = original[n].maxHeight,
