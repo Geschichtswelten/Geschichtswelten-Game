@@ -30,3 +30,222 @@ MonoBehaviour:
       itemAttributes: []
     amountOfFinalItem: 0
     timeToCraft: 0
+  - ingredients: 030000001700000018000000
+    amount: 020000000100000005000000
+    finalItem:
+      itemName: Axe
+      itemID: 2
+      itemDesc: 'A simple Axe. Great for pummeling enemies, even greater for chopping
+        wood.
+
+        + 5 Damage'
+      itemIcon: {fileID: 21300000, guid: 6a08ec4b334ea1c46b8171679417a74f, type: 3}
+      itemModel: {fileID: 479386593012999087, guid: fb061f675cb50c24288a3761b95b7550, type: 3}
+      itemValue: 1
+      itemType: 1
+      itemWeight: 0
+      maxStack: 1
+      indexItemInList: 999
+      rarity: 0
+      itemAttributes: []
+    amountOfFinalItem: 1
+    timeToCraft: 0
+  - ingredients: 0300000016000000060000001700000015000000
+    amount: 0a000000050000000a0000000100000001000000
+    finalItem:
+      itemName: Iron Sword
+      itemID: 7
+      itemDesc: 'A sturdy sword crafted by Tinus who discovered his hidden talent.
+
+        +
+        17 Damage'
+      itemIcon: {fileID: 21300000, guid: 5ef2abfce38c30f4192acdefad5a8d5d, type: 3}
+      itemModel: {fileID: 0}
+      itemValue: 1
+      itemType: 1
+      itemWeight: 0
+      maxStack: 1
+      indexItemInList: 999
+      rarity: 0
+      itemAttributes: []
+    amountOfFinalItem: 0
+    timeToCraft: 0
+  - ingredients: 1200000016000000
+    amount: 0a0000000a000000
+    finalItem:
+      itemName: Sturdy leather helmet
+      itemID: 10
+      itemDesc: 'A piece of equipment carefully crafted by Tinus to protect his head.
+
+        +
+        7 Defense'
+      itemIcon: {fileID: 21300000, guid: 5ff9b869a12e70b4db7a137f84ed920b, type: 3}
+      itemModel: {fileID: 0}
+      itemValue: 1
+      itemType: 4
+      itemWeight: 0
+      maxStack: 1
+      indexItemInList: 999
+      rarity: 0
+      itemAttributes: []
+    amountOfFinalItem: 0
+    timeToCraft: 0
+  - ingredients: 1200000016000000
+    amount: 0f0000000c000000
+    finalItem:
+      itemName: Leather top
+      itemID: 11
+      itemDesc: 'Crafted by the careful hands of Tinus, this top will keep its owner
+        safe.
+
+        + 10 Defense'
+      itemIcon: {fileID: 21300000, guid: 541ae020fad5efc48a89a38c6218a601, type: 3}
+      itemModel: {fileID: 0}
+      itemValue: 1
+      itemType: 6
+      itemWeight: 0
+      maxStack: 1
+      indexItemInList: 999
+      rarity: 0
+      itemAttributes: []
+    amountOfFinalItem: 0
+    timeToCraft: 0
+  - ingredients: 1200000016000000
+    amount: 0500000006000000
+    finalItem:
+      itemName: Leather gloves
+      itemID: 12
+      itemDesc: 'A fine piece of equipment to protect your Hands from calluses.
+
+        +
+        3 Defense'
+      itemIcon: {fileID: 21300000, guid: 2ac662c22b865e244b2a9c5b862ce644, type: 3}
+      itemModel: {fileID: 0}
+      itemValue: 1
+      itemType: 11
+      itemWeight: 0
+      maxStack: 1
+      indexItemInList: 999
+      rarity: 0
+      itemAttributes: []
+    amountOfFinalItem: 0
+    timeToCraft: 0
+  - ingredients: 1200000016000000
+    amount: 0500000005000000
+    finalItem:
+      itemName: Leather boots
+      itemID: 13
+      itemDesc: 'Don''t judge them until you have walked a mile in these shoes.
+
+        +
+        5 Defense'
+      itemIcon: {fileID: 21300000, guid: 29a1226f7b5e20240942612e151c3c4c, type: 3}
+      itemModel: {fileID: 0}
+      itemValue: 1
+      itemType: 5
+      itemWeight: 0
+      maxStack: 1
+      indexItemInList: 999
+      rarity: 0
+      itemAttributes: []
+    amountOfFinalItem: 0
+    timeToCraft: 0
+  - ingredients: 1200000016000000060000001500000003000000
+    amount: 0c0000000700000007000000010000000a000000
+    finalItem:
+      itemName: Iron helmet
+      itemID: 14
+      itemDesc: 'A helmet made of iron ingots. It''s quite sturdy.
+
+        + 12
+        Defense'
+      itemIcon: {fileID: 21300000, guid: 52b1e3fc60614e446b61e1c6bb148f57, type: 3}
+      itemModel: {fileID: 0}
+      itemValue: 1
+      itemType: 4
+      itemWeight: 0
+      maxStack: 1
+      indexItemInList: 999
+      rarity: 0
+      itemAttributes: []
+    amountOfFinalItem: 0
+    timeToCraft: 0
+  - ingredients: 1200000016000000060000001500000003000000
+    amount: 0a0000000a0000000f000000010000000a000000
+    finalItem:
+      itemName: Iron chestplate
+      itemID: 15
+      itemDesc: 'A masterpiece that will surely help you win your next fight.
+
+        +
+        16 Defense'
+      itemIcon: {fileID: 21300000, guid: 567fdd2e557fefc478f8aaa7ae56fb11, type: 3}
+      itemModel: {fileID: 0}
+      itemValue: 1
+      itemType: 6
+      itemWeight: 0
+      maxStack: 1
+      indexItemInList: 999
+      rarity: 0
+      itemAttributes: []
+    amountOfFinalItem: 0
+    timeToCraft: 0
+  - ingredients: 0c000000060000001500000003000000
+    amount: 01000000050000000100000005000000
+    finalItem:
+      itemName: Reinforced gloves
+      itemID: 16
+      itemDesc: 'A pair of gloves that Tinus reinforced with iron to better suit
+        his needs.
+
+        + 7 Defense'
+      itemIcon: {fileID: 21300000, guid: d08090c03cca5494da4f8f79251153ea, type: 3}
+      itemModel: {fileID: 0}
+      itemValue: 1
+      itemType: 11
+      itemWeight: 0
+      maxStack: 1
+      indexItemInList: 999
+      rarity: 0
+      itemAttributes: []
+    amountOfFinalItem: 0
+    timeToCraft: 0
+  - ingredients: 0d000000060000001500000003000000
+    amount: 01000000050000000100000005000000
+    finalItem:
+      itemName: Reinforced boots
+      itemID: 17
+      itemDesc: 'You don''t like walking? Then you haven''t tried these boots.
+
+        +
+        9 Defense
+
+        + 2 Walking Speed'
+      itemIcon: {fileID: 21300000, guid: 2de2ce1257d5c1346b296c0b41300cf2, type: 3}
+      itemModel: {fileID: 0}
+      itemValue: 1
+      itemType: 5
+      itemWeight: 0
+      maxStack: 1
+      indexItemInList: 999
+      rarity: 0
+      itemAttributes: []
+    amountOfFinalItem: 0
+    timeToCraft: 0
+  - ingredients: 16000000
+    amount: 0a000000
+    finalItem:
+      itemName: Rope
+      itemID: 23
+      itemDesc: A long and sturdy rope. Quite unhandy to carry around...
+      itemIcon: {fileID: 21300000, guid: 3281101b955224c4f9bfd58e8ab4c342, type: 3}
+      itemModel: {fileID: 0}
+      itemValue: 1
+      itemType: 14
+      itemWeight: 0
+      maxStack: 5
+      indexItemInList: 999
+      rarity: 0
+      itemAttributes: []
+    amountOfFinalItem: 0
+    timeToCraft: 0

@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 3201278339316931421}
   - component: {fileID: -7771808893076711795}
   - component: {fileID: 2444192680051927834}
+  - component: {fileID: 7286381394061177219}
   m_Layer: 0
   m_Name: PF Conifer Tall BOTD URP
   m_TagString: Tree
@@ -478,5 +479,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clip: []
-  timberTime: 0
-  woodItem: {fileID: 0}
+  timberTime: 8
+  woodItem: {fileID: 8490730202628204433, guid: 596e5475303e3a542b7c7acf5ab3a42c, type: 3}
+--- !u!65 &7286381394061177219
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743353957770956}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.06, y: 1, z: 3.76}
+  m_Center: {x: 0, y: 12.22, z: 0}

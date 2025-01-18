@@ -14,9 +14,14 @@ public class LumberBehaviour : MonoBehaviour
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        boxCollider = GetComponent<BoxCollider>();
         audioSource.volume = ButtonHandler.settings.masterVolume;
-        audioSource.clip = clip[Random.Range(0, clip.Length)];
+        if (clip.Length > 0)
+        {
+            audioSource.clip = clip[Random.Range(0, clip.Length)];
+        }
         isTimber = false;
+        StartCoroutine(TransformToTimber());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,7 +31,7 @@ public class LumberBehaviour : MonoBehaviour
 
     private IEnumerator TransformToTimber()
     {
-        while (timberTime > 0 || !isTimber)
+        while (timberTime > 0 && !isTimber)
         {
             yield return new WaitForSeconds(1);
             timberTime--;
@@ -36,8 +41,6 @@ public class LumberBehaviour : MonoBehaviour
             audioSource.Play();
         }
         Instantiate(woodItem, transform.position, Quaternion.identity);
-        Instantiate(woodItem, new Vector3(transform.position.x, transform.position.y + 3, transform.position.z), Quaternion.identity);
-        Instantiate(woodItem, new Vector3(transform.position.x, transform.position.y + 6, transform.position.z), Quaternion.identity);
         Destroy(gameObject);
 
     }
