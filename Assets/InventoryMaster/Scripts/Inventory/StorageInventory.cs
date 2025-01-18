@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+
 public class StorageInventory : MonoBehaviour
 {
 
@@ -35,7 +36,7 @@ public class StorageInventory : MonoBehaviour
     Tooltip tooltip;
     Inventory inv;
 
-    GameObject player;
+    [SerializeField] private GameObject player;
 
     static Image timerImage;
     static GameObject timer;
@@ -51,14 +52,7 @@ public class StorageInventory : MonoBehaviour
         storageItems.Add(item);
     }
 
-    private void Awake()
-    {
-        inventory = GameObject.FindGameObjectWithTag("StorageInventory");
-        if (inventory == null)
-        {
-            Debug.Log("inventory is null");
-        }
-    }
+
 
     void Start()
     {
@@ -67,7 +61,6 @@ public class StorageInventory : MonoBehaviour
 
 
         
-        player = GameObject.FindGameObjectWithTag("Player");
         inv = inventory.GetComponent<Inventory>();
         ItemDataBaseList inventoryItemList = (ItemDataBaseList)Resources.Load("ItemDatabase");
 
@@ -139,9 +132,6 @@ public class StorageInventory : MonoBehaviour
                 inv.deleteAllItems();
             }
             tooltip.deactivateTooltip();
-            timerImage.fillAmount = 0;
-            timer.SetActive(false);
-            showTimer = false;
         }
     }
 

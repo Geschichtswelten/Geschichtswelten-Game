@@ -25,6 +25,7 @@ TagManager:
   - Wood
   - Tree
   - StorageInventory
+  - Timer
   layers:
   - Default
   - TransparentFX
