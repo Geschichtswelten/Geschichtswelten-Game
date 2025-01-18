@@ -566,6 +566,17 @@
                 },
                 {
                     "name": "",
+                    "id": "d3fbead3-b9dd-4407-8a7f-498a8ac3109d",
+                    "path": "<DualShockGamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PauseMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "7d556436-9d7e-4e6f-af58-14093d38eba9",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
