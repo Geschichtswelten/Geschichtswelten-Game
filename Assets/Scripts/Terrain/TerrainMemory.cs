@@ -1,20 +1,19 @@
+using UnityEditor;
 using UnityEngine;
 
 public class TerrainMemory : MonoBehaviour
 {
-    private TreeInstance[] treeInstances;
+    private TerrainData data;
     private Terrain terrain;
 
 
     private void Awake()
     {
         terrain = GetComponent<Terrain>();
-        treeInstances = terrain.terrainData.treeInstances;
-    }
-
-    public void RestoreTrees()
-    {
-        terrain.terrainData.treeInstances = treeInstances;
+        data = TerrainDataCloner.Clone(terrain.terrainData);
+        terrain.terrainData = data;
+        var heights = terrain.terrainData.GetHeights(0, 0, 0, 0);
+        terrain.terrainData.SetHeights(0, 0, heights);
     }
 
 

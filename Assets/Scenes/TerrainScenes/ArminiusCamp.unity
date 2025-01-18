@@ -7705,6 +7705,7 @@ GameObject:
   - component: {fileID: 868521436}
   - component: {fileID: 868521435}
   - component: {fileID: 868521438}
+  - component: {fileID: 868521439}
   m_Layer: 6
   m_Name: Terrain_(-800.00, 0.00, 1000.00)
   m_TagString: Untagged
@@ -7808,6 +7809,18 @@ MonoBehaviour:
   _renderDetailsWithNatureRenderer: 1
   _optimizePatchSize: 1
   _format: 202200
+--- !u!114 &868521439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868521434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1a4a3f1304254438e151b07c601a8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &871638150
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12250,6 +12263,7 @@ GameObject:
   - component: {fileID: 1249655857}
   - component: {fileID: 1249655856}
   - component: {fileID: 1249655859}
+  - component: {fileID: 1249655860}
   m_Layer: 6
   m_Name: Terrain_(-800.00, 0.00, 900.00)
   m_TagString: Untagged
@@ -12353,6 +12367,18 @@ MonoBehaviour:
   _renderDetailsWithNatureRenderer: 1
   _optimizePatchSize: 1
   _format: 202200
+--- !u!114 &1249655860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249655855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1a4a3f1304254438e151b07c601a8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1253339010
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14003,6 +14029,7 @@ GameObject:
   - component: {fileID: 1508785954}
   - component: {fileID: 1508785953}
   - component: {fileID: 1508785956}
+  - component: {fileID: 1508785957}
   m_Layer: 6
   m_Name: Terrain_(-900.00, 0.00, 1000.00)
   m_TagString: Untagged
@@ -14106,6 +14133,18 @@ MonoBehaviour:
   _renderDetailsWithNatureRenderer: 1
   _optimizePatchSize: 1
   _format: 202200
+--- !u!114 &1508785957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508785952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1a4a3f1304254438e151b07c601a8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1510005051
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20068,6 +20107,7 @@ GameObject:
   - component: {fileID: 2082272444}
   - component: {fileID: 2082272447}
   - component: {fileID: 2082272448}
+  - component: {fileID: 2082272449}
   m_Layer: 6
   m_Name: Terrain_(-900.00, 0.00, 900.00)
   m_TagString: Untagged
@@ -20188,6 +20228,18 @@ MonoBehaviour:
   m_Center: {x: 100, y: 50, z: 100}
   m_Area: 3
   m_AffectedAgents: ffffffff
+--- !u!114 &2082272449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082272443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1a4a3f1304254438e151b07c601a8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2090446585
 PrefabInstance:
   m_ObjectHideFlags: 0

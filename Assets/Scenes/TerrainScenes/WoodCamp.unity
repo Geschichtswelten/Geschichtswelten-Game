@@ -2288,6 +2288,7 @@ GameObject:
   - component: {fileID: 198732211}
   - component: {fileID: 198732210}
   - component: {fileID: 198732213}
+  - component: {fileID: 198732214}
   m_Layer: 6
   m_Name: Terrain_(500.00, 0.00, 900.00)
   m_TagString: Untagged
@@ -2391,6 +2392,18 @@ MonoBehaviour:
   _renderDetailsWithNatureRenderer: 1
   _optimizePatchSize: 1
   _format: 202200
+--- !u!114 &198732214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198732209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1a4a3f1304254438e151b07c601a8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &208695027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4656,6 +4669,7 @@ GameObject:
   - component: {fileID: 396637556}
   - component: {fileID: 396637555}
   - component: {fileID: 396637558}
+  - component: {fileID: 396637559}
   m_Layer: 6
   m_Name: Terrain_(400.00, 0.00, 900.00)
   m_TagString: Untagged
@@ -4759,6 +4773,18 @@ MonoBehaviour:
   _renderDetailsWithNatureRenderer: 1
   _optimizePatchSize: 1
   _format: 202200
+--- !u!114 &396637559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396637554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1a4a3f1304254438e151b07c601a8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &403144571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11313,6 +11339,7 @@ GameObject:
   - component: {fileID: 1117962008}
   - component: {fileID: 1117962011}
   - component: {fileID: 1117962012}
+  - component: {fileID: 1117962013}
   m_Layer: 6
   m_Name: Terrain_(400.00, 0.00, 800.00)
   m_TagString: Untagged
@@ -11433,6 +11460,18 @@ MonoBehaviour:
   m_Center: {x: 100, y: 50, z: 100}
   m_Area: 3
   m_AffectedAgents: ffffffff
+--- !u!114 &1117962013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117962007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1a4a3f1304254438e151b07c601a8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1128188676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11613,6 +11652,7 @@ GameObject:
   - component: {fileID: 1134179244}
   - component: {fileID: 1134179243}
   - component: {fileID: 1134179246}
+  - component: {fileID: 1134179247}
   m_Layer: 6
   m_Name: Terrain_(500.00, 0.00, 800.00)
   m_TagString: Untagged
@@ -11716,6 +11756,18 @@ MonoBehaviour:
   _renderDetailsWithNatureRenderer: 1
   _optimizePatchSize: 1
   _format: 202200
+--- !u!114 &1134179247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134179242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1a4a3f1304254438e151b07c601a8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1140183274
 PrefabInstance:
   m_ObjectHideFlags: 0

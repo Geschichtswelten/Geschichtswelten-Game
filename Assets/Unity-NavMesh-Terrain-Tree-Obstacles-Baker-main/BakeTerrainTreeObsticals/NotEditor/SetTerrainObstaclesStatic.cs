@@ -1,5 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
+using UnityEditor.Actions;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -18,6 +21,7 @@ public class SetTerrainObstaclesStatic : MonoBehaviour
         foreach (Terrain terrain in terrains)
         {
             terrain.gameObject.AddComponent<TerrainMemory>();
+            EditorUtility.SetDirty(terrain);
         }
     }
 

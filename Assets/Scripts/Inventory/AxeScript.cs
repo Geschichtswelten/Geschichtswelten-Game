@@ -80,11 +80,11 @@ public class AxeScript : ItemBehaviour
                 if (Vector3.Distance(worldPosition, gameObject.transform.position) <= timberDistance && Vector3.Angle(worldPosition, gameObject.transform.position) <= maxTimberAngle)
                 {
                     Quaternion tempRot = Quaternion.AngleAxis(treeArray[i].rotation * Mathf.Rad2Deg, Vector3.up);
+                    treePrefab = terrainData.treePrototypes[treeArray[i].prototypeIndex].prefab;
                     treeArray.RemoveAt(i);
                     terrainData.treeInstances = treeArray.ToArray();
                     var heights = terrainData.GetHeights(0, 0, 0, 0);
                     terrainData.SetHeights(0, 0, heights);
-                    prototypes = terrainData.treePrototypes;
                     var temp = Instantiate(treePrefab, worldPosition, tempRot);
                     temp.AddComponent<Rigidbody>();
                     break;

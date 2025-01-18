@@ -11,6 +11,7 @@ namespace DefaultNamespace
         private Coroutine attackRoutine;
         [SerializeField] private Collider hitbox;
         [SerializeField] private float damage;
+        [SerializeField] private float envDamageMod = .5f;
         private enum animationIds
         {
             attack1,

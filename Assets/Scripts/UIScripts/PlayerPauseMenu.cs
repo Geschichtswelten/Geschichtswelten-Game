@@ -117,14 +117,6 @@ public class PlayerPauseMenu : MonoBehaviour
 
     public void SaveAndQuitToMainMenu()
     {
-        var obj = SceneManager.GetSceneByBuildIndex(392).GetRootGameObjects();
-        foreach (var ob in obj)
-        {
-            if(ob.TryGetComponent<TerrainMemory>(out var terrainMemory))
-            {
-                terrainMemory.RestoreTrees();
-            }
-        }
         SaveGame();
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
@@ -132,14 +124,6 @@ public class PlayerPauseMenu : MonoBehaviour
 
     public void SaveAndQuitGame()
     {
-        var obj = SceneManager.GetSceneByBuildIndex(392).GetRootGameObjects();
-        foreach (var ob in obj)
-        {
-            if (ob.TryGetComponent<TerrainMemory>(out var terrainMemory))
-            {
-                terrainMemory.RestoreTrees();
-            }
-        }
         SaveGame();
         Application.Quit();
     }
