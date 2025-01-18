@@ -41,3 +41,15 @@ MonoBehaviour:
     indexItemInList: 999
     rarity: 0
     itemAttributes: []
+  - itemName: Axe
+    itemID: 2
+    itemDesc: A simple Axe. Use to cut wood.
+    itemIcon: {fileID: 21300000, guid: e1679a6aeeec82046babae8a5043a586, type: 3}
+    itemModel: {fileID: 479386593012999087, guid: fb061f675cb50c24288a3761b95b7550, type: 3}
+    itemValue: 1
+    itemType: 0
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []

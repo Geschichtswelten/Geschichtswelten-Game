@@ -4166,6 +4166,8 @@ MonoBehaviour:
   itemPrefabs:
   - {fileID: 6874154338659428006, guid: 088cd113cd93a494ca34124296a87f9c, type: 3}
   - {fileID: 7960789110634908141, guid: 1688afe3894ad864ca984b9cf86eefa0, type: 3}
+  - {fileID: 479386593012999087, guid: fb061f675cb50c24288a3761b95b7550, type: 3}
+  _inventoryOpen: 0
   inventory: {fileID: 4179730975589834584}
   equipment: {fileID: 7145729559675572752}
   hotbar: {fileID: 4815274171344190455}
@@ -5669,6 +5671,10 @@ PrefabInstance:
     - target: {fileID: 5768519452834227454, guid: 1688afe3894ad864ca984b9cf86eefa0, type: 3}
       propertyPath: type
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5768519452834227454, guid: 1688afe3894ad864ca984b9cf86eefa0, type: 3}
+      propertyPath: damage
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5768519452834227454, guid: 1688afe3894ad864ca984b9cf86eefa0, type: 3}
       propertyPath: hitbox
