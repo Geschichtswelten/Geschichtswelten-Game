@@ -21,9 +21,9 @@ public class WrapperScript : MonoBehaviour
             }
             if (i < 4)
             {
-                if (profile.playerItems[i][0] != -1)
+                if (profile.playerItems.list[i].list[0] != -1)
                 {
-                    armor.addItemToInventory(ignore, profile.playerItems[i][0], profile.playerItems[i][1]);
+                    armor.addItemToInventory(ignore, profile.playerItems.list[i].list[0], profile.playerItems.list[i].list[1]);
                 }
                 else
                 {
@@ -33,9 +33,9 @@ public class WrapperScript : MonoBehaviour
             }
             else if (i < 9)
             {
-                if (profile.playerItems[i][0] != -1)
+                if (profile.playerItems.list[i].list[0] != -1)
                 {
-                    hotbar.addItemToInventory(ignore, profile.playerItems[i][0], profile.playerItems[i][1]);
+                    hotbar.addItemToInventory(ignore, profile.playerItems.list[i].list[0], profile.playerItems.list[i].list[1]);
                 }
                 else
                 {
@@ -44,9 +44,9 @@ public class WrapperScript : MonoBehaviour
             }
             else
             {
-                if (profile.playerItems[i][0] != -1)
+                if (profile.playerItems.list[i].list[0] != -1)
                 {
-                    inventory.addItemToInventory(ignore, profile.playerItems[i][0], profile.playerItems[i][1]);
+                    inventory.addItemToInventory(ignore, profile.playerItems.list[i].list[0], profile.playerItems.list[i].list[1]);
                 }
                 else
                 {

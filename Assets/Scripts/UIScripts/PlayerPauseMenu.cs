@@ -57,23 +57,23 @@ public class PlayerPauseMenu : MonoBehaviour
         List<Item> hotbarList = _hotbar.ItemsInInventory;
         List<Item> inventoryList = _playerInventory.ItemsInInventory;
         //4 R�stung, 5 Hotbar, 25 Inventar
-        int[][] items_inv = new int[34][];
-        for (int i = 0; i < items_inv.Length; i++) 
+        SerializedList<SerializedList<int>> player_items = new SerializedList<SerializedList<int>>(new List<SerializedList<int>>());
+        for (int i = 0; i < 34; i++) 
         {
-            items_inv[i] = new int[2];
+            player_items.list.Add(new SerializedList<int>(new List<int>()));
             if(i < 4)
             {
                 if(armorList.Count > 0)
                 {
                     Item item = armorList[0];
                     armorList.RemoveAt(0);
-                    items_inv[i][0] = item.itemID;
-                    items_inv[i][1] = item.itemValue;
+                    player_items.list[i].list.Add(item.itemID);
+                    player_items.list[i].list.Add(item.itemValue);
                 }
                 else
                 {
-                    items_inv[i][0] = -1;
-                    items_inv[i][1] = 0;
+                    player_items.list[i].list.Add(-1);
+                    player_items.list[i].list.Add(0);
                 }
                 
             }else if (i < 9)
@@ -82,13 +82,13 @@ public class PlayerPauseMenu : MonoBehaviour
                 {
                     Item item = hotbarList[0];
                     hotbarList.RemoveAt(0);
-                    items_inv[i][0] = item.itemID;
-                    items_inv[i][1] = item.itemValue;
+                    player_items.list[i].list.Add(item.itemID);
+                    player_items.list[i].list.Add(item.itemValue);
                 }
                 else
                 {
-                    items_inv[i][0] = -1;
-                    items_inv[i][1] = 0;
+                    player_items.list[i].list.Add(-1);
+                    player_items.list[i].list.Add(0);
                 }
             }
             else
@@ -97,13 +97,13 @@ public class PlayerPauseMenu : MonoBehaviour
                 {
                     Item item = inventoryList[0];
                     inventoryList.RemoveAt(0);
-                    items_inv[i][0] = item.itemID;
-                    items_inv[i][1] = item.itemValue;
+                    player_items.list[i].list.Add(item.itemID);
+                    player_items.list[i].list.Add(item.itemValue);
                 }
                 else
                 {
-                    items_inv[i][0] = -1;
-                    items_inv[i][1] = 0;
+                    player_items.list[i].list.Add(-1);
+                    player_items.list[i].list.Add(0);
                 }
             }
         }
@@ -111,7 +111,7 @@ public class PlayerPauseMenu : MonoBehaviour
         Vector3 rot = _player.transform.rotation.eulerAngles;
 
         GameProfile profile = new GameProfile(_player.transform.position.x, _player.transform.position.y, _player.transform.position.z, 
-            rot.x, rot.y, rot.z, items_inv, false, false, false, _cycle.time, _cycle.days);
+            rot.x, rot.y, rot.z, player_items, false, false, false, _cycle.time, _cycle.days);
         JsonHandler.WriteGameProfile(profile);
     }
 

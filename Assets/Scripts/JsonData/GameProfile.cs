@@ -1,5 +1,6 @@
 using System;
 using System.Numerics;
+using System.Collections.Generic;
 
 [Serializable]
 public class GameProfile
@@ -15,7 +16,7 @@ public class GameProfile
     public float playerRotZ;
 
     //1. index: item id ; 2. index: amount
-    public int[][] playerItems;
+    public SerializedList<SerializedList<int>> playerItems;
     public bool woodCampBeaten;
     public bool copperCampBeaten;
     public bool arminiusBeaten;
@@ -30,16 +31,16 @@ public class GameProfile
     {
         time = 21600f; //6 am
         day = 0;
-        playerItems = new int[34][];
-        for (int i = 0; i<playerItems.Length; i++)
+        playerItems = new SerializedList<SerializedList<int>>(new List<SerializedList<int>>());
+        for (int i = 0; i<34; i++)
         {
-            playerItems[i] = new int[2];
-            playerItems[i][0] = -1;
-            playerItems[i][1] = 0;
+            playerItems.list.Add(new SerializedList<int>(new List<int>()));
+            playerItems.list[i].list.Add(-1);
+            playerItems.list[i].list.Add(0);
         }
     }
 
-    public GameProfile(float playerPosX, float playerPosY, float playerPosZ, float playerRotX, float playerRotY, float playerRotZ, int[][] playerItems, bool woodCampBeaten, bool copperCampBeaten, bool arminiusBeaten, float time, int day)
+    public GameProfile(float playerPosX, float playerPosY, float playerPosZ, float playerRotX, float playerRotY, float playerRotZ, SerializedList<SerializedList<int>> playerItems, bool woodCampBeaten, bool copperCampBeaten, bool arminiusBeaten, float time, int day)
     {
         this.playerPosX = playerPosX;
         this.playerPosY = playerPosY;
