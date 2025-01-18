@@ -7,4 +7,4 @@ TextAsset:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: profile
-  m_Script: '{"playerPosX":0.0,"playerPosY":0.0,"playerPosZ":0.0,"playerRotX":0.0,"playerRotY":0.0,"playerRotZ":0.0,"woodCampBeaten":false,"copperCampBeaten":false,"arminiusBeaten":false,"time":21600.0,"day":0}'
+  m_Script: '{"playerPosX":1922.458251953125,"playerPosY":51.0091552734375,"playerPosZ":914.2577514648438,"playerRotX":0.0,"playerRotY":279.87042236328127,"playerRotZ":0.0,"playerItems":{"list":[{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[1,1]},{"list":[1,1]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]},{"list":[-1,0]}]},"woodCampBeaten":false,"copperCampBeaten":false,"arminiusBeaten":false,"time":64341.84765625,"day":0}'
