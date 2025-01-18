@@ -51,11 +51,22 @@ public class StorageInventory : MonoBehaviour
         storageItems.Add(item);
     }
 
+    private void Awake()
+    {
+        inventory = GameObject.FindGameObjectWithTag("StorageInventory");
+        if (inventory == null)
+        {
+            Debug.Log("inventory is null");
+        }
+    }
+
     void Start()
     {
         if (inputManagerDatabase == null)
             inputManagerDatabase = (InputManager)Resources.Load("InputManager");
 
+
+        
         player = GameObject.FindGameObjectWithTag("Player");
         inv = inventory.GetComponent<Inventory>();
         ItemDataBaseList inventoryItemList = (ItemDataBaseList)Resources.Load("ItemDatabase");
