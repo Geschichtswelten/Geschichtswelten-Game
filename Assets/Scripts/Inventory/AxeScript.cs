@@ -45,7 +45,7 @@ public class AxeScript : ItemBehaviour
             {
                 if (hitInfo.collider.gameObject == terrain)
                 {
-                    yield return new WaitForSeconds(5);
+                    yield return new WaitForSeconds(2);
                     continue;
                 }
                 if (hitInfo.collider.gameObject.TryGetComponent<Terrain>(out Terrain terr))
@@ -57,7 +57,7 @@ public class AxeScript : ItemBehaviour
                     prototypes = terrainData.treePrototypes;
                 }
             }
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(2);
         }
     }
 
@@ -81,8 +81,10 @@ public class AxeScript : ItemBehaviour
                 {
                     Quaternion tempRot = Quaternion.AngleAxis(treeArray[i].rotation * Mathf.Rad2Deg, Vector3.up);
                     treePrefab = terrainData.treePrototypes[treeArray[i].prototypeIndex].prefab;
+                    treePrefab.transform.localScale = new Vector3(treeArray[i].heightScale, treeArray[i].heightScale, treeArray[i].heightScale);
                     treeArray.RemoveAt(i);
                     terrainData.treeInstances = treeArray.ToArray();
+                    terrain.GetComponent<TerrainCollider>().terrainData = terrainData;
                     var heights = terrainData.GetHeights(0, 0, 0, 0);
                     terrainData.SetHeights(0, 0, heights);
                     var temp = Instantiate(treePrefab, worldPosition, tempRot);

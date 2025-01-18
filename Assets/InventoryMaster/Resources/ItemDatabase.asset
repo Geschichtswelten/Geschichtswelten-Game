@@ -29,10 +29,13 @@ MonoBehaviour:
     indexItemInList: 999
     rarity: 0
     itemAttributes: []
-  - itemName: Sword
+  - itemName: Worn down Gladius
     itemID: 1
-    itemDesc: A simple sword.
-    itemIcon: {fileID: 21300000, guid: f1c6570407044a142939d26cbd919c99, type: 3}
+    itemDesc: 'The standart weapon of a Roman Soldier. However, this one is quite
+      worn down...
+
+      + 10 Damage'
+    itemIcon: {fileID: 21300000, guid: 8f28955d92038974a9b04aafaeea79b0, type: 3}
     itemModel: {fileID: 7960789110634908141, guid: 1688afe3894ad864ca984b9cf86eefa0, type: 3}
     itemValue: 1
     itemType: 1
@@ -43,9 +46,36 @@ MonoBehaviour:
     itemAttributes: []
   - itemName: Axe
     itemID: 2
-    itemDesc: A simple Axe. Use to cut wood.
-    itemIcon: {fileID: 21300000, guid: e1679a6aeeec82046babae8a5043a586, type: 3}
+    itemDesc: 'A simple Axe. Great for pummeling enemies, even greater for chopping
+      wood.
+
+      + 5 Damage'
+    itemIcon: {fileID: 21300000, guid: 6a08ec4b334ea1c46b8171679417a74f, type: 3}
     itemModel: {fileID: 479386593012999087, guid: fb061f675cb50c24288a3761b95b7550, type: 3}
+    itemValue: 1
+    itemType: 1
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
+  - itemName: Wood
+    itemID: 3
+    itemDesc: A piece of lumber. Can be used in various Ways.
+    itemIcon: {fileID: 21300000, guid: 0e1ccb64303778e4081913a6d9cca677, type: 3}
+    itemModel: {fileID: 8490730202628204433, guid: 596e5475303e3a542b7c7acf5ab3a42c, type: 3}
+    itemValue: 1
+    itemType: 14
+    itemWeight: 0
+    maxStack: 16
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
+  - itemName: ???
+    itemID: 4
+    itemDesc: 'The plan is still on, ??? we will '
+    itemIcon: {fileID: 21300000, guid: 4b61215c56174cb489119b1357a5b77c, type: 3}
+    itemModel: {fileID: 0}
     itemValue: 1
     itemType: 0
     itemWeight: 0

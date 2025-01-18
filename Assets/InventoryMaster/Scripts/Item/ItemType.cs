@@ -17,6 +17,7 @@ public enum ItemType        //all ItemTypes...you can add some
     Hands = 11,
     Blueprint = 12,
     Backpack = 13,
+    Crafting_Ingredient = 14,
     Ammo,
     UFPS_Grenade,
     UFPS_Weapon,
