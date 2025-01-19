@@ -103,7 +103,10 @@ public class EnemyInfantryScript : AbstractEnemyBehaviour
         {
             _animator.SetTrigger("enemyDeath2");
         }
-        Destroy(gameObject, _despawnTime);
+        if (!tutorial)
+        {
+            Destroy(gameObject, _despawnTime);
+        }
     }
 
     //Audio Events

@@ -67,7 +67,7 @@ public class ButtonHandler : MonoBehaviour
         StartCoroutine(LoadNewGameAsync());
     }
 
-    IEnumerator LoadNewGameAsync()
+    public static IEnumerator LoadNewGameAsync()
     {
         
         //ProgressBar

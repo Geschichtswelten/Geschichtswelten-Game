@@ -2,6 +2,7 @@ using System.Collections;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Tutorial1Script : MonoBehaviour
@@ -15,11 +16,13 @@ public class Tutorial1Script : MonoBehaviour
     [Header("UI and Text")]
     [SerializeField] private TMPro.TMP_Text text;
     [SerializeField] private GameObject[] tips;
-    [SerializeField] private Image[] backgrounds;
     [SerializeField] private string beginningString;
     [SerializeField] private string equipSwordString;
     [SerializeField] private string equipHelmetString;
-
+    [SerializeField] private string firstEnemyAttack;
+    [SerializeField] private string healString;
+    [SerializeField] private string allEnemiesAttack;
+    [SerializeField] private string allEnemiesDead;
     [Header("Audio")]
     [SerializeField] private AudioClip[] audioClips;
     private AudioSource source;
@@ -48,7 +51,6 @@ public class Tutorial1Script : MonoBehaviour
         yield return new WaitUntil(() => playerBehaviour._inventoryOpen);
         tips[0].SetActive(false);
         Time.timeScale = 0f;
-        backgrounds[0].enabled = true;
         source.clip = audioClips[1];
         source.Play();
         text.text = equipSwordString;
@@ -74,12 +76,96 @@ public class Tutorial1Script : MonoBehaviour
         enemies[0]._target = player;
         playerBehaviour.freeze = false;
         stage = Stage.stage1;
+        StartCoroutine(StartStage2());
     }
 
     public IEnumerator StartStage2()
     {
-        yield return null;
+        playerBehaviour.freeze = true;
+        source.clip = audioClips[3];
+        source.Play();
+        text.text = firstEnemyAttack;
+        yield return new WaitUntil(() => !source.isPlaying);
+        tips[3].SetActive(true);
+        text.text = "";
+        enemies[0]._target = player;
+        playerBehaviour.freeze = false;
+        yield return new WaitUntil(() => enemies[0].dead);
+        tips[3].SetActive(false);
+
+        playerBehaviour.freeze = true;
+        source.clip = audioClips[4];
+        source.Play();
+        text.text = healString;
+        yield return new WaitUntil(() => !source.isPlaying);
+        text.text = "";
+        playerBehaviour.freeze = false;
+
+        playerBehaviour.freeze = true;
+        source.clip = audioClips[5];
+        source.Play();
+        text.text = allEnemiesAttack;
+        yield return new WaitUntil(() => !source.isPlaying);
+        tips[4].SetActive(true);
+        text.text = "";
+        for (int i = 1; i < enemies.Length; i++)
+        {
+            enemies[i]._target = player;
+        }
+        playerBehaviour.freeze = false;
+        yield return new WaitUntil(() => enemies[1].dead && enemies[2].dead && enemies[3].dead);
+        tips[4].SetActive(false);
+
+        playerBehaviour.freeze = true;
+        source.clip = audioClips[6];
+        source.Play();
+        text.text = allEnemiesDead;
+        yield return new WaitUntil(() => !source.isPlaying);
+
+        
+
+        AsyncOperation loadScene = SceneManager.LoadSceneAsync(392);
+        loadScene.allowSceneActivation = false;
+        //ProgressBar
+        GameProfile profile = JsonHandler.readGameProfile("Assets/profile.asset");
+
+        if (profile == null)
+        {
+            profile = new GameProfile();
+            JsonHandler.WriteGameProfile(profile);
+            while (!loadScene.isDone)
+            {
+                //Play Video
+                yield return new WaitUntil(() => loadScene.isDone); //&&video.isDone
+                loadScene.allowSceneActivation = true;
+            }
+            yield break;
+        }
+        ButtonHandler.profile = profile;
+
+        while (!loadScene.isDone)
+        {
+            //Play Video
+            yield return new WaitUntil(() => loadScene.isDone); //&&video.isDone
+            loadScene.allowSceneActivation = true;
+        }
+
+        Scene actScene = SceneManager.GetSceneByName("GameScene_0");
+        GameObject[] roots = actScene.GetRootGameObjects();
+
+        foreach (GameObject root in roots)
+        {
+            if (root.CompareTag("PlayerWrapper"))
+            {
+                Debug.Log("FoundPlayer");
+                root.GetComponent<WrapperScript>().LoadProfile(profile);
+                root.GetComponentInChildren<PlayerBehaviour>().freeze = true;
+                yield return new WaitForSeconds(2f);
+                root.GetComponentInChildren<PlayerBehaviour>().freeze = false;
+            }
+        }
     }
+
 }
 
 public enum Stage

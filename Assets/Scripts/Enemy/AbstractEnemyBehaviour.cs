@@ -40,23 +40,22 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
     protected Vector3 lastPos;
     protected float timeSlice;
     protected bool block = false;
+    public bool tutorial = false, dead = false;
     
     
     
 
     private void Awake()
     {
-        
         //_source.volume = ButtonHandler.settings.masterVolume;
         //_combatSource.volume = ButtonHandler.settings.masterVolume;
         _animator = GetComponent<Animator>();
         _agent = GetComponent<NavMeshAgent>();
         _agent.speed = _walkSpeed;
         _target = GameObject.FindGameObjectWithTag("Player");
-        if (_target == null)
+        if (_target == null || tutorial)
         {
-            Debug.Log("No player found, deleting Enemy");
-            Destroy(gameObject);
+            _target = this.gameObject;
         }
         lastPos = _target.transform.position;
         
@@ -126,6 +125,7 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
     }
     protected void Die()
     {
+        dead = true;
         if (drops.Length > 0)
         {
             Instantiate(drops[Random.Range(0, drops.Length)], transform.position, Quaternion.identity);
