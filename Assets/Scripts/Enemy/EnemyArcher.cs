@@ -68,7 +68,7 @@ public class EnemyArcher : AbstractEnemyBehaviour
                         yield return new WaitForSeconds(Random.Range(2f, 6f));
                     }
                     _animator.SetTrigger("enemyWalk");
-                    Patroll();
+                    Patrol();
                 }
                 else
                 {

@@ -109,6 +109,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 51a06c721796b0542b1f598159044272, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7060222109946675703}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 51a06c721796b0542b1f598159044272, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3408589325844111930}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 51a06c721796b0542b1f598159044272, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8990593086950753779}
   m_SourcePrefab: {fileID: 100100000, guid: 51a06c721796b0542b1f598159044272, type: 3}
 --- !u!1 &1986095339620878817 stripped
 GameObject:
@@ -282,8 +288,11 @@ MonoBehaviour:
   _alertRange: 70
   _attackCooldown: 4
   _despawnTime: 50
+  drops: []
   _source: {fileID: 2668311376728838673}
   _combatSource: {fileID: 7060222109946675703}
+  tutorial: 0
+  dead: 0
   stepsGrass:
   - {fileID: 8300000, guid: 9e68ea1ebd76aa44c8cfa5beb9850830, type: 3}
   - {fileID: 8300000, guid: 1deb201b8bf8f89479323a74e421150b, type: 3}
@@ -503,6 +512,56 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!54 &3408589325844111930
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986095339620878817}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &8990593086950753779
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986095339620878817}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1.9127109
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9127706, z: 0}
 --- !u!4 &5579126740829528435 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6502182839619065283, guid: 51a06c721796b0542b1f598159044272, type: 3}

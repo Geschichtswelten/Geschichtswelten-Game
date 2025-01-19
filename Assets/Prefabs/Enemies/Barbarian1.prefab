@@ -82,6 +82,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9a61f902c2e23cc4c8a02d76502993d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3860035660266627550}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9a61f902c2e23cc4c8a02d76502993d2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5113380483243406171}
   m_SourcePrefab: {fileID: 100100000, guid: 9a61f902c2e23cc4c8a02d76502993d2, type: 3}
 --- !u!1 &4664886073753584717 stripped
 GameObject:
@@ -255,8 +258,11 @@ MonoBehaviour:
   _alertRange: 15
   _attackCooldown: 4
   _despawnTime: 0
+  drops: []
   _source: {fileID: 7027107161495603991}
   _combatSource: {fileID: 3860035660266627550}
+  tutorial: 0
+  dead: 0
   stepsGrass:
   - {fileID: 8300000, guid: 9e68ea1ebd76aa44c8cfa5beb9850830, type: 3}
   - {fileID: 8300000, guid: 1deb201b8bf8f89479323a74e421150b, type: 3}
@@ -394,10 +400,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.26
-  m_Height: 1.85
+  m_Radius: 0.30868995
+  m_Height: 1.9036967
   m_Direction: 1
-  m_Center: {x: 0, y: 0.93, z: 0}
+  m_Center: {x: 0, y: 0.9031517, z: 0.04868996}
 --- !u!82 &3860035660266627550
 AudioSource:
   m_ObjectHideFlags: 0
@@ -495,3 +501,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!54 &5113380483243406171
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4664886073753584717}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

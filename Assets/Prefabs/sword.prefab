@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 8710054041787112659}
   - component: {fileID: 8238778022480512307}
   - component: {fileID: 2271236708465459559}
-  - component: {fileID: 8852541003879489494}
   - component: {fileID: 5768519452834227454}
   - component: {fileID: 1402804328309984624}
   - component: {fileID: 3839327622314694529}
   - component: {fileID: 3254971706028213469}
   - component: {fileID: 5392971201141368203}
-  m_Layer: 0
+  - component: {fileID: 538155169646609821}
+  m_Layer: 8
   m_Name: sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,13 +32,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7960789110634908141}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.31533778, y: -0.562259, z: -0.22626261, w: 0.7302275}
+  m_LocalRotation: {x: -0.31533796, y: -0.5622579, z: -0.2262624, w: 0.7302283}
   m_LocalPosition: {x: -0.734, y: -1.19, z: -0.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -45.641, y: -104.849, z: 1.98}
+  m_LocalEulerAnglesHint: {x: -45.641, y: -76.024, z: 1.98}
 --- !u!33 &8238778022480512307
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -92,27 +92,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8852541003879489494
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7960789110634908141}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1.51}
-  m_Center: {x: 0.64, y: 1.32, z: 0.37}
 --- !u!114 &5768519452834227454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,15 +106,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   amt: 1
-  type: 0
+  type: 1
   name: Sword
   animationHandler: {fileID: 3254971706028213469}
   itemSfxHandler: {fileID: 5392971201141368203}
-  hitbox: {fileID: 8852541003879489494}
-  damage: 0
-  timberDistance: 5
-  maxTimberAngle: 45
-  treePrefab: {fileID: 1620417488002718097, guid: cce4d8667f2436a479759f07084d8ff4, type: 3}
+  hitbox: {fileID: 538155169646609821}
+  damage: 10
+  envDamageMod: 0.5
 --- !u!82 &1402804328309984624
 AudioSource:
   m_ObjectHideFlags: 0
@@ -304,3 +281,24 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 559411e1b2a6d244a82ad899a556e955, type: 3}
   - {fileID: 8300000, guid: baf1fa6e0feae804caa45317770f9214, type: 3}
   source: {fileID: 1402804328309984624}
+--- !u!135 &538155169646609821
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7960789110634908141}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Radius: 0.6
+  m_Center: {x: 0.68, y: 1.2, z: 0.44}

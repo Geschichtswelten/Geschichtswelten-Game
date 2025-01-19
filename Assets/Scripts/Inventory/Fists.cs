@@ -20,15 +20,21 @@ namespace DefaultNamespace
             type = itemType.weapon;
             name = "Fists";
         }
+        
         public override void action1()
         {
             if (attackRoutine == null) 
                 attackRoutine = StartCoroutine(attack());
         }
         
+        public override void action2()
+        {
+            //Debug.Log("Interacting or smth");
+        }
+        
         private IEnumerator attack()
         {
-            Debug.Log("Attacking maybe");
+            //Debug.Log("Attacking maybe");
             hitbox.enabled = true;
             animationHandler.playAnimation((int) animationIds.attack1);
             itemSfxHandler.PlayAction1();
@@ -37,16 +43,11 @@ namespace DefaultNamespace
             attackRoutine = null;
         }
         
-        private void OnCollisionEnter(Collision other)
+        private void OnTriggerEnter(Collider other)
         {
+            Debug.Log("Hit [" + other.tag + "] " + other.name);
             if (!other.gameObject.CompareTag("Enemy")) return;
-            Debug.Log("Hit an Enemy");
             other.gameObject.GetComponent<AbstractEnemyBehaviour>().AttackEnemy(damage);
-        }
-
-        public override void action2()
-        {
-            Debug.Log("Interacting or smth");
         }
     }
 }

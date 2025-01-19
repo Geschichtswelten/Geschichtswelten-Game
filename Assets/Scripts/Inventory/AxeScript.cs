@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class AxeScript : ItemBehaviour
 {
-
     private Coroutine attackRoutine;
     [SerializeField] private Collider hitbox;
     [SerializeField] private float damage;
@@ -66,11 +65,26 @@ public class AxeScript : ItemBehaviour
         if (attackRoutine == null)
             attackRoutine = StartCoroutine(attack());
     }
+    
+    public override void action2()
+    {
+        Debug.Log("Blocking or smth");
+    }
 
     private IEnumerator attack()
     {
         Debug.Log("Attacking maybe");
         hitbox.enabled = true;
+        harvestTree();
+        animationHandler.playAnimation((int)animationIds.attack1);
+        itemSfxHandler.PlayAction1();
+        yield return new WaitForSeconds(0.5f);
+        hitbox.enabled = false;
+        attackRoutine = null;
+    }
+
+    private void harvestTree()
+    {
         for (int i = 0; i < treeArray.Count; i++)
         {
             if (prototypes[treeArray[i].prototypeIndex].prefab.CompareTag("Tree"))
@@ -90,23 +104,10 @@ public class AxeScript : ItemBehaviour
                     var temp = Instantiate(treePrefab, worldPosition, tempRot);
                     temp.AddComponent<Rigidbody>();
                     break;
-                    
                 }
-
             }
         }
-        animationHandler.playAnimation((int)animationIds.attack1);
-        itemSfxHandler.PlayAction1();
-        yield return new WaitForSeconds(0.5f);
-        hitbox.enabled = false;
-        attackRoutine = null;
     }
-
-    public override void action2()
-    {
-        Debug.Log("Blocking or smth");
-    }
-
 
     private void OnCollisionEnter(Collision other)
     {
@@ -114,5 +115,4 @@ public class AxeScript : ItemBehaviour
         Debug.Log("Hit an Enemy");
         //other.gameObject.GetComponent<AbstractEnemyBehaviour>().AttackEnemy(damage, null);
     }
-
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent (typeof(NavMeshAgent), typeof(AudioSource), typeof(Animator))]
+// Requirements: trigger Collider + kinematic Rigidbody for hitbox
+[RequireComponent(typeof(Collider), typeof(Rigidbody))]
 public abstract class AbstractEnemyBehaviour : MonoBehaviour
 {
     [Header("Behaviour")]
@@ -87,7 +89,7 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
         _agent.SetDestination(targetPosition);
         lastPos = _target.transform.position;
     }
-    protected void Patroll()
+    protected void Patrol()
     {
         _agent.speed = _walkSpeed;
         _behaviour = Behaviour.Patrolling;

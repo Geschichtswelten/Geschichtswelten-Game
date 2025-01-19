@@ -1,6 +1,9 @@
+using System;
 using Mono.CSharp;
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ArminiusBehaviour : AbstractEnemyBehaviour
 {
@@ -19,6 +22,7 @@ public class ArminiusBehaviour : AbstractEnemyBehaviour
     [SerializeField] private float chargeRange;
     private float cd, cA;
     private bool charge;
+    [SerializeField] private Collider attackHitbox;
 
     private void Start()
     {
@@ -79,8 +83,10 @@ public class ArminiusBehaviour : AbstractEnemyBehaviour
                 }
                 _animator.ResetTrigger("enemyRun");
                 cd = _attackCooldown;
+                // attack timen, maybe mit animation keyframes oder so. TODO
                 Attack();
                 yield return new WaitForSeconds(2f);
+                if (attackHitbox) attackHitbox.enabled = false;
             }
             else
             {
@@ -111,7 +117,7 @@ public class ArminiusBehaviour : AbstractEnemyBehaviour
         trigger("enemyAttack");
         _animator.SetTrigger("enemyAttack");
         //_agent.isStopped = true;
-        
+        if (attackHitbox) attackHitbox.enabled = true;
     }
 
     private void Charge()
@@ -123,7 +129,7 @@ public class ArminiusBehaviour : AbstractEnemyBehaviour
         trigger("enemyCharge");
         _animator.SetTrigger("enemyCharge");
         //gameObject.tag = "Charge"; different attack      
-        //tag zurücksetzen
+        //tag zurï¿½cksetzen
         cA = chargeCooldown;
     }
 
@@ -221,6 +227,5 @@ public class ArminiusBehaviour : AbstractEnemyBehaviour
             anim.SetTrigger(trigger);
         }
     }
-
 }
 

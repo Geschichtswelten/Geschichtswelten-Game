@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DefaultNamespace;
 using Mono.CSharp;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -141,7 +143,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         startYScale = transform.localScale.y;
         
-        equipItem(0);
+        EquipItem(0);
         if (equippedItem)
         {
             //add item to inventory
@@ -382,12 +384,12 @@ public class PlayerBehaviour : MonoBehaviour
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
-    public void equipItem(ushort id)
+    public void EquipItem(ushort id)
     {
         if (id >= itemPrefabs.Count) 
             return;
         
-        Debug.Log("equipped item " + id);
+        //Debug.Log("equipped item " + id);
         Destroy(itemAnker.GetChild(0).gameObject);
         equippedItem = Instantiate(itemPrefabs[id], itemAnker.transform, false);
         _equippedItemBehaviour = equippedItem.GetComponent<ItemBehaviour>();
@@ -400,5 +402,10 @@ public class PlayerBehaviour : MonoBehaviour
         Debug.Log("Loaded Position");
         transform.position = position;
         transform.rotation = rotation;
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Hit by " + other.name);
     }
 }

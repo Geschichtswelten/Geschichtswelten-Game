@@ -78,8 +78,8 @@ public class Hotbar : MonoBehaviour
                 /*  TODO!!
                  Hier Hotbarslot umfärben/markieren whatever */
                 ushort item_id = (ushort)items.getItemIdForSlot(i);
-                Debug.Log("Trying to equip item " + item_id);
-                player.equipItem(item_id);
+                //Debug.Log("Trying to equip item " + item_id);
+                player.EquipItem(item_id);
                 //Debug.Log("hotbar contains " + items.getItemList().Count + " items");
             }
         }

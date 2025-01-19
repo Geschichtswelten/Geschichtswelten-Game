@@ -23,6 +23,8 @@ namespace DefaultNamespace
             id = 1;
             type = itemType.weapon;
             name = "Sword";
+            hitbox.enabled = false;
+            attackRoutine = null;
         }
 
         public override void action1() //attack
@@ -31,9 +33,14 @@ namespace DefaultNamespace
                 attackRoutine = StartCoroutine(attack());
         }
 
+        public override void action2()
+        {
+            //Debug.Log("Blocking or smth");
+        }
+        
         private IEnumerator attack()
         {
-            Debug.Log("Attacking maybe");
+            //Debug.Log("Attacking maybe");
             hitbox.enabled = true;
             animationHandler.playAnimation((int)animationIds.attack1);
             itemSfxHandler.PlayAction1();
@@ -41,21 +48,12 @@ namespace DefaultNamespace
             hitbox.enabled = false;
             attackRoutine = null;
         }
-
-        public override void action2()
+        
+        private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("Blocking or smth");
-        }
-
-
-        //Dis dun work
-        private void OnCollisionEnter(Collision other)
-        {
+            Debug.Log("Hit [" + other.tag + "] " + other.name);
             if (!other.gameObject.CompareTag("Enemy")) return;
-            Debug.Log("Hit an Enemy");
             other.gameObject.GetComponent<AbstractEnemyBehaviour>().AttackEnemy(damage);
         }
     }
-
-        
 }
