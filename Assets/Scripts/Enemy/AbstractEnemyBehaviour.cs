@@ -27,6 +27,7 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
     [SerializeField] protected int _alertRange;
     [SerializeField] protected int _attackCooldown;
     [SerializeField] protected float _despawnTime;
+    [SerializeField] private GameObject[] drops;
     [Space]
     [Header("Audio")]
     [SerializeField] protected AudioSource _source;
@@ -122,6 +123,13 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
         _behaviour = Behaviour.Chasing;
         _agent.isStopped = false;
         _agent.SetDestination(_target.transform.position);
+    }
+    protected void Die()
+    {
+        if (drops.Length > 0)
+        {
+            Instantiate(drops[Random.Range(0, drops.Length)], transform.position, Quaternion.identity);
+        }
     }
 
 

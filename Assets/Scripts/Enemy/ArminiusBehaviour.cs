@@ -130,7 +130,7 @@ public class ArminiusBehaviour : AbstractEnemyBehaviour
 
     private void Die()
     {
-
+        base.Die();
         StopAllCoroutines();
         _agent.isStopped = true;
         //end sequence

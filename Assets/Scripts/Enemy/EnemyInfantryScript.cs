@@ -92,7 +92,7 @@ public class EnemyInfantryScript : AbstractEnemyBehaviour
 
     private void Die()
     {
-        
+        base.Die();
         StopAllCoroutines();
         _agent.isStopped = true;
         if (Random.Range(0, 2) == 0)
