@@ -6,6 +6,7 @@ using Mono.CSharp;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerBehaviour : MonoBehaviour
@@ -164,9 +165,9 @@ public class PlayerBehaviour : MonoBehaviour
         
         grounded = Physics.Raycast(transform.position, Vector3.down,
             playerHeight * 0.5f + 0.2f, whatIsGround);
-        HandleMovementState();
-        HandleInput();
-        SpeedControl();
+            HandleMovementState();
+            HandleInput();
+            SpeedControl();   
         Interact();
 
         //handle drag
@@ -199,6 +200,15 @@ public class PlayerBehaviour : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             HUD_Canvas.gameObject.SetActive(true);
         }
+    }
+
+    public void CloseInventory()
+    {
+        if (!_inventoryOpen)
+            return;
+        inventory.closeInventory();
+        equipment.closeInventory();
+        toggleInventory();
     }
 
     private void HandleInput()
@@ -255,14 +265,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void HandleMovementState()
     {
-        
-        if (freeze)
-        {
-            state = Movementstate.freeze;
-            moveSpeed = 0f;
-            rb.linearVelocity = Vector3.zero;
-        }
-        else if (crouchKey.action.IsPressed())
+        if (crouchKey.action.IsPressed())
         {
             state = Movementstate.crouching;
             moveSpeed = crouchSpeed;
@@ -286,11 +289,13 @@ public class PlayerBehaviour : MonoBehaviour
     #region movement
     private void MovePlayer()
     {
-        if (_inventoryOpen)
+        if (_inventoryOpen || freeze)
         {
             verticalInput = 0;
             horizontalInput = 0;
         }
+
+       
         
         moveDirection = (orientation.forward * verticalInput + orientation.right * horizontalInput).normalized;
 
@@ -400,7 +405,7 @@ public class PlayerBehaviour : MonoBehaviour
     public void LoadPosition(Vector3 position, Quaternion rotation)
     {
         Debug.Log("Loaded Position");
-        transform.position = position;
+        transform.position = new Vector3(position.x, position.y + 3f, position.z);
         transform.rotation = rotation;
     }
     

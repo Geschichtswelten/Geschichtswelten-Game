@@ -27,6 +27,7 @@ public class ButtonHandler : MonoBehaviour
     }
     void Start()
     {
+        Application.backgroundLoadingPriority = ThreadPriority.High;
         DontDestroyOnLoad(this.gameObject);
         LoadSettings();
     }
@@ -122,9 +123,8 @@ public class ButtonHandler : MonoBehaviour
             {
                 Debug.Log("FoundPlayer");
                 root.GetComponent<WrapperScript>().LoadProfile(profile);
-                root.GetComponentInChildren<PlayerBehaviour>().freeze = true;
-                yield return new WaitForSeconds(2f);
-                root.GetComponentInChildren<PlayerBehaviour>().freeze = false;
+                yield return new WaitForSeconds(2);
+                root.GetComponent<WrapperScript>().LoadProfile(profile);
             }
         }
 

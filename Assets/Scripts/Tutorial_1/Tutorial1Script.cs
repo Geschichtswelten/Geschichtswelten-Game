@@ -72,17 +72,14 @@ public class Tutorial1Script : MonoBehaviour
         tips[2].SetActive(true);
         Cursor.lockState = CursorLockMode.Confined;
         yield return new WaitUntil(() => equipmentScript.getItemIdForSlot(0) == 26); //helmet ID
-        //playerBehaviour.CloseInventory();     //NOT IMPLEMENTED
+        playerBehaviour.CloseInventory();     //NOT IMPLEMENTED
         tips[2].SetActive(false);
-        enemies[0]._target = player;
-        playerBehaviour.freeze = false;
         stage = Stage.stage1;
         StartCoroutine(StartStage2());
     }
 
     public IEnumerator StartStage2()
     {
-        playerBehaviour.freeze = true;
         source.clip = audioClips[3];
         source.Play();
         text.text = firstEnemyAttack;
@@ -91,9 +88,9 @@ public class Tutorial1Script : MonoBehaviour
         text.text = "";
         enemies[0]._target = player;
         playerBehaviour.freeze = false;
+        playerBehaviour.state = PlayerBehaviour.Movementstate.walking;
         yield return new WaitUntil(() => enemies[0].dead);
         tips[3].SetActive(false);
-
         playerBehaviour.freeze = true;
         source.clip = audioClips[4];
         source.Play();
@@ -101,7 +98,7 @@ public class Tutorial1Script : MonoBehaviour
         yield return new WaitUntil(() => !source.isPlaying);
         text.text = "";
         playerBehaviour.freeze = false;
-
+        playerBehaviour.state = PlayerBehaviour.Movementstate.walking;
         playerBehaviour.freeze = true;
         source.clip = audioClips[5];
         source.Play();
@@ -126,7 +123,7 @@ public class Tutorial1Script : MonoBehaviour
         
 
         AsyncOperation loadScene = SceneManager.LoadSceneAsync(392);
-        loadScene.allowSceneActivation = false;
+        loadScene.allowSceneActivation = true;  //has to be set to false
         //ProgressBar
         GameProfile profile = JsonHandler.readGameProfile("Assets/profile.asset");
 
@@ -134,10 +131,12 @@ public class Tutorial1Script : MonoBehaviour
         {
             profile = new GameProfile();
             JsonHandler.WriteGameProfile(profile);
+            
             while (!loadScene.isDone)
             {
                 //Play Video
-                yield return new WaitUntil(() => loadScene.isDone); //&&video.isDone
+                //yield return new WaitUntil(() => loadScene.isDone); //video.isDone
+                yield return new WaitForSeconds(0.5f);
                 loadScene.allowSceneActivation = true;
             }
             yield break;

@@ -27,6 +27,7 @@ public class TerrainSceneManager : MonoBehaviour
         sceneList = new int[33];
         scenesToBeLoaded = new int[25];
         lastScene = 0;
+        Application.backgroundLoadingPriority = ThreadPriority.Low;
         StartCoroutine(nameof(cor));
     }
 
