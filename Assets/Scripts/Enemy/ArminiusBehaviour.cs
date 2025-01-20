@@ -23,12 +23,13 @@ public class ArminiusBehaviour : AbstractEnemyBehaviour
     private float cd, cA;
     private bool charge;
     [SerializeField] private Collider attackHitbox;
-
+    private MainGameLoop mainGameLoop;
     private void Start()
     {
         charge = false;
         cd = _attackCooldown;
         cA = chargeCooldown;
+        mainGameLoop = FindAnyObjectByType<MainGameLoop>();
         StartCoroutine(arminiusLoop());
     }
 
@@ -139,7 +140,7 @@ public class ArminiusBehaviour : AbstractEnemyBehaviour
         base.Die();
         StopAllCoroutines();
         _agent.isStopped = true;
-        //end sequence
+        mainGameLoop.EndingSequence();
         Destroy(gameObject, _despawnTime);
     }
 

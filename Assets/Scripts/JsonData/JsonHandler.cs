@@ -49,5 +49,10 @@ public class JsonHandler : MonoBehaviour
         AssetDatabase.CreateAsset(file, "Assets/profile.asset");
     }
 
+    public static void DeleteGameProfile()
+    {
+        AssetDatabase.DeleteAsset("Assets/profile.asset");
+    }
+
 
 }
