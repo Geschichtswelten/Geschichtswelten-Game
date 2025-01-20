@@ -360,3 +360,32 @@ MonoBehaviour:
     indexItemInList: 999
     rarity: 0
     itemAttributes: []
+  - itemName: Flavius' training sword
+    itemID: 25
+    itemDesc: 'A training sword given to Flavius by his instructors.
+
+      + 5 Damage'
+    itemIcon: {fileID: 21300000, guid: 2ddf0348701148a4d8a7c6a0f7f146b3, type: 3}
+    itemModel: {fileID: 0}
+    itemValue: 1
+    itemType: 1
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
+  - itemName: Flavius' training cap
+    itemID: 26
+    itemDesc: 'A leather helmet given to Flavius to protect his head during sparring.
+
+      +
+      5 Defense'
+    itemIcon: {fileID: 21300000, guid: 63dca6d4e4e873a4cb09997656d54082, type: 3}
+    itemModel: {fileID: 0}
+    itemValue: 1
+    itemType: 4
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []

@@ -34,7 +34,10 @@ public class Tutorial1Script : MonoBehaviour
     {
         stage = Stage.start;
         source = GetComponent<AudioSource>();
-        source.volume = ButtonHandler.settings.dialogueVolume * ButtonHandler.settings.masterVolume;
+        if (ButtonHandler.settings != null)
+        {
+            source.volume = ButtonHandler.settings.dialogueVolume * ButtonHandler.settings.masterVolume;
+        }
         playerBehaviour = player.GetComponent<PlayerBehaviour>();
         StartCoroutine(StartStage1());
     }
@@ -50,7 +53,6 @@ public class Tutorial1Script : MonoBehaviour
         text.text = "";
         yield return new WaitUntil(() => playerBehaviour._inventoryOpen);
         tips[0].SetActive(false);
-        Time.timeScale = 0f;
         source.clip = audioClips[1];
         source.Play();
         text.text = equipSwordString;
@@ -59,7 +61,7 @@ public class Tutorial1Script : MonoBehaviour
         text.text = "";
         Cursor.lockState = CursorLockMode.Confined;
         tips[1].SetActive(true);
-        yield return new WaitUntil(() => hotbarScript.getItemIdForSlot(0) == 1);
+        yield return new WaitUntil(() => hotbarScript.getItemIdForSlot(0) == 25);
         tips[1].SetActive(false);
         source.clip = audioClips[2];
         source.Play();
@@ -69,10 +71,9 @@ public class Tutorial1Script : MonoBehaviour
         text.text = "";
         tips[2].SetActive(true);
         Cursor.lockState = CursorLockMode.Confined;
-        yield return new WaitUntil(() => equipmentScript.getItemIdForSlot(0) == 2); //helmet ID
+        yield return new WaitUntil(() => equipmentScript.getItemIdForSlot(0) == 26); //helmet ID
         //playerBehaviour.CloseInventory();     //NOT IMPLEMENTED
         tips[2].SetActive(false);
-        Time.timeScale = 1f;
         enemies[0]._target = player;
         playerBehaviour.freeze = false;
         stage = Stage.stage1;

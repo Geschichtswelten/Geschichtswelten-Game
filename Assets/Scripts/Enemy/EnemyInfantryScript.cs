@@ -32,6 +32,12 @@ public class EnemyInfantryScript : AbstractEnemyBehaviour
 
         while (_health > 0f)
         {
+            if (_target == gameObject)
+            {
+                _animator.SetTrigger("enemyIdle");
+                Idle();
+                yield return new WaitUntil(()=>_target!=gameObject);
+            }
             float distance = Vector3.Distance(_target.transform.position, transform.position);
             if (distance >= _alertRange && _patrollingTargets.Length > 1)
             {

@@ -73,10 +73,8 @@ public class ButtonHandler : MonoBehaviour
         //ProgressBar
 
         
-        AsyncOperation loadScene = SceneManager.LoadSceneAsync(392);
+        AsyncOperation loadScene = SceneManager.LoadSceneAsync(393);
         loadScene.allowSceneActivation = false;
-        profile = new GameProfile();
-        JsonHandler.WriteGameProfile(profile);
         while (!loadScene.isDone)
         {
             Debug.Log(loadScene.progress);
