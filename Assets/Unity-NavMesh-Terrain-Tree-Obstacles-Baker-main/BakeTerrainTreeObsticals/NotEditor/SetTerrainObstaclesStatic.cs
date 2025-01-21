@@ -5,6 +5,7 @@ using UnityEditor.Actions;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class SetTerrainObstaclesStatic : MonoBehaviour
 {
@@ -22,6 +23,27 @@ public class SetTerrainObstaclesStatic : MonoBehaviour
         {
             terrain.gameObject.AddComponent<TerrainMemory>();
             EditorUtility.SetDirty(terrain);
+        }
+    }
+
+    public static void AddMushrooms(List<Terrain> terrains, GameObject shrooms)
+    {
+        foreach (Terrain terrain in terrains)
+        {
+            SceneManager.SetActiveScene(terrain.gameObject.scene);
+            for (int i = 0; i < 6; i++)
+            {
+                TerrainCollider tC = terrain.GetComponent<TerrainCollider>();
+                
+              
+                
+                    var worldPos = new Vector3(Random.Range(tC.bounds.center.x - tC.bounds.extents.x, tC.bounds.center.x + tC.bounds.extents.x), 20f, Random.Range(tC.bounds.center.z - tC.bounds.extents.z, tC.bounds.center.z + tC.bounds.extents.z));
+                    var instPoint = terrain.SampleHeight(worldPos);
+                    var instPos = new Vector3(worldPos.x, instPoint, worldPos.z);
+                
+                var sh = Instantiate(shrooms, instPos, Quaternion.identity);
+                EditorUtility.SetDirty(sh);
+            }
         }
     }
 
