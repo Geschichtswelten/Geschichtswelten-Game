@@ -29,7 +29,8 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
     [SerializeField] protected int _alertRange;
     [SerializeField] protected int _attackCooldown;
     [SerializeField] protected float _despawnTime;
-    [SerializeField] private GameObject[] drops;
+    [SerializeField] private GameObject drop;
+    [SerializeField] private int[] dropIds;
     [Space]
     [Header("Audio")]
     [SerializeField] protected AudioSource _source;
@@ -128,9 +129,20 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
     protected void Die()
     {
         dead = true;
-        if (drops.Length > 0)
+        if (dropIds.Length > 0)
         {
-            Instantiate(drops[Random.Range(0, drops.Length)], transform.position, Quaternion.identity);
+            
+            int howManyItems = Random.Range(0, dropIds.Length);
+            if (howManyItems == 0) return;
+            var pouchInv = Instantiate(drop, transform.position, Quaternion.identity).GetComponent<StorageInventory>();
+            pouchInv.player = _target;
+            pouchInv.inventory = _target.GetComponent<PlayerBehaviour>().storageInv;
+            pouchInv.inv = pouchInv.inventory.GetComponent<Inventory>();
+            for (int i = 0; i < howManyItems; i++)
+            {
+
+                pouchInv.addItemToStorage(i, Random.Range(1, 5));
+            }
         }
     }
 

@@ -419,9 +419,29 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -692589707067859167, guid: 8fbf4cab867cd5b4ea1312628b0c23ef, type: 3}
+      propertyPath: drop
+      value: 
+      objectReference: {fileID: 1758336818755121674, guid: 66f6fb4e115e0564c9e6bd36b3d03e68, type: 3}
+    - target: {fileID: -692589707067859167, guid: 8fbf4cab867cd5b4ea1312628b0c23ef, type: 3}
       propertyPath: _target
       value: 
       objectReference: {fileID: 519329082}
+    - target: {fileID: -692589707067859167, guid: 8fbf4cab867cd5b4ea1312628b0c23ef, type: 3}
+      propertyPath: dropIds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -692589707067859167, guid: 8fbf4cab867cd5b4ea1312628b0c23ef, type: 3}
+      propertyPath: 'dropIds.Array.data[0]'
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: -692589707067859167, guid: 8fbf4cab867cd5b4ea1312628b0c23ef, type: 3}
+      propertyPath: 'dropIds.Array.data[1]'
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: -692589707067859167, guid: 8fbf4cab867cd5b4ea1312628b0c23ef, type: 3}
+      propertyPath: 'dropIds.Array.data[2]'
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2280418153868286602, guid: 8fbf4cab867cd5b4ea1312628b0c23ef, type: 3}
       propertyPath: m_Name
       value: Arminius

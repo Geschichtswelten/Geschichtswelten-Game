@@ -5796,6 +5796,7 @@ MonoBehaviour:
   inventory: {fileID: 4179730975589834584}
   equipment: {fileID: 7145729559675572752}
   hotbar: {fileID: 4815274171344190455}
+  storageInv: {fileID: 5828316147656904170}
 --- !u!114 &6911211779748844215
 MonoBehaviour:
   m_ObjectHideFlags: 0

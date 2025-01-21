@@ -99,6 +99,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private Inventory inventory;
     [SerializeField] private Inventory equipment;
     [SerializeField] private Inventory hotbar;
+    [SerializeField] public GameObject storageInv;
     
 
     #endregion

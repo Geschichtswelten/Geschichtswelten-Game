@@ -34,9 +34,9 @@ public class StorageInventory : MonoBehaviour
     public int itemAmount;
 
     Tooltip tooltip;
-    Inventory inv;
+    public Inventory inv;
 
-    [SerializeField] private GameObject player;
+    [SerializeField] public GameObject player;
 
     static Image timerImage;
     static GameObject timer;
@@ -58,37 +58,10 @@ public class StorageInventory : MonoBehaviour
     {
         if (inputManagerDatabase == null)
             inputManagerDatabase = (InputManager)Resources.Load("InputManager");
-
-
         
         inv = inventory.GetComponent<Inventory>();
         ItemDataBaseList inventoryItemList = (ItemDataBaseList)Resources.Load("ItemDatabase");
 
-        int creatingItemsForChest = 1;
-
-        int randomItemAmount = Random.Range(1, itemAmount);
-
-        while (creatingItemsForChest < randomItemAmount)
-        {
-            int randomItemNumber = Random.Range(1, inventoryItemList.itemList.Count - 1);
-            int raffle = Random.Range(1, 100);
-
-            if (raffle <= inventoryItemList.itemList[randomItemNumber].rarity)
-            {
-                int randomValue = Random.Range(1, inventoryItemList.itemList[randomItemNumber].getCopy().maxStack);
-                Item item = inventoryItemList.itemList[randomItemNumber].getCopy();
-                item.itemValue = randomValue;
-                storageItems.Add(item);
-                creatingItemsForChest++;
-            }
-        }
-
-        if (GameObject.FindGameObjectWithTag("Timer") != null)
-        {
-            timerImage = GameObject.FindGameObjectWithTag("Timer").GetComponent<Image>();
-            timer = GameObject.FindGameObjectWithTag("Timer");
-            timer.SetActive(false);
-        }
         if (GameObject.FindGameObjectWithTag("Tooltip") != null)
             tooltip = GameObject.FindGameObjectWithTag("Tooltip").GetComponent<Tooltip>();
 
@@ -102,6 +75,7 @@ public class StorageInventory : MonoBehaviour
 
     void Update()
     {
+        if(player == null || inventory == null) return;
 
         float distance = Vector3.Distance(this.gameObject.transform.position, player.transform.position);
 
