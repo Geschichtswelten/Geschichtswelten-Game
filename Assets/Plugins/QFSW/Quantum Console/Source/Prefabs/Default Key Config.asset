@@ -24,7 +24,7 @@ MonoBehaviour:
     Alt: 0
     Shift: 0
   ToggleConsoleVisibilityKey:
-    Key: 116
+    Key: 9
     Ctrl: 0
     Alt: 0
     Shift: 0
@@ -44,12 +44,12 @@ MonoBehaviour:
     Alt: 0
     Shift: 1
   SelectNextSuggestionKey:
-    Key: 9
+    Key: 275
     Ctrl: 0
     Alt: 0
     Shift: 0
   SelectPreviousSuggestionKey:
-    Key: 9
+    Key: 276
     Ctrl: 0
     Alt: 0
     Shift: 1
