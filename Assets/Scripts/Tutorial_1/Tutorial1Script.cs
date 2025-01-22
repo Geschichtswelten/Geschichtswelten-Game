@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
 using UnityEngine;
@@ -40,6 +41,21 @@ public class Tutorial1Script : MonoBehaviour
         }
         playerBehaviour = player.GetComponent<PlayerBehaviour>();
         StartCoroutine(StartStage1());
+    }
+
+    private void OnEnable()
+    {
+        ButtonHandler.OnSettingsChanged += HandleVolumeChange;
+    }
+
+    private void OnDisable()
+    {
+        ButtonHandler.OnSettingsChanged -= HandleVolumeChange;
+    }
+
+    private void HandleVolumeChange()
+    {
+        source.volume = ButtonHandler.settings.dialogueVolume * ButtonHandler.settings.masterVolume;
     }
 
     private IEnumerator StartStage1()
@@ -126,7 +142,6 @@ public class Tutorial1Script : MonoBehaviour
         loadScene.allowSceneActivation = true;  //has to be set to false
         //ProgressBar
         GameProfile profile = JsonHandler.readGameProfile("Assets/profile.asset");
-
         if (profile == null)
         {
             profile = new GameProfile();

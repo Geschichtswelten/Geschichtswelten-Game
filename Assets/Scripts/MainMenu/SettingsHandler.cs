@@ -25,9 +25,18 @@ public class SettingsHandler : MonoBehaviour
 
     void Awake()
     {
-        ButtonHandler.OnSettingsChanged += HandleSettingsChanged;
         backButton.SetActive(false);
         scrollView.SetActive(false);
+    }
+    
+    private void OnEnable()
+    {
+        ButtonHandler.OnSettingsChanged += HandleSettingsChanged;
+    }
+
+    private void OnDisable()
+    {
+        ButtonHandler.OnSettingsChanged -= HandleSettingsChanged;
     }
 
     private void HandleSettingsChanged()

@@ -7,23 +7,35 @@ public class WorldMusicScript : MonoBehaviour
     [SerializeField] private AudioClip[] clips;
     private void Awake()
     {
-    
-        ButtonHandler[] ls = Resources.FindObjectsOfTypeAll<ButtonHandler>();
-        if (ls.Length > 1)
-        {
-            if (ls[0] == this)
-            {
-                Destroy(ls[1].gameObject);
-            }
-        }
         source = GetComponent<AudioSource>();
-        ButtonHandler.OnSettingsChanged += HandleSettingsChanged;
         DontDestroyOnLoad(this.gameObject);
+    }
+    
+    private void OnEnable()
+    {
+        ButtonHandler.OnSettingsChanged += HandleSettingsChanged;
+    }
+
+    private void OnDisable()
+    {
+        ButtonHandler.OnSettingsChanged -= HandleSettingsChanged;
     }
     private void HandleSettingsChanged()
     {
         
         source.volume = ButtonHandler.settings.musicVolume * ButtonHandler.settings.masterVolume;
+    }
+
+    public void ToggleMute()
+    {
+        if (source.mute == true)
+        {
+            source.mute = false;
+        }
+        else
+        {
+            source.mute = true;
+        }
     }
 
     public void StartingGame()

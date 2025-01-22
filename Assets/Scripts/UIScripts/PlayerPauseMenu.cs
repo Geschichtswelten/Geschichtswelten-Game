@@ -28,9 +28,14 @@ public class PlayerPauseMenu : MonoBehaviour
         _canvas.SetActive(false);
     }
 
-    private void Awake()
+    private void OnEnable()
     {
         ButtonHandler.OnSettingsChanged += HandleSettingsChanged;
+    }
+
+    private void OnDisable()
+    {
+        ButtonHandler.OnSettingsChanged -= HandleSettingsChanged;
     }
 
     private void HandleSettingsChanged()
@@ -145,6 +150,8 @@ public class PlayerPauseMenu : MonoBehaviour
     {
         SaveGame();
         Time.timeScale = 1;
+        Destroy(FindAnyObjectByType<ButtonHandler>().gameObject);
+        Destroy(FindAnyObjectByType<WorldMusicScript>().gameObject);
         SceneManager.LoadScene(0);
     }
 

@@ -23,7 +23,22 @@ public class LumberBehaviour : MonoBehaviour
         isTimber = false;
         StartCoroutine(TransformToTimber());
     }
+    
+    private void OnEnable()
+    {
+        ButtonHandler.OnSettingsChanged += HandleVolumeChange;
+    }
 
+    private void OnDisable()
+    {
+        ButtonHandler.OnSettingsChanged -= HandleVolumeChange;
+    }
+
+    private void HandleVolumeChange()
+    {
+        audioSource.volume = ButtonHandler.settings.masterVolume;
+    }
+    
     private void OnTriggerEnter(Collider other)
     {
         isTimber = true;

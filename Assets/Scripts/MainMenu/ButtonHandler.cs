@@ -14,20 +14,11 @@ public class ButtonHandler : MonoBehaviour
     public static GameProfile profile = null;
     public static event Action OnSettingsChanged;
 
-    private void Awake()
-    {
-        ButtonHandler[] ls = Resources.FindObjectsOfTypeAll<ButtonHandler>();
-        if (ls.Length > 1)
-        {
-            if (ls[0] == this)
-            {
-                Destroy(ls[1].gameObject);
-            }
-        }
-    }
+    public GameObject loadingScreen;
+    
     void Start()
     {
-        Application.backgroundLoadingPriority = ThreadPriority.High;
+        Application.backgroundLoadingPriority = ThreadPriority.BelowNormal;
         DontDestroyOnLoad(this.gameObject);
         LoadSettings();
     }
@@ -45,6 +36,13 @@ public class ButtonHandler : MonoBehaviour
         OnSettingsChanged?.Invoke();
     }
 
+    public GameObject SetLoadingScreenActive()
+    {
+        loadingScreen.SetActive(true);
+        loadingScreen.GetComponentInChildren<TMPro.TMP_Text>().text = "0%";
+        return loadingScreen;
+    }
+
     //Setter for SettingsClass
 
     /*
@@ -54,6 +52,7 @@ public class ButtonHandler : MonoBehaviour
      */
     public void LoadGame()
     {
+        SetLoadingScreenActive();
         StartCoroutine(LoadSceneAsync());
     }
 
@@ -68,18 +67,18 @@ public class ButtonHandler : MonoBehaviour
         StartCoroutine(LoadNewGameAsync());
     }
 
-    public static IEnumerator LoadNewGameAsync()
+    IEnumerator LoadNewGameAsync()
     {
         
         //ProgressBar
-
         
+        var text = loadingScreen.GetComponentInChildren<TMPro.TMP_Text>();
         AsyncOperation loadScene = SceneManager.LoadSceneAsync(393);
         loadScene.allowSceneActivation = false;
         while (!loadScene.isDone)
         {
-            Debug.Log(loadScene.progress);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.01f);
+            text.text = loadScene.progress + "%";
             if (loadScene.progress >= 0.9f)
             {
                 loadScene.allowSceneActivation = true;
@@ -91,6 +90,7 @@ public class ButtonHandler : MonoBehaviour
 
     IEnumerator LoadSceneAsync()
     {
+        yield return new WaitForSeconds(1);
         AsyncOperation loadScene = SceneManager.LoadSceneAsync(392);
         loadScene.allowSceneActivation = false;
         //ProgressBar
@@ -103,11 +103,12 @@ public class ButtonHandler : MonoBehaviour
             //Have to test that
             yield break;
         }
-        
+        SetLoadingScreenActive();
+        var text = loadingScreen.GetComponentInChildren<TMPro.TMP_Text>();
         while (!loadScene.isDone)
         {
-            Debug.Log(loadScene.progress);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.01f);
+            text.text = loadScene.progress + "%";
             if (loadScene.progress >= 0.9f)
             {
                 loadScene.allowSceneActivation = true;
