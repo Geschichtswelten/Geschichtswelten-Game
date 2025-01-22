@@ -513,6 +513,7 @@ GameObject:
   - component: {fileID: 114832139408792490}
   - component: {fileID: 114338341816592800}
   - component: {fileID: 2991752286308270999}
+  - component: {fileID: 4651117166034768034}
   m_Layer: 5
   m_Name: Quantum Console
   m_TagString: Untagged
@@ -573,7 +574,7 @@ MonoBehaviour:
   _interceptWhilstInactive: 1
   _prependTimestamps: 1
   _supportedState: 0
-  _activateOnStartup: 1
+  _activateOnStartup: 0
   _initialiseOnStartup: 0
   _focusOnActivate: 1
   _closeOnSubmit: 0
@@ -696,6 +697,20 @@ MonoBehaviour:
   _scaler: {fileID: 114832139408792490}
   _uiRoot: {fileID: 224785810147451886}
   _referenceResolution: {x: 1920, y: 1080}
+--- !u!114 &4651117166034768034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263217620473054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4514acced937f794ab5a3c029652b871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  database: {fileID: 11400000, guid: 235a27c215dffdd48b72d99c7af86101, type: 2}
+  itemList: {fileID: 11400000, guid: 964f317a23cc9f0418bb3778fccd8ebb, type: 2}
 --- !u!1 &1452859031970748
 GameObject:
   m_ObjectHideFlags: 0

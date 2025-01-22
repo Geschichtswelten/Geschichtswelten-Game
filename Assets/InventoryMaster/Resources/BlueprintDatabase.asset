@@ -68,7 +68,7 @@ MonoBehaviour:
       indexItemInList: 999
       rarity: 0
       itemAttributes: []
-    amountOfFinalItem: 0
+    amountOfFinalItem: 1
     timeToCraft: 0
   - ingredients: 1200000016000000
     amount: 0a0000000a000000
@@ -88,7 +88,7 @@ MonoBehaviour:
       indexItemInList: 999
       rarity: 0
       itemAttributes: []
-    amountOfFinalItem: 0
+    amountOfFinalItem: 1
     timeToCraft: 0
   - ingredients: 1200000016000000
     amount: 0f0000000c000000
@@ -108,7 +108,7 @@ MonoBehaviour:
       indexItemInList: 999
       rarity: 0
       itemAttributes: []
-    amountOfFinalItem: 0
+    amountOfFinalItem: 1
     timeToCraft: 0
   - ingredients: 1200000016000000
     amount: 0500000006000000
@@ -128,7 +128,7 @@ MonoBehaviour:
       indexItemInList: 999
       rarity: 0
       itemAttributes: []
-    amountOfFinalItem: 0
+    amountOfFinalItem: 1
     timeToCraft: 0
   - ingredients: 1200000016000000
     amount: 0500000005000000
@@ -148,7 +148,7 @@ MonoBehaviour:
       indexItemInList: 999
       rarity: 0
       itemAttributes: []
-    amountOfFinalItem: 0
+    amountOfFinalItem: 1
     timeToCraft: 0
   - ingredients: 1200000016000000060000001500000003000000
     amount: 0c0000000700000007000000010000000a000000
@@ -168,7 +168,7 @@ MonoBehaviour:
       indexItemInList: 999
       rarity: 0
       itemAttributes: []
-    amountOfFinalItem: 0
+    amountOfFinalItem: 1
     timeToCraft: 0
   - ingredients: 1200000016000000060000001500000003000000
     amount: 0a0000000a0000000f000000010000000a000000
@@ -188,7 +188,7 @@ MonoBehaviour:
       indexItemInList: 999
       rarity: 0
       itemAttributes: []
-    amountOfFinalItem: 0
+    amountOfFinalItem: 1
     timeToCraft: 0
   - ingredients: 0c000000060000001500000003000000
     amount: 01000000050000000100000005000000
@@ -208,7 +208,7 @@ MonoBehaviour:
       indexItemInList: 999
       rarity: 0
       itemAttributes: []
-    amountOfFinalItem: 0
+    amountOfFinalItem: 1
     timeToCraft: 0
   - ingredients: 0d000000060000001500000003000000
     amount: 01000000050000000100000005000000
@@ -230,7 +230,7 @@ MonoBehaviour:
       indexItemInList: 999
       rarity: 0
       itemAttributes: []
-    amountOfFinalItem: 0
+    amountOfFinalItem: 1
     timeToCraft: 0
   - ingredients: 16000000
     amount: 0a000000
@@ -247,5 +247,5 @@ MonoBehaviour:
       indexItemInList: 999
       rarity: 0
       itemAttributes: []
-    amountOfFinalItem: 0
+    amountOfFinalItem: 1
     timeToCraft: 0
