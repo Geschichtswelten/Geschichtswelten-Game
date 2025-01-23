@@ -61,7 +61,24 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
             _target = this.gameObject;
         }
         lastPos = _target.transform.position;
-        
+        _source.volume = ButtonHandler.settings.masterVolume;
+        _combatSource.volume = ButtonHandler.settings.masterVolume;
+    }
+    
+    private void OnEnable()
+    {
+        ButtonHandler.OnSettingsChanged += HandleVolumeChange;
+    }
+
+    private void OnDisable()
+    {
+        ButtonHandler.OnSettingsChanged -= HandleVolumeChange;
+    }
+
+    private void HandleVolumeChange()
+    {
+        _source.volume = ButtonHandler.settings.masterVolume;
+        _combatSource.volume = ButtonHandler.settings.masterVolume;
     }
    
 

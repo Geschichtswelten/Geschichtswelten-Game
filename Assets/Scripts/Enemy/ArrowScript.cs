@@ -1,6 +1,9 @@
+using System;
 using Mono.CSharp;
 using UnityEditor.TerrainTools;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 [RequireComponent(typeof(Rigidbody), typeof(Animator), typeof(AudioSource))]
 public class ArrowScript : MonoBehaviour
 {
@@ -16,15 +19,35 @@ public class ArrowScript : MonoBehaviour
     [SerializeField] private AudioClip[] hitClips;
     private Quaternion rot;
     private bool shot = false;
-    void Start()
+
+    private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        //audioSource.volume = ButtonHandler.settings.masterVolume;
+        audioSource.volume = ButtonHandler.settings.masterVolume;
+    }
+
+    void Start()
+    {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         collider = GetComponent<CapsuleCollider>();
         rb.constraints = RigidbodyConstraints.FreezePositionY;
         rot = transform.rotation;
+    }
+    
+    private void OnEnable()
+    {
+        ButtonHandler.OnSettingsChanged += HandleVolumeChange;
+    }
+
+    private void OnDisable()
+    {
+        ButtonHandler.OnSettingsChanged -= HandleVolumeChange;
+    }
+
+    private void HandleVolumeChange()
+    {
+        audioSource.volume = ButtonHandler.settings.masterVolume;
     }
 
     private void Update()
@@ -39,7 +62,7 @@ public class ArrowScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.gameObject.CompareTag("Finish")) { //Nur für Debugging
+        if (!other.gameObject.CompareTag("Finish")) { //Nur fï¿½r Debugging
             audioSource.Stop();
             audioSource.loop = false;
             audioSource.clip = hitClips[Random.Range(0, hitClips.Length)];

@@ -1,9 +1,11 @@
+using System;
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerPauseMenu : MonoBehaviour
 {
@@ -14,6 +16,9 @@ public class PlayerPauseMenu : MonoBehaviour
     [SerializeField] private Inventory _playerInventory;
     [SerializeField] private Inventory _hotbar;
     [SerializeField] private Inventory _characterSlots;
+    [SerializeField] private Slider masterSlider;
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private Slider dialogueSlider;
 
     //Player Script for items and camps missing
     private DayNightCycle _cycle;
@@ -23,9 +28,35 @@ public class PlayerPauseMenu : MonoBehaviour
         _canvas.SetActive(false);
     }
 
+    private void OnEnable()
+    {
+        ButtonHandler.OnSettingsChanged += HandleSettingsChanged;
+    }
+
+    private void OnDisable()
+    {
+        ButtonHandler.OnSettingsChanged -= HandleSettingsChanged;
+    }
+
+    private void HandleSettingsChanged()
+    {
+        if (masterSlider != null && dialogueSlider != null && musicSlider != null)
+        {
+            masterSlider.value = ButtonHandler.settings.masterVolume;
+            dialogueSlider.value = ButtonHandler.settings.dialogueVolume;
+            musicSlider.value = ButtonHandler.settings.musicVolume;
+
+            
+        }
+
+    }
+
     public void ActivatePauseMenu()
     {
         _canvas.SetActive(true);
+        masterSlider.value = ButtonHandler.settings.masterVolume;
+        musicSlider.value = ButtonHandler.settings.musicVolume;
+        dialogueSlider.value = ButtonHandler.settings.dialogueVolume;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 0;
@@ -119,6 +150,8 @@ public class PlayerPauseMenu : MonoBehaviour
     {
         SaveGame();
         Time.timeScale = 1;
+        Destroy(FindAnyObjectByType<ButtonHandler>().gameObject);
+        Destroy(FindAnyObjectByType<WorldMusicScript>().gameObject);
         SceneManager.LoadScene(0);
     }
 
@@ -126,5 +159,30 @@ public class PlayerPauseMenu : MonoBehaviour
     {
         SaveGame();
         Application.Quit();
+    }
+
+    public void UpdateMasterVolume()
+    {
+        
+            ButtonHandler.settings.SetMasterVolume(masterSlider.value);
+            ButtonHandler.InvokeOnSettingsChanged();
+        
+    }
+
+    public void UpdateMusicVolume()
+    {
+        ButtonHandler.settings.SetMusicVolume(musicSlider.value);
+        ButtonHandler.InvokeOnSettingsChanged();
+    }
+
+    public void UpdateDialogueVolume()
+    {
+        ButtonHandler.settings.SetDialogueVolume(dialogueSlider.value);
+        ButtonHandler.InvokeOnSettingsChanged();
+    }
+
+    public void SaveSettings()
+    {
+        JsonHandler.WriteSettings(ButtonHandler.settings);
     }
 }

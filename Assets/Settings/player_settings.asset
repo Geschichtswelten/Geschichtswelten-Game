@@ -7,4 +7,4 @@ TextAsset:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: player_settings
-  m_Script: '{"masterVolume":0.0,"dialogueVolume":1.0,"musicVolume":0.27039769291877749,"resolution":0}'
+  m_Script: '{"masterVolume":0.0496552549302578,"dialogueVolume":1.0,"musicVolume":0.27039769291877749,"resolution":0}'

@@ -10,9 +10,18 @@ public class StandartAudioScript : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         audioSource.loop = true;
         audioSource.volume = ButtonHandler.settings.masterVolume;
-        ButtonHandler.OnSettingsChanged += HandleVolumeChange;
         audioSource.clip = audioClip;
         audioSource.Play();
+    }
+    
+    private void OnEnable()
+    {
+        ButtonHandler.OnSettingsChanged += HandleVolumeChange;
+    }
+
+    private void OnDisable()
+    {
+        ButtonHandler.OnSettingsChanged -= HandleVolumeChange;
     }
 
     private void HandleVolumeChange()
