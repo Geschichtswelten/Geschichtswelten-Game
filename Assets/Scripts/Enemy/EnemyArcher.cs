@@ -160,6 +160,8 @@ public class EnemyArcher : AbstractEnemyBehaviour
 
     private void Die()
     {
+        dead = true;
+        if(dead) return;
         base.Die();
         StopAllCoroutines();
         _agent.isStopped = true;
