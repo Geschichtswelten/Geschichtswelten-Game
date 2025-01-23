@@ -77,7 +77,7 @@ public class Tutorial1Script : MonoBehaviour
         text.text = "";
         Cursor.lockState = CursorLockMode.Confined;
         tips[1].SetActive(true);
-        yield return new WaitUntil(() => hotbarScript.getItemIdForSlot(0) == 25);
+        yield return new WaitUntil(() => hotbarScript.GetItemIdForSlotInHotbar(0) == 25);
         tips[1].SetActive(false);
         source.clip = audioClips[2];
         source.Play();
@@ -87,7 +87,7 @@ public class Tutorial1Script : MonoBehaviour
         text.text = "";
         tips[2].SetActive(true);
         Cursor.lockState = CursorLockMode.Confined;
-        yield return new WaitUntil(() => equipmentScript.getItemIdForSlot(0) == 26); //helmet ID
+        yield return new WaitUntil(() => equipmentScript.GetItemIdForSlotInHotbar(0) == 26); //helmet ID
         playerBehaviour.CloseInventory();     //NOT IMPLEMENTED
         tips[2].SetActive(false);
         stage = Stage.stage1;

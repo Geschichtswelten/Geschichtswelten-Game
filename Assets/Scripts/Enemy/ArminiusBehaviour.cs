@@ -24,6 +24,8 @@ public class ArminiusBehaviour : AbstractEnemyBehaviour
     private bool charge;
     [SerializeField] private Collider attackHitbox;
     private MainGameLoop mainGameLoop;
+    
+    [SerializeField] private bool isInFinalLevel = true;
     private void Start()
     {
         charge = false;
@@ -140,7 +142,8 @@ public class ArminiusBehaviour : AbstractEnemyBehaviour
         base.Die();
         StopAllCoroutines();
         _agent.isStopped = true;
-        mainGameLoop.EndingSequence();
+        if (isInFinalLevel)
+            mainGameLoop.EndingSequence();
         Destroy(gameObject, _despawnTime);
     }
 
