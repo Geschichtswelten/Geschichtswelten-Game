@@ -35,6 +35,7 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
     [Header("Audio")]
     [SerializeField] protected AudioSource _source;
     [SerializeField] protected AudioSource _combatSource;
+    [SerializeField] protected float patrollingAccuracy = 3f;
 
     protected NavMeshAgent _agent;
     private int currPatrTarget;
@@ -50,8 +51,8 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
 
     private void Awake()
     {
-        //_source.volume = ButtonHandler.settings.masterVolume;
-        //_combatSource.volume = ButtonHandler.settings.masterVolume;
+        _source.volume = ButtonHandler.settings.masterVolume;
+        _combatSource.volume = ButtonHandler.settings.masterVolume;
         _animator = GetComponent<Animator>();
         _agent = GetComponent<NavMeshAgent>();
         _agent.speed = _walkSpeed;
@@ -113,7 +114,7 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
         _behaviour = Behaviour.Patrolling;
         _agent.isStopped = false;
 
-        if (Vector3.Distance(_patrollingTargets[currPatrTarget].transform.position, transform.position) <= 1f)
+        if (Vector3.Distance(_patrollingTargets[currPatrTarget].transform.position, transform.position) <= patrollingAccuracy)
         {
             if (reverse) currPatrTarget--;
             else currPatrTarget++;
