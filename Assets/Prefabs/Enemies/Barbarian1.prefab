@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 9a61f902c2e23cc4c8a02d76502993d2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.77
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9a61f902c2e23cc4c8a02d76502993d2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.77
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9a61f902c2e23cc4c8a02d76502993d2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.77
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9a61f902c2e23cc4c8a02d76502993d2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.269099
       objectReference: {fileID: 0}
@@ -47,6 +59,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9a61f902c2e23cc4c8a02d76502993d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9a61f902c2e23cc4c8a02d76502993d2, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9a61f902c2e23cc4c8a02d76502993d2, type: 3}
       propertyPath: m_Name
@@ -258,7 +274,8 @@ MonoBehaviour:
   _alertRange: 15
   _attackCooldown: 4
   _despawnTime: 0
-  drops: []
+  drop: {fileID: 0}
+  dropIds: 
   _source: {fileID: 7027107161495603991}
   _combatSource: {fileID: 3860035660266627550}
   tutorial: 0

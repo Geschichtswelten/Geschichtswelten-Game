@@ -3184,8 +3184,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 21.639183, y: -1.4485261, z: -12.187307}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.77, y: 1.77, z: 1.77}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 147361667810630707}
   - {fileID: 4609927388370078411}
@@ -3358,7 +3358,8 @@ MonoBehaviour:
   _alertRange: 15
   _attackCooldown: 4
   _despawnTime: 30
-  drops: []
+  drop: {fileID: 0}
+  dropIds: 
   _source: {fileID: 5850668633856591950}
   _combatSource: {fileID: 4907261117099781731}
   tutorial: 0
