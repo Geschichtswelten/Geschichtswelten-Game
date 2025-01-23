@@ -25,11 +25,15 @@ public class EnemyInfantryScript : AbstractEnemyBehaviour
         cd -= Time.deltaTime;
         if (cd < 0) cd = 0;
         if (_health < 0) Die();
+        if (_target == gameObject)
+        {
+            _target = GameObject.FindGameObjectWithTag("Player");
+            if (_target == null) _target = gameObject;
+        }
     }
 
     private IEnumerator EnemyMovement()
     {
-
         while (_health > 0f)
         {
             if (_target == gameObject)
@@ -69,8 +73,17 @@ public class EnemyInfantryScript : AbstractEnemyBehaviour
                     
                 } else
                 {
-                    _animator.SetTrigger("enemyRun");
-                    Intercept();
+                    if (distance > _alertRange)
+                    {
+                        _animator.SetTrigger("enemyIdle");
+                        Idle();
+                        yield return new WaitForSeconds(0.3f);  
+                    }
+                    else
+                    {
+                        _animator.SetTrigger("enemyRun");
+                        Intercept();
+                    }
                 }
             }
 
@@ -98,6 +111,7 @@ public class EnemyInfantryScript : AbstractEnemyBehaviour
 
     private void Die()
     {
+        if(dead) return;
         base.Die();
         StopAllCoroutines();
         _agent.isStopped = true;

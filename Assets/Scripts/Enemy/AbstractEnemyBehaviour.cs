@@ -29,11 +29,13 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
     [SerializeField] protected int _alertRange;
     [SerializeField] protected int _attackCooldown;
     [SerializeField] protected float _despawnTime;
-    [SerializeField] private GameObject[] drops;
+    [SerializeField] private GameObject drop;
+    [SerializeField] private int[] dropIds;
     [Space]
     [Header("Audio")]
     [SerializeField] protected AudioSource _source;
     [SerializeField] protected AudioSource _combatSource;
+    [SerializeField] protected float patrollingAccuracy = 3f;
 
     protected NavMeshAgent _agent;
     private int currPatrTarget;
@@ -49,8 +51,8 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
 
     private void Awake()
     {
-        //_source.volume = ButtonHandler.settings.masterVolume;
-        //_combatSource.volume = ButtonHandler.settings.masterVolume;
+        _source.volume = ButtonHandler.settings.masterVolume;
+        _combatSource.volume = ButtonHandler.settings.masterVolume;
         _animator = GetComponent<Animator>();
         _agent = GetComponent<NavMeshAgent>();
         _agent.speed = _walkSpeed;
@@ -112,7 +114,7 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
         _behaviour = Behaviour.Patrolling;
         _agent.isStopped = false;
 
-        if (Vector3.Distance(_patrollingTargets[currPatrTarget].transform.position, transform.position) <= 1f)
+        if (Vector3.Distance(_patrollingTargets[currPatrTarget].transform.position, transform.position) <= patrollingAccuracy)
         {
             if (reverse) currPatrTarget--;
             else currPatrTarget++;
@@ -145,9 +147,20 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
     protected void Die()
     {
         dead = true;
-        if (drops.Length > 0)
+        if (dropIds.Length > 0)
         {
-            Instantiate(drops[Random.Range(0, drops.Length)], transform.position, Quaternion.identity);
+            
+            int howManyItems = Random.Range(0, dropIds.Length);
+            if (howManyItems == 0) return;
+            var pouchInv = Instantiate(drop, transform.position, Quaternion.identity).GetComponent<StorageInventory>();
+            pouchInv.player = _target;
+            pouchInv.inventory = _target.GetComponent<PlayerBehaviour>().storageInv;
+            pouchInv.inv = pouchInv.inventory.GetComponent<Inventory>();
+            for (int i = 0; i < howManyItems; i++)
+            {
+
+                pouchInv.addItemToStorage(dropIds[i], Random.Range(1, 5));
+            }
         }
     }
 
