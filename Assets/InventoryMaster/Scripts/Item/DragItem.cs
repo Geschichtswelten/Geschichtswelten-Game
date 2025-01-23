@@ -600,10 +600,12 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
             else // drop item
             {
                 GameObject dropItem = (GameObject)Instantiate(GetComponent<ItemOnObject>().item.itemModel);
+                
                 dropItem.AddComponent<PickUpItem>();
                 dropItem.GetComponent<PickUpItem>().item = this.gameObject.GetComponent<ItemOnObject>().item;
                 dropItem.AddComponent<Rigidbody>();
-                Destroy(dropItem.GetComponent<Rigidbody>(), 1);
+                Destroy(dropItem.AddComponent<Collider>(), 0.42f);
+                Destroy(dropItem.GetComponent<Rigidbody>(), 0.42f);
                 var player = GameObject.FindGameObjectWithTag("Player");
                 var pos = Vector3.zero;
                 if (player != null) pos = player.transform.position; 

@@ -146,6 +146,7 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
     }
     protected void Die()
     {
+        if (dead) return;
         dead = true;
         if (dropIds.Length > 0)
         {
