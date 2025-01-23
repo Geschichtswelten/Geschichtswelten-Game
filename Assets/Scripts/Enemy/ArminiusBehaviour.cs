@@ -52,7 +52,6 @@ public class ArminiusBehaviour : AbstractEnemyBehaviour
             float distance = Vector3.Distance(_target.transform.position, transform.position);
             if (distance > _alertRange)
             {
-                Debug.Log("geblockt");
                 trigger("enemyBlock");
                 _animator.SetTrigger("enemyBlockIdle");
                 Block();
@@ -110,8 +109,12 @@ public class ArminiusBehaviour : AbstractEnemyBehaviour
     {
         block = true;
         //_agent.isStopped = true;
-        transform.LookAt(new Vector3(_target.transform.position.x, transform.position.y, _target.transform.position.z) );
-        
+        if (_target != gameObject)
+        {
+            transform.LookAt(new Vector3(_target.transform.position.x, transform.position.y,
+                _target.transform.position.z));
+        }
+
     }
 
 

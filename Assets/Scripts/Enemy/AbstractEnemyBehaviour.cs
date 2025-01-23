@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 [RequireComponent (typeof(NavMeshAgent), typeof(AudioSource), typeof(Animator))]
 // Requirements: trigger Collider + kinematic Rigidbody for hitbox
@@ -178,8 +180,13 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
         _animator.SetTrigger("enemyHit");
     }
 
-
-
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("killbox"))
+        {
+            _health = 0;
+        }
+    }
 }
 
 
