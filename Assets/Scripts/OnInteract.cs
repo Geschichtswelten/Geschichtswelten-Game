@@ -10,6 +10,6 @@ public class OnInteract : MonoBehaviour
 
     public void Interact()
     {
-        Debug.Log("did something lol");
+        //Debug.Log("did something lol");
     }
 }

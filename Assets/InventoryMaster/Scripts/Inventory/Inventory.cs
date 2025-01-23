@@ -903,7 +903,7 @@ public class Inventory : MonoBehaviour
     }
     
     // item ids MUST be identical to index in prefab list in playerBehaviour or else there be funky dragons
-    public int getItemIdForSlot(int slot)
+    public int GetItemIdForSlotInHotbar(int slot)
     {
         if (slot is >= 5 or < 0) 
             return 0;
