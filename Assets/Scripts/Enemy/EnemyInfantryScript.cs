@@ -111,7 +111,6 @@ public class EnemyInfantryScript : AbstractEnemyBehaviour
 
     private void Die()
     {
-        dead = true;
         if(dead) return;
         base.Die();
         StopAllCoroutines();

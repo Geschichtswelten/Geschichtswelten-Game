@@ -137,12 +137,11 @@ public class ArminiusBehaviour : AbstractEnemyBehaviour
 
     private void Die()
     {
-        dead = true;
         if(dead) return;
         base.Die();
         StopAllCoroutines();
         _agent.isStopped = true;
-        mainGameLoop.EndingSequence();
+        //mainGameLoop.EndingSequence();
         Destroy(gameObject, _despawnTime);
     }
 
