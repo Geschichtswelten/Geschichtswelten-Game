@@ -109,7 +109,7 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                     Inventory = Inventory.transform.parent.parent.gameObject;
 
                 //dragging in an Inventory      
-                if (Inventory.GetComponent<Hotbar>() == null && Inventory.GetComponent<EquipmentSystem>() == null && Inventory.GetComponent<CraftSystem>() == null)
+                if (/*Inventory.GetComponent<Hotbar>() == null &&*/ Inventory.GetComponent<EquipmentSystem>() == null && Inventory.GetComponent<CraftSystem>() == null)
                 {
                     //you cannot attach items to the resultslot of the craftsystem
                     if (newSlot.transform.parent.tag == "ResultSlot" || newSlot.transform.tag == "ResultSlot" || newSlot.transform.parent.parent.tag == "ResultSlot")
@@ -247,7 +247,7 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                 }
 
 
-
+/*
                 //dragging into a Hotbar            
                 if (Inventory.GetComponent<Hotbar>() != null)
                 {
@@ -379,7 +379,7 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                     }
 
                 }
-
+*/
 
                 //dragging into a equipmentsystem/charactersystem
                 if (Inventory.GetComponent<EquipmentSystem>() != null)
