@@ -70,7 +70,8 @@ public class ButtonHandler : MonoBehaviour
     {
         
         //ProgressBar
-        
+        SetLoadingScreenActive();
+        yield return new WaitForSeconds(2);
         AsyncOperation loadScene = SceneManager.LoadSceneAsync(393);
         loadScene.allowSceneActivation = false;
         while (!loadScene.isDone)
@@ -88,7 +89,7 @@ public class ButtonHandler : MonoBehaviour
     IEnumerator LoadSceneAsync()
     {
         yield return new WaitForSeconds(1);
-        AsyncOperation loadScene = SceneManager.LoadSceneAsync(392);
+        AsyncOperation loadScene = SceneManager.LoadSceneAsync(392, LoadSceneMode.Additive);
         loadScene.allowSceneActivation = false;
         //ProgressBar
         profile = JsonHandler.readGameProfile("Assets/profile.asset");
@@ -120,11 +121,13 @@ public class ButtonHandler : MonoBehaviour
                 Debug.Log("FoundPlayer");
                 root.GetComponent<WrapperScript>().LoadProfile(profile);
                 yield return new WaitForSeconds(2);
-                root.GetComponent<WrapperScript>().LoadProfile(profile);
+                root.GetComponent<WrapperScript>().LoadPosition(profile);
             }
         }
-
         
+        yield return new WaitForSeconds(5);
+        SceneManager.UnloadSceneAsync(0);
+
 
     }
 

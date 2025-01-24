@@ -11,6 +11,9 @@ public class Tutorial1Script : MonoBehaviour
     [Header("Tutorial References")]
     [SerializeField] private Stage stage;
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject wrapperPlayer;
+    [SerializeField] private GameObject loadingScreen;
+    [SerializeField] private GameObject cam;
     [SerializeField] private AbstractEnemyBehaviour[] enemies;
     [SerializeField] private Inventory hotbarScript;
     [SerializeField] private Inventory equipmentScript;
@@ -135,50 +138,32 @@ public class Tutorial1Script : MonoBehaviour
         source.Play();
         text.text = allEnemiesDead;
         yield return new WaitUntil(() => !source.isPlaying);
-
-        
-
-        AsyncOperation loadScene = SceneManager.LoadSceneAsync(392);
+        cam.SetActive(true);
+        loadingScreen.SetActive(true);
+        yield return new WaitForSeconds(2);
+        Destroy(wrapperPlayer);
+        AsyncOperation loadScene = SceneManager.LoadSceneAsync(392, LoadSceneMode.Additive);
         loadScene.allowSceneActivation = true;  //has to be set to false
         //ProgressBar
-        GameProfile profile = JsonHandler.readGameProfile("Assets/profile.asset");
-        if (profile == null)
-        {
+
+        GameProfile profile = null;
             profile = new GameProfile();
             JsonHandler.WriteGameProfile(profile);
-            
+            ButtonHandler.profile = profile;
             while (!loadScene.isDone)
             {
-                //Play Video
-                //yield return new WaitUntil(() => loadScene.isDone); //video.isDone
+                
                 yield return new WaitForSeconds(0.5f);
                 loadScene.allowSceneActivation = true;
             }
-            yield break;
-        }
-        ButtonHandler.profile = profile;
 
-        while (!loadScene.isDone)
-        {
-            //Play Video
-            yield return new WaitUntil(() => loadScene.isDone); //&&video.isDone
-            loadScene.allowSceneActivation = true;
-        }
-
-        Scene actScene = SceneManager.GetSceneByName("GameScene_0");
-        GameObject[] roots = actScene.GetRootGameObjects();
-
-        foreach (GameObject root in roots)
-        {
-            if (root.CompareTag("PlayerWrapper"))
-            {
-                Debug.Log("FoundPlayer");
-                root.GetComponent<WrapperScript>().LoadProfile(profile);
-                root.GetComponentInChildren<PlayerBehaviour>().freeze = true;
-                yield return new WaitForSeconds(2f);
-                root.GetComponentInChildren<PlayerBehaviour>().freeze = false;
-            }
-        }
+            yield return new WaitForSeconds(5);
+            Time.timeScale = 0;
+            //PlayVideo
+            
+            Time.timeScale = 1;
+            SceneManager.UnloadSceneAsync(393);
+            
     }
 
 }

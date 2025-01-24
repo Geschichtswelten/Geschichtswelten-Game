@@ -9,6 +9,15 @@ public class WrapperScript : MonoBehaviour
     [Header("Player")]
     [SerializeField] private PlayerBehaviour playerBehaviour;
 
+
+    public void LoadPosition(GameProfile profile)
+    {
+        Vector3 pos = new Vector3(profile.playerPosX, profile.playerPosY, profile.playerPosZ);
+        Quaternion rot = new Quaternion();
+        rot.eulerAngles = new Vector3(profile.playerRotX, profile.playerRotY, profile.playerRotZ);
+
+        playerBehaviour.LoadPosition(pos, rot);
+    }
     public void LoadProfile(GameProfile profile)
     {
         //Load Inventory

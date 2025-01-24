@@ -25,8 +25,9 @@ public class EnemyInfantryScript : AbstractEnemyBehaviour
         cd -= Time.deltaTime;
         if (cd < 0) cd = 0;
         if (_health < 0) Die();
-        if (_target == gameObject)
+        if (_target == gameObject && !tutorial)
         {
+            
             _target = GameObject.FindGameObjectWithTag("Player");
             if (_target == null) _target = gameObject;
         }
