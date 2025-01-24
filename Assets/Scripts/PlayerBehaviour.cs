@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DefaultNamespace;
 using Mono.CSharp;
+using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -91,9 +92,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     [SerializeField] private Transform itemAnker;
     [SerializeField] private GameObject equippedItem;
+    [SerializeField] private GameObject fists;
     private ItemBehaviour _equippedItemBehaviour;
-    //in order of ids
-    [SerializeField] private List<GameObject> itemPrefabs;
     
     public bool _inventoryOpen;
     [SerializeField] private Inventory inventory;
@@ -102,6 +102,13 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] public GameObject storageInv;
 
     private StorageInventory _lastContainer = null;
+    
+    private const float maxHp = 100f;
+    private float hp = maxHp;
+
+    [SerializeField] private GameObject drop;
+    
+    [SerializeField] private Transform respawnPoint;
 
     #endregion
 
@@ -398,7 +405,9 @@ public class PlayerBehaviour : MonoBehaviour
             fadenkreuz_ist_interactable = true;
 
             if (!interactKey.action.WasPressedThisFrame() && 
-                (_equippedItemId != 0 || !action2Key.action.WasPressedThisFrame())) return;
+                ((_equippedItemId != 0 && _equippedItemBehaviour.GetType() != typeof(FoodBehaviour)
+                                       && _equippedItemBehaviour.GetType() != typeof(dumbItemBehaviour)) 
+                 || !action2Key.action.WasPressedThisFrame())) return;
             var action = target.GetComponent<OnInteract>();
             action?.Interact();
         } // reset UI:
@@ -412,15 +421,28 @@ public class PlayerBehaviour : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     public void EquipItem(ushort id)
     {
-        if (id >= itemPrefabs.Count) 
-            return;
-        
         //Debug.Log("equipped item " + id);
         Destroy(itemAnker.GetChild(0).gameObject);
-        equippedItem = Instantiate(itemPrefabs[id], itemAnker.transform, false);
+        
+        var item = inventory.GetItemFromId(id).itemModel;
+        if (item == null) 
+            item = fists;
+        equippedItem = Instantiate(item, itemAnker.transform, false);
+        equippedItem.layer = gameObject.layer;
+        if (equippedItem.TryGetComponent<PickUpItem>(out var pickUpScript))
+        {
+            pickUpScript.enabled = false;
+            Destroy(equippedItem.GetComponent<Rigidbody>());
+        }
         _equippedItemBehaviour = equippedItem.GetComponent<ItemBehaviour>();
         _equippedItemId = _equippedItemBehaviour.Id;
         //possibly do some inventory logic here
+    }
+
+    public void Respawn()
+    {
+        hp = maxHp;
+        LoadPosition(respawnPoint.position, respawnPoint.rotation);
     }
     
     public void LoadPosition(Vector3 position, Quaternion rotation)
@@ -433,5 +455,39 @@ public class PlayerBehaviour : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Hit by " + other.name);
+        if (other.CompareTag("Enemy"))
+        {
+            takeDamage(other.GetComponent<AbstractEnemyBehaviour>()._damage);
+        }
+    }
+
+    public void Eat(float val)
+    {
+        Heal(val);
+    }
+
+    public void Heal(float val)
+    {
+        hp += val;
+        if (hp > maxHp) hp = maxHp;
+    }
+
+    public void takeDamage(float val)
+    {
+        hp -= val;
+        if (hp < 0) Die();
+    }
+
+    private void Die()
+    {
+        var pouchInv = Instantiate(drop, transform.position, Quaternion.identity).GetComponent<StorageInventory>();
+        pouchInv.player = gameObject;
+        pouchInv.inventory = storageInv;
+        pouchInv.inv = pouchInv.inventory.GetComponent<Inventory>();
+        for (int i = 0; i < inventory.ItemsInInventory.Count; i++)
+        {
+            pouchInv.addItemToStorage(inventory.ItemsInInventory[i].itemID, inventory.ItemsInInventory[i].itemValue);
+        }
+        Respawn();
     }
 }

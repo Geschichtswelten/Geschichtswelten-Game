@@ -1,12 +1,16 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using UnityEditorInternal.Profiling.Memory.Experimental;
+
 public class PickUpItem : MonoBehaviour
 {
     public Item item;
     private Inventory _inventory;
     private GameObject _player;
     [Range(1, float.PositiveInfinity)] [SerializeField] private static float _pickUpRange = 3;
+
+    [SerializeField] private int initItemIdForEditor = 0;
     // Use this for initialization
 
     void Start()
@@ -14,12 +18,11 @@ public class PickUpItem : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player");
         if (_player != null) {
             _inventory = _player.GetComponent<PlayerInventory>().inventory.GetComponent<Inventory>();
-            //Debug.Log("Player, inv found: true, " + (_inventory != null).ToString());
-            
+            if (initItemIdForEditor > 0) item = _inventory.GetItemFromId(initItemIdForEditor);
         }
         else
         {
-            //Debug.Log("Player is not.");
+            Debug.Log("Player is not.");
         }
             
     }

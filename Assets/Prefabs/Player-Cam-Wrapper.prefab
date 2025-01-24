@@ -5788,10 +5788,7 @@ MonoBehaviour:
   freeze: 0
   itemAnker: {fileID: 8369441089452571159}
   equippedItem: {fileID: 0}
-  itemPrefabs:
-  - {fileID: 6874154338659428006, guid: 088cd113cd93a494ca34124296a87f9c, type: 3}
-  - {fileID: 7960789110634908141, guid: 1688afe3894ad864ca984b9cf86eefa0, type: 3}
-  - {fileID: 479386593012999087, guid: fb061f675cb50c24288a3761b95b7550, type: 3}
+  fists: {fileID: 6874154338659428006, guid: 088cd113cd93a494ca34124296a87f9c, type: 3}
   _inventoryOpen: 0
   inventory: {fileID: 4179730975589834584}
   equipment: {fileID: 7145729559675572752}
