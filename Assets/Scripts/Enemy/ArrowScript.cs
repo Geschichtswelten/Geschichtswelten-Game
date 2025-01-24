@@ -62,17 +62,14 @@ public class ArrowScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.gameObject.CompareTag("Finish")) { //Nur f�r Debugging
+        if (!other.gameObject.CompareTag("Enemy")) { //Nur f�r Debugging
             audioSource.Stop();
             audioSource.loop = false;
             audioSource.clip = hitClips[Random.Range(0, hitClips.Length)];
             audioSource.Play();
             if (other.CompareTag("Player"))
             {
-                Destroy(gameObject);
-            }
-            else if (other.CompareTag("Enemy")) {
-                other.gameObject.GetComponent<AbstractEnemyBehaviour>().AttackEnemy(archer._damage);
+                Destroy(gameObject, 3);
             }
             else {
 

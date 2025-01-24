@@ -458,6 +458,9 @@ public class PlayerBehaviour : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             takeDamage(other.GetComponent<AbstractEnemyBehaviour>()._damage);
+        }else if (other.CompareTag("Arrow"))
+        {
+            takeDamage(other.GetComponent<ArrowScript>().archer._damage);
         }
     }
 
