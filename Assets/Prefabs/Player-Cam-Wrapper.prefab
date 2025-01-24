@@ -1760,7 +1760,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 24, y: -98}
-  m_SizeDelta: {x: 153, y: 191}
+  m_SizeDelta: {x: 153, y: 335}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &3299932411218494371
 CanvasRenderer:
@@ -2237,7 +2237,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 72, y: -25}
-  m_SizeDelta: {x: 130, y: 30}
+  m_SizeDelta: {x: 400, y: 30}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &8519338038682240231
 CanvasRenderer:
@@ -5933,6 +5933,7 @@ MonoBehaviour:
   inventory: {fileID: 4179730975589834584}
   equipment: {fileID: 7145729559675572752}
   hotbar: {fileID: 4815274171344190455}
+  activeHotbarSlot: 0
   storageInv: {fileID: 5828316147656904170}
   drop: {fileID: 1758336818755121674, guid: 66f6fb4e115e0564c9e6bd36b3d03e68, type: 3}
   respawnPoint: {fileID: 0}
