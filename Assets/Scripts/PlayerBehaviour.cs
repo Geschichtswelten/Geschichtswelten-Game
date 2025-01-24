@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using DefaultNamespace;
 using Mono.CSharp;
+using TMPro;
 using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class PlayerBehaviour : MonoBehaviour
@@ -71,6 +73,8 @@ public class PlayerBehaviour : MonoBehaviour
     public Sprite interactable_fadenkreuz;
     private bool fadenkreuz_ist_interactable;
     [SerializeField] private Canvas HUD_Canvas;
+    [SerializeField] private TMP_Text hp_label;
+    [SerializeField] private TMP_Text equipped_item_name;
 
     [Header("Interact")]
     [SerializeField] private float interactRange;
@@ -99,12 +103,14 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private Inventory inventory;
     [SerializeField] private Inventory equipment;
     [SerializeField] private Inventory hotbar;
+    public int activeHotbarSlot = 0;
     [SerializeField] public GameObject storageInv;
 
     private StorageInventory _lastContainer = null;
     
-    private const float maxHp = 100f;
-    private float hp = maxHp;
+    private const float MaxHp = 100f;
+    private float _hp = MaxHp;
+    private List<armor> _armor = new List<armor>();
 
     [SerializeField] private GameObject drop;
     
@@ -154,12 +160,11 @@ public class PlayerBehaviour : MonoBehaviour
         startYScale = transform.localScale.y;
         
         EquipItem(0);
-        if (equippedItem)
-        {
-            //add item to inventory
-        }
         
         _inventoryOpen = Inventory.inventoryOpen;
+        var dmgMul = 1f;
+        _armor.ForEach(x => dmgMul *= x.multiplier);
+        hp_label.text = _hp.ToString() + " / 100\t" + (1f - dmgMul).ToString() + "%";
     }
 
     private void Update()
@@ -436,14 +441,17 @@ public class PlayerBehaviour : MonoBehaviour
         }
         _equippedItemBehaviour = equippedItem.GetComponent<ItemBehaviour>();
         _equippedItemId = _equippedItemBehaviour.Id;
+        equipped_item_name.text = item.name;
         //possibly do some inventory logic here
     }
-
-    public void Respawn()
+    
+    public void EquipItem(ushort id, int slot)
     {
-        hp = maxHp;
-        LoadPosition(respawnPoint.position, respawnPoint.rotation);
+        EquipItem(id);
+        if (slot is >= 0 and < 5)
+            activeHotbarSlot = slot;
     }
+
     
     public void LoadPosition(Vector3 position, Quaternion rotation)
     {
@@ -455,9 +463,15 @@ public class PlayerBehaviour : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Hit by " + other.name);
-        if (other.CompareTag("Enemy"))
+        if (other.TryGetComponent<AbstractEnemyBehaviour>(out var enemy))
         {
-            takeDamage(other.GetComponent<AbstractEnemyBehaviour>()._damage);
+            takeDamage(enemy._damage);
+        }
+        else
+        {
+            var e = other.transform.root.gameObject;
+            enemy = e.GetComponentInChildren<AbstractEnemyBehaviour>();
+            takeDamage(enemy == null ? 0 : enemy._damage);
         }
     }
 
@@ -468,14 +482,46 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void Heal(float val)
     {
-        hp += val;
-        if (hp > maxHp) hp = maxHp;
+        if (val <= 0) 
+            return;
+        _hp += val;
+        if (_hp > MaxHp) _hp = MaxHp;
+        var dmgMul = 1f;
+        _armor.ForEach(x => dmgMul *= x.multiplier);
+        hp_label.text = _hp.ToString() + " / 100\t" + (1f - dmgMul).ToString() + "%";
+    }
+
+    public struct armor
+    {
+        public int itemId;
+        // in range of [0; 1] for reduction
+        public float multiplier;
+    }
+
+    public void registerArmor(armor a)
+    {
+        _armor.Add(a);
+    }
+    
+    public void removeArmor(int id)
+    {
+        _armor.RemoveAll(x => x.itemId == id);
     }
 
     public void takeDamage(float val)
     {
-        hp -= val;
-        if (hp < 0) Die();
+        if (val <= 0) 
+            return;
+        var dmgMul = 1f;
+        _armor.ForEach(x => dmgMul *= x.multiplier);
+        Debug.Log("Incoming dmg " + val + ", after armor " + val*dmgMul);
+        _hp -= val * dmgMul;
+        if (_hp <= 0.05)
+        {
+            Die();
+            _hp = 0;
+        }
+        hp_label.text = (int) _hp + " / 100\t" + (1f - dmgMul).ToString() + "%";
     }
 
     private void Die()
@@ -484,10 +530,19 @@ public class PlayerBehaviour : MonoBehaviour
         pouchInv.player = gameObject;
         pouchInv.inventory = storageInv;
         pouchInv.inv = pouchInv.inventory.GetComponent<Inventory>();
-        for (int i = 0; i < inventory.ItemsInInventory.Count; i++)
-        {
-            pouchInv.addItemToStorage(inventory.ItemsInInventory[i].itemID, inventory.ItemsInInventory[i].itemValue);
-        }
+        inventory.ItemsInInventory.ForEach(x => pouchInv.addItemToStorage(x.itemID, x.itemValue));
+        inventory.deleteAllItems();
         Respawn();
     }
+    
+    public void Respawn()
+    {
+        var dmgMul = 1f;
+        _armor.ForEach(x => dmgMul *= x.multiplier);
+        _hp = MaxHp;
+        hp_label.text = (int)_hp + " / 100\t" + (1f - dmgMul).ToString() + "%";
+        LoadPosition(respawnPoint.position, respawnPoint.rotation);
+    }
+
+    public Inventory GetHotbar() => hotbar;
 }

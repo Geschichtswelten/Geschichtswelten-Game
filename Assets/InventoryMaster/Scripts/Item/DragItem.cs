@@ -196,6 +196,8 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                                     //if you are dragging an item from equipmentsystem to the inventory and try to swap it with the same itemtype
                                     if (oldSlot.transform.parent.parent.GetComponent<EquipmentSystem>() != null && firstItem.itemType == secondItem.itemType)
                                     {
+                                        
+                                        
                                         newSlot.transform.parent.parent.parent.parent.GetComponent<Inventory>().UnEquipItem1(firstItem);
                                         oldSlot.transform.parent.parent.GetComponent<Inventory>().EquiptItem(secondItem);
 
@@ -391,8 +393,25 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                     bool isOnSlot = newSlot.transform.parent.GetChild(0).tag == "ItemIcon";
                     bool sameItemType = firstItem.itemType == secondItem.itemType;
                     bool fromHot = oldSlot.transform.parent.parent.GetComponent<Hotbar>() != null;
+                    
+                    var player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>();
 
-                    //dragging on a slot where allready is an item on
+                    if (player == null) 
+                        return;
+                    if (firstItem != null)
+                    {
+                        PlayerBehaviour.armor a = new PlayerBehaviour.armor();
+                        a.itemId = firstItem.itemID;
+                        a.multiplier = firstItem.itemAttributes[0].attributeValue / 100f;
+                        player.registerArmor(a);
+                    }
+                    
+                    if (secondItem != null)
+                    {
+                        player.removeArmor(secondItem.itemID);
+                    }
+
+                    //dragging on a slot where already is an item on
                     if (newSlotChildCount != 0 && isOnSlot)
                     {
                         //items getting swapped if they are the same itemtype
@@ -602,7 +621,7 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
             else // drop item
             {
                 var iModel = GetComponent<ItemOnObject>().item.itemModel;
-                if (iModel == null || !iModel.TryGetComponent<MeshFilter>(out var mesh))
+                if (iModel == null || iModel.GetComponentInChildren<MeshRenderer>() == null)
                 {
                     iModel = inventory.GetItemFromId(27).itemModel;
                 }
@@ -625,7 +644,11 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                 Destroy(dropItem.GetComponent<Rigidbody>(), 0.42f);
                 var player = GameObject.FindGameObjectWithTag("Player");
                 var pos = Vector3.zero;
-                if (player != null) pos = player.transform.position; 
+                if (player != null)
+                {
+                    pos = player.transform.position;
+                    player.GetComponent<PlayerBehaviour>().EquipItem(0);
+                }
                 dropItem.transform.localPosition = pos;
                 inventory.OnUpdateItemList();
                 if (oldSlot.transform.parent.parent.GetComponent<EquipmentSystem>() != null)

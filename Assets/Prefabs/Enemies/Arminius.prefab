@@ -214,7 +214,7 @@ MonoBehaviour:
   movementPredictionTime: 5
   movementPredictionThreshold: 0.33
   _health: 20
-  _damage: 0
+  _damage: 20
   _walkSpeed: 5
   _runSpeed: 9
   _armor: 0
@@ -222,10 +222,11 @@ MonoBehaviour:
   _alertRange: 30
   _attackCooldown: 2
   _despawnTime: 50
-  drop: {fileID: 0}
+  drop: {fileID: 1758336818755121674, guid: 66f6fb4e115e0564c9e6bd36b3d03e68, type: 3}
   dropIds: 
   _source: {fileID: -6285052754369711879}
   _combatSource: {fileID: -6991338578852991952}
+  patrollingAccuracy: 3
   tutorial: 0
   dead: 0
   stepsGrass:
@@ -368,6 +369,7 @@ MonoBehaviour:
   chargeDuration: 4
   chargeRange: 18
   attackHitbox: {fileID: 1628577760130555645}
+  isInFinalLevel: 1
 --- !u!82 &-6991338578852991952
 AudioSource:
   m_ObjectHideFlags: 0

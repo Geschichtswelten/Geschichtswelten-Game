@@ -39,7 +39,7 @@ public class PickUpItem : MonoBehaviour
             playerToItem.y = 0;
             
             var angle = Vector3.Angle(playerDir, playerToItem);
-            Debug.Log(angle + "," + distance);
+            //Debug.Log(angle + "," + distance);
             
             if (distance < _pickUpRange && angle < 40) PickUpByPlayer();
             /*

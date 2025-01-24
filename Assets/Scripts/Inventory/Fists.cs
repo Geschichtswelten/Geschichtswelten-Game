@@ -47,7 +47,10 @@ namespace DefaultNamespace
         {
             if (!other.gameObject.CompareTag("Enemy")) return;
             Debug.Log("Hit [" + other.tag + "] " + other.name);
-            other.gameObject.GetComponent<AbstractEnemyBehaviour>().AttackEnemy(damage);
+            if (other.TryGetComponent<AbstractEnemyBehaviour>(out var enemy))
+            {
+                enemy.AttackEnemy(damage);
+            }
         }
     }
 }

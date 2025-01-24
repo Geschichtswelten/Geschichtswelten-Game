@@ -915,4 +915,35 @@ public class Inventory : MonoBehaviour
     {
         return itemDatabase.getItemByID(id);
     }
+
+    public bool ConsumeItemAtSlot(int slot)
+    {
+        if (slot is >= 5 or < 0) 
+            return false;
+        var items = getFlatItemGrid();
+        items[slot].itemValue--;
+        if (items[slot].itemValue <= 0)
+        {
+            for (int k = 0; k < SlotContainer.transform.childCount; k++)
+            {
+                if (SlotContainer.transform.GetChild(k).childCount != 0)
+                {
+                    GameObject itemGameObject = SlotContainer.transform.GetChild(k).GetChild(0).gameObject;
+                    Item itemObject = itemGameObject.GetComponent<ItemOnObject>().item;
+                    if (itemObject.Equals(items[slot]))
+                    {
+                        Destroy(itemGameObject);
+                        break;
+                    }
+                }
+            }
+            return false;
+        }
+        return true;
+    }
+    
+    public void ConsumeItemWithID(ushort id)
+    {
+        ConsumeItem(GetItemFromId(id));
+    }
 }
