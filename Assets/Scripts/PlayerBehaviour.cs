@@ -466,6 +466,8 @@ public class PlayerBehaviour : MonoBehaviour
         if (other.TryGetComponent<AbstractEnemyBehaviour>(out var enemy))
         {
             takeDamage(enemy._damage);
+        }else if(other.TryGetComponent<ArrowScript>(out var arrowScript)) {
+            takeDamage(arrowScript.archer._damage);
         }
         else
         {
