@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -6991338578852991952}
   - component: {fileID: 6446488462406940914}
   - component: {fileID: 80987250687757852}
+  - component: {fileID: -840172609857288515}
   m_Layer: 9
   m_Name: Arminius
   m_TagString: Enemy
@@ -226,8 +227,13 @@ MonoBehaviour:
   dropIds: 
   _source: {fileID: -6285052754369711879}
   _combatSource: {fileID: -6991338578852991952}
+  patrollingAccuracy: 3
   tutorial: 0
   dead: 0
+  deathClips:
+  - {fileID: 8300000, guid: f7245dc350021be45842be4144a54225, type: 3}
+  - {fileID: 8300000, guid: 794287b4f9590584c8975013a8a66522, type: 3}
+  - {fileID: 8300000, guid: 9bc26544ff3a977429e549f37f4985d1, type: 3}
   stepsGrass:
   - {fileID: 8300000, guid: 9e68ea1ebd76aa44c8cfa5beb9850830, type: 3}
   - {fileID: 8300000, guid: 1deb201b8bf8f89479323a74e421150b, type: 3}
@@ -368,6 +374,7 @@ MonoBehaviour:
   chargeDuration: 4
   chargeRange: 18
   attackHitbox: {fileID: 1628577760130555645}
+  isInFinalLevel: 1
 --- !u!82 &-6991338578852991952
 AudioSource:
   m_ObjectHideFlags: 0
@@ -515,6 +522,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-840172609857288515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2280418153868286602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e928ccbc2adf89c4791750e25d265e2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossType: 3
 --- !u!1001 &1986615718854700907
 PrefabInstance:
   m_ObjectHideFlags: 0

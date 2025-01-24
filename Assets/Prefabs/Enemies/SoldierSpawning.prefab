@@ -1391,13 +1391,17 @@ MonoBehaviour:
   _alertRange: 100
   _attackCooldown: 4
   _despawnTime: 30
-  drop: {fileID: 0}
-  dropIds: 
+  drop: {fileID: 1758336818755121674, guid: 66f6fb4e115e0564c9e6bd36b3d03e68, type: 3}
+  dropIds: 160000001200000014000000
   _source: {fileID: 4188619212132366569}
   _combatSource: {fileID: 3471786198868047079}
   patrollingAccuracy: 3
   tutorial: 0
   dead: 0
+  deathClips:
+  - {fileID: 8300000, guid: f7245dc350021be45842be4144a54225, type: 3}
+  - {fileID: 8300000, guid: 794287b4f9590584c8975013a8a66522, type: 3}
+  - {fileID: 8300000, guid: 9bc26544ff3a977429e549f37f4985d1, type: 3}
   stepsGrass:
   - {fileID: 8300000, guid: 9e68ea1ebd76aa44c8cfa5beb9850830, type: 3}
   - {fileID: 8300000, guid: 1deb201b8bf8f89479323a74e421150b, type: 3}
@@ -1513,6 +1517,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8bd84a39f9210c248b74b19aebddbdba, type: 3}
   - {fileID: 8300000, guid: 09ce37b850c17cb4fb20e4cedd1c9120, type: 3}
   - {fileID: 8300000, guid: f9e16c3340350b24e89d410020baffb3, type: 3}
+  - {fileID: 8300000, guid: 41ce254c05d5da540a2c62fbad356441, type: 3}
+  - {fileID: 8300000, guid: a80ad1d2154cc954d9a47c6dbf897427, type: 3}
+  - {fileID: 8300000, guid: 6e3ccd2261619154dbf88bf11c3ee736, type: 3}
+  - {fileID: 8300000, guid: eeca65117bfb5e642941ed53f8179c9b, type: 3}
   clipsFalling:
   - {fileID: 8300000, guid: 672ee15daccdb814e862fa14d413bdee, type: 3}
   - {fileID: 8300000, guid: 4755b9f0490dbaf44bdd5033921a33e3, type: 3}

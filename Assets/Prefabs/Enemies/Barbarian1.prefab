@@ -104,6 +104,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9a61f902c2e23cc4c8a02d76502993d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5113380483243406171}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9a61f902c2e23cc4c8a02d76502993d2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6798362288125738428}
   m_SourcePrefab: {fileID: 100100000, guid: 9a61f902c2e23cc4c8a02d76502993d2, type: 3}
 --- !u!4 &1376011701376788776 stripped
 Transform:
@@ -289,6 +292,10 @@ MonoBehaviour:
   patrollingAccuracy: 3
   tutorial: 0
   dead: 0
+  deathClips:
+  - {fileID: 8300000, guid: f7245dc350021be45842be4144a54225, type: 3}
+  - {fileID: 8300000, guid: 794287b4f9590584c8975013a8a66522, type: 3}
+  - {fileID: 8300000, guid: 9bc26544ff3a977429e549f37f4985d1, type: 3}
   stepsGrass:
   - {fileID: 8300000, guid: 9e68ea1ebd76aa44c8cfa5beb9850830, type: 3}
   - {fileID: 8300000, guid: 1deb201b8bf8f89479323a74e421150b, type: 3}
@@ -404,6 +411,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8bd84a39f9210c248b74b19aebddbdba, type: 3}
   - {fileID: 8300000, guid: 09ce37b850c17cb4fb20e4cedd1c9120, type: 3}
   - {fileID: 8300000, guid: f9e16c3340350b24e89d410020baffb3, type: 3}
+  - {fileID: 8300000, guid: 41ce254c05d5da540a2c62fbad356441, type: 3}
+  - {fileID: 8300000, guid: a80ad1d2154cc954d9a47c6dbf897427, type: 3}
+  - {fileID: 8300000, guid: 6e3ccd2261619154dbf88bf11c3ee736, type: 3}
+  - {fileID: 8300000, guid: eeca65117bfb5e642941ed53f8179c9b, type: 3}
   clipsFalling:
   - {fileID: 8300000, guid: 672ee15daccdb814e862fa14d413bdee, type: 3}
   - {fileID: 8300000, guid: 4755b9f0490dbaf44bdd5033921a33e3, type: 3}
@@ -554,6 +565,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6798362288125738428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4664886073753584717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e928ccbc2adf89c4791750e25d265e2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossType: 0
 --- !u!1001 &8699046264360200508
 PrefabInstance:
   m_ObjectHideFlags: 0
