@@ -88,7 +88,7 @@ public class Tutorial1Script : MonoBehaviour
         tips[2].SetActive(true);
         Cursor.lockState = CursorLockMode.Confined;
         yield return new WaitUntil(() => equipmentScript.GetItemIdForSlotInHotbar(0) == 26); //helmet ID
-        playerBehaviour.CloseInventory();     //NOT IMPLEMENTED
+        playerBehaviour.CloseInventory();     
         tips[2].SetActive(false);
         stage = Stage.stage1;
         StartCoroutine(StartStage2());

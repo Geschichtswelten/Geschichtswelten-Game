@@ -39,7 +39,6 @@ public class ButtonHandler : MonoBehaviour
     public GameObject SetLoadingScreenActive()
     {
         loadingScreen.SetActive(true);
-        loadingScreen.GetComponentInChildren<TMPro.TMP_Text>().text = "0%";
         return loadingScreen;
     }
 
@@ -72,13 +71,11 @@ public class ButtonHandler : MonoBehaviour
         
         //ProgressBar
         
-        var text = loadingScreen.GetComponentInChildren<TMPro.TMP_Text>();
         AsyncOperation loadScene = SceneManager.LoadSceneAsync(393);
         loadScene.allowSceneActivation = false;
         while (!loadScene.isDone)
         {
             yield return new WaitForSeconds(0.01f);
-            text.text = loadScene.progress + "%";
             if (loadScene.progress >= 0.9f)
             {
                 loadScene.allowSceneActivation = true;
@@ -104,11 +101,9 @@ public class ButtonHandler : MonoBehaviour
             yield break;
         }
         SetLoadingScreenActive();
-        var text = loadingScreen.GetComponentInChildren<TMPro.TMP_Text>();
         while (!loadScene.isDone)
         {
             yield return new WaitForSeconds(0.01f);
-            text.text = loadScene.progress + "%";
             if (loadScene.progress >= 0.9f)
             {
                 loadScene.allowSceneActivation = true;

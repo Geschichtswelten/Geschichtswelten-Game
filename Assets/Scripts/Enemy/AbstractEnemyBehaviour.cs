@@ -54,7 +54,7 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
     private void Awake()
     {
         _source.volume = ButtonHandler.settings.masterVolume;
-        _combatSource.volume = ButtonHandler.settings.masterVolume;
+        _combatSource.volume = ButtonHandler.settings.dialogueVolume;
         _animator = GetComponent<Animator>();
         _agent = GetComponent<NavMeshAgent>();
         _agent.speed = _walkSpeed;
@@ -81,7 +81,7 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
     private void HandleVolumeChange()
     {
         _source.volume = ButtonHandler.settings.masterVolume;
-        _combatSource.volume = ButtonHandler.settings.masterVolume;
+        _combatSource.volume = ButtonHandler.settings.dialogueVolume;
     }
    
 
