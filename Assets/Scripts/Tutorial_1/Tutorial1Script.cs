@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class Tutorial1Script : MonoBehaviour
 {
@@ -29,13 +30,17 @@ public class Tutorial1Script : MonoBehaviour
     [SerializeField] private string allEnemiesDead;
     [Header("Audio")]
     [SerializeField] private AudioClip[] audioClips;
+    [SerializeField] private AudioClip tutClip;
     private AudioSource source;
 
     private PlayerBehaviour playerBehaviour;
-    
-
+    private WorldMusicScript worldMusicScript;
+    private VideoPlayer videoPlayer;
     void Start()
     {
+        
+        worldMusicScript = FindAnyObjectByType<WorldMusicScript>();
+        videoPlayer = GetComponent<VideoPlayer>();
         stage = Stage.start;
         source = GetComponent<AudioSource>();
         if (ButtonHandler.settings != null)
@@ -162,6 +167,7 @@ public class Tutorial1Script : MonoBehaviour
             //PlayVideo
             
             Time.timeScale = 1;
+            worldMusicScript.StartingGame();
             SceneManager.UnloadSceneAsync(393);
             
     }

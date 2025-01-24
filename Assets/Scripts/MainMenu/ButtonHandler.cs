@@ -6,7 +6,9 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class ButtonHandler : MonoBehaviour
 {
@@ -15,7 +17,8 @@ public class ButtonHandler : MonoBehaviour
     public static event Action OnSettingsChanged;
 
     public GameObject loadingScreen;
-    
+    public VideoPlayer videoPlayer;
+    public AudioClip vidAudioClip;
     void Start()
     {
         Application.backgroundLoadingPriority = ThreadPriority.BelowNormal;
@@ -70,6 +73,8 @@ public class ButtonHandler : MonoBehaviour
     {
         
         //ProgressBar
+        
+        
         SetLoadingScreenActive();
         yield return new WaitForSeconds(2);
         AsyncOperation loadScene = SceneManager.LoadSceneAsync(393);
@@ -77,8 +82,20 @@ public class ButtonHandler : MonoBehaviour
         while (!loadScene.isDone)
         {
             yield return new WaitForSeconds(0.01f);
-            if (loadScene.progress >= 0.9f)
+            if (loadScene.progress == 0.9f)
             {
+                var canv = FindObjectsByType<Canvas>(FindObjectsSortMode.None);
+                foreach (Canvas obj in canv)
+                {
+                    obj.gameObject.SetActive(false);
+                }
+                var worldMusicScript = FindAnyObjectByType<WorldMusicScript>();
+                worldMusicScript.source.clip = vidAudioClip;
+                worldMusicScript.source.volume = settings.masterVolume * settings.dialogueVolume;
+                videoPlayer.SetDirectAudioVolume(0, settings.masterVolume * settings.dialogueVolume);
+                worldMusicScript.source.Play();
+                videoPlayer.Play();
+                yield return new WaitUntil(()=>!videoPlayer.isPlaying);
                 loadScene.allowSceneActivation = true;
             }
         }

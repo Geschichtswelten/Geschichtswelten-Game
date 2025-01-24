@@ -8938,11 +8938,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5077616583600179652, guid: 80d1f42ce211a464abcc7cef414102c7, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5077616583600179652, guid: 80d1f42ce211a464abcc7cef414102c7, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5077616583600179652, guid: 80d1f42ce211a464abcc7cef414102c7, type: 3}
       propertyPath: m_SizeDelta.x
