@@ -910,4 +910,9 @@ public class Inventory : MonoBehaviour
         var item = getFlatItemGrid()[slot];
         return item?.itemID ?? 0;
     }
+
+    public Item GetItemFromId(int id)
+    {
+        return itemDatabase.getItemByID(id);
+    }
 }

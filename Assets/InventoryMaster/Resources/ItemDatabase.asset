@@ -292,7 +292,7 @@ MonoBehaviour:
     itemID: 19
     itemDesc: Is it edible?
     itemIcon: {fileID: 21300000, guid: 966ff550585ec504896a28b55fd7281c, type: 3}
-    itemModel: {fileID: 0}
+    itemModel: {fileID: 2367436981114450163, guid: 9193200a9a4e72f4281f43aeba8af8f2, type: 3}
     itemValue: 1
     itemType: 2
     itemWeight: 0
@@ -304,7 +304,7 @@ MonoBehaviour:
     itemID: 20
     itemDesc: A great source of nourishment.
     itemIcon: {fileID: 21300000, guid: 0288dbaa9a46b7a4fa8f0b0b773b6024, type: 3}
-    itemModel: {fileID: 0}
+    itemModel: {fileID: 2520728015051250349, guid: a535d7d9f33cca14f9e4abd1e2403f86, type: 3}
     itemValue: 1
     itemType: 2
     itemWeight: 0
@@ -384,6 +384,18 @@ MonoBehaviour:
     itemModel: {fileID: 0}
     itemValue: 1
     itemType: 4
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
+  - itemName: dummy
+    itemID: 27
+    itemDesc: its a me
+    itemIcon: {fileID: 0}
+    itemModel: {fileID: 1274485333396126166, guid: c5206e11431727448b974d5b4bb4e91e, type: 3}
+    itemValue: 1
+    itemType: 0
     itemWeight: 0
     maxStack: 1
     indexItemInList: 999

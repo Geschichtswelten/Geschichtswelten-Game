@@ -23,8 +23,11 @@ namespace DefaultNamespace
             id = 1;
             type = itemType.weapon;
             name = "Sword";
-            hitbox.enabled = false;
             attackRoutine = null;
+            hitbox.enabled = false;
+            hitbox.isTrigger = true;
+            hitbox.excludeLayers = LayerMask.NameToLayer("Player");
+            hitbox.includeLayers = LayerMask.NameToLayer("Enemy");
         }
 
         public override void action1() //attack

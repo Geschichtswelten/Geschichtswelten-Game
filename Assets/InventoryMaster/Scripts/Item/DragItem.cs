@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using DefaultNamespace;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
@@ -12,6 +13,7 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
     private GameObject oldSlot;
     private Inventory inventory;
     private Transform draggedItemBox;
+
 
     public delegate void ItemDelegate();
     public static event ItemDelegate updateInventoryList;
@@ -109,7 +111,7 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                     Inventory = Inventory.transform.parent.parent.gameObject;
 
                 //dragging in an Inventory      
-                if (Inventory.GetComponent<Hotbar>() == null && Inventory.GetComponent<EquipmentSystem>() == null && Inventory.GetComponent<CraftSystem>() == null)
+                if (/*Inventory.GetComponent<Hotbar>() == null &&*/ Inventory.GetComponent<EquipmentSystem>() == null && Inventory.GetComponent<CraftSystem>() == null)
                 {
                     //you cannot attach items to the resultslot of the craftsystem
                     if (newSlot.transform.parent.tag == "ResultSlot" || newSlot.transform.tag == "ResultSlot" || newSlot.transform.parent.parent.tag == "ResultSlot")
@@ -247,7 +249,7 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                 }
 
 
-
+/*
                 //dragging into a Hotbar            
                 if (Inventory.GetComponent<Hotbar>() != null)
                 {
@@ -379,7 +381,7 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                     }
 
                 }
-
+*/
 
                 //dragging into a equipmentsystem/charactersystem
                 if (Inventory.GetComponent<EquipmentSystem>() != null)
@@ -599,11 +601,28 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
             }
             else // drop item
             {
-                GameObject dropItem = (GameObject)Instantiate(GetComponent<ItemOnObject>().item.itemModel);
+                var iModel = GetComponent<ItemOnObject>().item.itemModel;
+                if (iModel == null || !iModel.TryGetComponent<MeshFilter>(out var mesh))
+                {
+                    iModel = inventory.GetItemFromId(27).itemModel;
+                }
+                
+                GameObject dropItem = (GameObject)Instantiate(iModel);
+
+                if (dropItem.TryGetComponent<ItemBehaviour>(out var itemBehaviour))
+                {
+                    Destroy(itemBehaviour);
+                }
                 dropItem.AddComponent<PickUpItem>();
                 dropItem.GetComponent<PickUpItem>().item = this.gameObject.GetComponent<ItemOnObject>().item;
                 dropItem.AddComponent<Rigidbody>();
-                Destroy(dropItem.GetComponent<Rigidbody>(), 1);
+                Destroy(dropItem.AddComponent<SphereCollider>(), 0.42f);
+                if (dropItem.TryGetComponent<Collider>(out var coll))
+                {
+                    coll.isTrigger = false;
+                    Destroy(coll, 0.42f);
+                }
+                Destroy(dropItem.GetComponent<Rigidbody>(), 0.42f);
                 var player = GameObject.FindGameObjectWithTag("Player");
                 var pos = Vector3.zero;
                 if (player != null) pos = player.transform.position; 

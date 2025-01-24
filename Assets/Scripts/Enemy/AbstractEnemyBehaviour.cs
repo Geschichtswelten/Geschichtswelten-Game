@@ -148,11 +148,16 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
     }
     protected void Die()
     {
+        if (dead) return;
         dead = true;
         if (dropIds.Length > 0)
         {
             
             int howManyItems = Random.Range(0, dropIds.Length);
+            if (typeof(ArminiusBehaviour) == GetType())
+            {
+                howManyItems = dropIds.Length;
+            }
             if (howManyItems == 0) return;
             var pouchInv = Instantiate(drop, transform.position, Quaternion.identity).GetComponent<StorageInventory>();
             pouchInv.player = _target;

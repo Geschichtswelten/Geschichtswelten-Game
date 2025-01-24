@@ -93,21 +93,25 @@ public class StorageInventory : MonoBehaviour
 
         if (distance <= distanceToOpenStorage && Input.GetKeyDown(inputManagerDatabase.StorageKeyCode))
         {
-            showStorage = !showStorage;
-            StartCoroutine(OpenInventoryWithTimer());
+            var playerDir = player.transform.forward;
+            playerDir.y = 0;
+            
+            var playerToItem = transform.position - player.transform.position;
+            playerToItem.y = 0;
+            
+            var angle = Vector3.Angle(playerDir, playerToItem);
+            //Debug.Log(angle + "," + distance);
+
+            if (angle < 40)
+            {
+                showStorage = !showStorage;
+                StartCoroutine(OpenInventoryWithTimer());
+            }
         }
 
         if (distance > distanceToOpenStorage && showStorage)
         {
-            showStorage = false;
-            if (inventory.activeSelf)
-            {
-                storageItems.Clear();
-                setListofStorage();
-                inventory.SetActive(false);
-                inv.deleteAllItems();
-            }
-            tooltip.deactivateTooltip();
+            closeInventory();
         }
     }
 
@@ -123,6 +127,9 @@ public class StorageInventory : MonoBehaviour
                 inv.ItemsInInventory.Clear();
                 inventory.SetActive(true);
                 addItemsToInventory();
+                
+                player.GetComponent<PlayerBehaviour>().OpenInventory(this);
+                
                 showTimer = false;
                 if (timer != null)
                     timer.SetActive(false);
@@ -135,9 +142,22 @@ public class StorageInventory : MonoBehaviour
             inventory.SetActive(false);
             inv.deleteAllItems();
             tooltip.deactivateTooltip();
+            
+            player.GetComponent<PlayerBehaviour>().CloseInventory();
         }
+    }
 
-
+    public void closeInventory()
+    {
+        showStorage = false;
+        if (inventory.activeSelf)
+        {
+            storageItems.Clear();
+            setListofStorage();
+            inventory.SetActive(false);
+            inv.deleteAllItems();
+        }
+        tooltip.deactivateTooltip();
     }
 
 
