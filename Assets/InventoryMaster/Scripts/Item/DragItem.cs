@@ -602,7 +602,7 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
             else // drop item
             {
                 var iModel = GetComponent<ItemOnObject>().item.itemModel;
-                if (iModel == null)
+                if (iModel == null || !iModel.TryGetComponent<MeshFilter>(out var mesh))
                 {
                     iModel = inventory.GetItemFromId(27).itemModel;
                 }
