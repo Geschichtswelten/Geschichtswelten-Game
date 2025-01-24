@@ -100,7 +100,8 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private Inventory equipment;
     [SerializeField] private Inventory hotbar;
     [SerializeField] public GameObject storageInv;
-    
+
+    private StorageInventory _lastContainer = null;
 
     #endregion
 
@@ -158,6 +159,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (_inventoryOpen != Inventory.inventoryOpen)
         {
+            if (_lastContainer != null) _lastContainer.closeInventory();
             toggleInventory();
         }
         
@@ -203,12 +205,32 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
+    public void OpenInventory()
+    {
+        if (_inventoryOpen) 
+            return;
+        inventory.openInventory();
+        equipment.openInventory();
+        toggleInventory();
+    }
+    public void OpenInventory(StorageInventory container)
+    {
+        if (_inventoryOpen) 
+            return;
+        inventory.openInventory();
+        equipment.openInventory();
+        _lastContainer = container;
+        toggleInventory();
+    }
+
     public void CloseInventory()
     {
         if (!_inventoryOpen)
             return;
         inventory.closeInventory();
         equipment.closeInventory();
+        if (_lastContainer != null) 
+            _lastContainer.closeInventory();
         toggleInventory();
     }
 
@@ -218,9 +240,7 @@ public class PlayerBehaviour : MonoBehaviour
         switch (pauseMenuOpened)
         {
             case true when _inventoryOpen:
-                inventory.closeInventory();
-                equipment.closeInventory();
-                toggleInventory();
+                CloseInventory();
                 break;
             case true:
                 pauseMenu.tooglePauseMenu();
