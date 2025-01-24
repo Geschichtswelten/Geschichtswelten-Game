@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class WorldMusicScript : MonoBehaviour
 {
-    private AudioSource source;
-    [SerializeField] private AudioClip[] clips;
+    public AudioSource source;
+    [SerializeField] public AudioClip[] clips;
     private void Awake()
     {
         source = GetComponent<AudioSource>();
@@ -40,6 +40,7 @@ public class WorldMusicScript : MonoBehaviour
 
     public void StartingGame()
     {
+        HandleSettingsChanged();
         source.clip = clips[1];
     }
 }

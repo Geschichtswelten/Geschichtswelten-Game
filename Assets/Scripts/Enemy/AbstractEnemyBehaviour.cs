@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 [RequireComponent (typeof(NavMeshAgent), typeof(AudioSource), typeof(Animator))]
 // Requirements: trigger Collider + kinematic Rigidbody for hitbox
@@ -46,13 +48,13 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
     protected bool block = false;
     public bool tutorial = false, dead = false;
     
-    
+    [SerializeField] protected AudioClip[] deathClips;
     
 
     private void Awake()
     {
         _source.volume = ButtonHandler.settings.masterVolume;
-        _combatSource.volume = ButtonHandler.settings.masterVolume;
+        _combatSource.volume = ButtonHandler.settings.dialogueVolume;
         _animator = GetComponent<Animator>();
         _agent = GetComponent<NavMeshAgent>();
         _agent.speed = _walkSpeed;
@@ -79,7 +81,7 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
     private void HandleVolumeChange()
     {
         _source.volume = ButtonHandler.settings.masterVolume;
-        _combatSource.volume = ButtonHandler.settings.masterVolume;
+        _combatSource.volume = ButtonHandler.settings.dialogueVolume;
     }
    
 
@@ -167,6 +169,8 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
                 pouchInv.addItemToStorage(dropIds[i], Random.Range(1, 5));
             }
         }
+        _combatSource.clip = deathClips[Random.Range(0, deathClips.Length)];
+        _combatSource.Play();
     }
 
 
@@ -183,8 +187,13 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
         _animator.SetTrigger("enemyHit");
     }
 
-
-
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("killbox"))
+        {
+            _health = 0;
+        }
+    }
 }
 
 

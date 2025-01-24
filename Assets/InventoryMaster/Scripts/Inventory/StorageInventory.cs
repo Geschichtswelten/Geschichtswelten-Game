@@ -4,6 +4,7 @@ using System.Collections;
 using UnityEditor;
 #endif
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
@@ -50,6 +51,7 @@ public class StorageInventory : MonoBehaviour
         Item item = itemDatabase.getItemByID(id);
         item.itemValue = value;
         storageItems.Add(item);
+        EditorUtility.SetDirty(gameObject);
     }
 
 

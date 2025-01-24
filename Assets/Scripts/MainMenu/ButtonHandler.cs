@@ -6,7 +6,9 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class ButtonHandler : MonoBehaviour
 {
@@ -15,7 +17,8 @@ public class ButtonHandler : MonoBehaviour
     public static event Action OnSettingsChanged;
 
     public GameObject loadingScreen;
-    
+    public VideoPlayer videoPlayer;
+    public AudioClip vidAudioClip;
     void Start()
     {
         Application.backgroundLoadingPriority = ThreadPriority.BelowNormal;
@@ -39,7 +42,6 @@ public class ButtonHandler : MonoBehaviour
     public GameObject SetLoadingScreenActive()
     {
         loadingScreen.SetActive(true);
-        loadingScreen.GetComponentInChildren<TMPro.TMP_Text>().text = "0%";
         return loadingScreen;
     }
 
@@ -72,15 +74,28 @@ public class ButtonHandler : MonoBehaviour
         
         //ProgressBar
         
-        var text = loadingScreen.GetComponentInChildren<TMPro.TMP_Text>();
+        
+        SetLoadingScreenActive();
+        yield return new WaitForSeconds(2);
         AsyncOperation loadScene = SceneManager.LoadSceneAsync(393);
         loadScene.allowSceneActivation = false;
         while (!loadScene.isDone)
         {
             yield return new WaitForSeconds(0.01f);
-            text.text = loadScene.progress + "%";
-            if (loadScene.progress >= 0.9f)
+            if (loadScene.progress == 0.9f)
             {
+                var canv = FindObjectsByType<Canvas>(FindObjectsSortMode.None);
+                foreach (Canvas obj in canv)
+                {
+                    obj.gameObject.SetActive(false);
+                }
+                var worldMusicScript = FindAnyObjectByType<WorldMusicScript>();
+                worldMusicScript.source.clip = vidAudioClip;
+                worldMusicScript.source.volume = settings.masterVolume * settings.dialogueVolume;
+                videoPlayer.SetDirectAudioVolume(0, settings.masterVolume * settings.dialogueVolume);
+                worldMusicScript.source.Play();
+                videoPlayer.Play();
+                yield return new WaitUntil(()=>!videoPlayer.isPlaying);
                 loadScene.allowSceneActivation = true;
             }
         }
@@ -91,7 +106,7 @@ public class ButtonHandler : MonoBehaviour
     IEnumerator LoadSceneAsync()
     {
         yield return new WaitForSeconds(1);
-        AsyncOperation loadScene = SceneManager.LoadSceneAsync(392);
+        AsyncOperation loadScene = SceneManager.LoadSceneAsync(392, LoadSceneMode.Additive);
         loadScene.allowSceneActivation = false;
         //ProgressBar
         profile = JsonHandler.readGameProfile("Assets/profile.asset");
@@ -104,11 +119,9 @@ public class ButtonHandler : MonoBehaviour
             yield break;
         }
         SetLoadingScreenActive();
-        var text = loadingScreen.GetComponentInChildren<TMPro.TMP_Text>();
         while (!loadScene.isDone)
         {
             yield return new WaitForSeconds(0.01f);
-            text.text = loadScene.progress + "%";
             if (loadScene.progress >= 0.9f)
             {
                 loadScene.allowSceneActivation = true;
@@ -125,11 +138,13 @@ public class ButtonHandler : MonoBehaviour
                 Debug.Log("FoundPlayer");
                 root.GetComponent<WrapperScript>().LoadProfile(profile);
                 yield return new WaitForSeconds(2);
-                root.GetComponent<WrapperScript>().LoadProfile(profile);
+                root.GetComponent<WrapperScript>().LoadPosition(profile);
             }
         }
-
         
+        yield return new WaitForSeconds(5);
+        SceneManager.UnloadSceneAsync(0);
+
 
     }
 
