@@ -26,6 +26,7 @@ TagManager:
   - Tree
   - StorageInventory
   - Timer
+  - Arrow
   layers:
   - Default
   - TransparentFX
