@@ -13,7 +13,7 @@ public class Tutorial1Script : MonoBehaviour
     [SerializeField] private Stage stage;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject wrapperPlayer;
-    private GameObject loadingScreen;
+    public GameObject loadingScreen;
     [SerializeField] private AbstractEnemyBehaviour[] enemies;
     [SerializeField] private Inventory hotbarScript;
     [SerializeField] private Inventory equipmentScript;
@@ -27,6 +27,7 @@ public class Tutorial1Script : MonoBehaviour
     [SerializeField] private string healString;
     [SerializeField] private string allEnemiesAttack;
     [SerializeField] private string allEnemiesDead;
+    [SerializeField] private Animator animator;
     [Header("Audio")]
     [SerializeField] private AudioClip[] audioClips;
     [SerializeField] private AudioClip tutClip;
@@ -44,7 +45,7 @@ public class Tutorial1Script : MonoBehaviour
         source = GetComponent<AudioSource>();
         if (ButtonHandler.settings != null)
         {
-            source.volume = ButtonHandler.settings.dialogueVolume * ButtonHandler.settings.masterVolume;
+            source.volume = ButtonHandler.settings.dialogueVolume;
         }
         playerBehaviour = player.GetComponent<PlayerBehaviour>();
         StartCoroutine(StartStage1());
@@ -62,7 +63,7 @@ public class Tutorial1Script : MonoBehaviour
 
     private void HandleVolumeChange()
     {
-        source.volume = ButtonHandler.settings.dialogueVolume * ButtonHandler.settings.masterVolume;
+        source.volume = ButtonHandler.settings.dialogueVolume;
     }
 
     private IEnumerator StartStage1()
@@ -106,6 +107,8 @@ public class Tutorial1Script : MonoBehaviour
         source.clip = audioClips[3];
         source.Play();
         text.text = firstEnemyAttack;
+        AsyncOperation loadVid = SceneManager.LoadSceneAsync(395, LoadSceneMode.Single);
+        loadVid.allowSceneActivation = false;
         yield return new WaitUntil(() => !source.isPlaying);
         tips[3].SetActive(true);
         text.text = "";
@@ -136,21 +139,18 @@ public class Tutorial1Script : MonoBehaviour
         playerBehaviour.freeze = false;
         yield return new WaitUntil(() => enemies[1].dead && enemies[2].dead && enemies[3].dead);
         tips[4].SetActive(false);
-
-        playerBehaviour.freeze = true;
-        source.clip = audioClips[6];
-        source.Play();
-        text.text = allEnemiesDead;
-        AsyncOperation loadVid = SceneManager.LoadSceneAsync(395, LoadSceneMode.Additive);
-        loadVid.allowSceneActivation = false;
-        yield return new WaitUntil(() => !source.isPlaying);
+        animator.SetTrigger("Fade");
+        yield return new WaitForSeconds(2.5f);
         loadVid.allowSceneActivation = true;
         source.Stop();
+        yield return new WaitUntil(() => loadVid.isDone);
+        loadingScreen = Instantiate(loadingScreen, Vector3.zero, Quaternion.identity);
+        loadingScreen.SetActive(false);
+        videoPlayer.targetCamera = Camera.main;
         videoPlayer.SetDirectAudioVolume(0, ButtonHandler.settings.dialogueVolume * ButtonHandler.settings.masterVolume);
         worldMusicScript.ToggleMute();
         videoPlayer.Play();
         yield return new WaitUntil(() => !videoPlayer.isPlaying);
-        loadingScreen = GameObject.FindGameObjectWithTag("Finish");
         loadingScreen.SetActive(true);
         yield return new WaitForSeconds(2);
         AsyncOperation loadScene = SceneManager.LoadSceneAsync(392, LoadSceneMode.Additive);
@@ -170,7 +170,7 @@ public class Tutorial1Script : MonoBehaviour
 
             yield return new WaitForSeconds(5);
             worldMusicScript.StartingGame();
-            SceneManager.UnloadSceneAsync(393);
+            SceneManager.UnloadSceneAsync(395);
             
     }
 

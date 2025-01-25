@@ -5,6 +5,7 @@ using System.IO;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.SceneManagement;
@@ -73,7 +74,8 @@ public class ButtonHandler : MonoBehaviour
     {
         
         //ProgressBar
-        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         
         SetLoadingScreenActive();
         yield return new WaitForSeconds(2);

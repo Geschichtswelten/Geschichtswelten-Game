@@ -200,15 +200,14 @@ public class EnemyArcher : AbstractEnemyBehaviour
     public void Step()
     {
 
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hitInfo, 3))
+        if (Physics.Raycast(gameObject.transform.position, Vector3.down,out RaycastHit hitInfo, 3 , LayerMask.GetMask("whatIsGround"))) 
         {
-            if (hitInfo.collider.gameObject.CompareTag("Wood"))
+            if(hitInfo.collider.gameObject.CompareTag("Wood"))
             {
                 _source.clip = stepsWood[Random.Range(0, stepsWood.Length)];
-            }
-            else
+            }else
             {
-                _source.clip = stepsWood[Random.Range(0, stepsWood.Length)];
+                _source.clip = stepsGrass[Random.Range(0, stepsGrass.Length)];
             }
             _source.Play();
         }

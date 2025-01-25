@@ -134,8 +134,11 @@ public class EnemyInfantryScript : AbstractEnemyBehaviour
 
     public void Hit()
     {
-        _combatSource.clip = clipsHit[Random.Range(0, clipsHit.Length)];
-        _combatSource.Play();
+        if (!_combatSource.isPlaying)
+        {
+            _combatSource.clip = clipsHit[Random.Range(0, clipsHit.Length)];
+            _combatSource.Play();
+        }
     }
 
     public void FallSmall()
@@ -146,8 +149,11 @@ public class EnemyInfantryScript : AbstractEnemyBehaviour
 
     public void FallBig()
     {
-        _combatSource.clip = clipsFalling[1];
-        _combatSource.Play();
+        if (!_combatSource.isPlaying)
+        {
+            _combatSource.clip = clipsFalling[1];
+            _combatSource.Play();
+        }
     }
 
 
@@ -155,14 +161,14 @@ public class EnemyInfantryScript : AbstractEnemyBehaviour
     public void Step()
     {
         
-        if (Physics.Raycast(transform.position, Vector3.down,out RaycastHit hitInfo, 3 )) 
+        if (Physics.Raycast(gameObject.transform.position, Vector3.down,out RaycastHit hitInfo, 3 , LayerMask.GetMask("whatIsGround"))) 
         {
             if(hitInfo.collider.gameObject.CompareTag("Wood"))
             {
                 _source.clip = stepsWood[Random.Range(0, stepsWood.Length)];
             }else
             {
-                _source.clip = stepsWood[Random.Range(0, stepsWood.Length)];
+                _source.clip = stepsGrass[Random.Range(0, stepsGrass.Length)];
             }
             _source.Play();
         }
