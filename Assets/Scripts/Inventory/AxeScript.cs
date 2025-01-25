@@ -17,6 +17,8 @@ public class AxeScript : ItemBehaviour
     private List<TreeInstance> treeArray;
     private TreePrototype[] prototypes;
     private TerrainData terrainData;
+    
+    [SerializeField] private GameObject logPrefab;
     private enum animationIds
     {
         attack1,
@@ -93,26 +95,44 @@ public class AxeScript : ItemBehaviour
 
                 if (Vector3.Distance(worldPosition, gameObject.transform.position) <= timberDistance && Vector3.Angle(worldPosition, gameObject.transform.position) <= maxTimberAngle)
                 {
-                    Quaternion tempRot = Quaternion.AngleAxis(treeArray[i].rotation * Mathf.Rad2Deg, Vector3.up);
-                    treePrefab = terrainData.treePrototypes[treeArray[i].prototypeIndex].prefab;
-                    treePrefab.transform.localScale = new Vector3(treeArray[i].heightScale, treeArray[i].heightScale, treeArray[i].heightScale);
+                    //Quaternion tempRot = Quaternion.AngleAxis(treeArray[i].rotation * Mathf.Rad2Deg, Vector3.up);
+                    //treePrefab = terrainData.treePrototypes[treeArray[i].prototypeIndex].prefab;
+                    //treePrefab.transform.localScale = new Vector3(treeArray[i].heightScale, treeArray[i].heightScale, treeArray[i].heightScale);
                     treeArray.RemoveAt(i);
                     terrainData.treeInstances = treeArray.ToArray();
                     terrain.GetComponent<TerrainCollider>().terrainData = terrainData;
                     var heights = terrainData.GetHeights(0, 0, 0, 0);
                     terrainData.SetHeights(0, 0, heights);
-                    var temp = Instantiate(treePrefab, worldPosition, tempRot);
-                    temp.AddComponent<Rigidbody>();
+                    
+                    var dropItem = Instantiate(logPrefab, worldPosition + 3.5f * Vector3.up, Quaternion.Euler(90, 0, 0));
+                    dropItem.transform.localScale = new Vector3(treeArray[i].heightScale, treeArray[i].heightScale, treeArray[i].heightScale);
+                    Debug.Log(dropItem.name);
+                    if (dropItem.TryGetComponent<ItemBehaviour>(out var itemBehaviour))
+                    {
+                        Destroy(itemBehaviour);
+                    }
+                    
+                    Destroy(dropItem.TryGetComponent<Rigidbody>(out var rb) ? rb : 
+                        (rb = dropItem.AddComponent<Rigidbody>()), 0.42f);
+                    if (dropItem.TryGetComponent<Collider>(out var coll))
+                    {
+                        coll.enabled = true;
+                        coll.isTrigger = false;
+                        Destroy(coll, 0.42f);
+                    }
                     break;
                 }
             }
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (!other.gameObject.CompareTag("Enemy")) return;
-        Debug.Log("Hit an Enemy");
-        //other.gameObject.GetComponent<AbstractEnemyBehaviour>().AttackEnemy(damage, null);
+        Debug.Log("Hit [" + other.tag + "] " + other.name);
+        if (other.TryGetComponent<AbstractEnemyBehaviour>(out var enemy))
+        {
+            enemy.AttackEnemy(damage);
+        }
     }
 }

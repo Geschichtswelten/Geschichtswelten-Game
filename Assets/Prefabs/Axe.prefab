@@ -287,3 +287,4 @@ MonoBehaviour:
   timberDistance: 10
   maxTimberAngle: 70
   treePrefab: {fileID: 0}
+  logPrefab: {fileID: 8490730202628204433, guid: 596e5475303e3a542b7c7acf5ab3a42c, type: 3}
