@@ -138,7 +138,9 @@ MonoBehaviour:
     maxStack: 1
     indexItemInList: 999
     rarity: 0
-    itemAttributes: []
+    itemAttributes:
+    - attributeName: Armor
+      attributeValue: 95
   - itemName: Worn out leather boots
     itemID: 9
     itemDesc: 'A pair of boots provided to every Roman soldier. This pair however
@@ -153,7 +155,9 @@ MonoBehaviour:
     maxStack: 1
     indexItemInList: 999
     rarity: 0
-    itemAttributes: []
+    itemAttributes:
+    - attributeName: Armor
+      attributeValue: 99
   - itemName: Sturdy leather helmet
     itemID: 10
     itemDesc: 'A piece of equipment carefully crafted by Tinus to protect his head.
@@ -168,7 +172,9 @@ MonoBehaviour:
     maxStack: 1
     indexItemInList: 999
     rarity: 0
-    itemAttributes: []
+    itemAttributes:
+    - attributeName: Armor
+      attributeValue: 93
   - itemName: Leather top
     itemID: 11
     itemDesc: 'Crafted by the careful hands of Tinus, this top will keep its owner
@@ -183,7 +189,9 @@ MonoBehaviour:
     maxStack: 1
     indexItemInList: 999
     rarity: 0
-    itemAttributes: []
+    itemAttributes:
+    - attributeName: Armor
+      attributeValue: 90
   - itemName: Leather gloves
     itemID: 12
     itemDesc: 'A fine piece of equipment to protect your Hands from calluses.
@@ -198,7 +206,9 @@ MonoBehaviour:
     maxStack: 1
     indexItemInList: 999
     rarity: 0
-    itemAttributes: []
+    itemAttributes:
+    - attributeName: Armor
+      attributeValue: 95
   - itemName: Leather boots
     itemID: 13
     itemDesc: 'Don''t judge them until you have walked a mile in these shoes.
@@ -213,7 +223,9 @@ MonoBehaviour:
     maxStack: 1
     indexItemInList: 999
     rarity: 0
-    itemAttributes: []
+    itemAttributes:
+    - attributeName: Armor
+      attributeValue: 95
   - itemName: Iron helmet
     itemID: 14
     itemDesc: 'A helmet made of iron ingots. It''s quite sturdy.
@@ -227,7 +239,9 @@ MonoBehaviour:
     maxStack: 1
     indexItemInList: 999
     rarity: 0
-    itemAttributes: []
+    itemAttributes:
+    - attributeName: Armor
+      attributeValue: 88
   - itemName: Iron chestplate
     itemID: 15
     itemDesc: 'A masterpiece that will surely help you win your next fight.
@@ -242,7 +256,9 @@ MonoBehaviour:
     maxStack: 1
     indexItemInList: 999
     rarity: 0
-    itemAttributes: []
+    itemAttributes:
+    - attributeName: Armor
+      attributeValue: 84
   - itemName: Reinforced gloves
     itemID: 16
     itemDesc: 'A pair of gloves that Tinus reinforced with iron to better suit his
@@ -257,15 +273,15 @@ MonoBehaviour:
     maxStack: 1
     indexItemInList: 999
     rarity: 0
-    itemAttributes: []
+    itemAttributes:
+    - attributeName: Armor
+      attributeValue: 93
   - itemName: Reinforced boots
     itemID: 17
     itemDesc: 'You don''t like walking? Then you haven''t tried these boots.
 
       +
-      9 Defense
-
-      + 2 Walking Speed'
+      9 Defense'
     itemIcon: {fileID: 21300000, guid: 2de2ce1257d5c1346b296c0b41300cf2, type: 3}
     itemModel: {fileID: 0}
     itemValue: 1
@@ -274,7 +290,9 @@ MonoBehaviour:
     maxStack: 1
     indexItemInList: 999
     rarity: 0
-    itemAttributes: []
+    itemAttributes:
+    - attributeName: Armor
+      attributeValue: 91
   - itemName: Leather
     itemID: 18
     itemDesc: A carefully tanned piece of leather. A great ingredient for your next
@@ -388,7 +406,9 @@ MonoBehaviour:
     maxStack: 1
     indexItemInList: 999
     rarity: 0
-    itemAttributes: []
+    itemAttributes:
+    - attributeName: Armor
+      attributeValue: 95
   - itemName: dummy
     itemID: 27
     itemDesc: its a me

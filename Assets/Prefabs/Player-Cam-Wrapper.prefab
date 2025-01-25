@@ -6902,6 +6902,7 @@ MonoBehaviour:
   _inventoryOpen: 0
   inventory: {fileID: 4179730975589834584}
   equipment: {fileID: 7145729559675572752}
+  crafting: {fileID: 1559978383520070011}
   hotbar: {fileID: 4815274171344190455}
   activeHotbarSlot: 0
   storageInv: {fileID: 5828316147656904170}
