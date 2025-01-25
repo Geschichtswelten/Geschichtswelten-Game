@@ -24,7 +24,6 @@ public class PickUpItem : MonoBehaviour
         {
             Debug.Log("Player is not.");
         }
-            
     }
 
     void Update()
@@ -65,9 +64,9 @@ public class PickUpItem : MonoBehaviour
     public void PickUpByPlayer()
     {
         bool check = _inventory.checkIfItemAllreadyExist(item.itemID, item.itemValue);
-        if (check) 
+        /*if (check) 
             Destroy(this.gameObject);
-        else if (_inventory.ItemsInInventory.Count < (_inventory.width * _inventory.height))
+        else */if (_inventory.ItemsInInventory.Count < (_inventory.width * _inventory.height))
         {
             _inventory.addItemToInventory(item.itemID, item.itemValue);
             _inventory.updateItemList();

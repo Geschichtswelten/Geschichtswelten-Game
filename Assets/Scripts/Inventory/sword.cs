@@ -54,9 +54,12 @@ namespace DefaultNamespace
         
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("Hit [" + other.tag + "] " + other.name);
             if (!other.gameObject.CompareTag("Enemy")) return;
-            other.gameObject.GetComponent<AbstractEnemyBehaviour>().AttackEnemy(damage);
+            Debug.Log("Hit [" + other.tag + "] " + other.name);
+            if (other.TryGetComponent<AbstractEnemyBehaviour>(out var enemy))
+            {
+                enemy.AttackEnemy(damage);
+            }
         }
     }
 }

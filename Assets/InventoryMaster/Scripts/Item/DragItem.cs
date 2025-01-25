@@ -679,16 +679,22 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                 {
                     Destroy(itemBehaviour);
                 }
+
                 dropItem.AddComponent<PickUpItem>();
-                dropItem.GetComponent<PickUpItem>().item = this.gameObject.GetComponent<ItemOnObject>().item;
-                dropItem.AddComponent<Rigidbody>();
-                Destroy(dropItem.AddComponent<SphereCollider>(), 0.42f);
+                if (TryGetComponent<PickUpItem>(out var item))
+                {
+                    dropItem.GetComponent<PickUpItem>().item = item.item;
+                }
+                Destroy(dropItem.TryGetComponent<Rigidbody>(out var rb) ? rb :
+                        dropItem.GetComponent<Rigidbody>(), 0.42f);
                 if (dropItem.TryGetComponent<Collider>(out var coll))
                 {
                     coll.isTrigger = false;
                     Destroy(coll, 0.42f);
-                }
-                Destroy(dropItem.GetComponent<Rigidbody>(), 0.42f);
+                } 
+                else 
+                    Destroy(dropItem.AddComponent<SphereCollider>(), 0.42f);
+                
                 var player = GameObject.FindGameObjectWithTag("Player");
                 var pos = Vector3.zero;
                 if (player != null)
