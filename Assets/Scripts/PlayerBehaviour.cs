@@ -103,6 +103,7 @@ public class PlayerBehaviour : MonoBehaviour
     public bool _inventoryOpen;
     [SerializeField] private Inventory inventory;
     [SerializeField] private Inventory equipment;
+    [SerializeField] private Inventory crafting;
     [SerializeField] private Inventory hotbar;
     public int activeHotbarSlot = 0;
     [SerializeField] public GameObject storageInv;
@@ -250,6 +251,7 @@ public class PlayerBehaviour : MonoBehaviour
             return;
         inventory.openInventory();
         equipment.openInventory();
+        crafting.openInventory();
         toggleInventory();
     }
     public void OpenInventory(StorageInventory container)
@@ -258,6 +260,7 @@ public class PlayerBehaviour : MonoBehaviour
             return;
         inventory.openInventory();
         equipment.openInventory();
+        crafting.openInventory();
         _lastContainer = container;
         toggleInventory();
     }
@@ -268,6 +271,7 @@ public class PlayerBehaviour : MonoBehaviour
             return;
         inventory.closeInventory();
         equipment.closeInventory();
+        crafting.closeInventory();
         if (_lastContainer != null) 
             _lastContainer.closeInventory();
         toggleInventory();

@@ -286,6 +286,16 @@ public class PlayerInventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (toolTip != null)
+                toolTip.deactivateTooltip();
+            return;
+        }
+        if (Input.GetKeyDown(inputManagerDatabase.InventoryKeyCode))
+        {
+            toggleInventory();   
+        }/*
         if (Input.GetKeyDown(inputManagerDatabase.CharacterSystemKeyCode) || Input.GetKeyDown(inputManagerDatabase.InventoryKeyCode))
         {
             if (!characterSystem.activeSelf)
@@ -326,8 +336,26 @@ public class PlayerInventory : MonoBehaviour
                     toolTip.deactivateTooltip();
                 craftSystemInventory.closeInventory();
             }
-        }
+        }*/
 
+    }
+
+    public void toggleInventory()
+    {
+        if (!inventory.activeSelf)
+        {
+            characterSystemInventory.openInventory();
+            mainInventory.openInventory();
+            craftSystemInventory.openInventory();
+        }
+        else
+        {
+            if (toolTip != null)
+                toolTip.deactivateTooltip();
+            characterSystemInventory.closeInventory();
+            mainInventory.closeInventory();
+            craftSystemInventory.closeInventory();
+        }
     }
 
 }
