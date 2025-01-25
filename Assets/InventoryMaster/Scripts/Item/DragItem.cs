@@ -204,7 +204,12 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                                         {
                                             PlayerBehaviour.armor a = new PlayerBehaviour.armor();
                                             a.itemId = firstItem.itemID;
-                                            a.multiplier = firstItem.itemAttributes[0]?.attributeValue ?? 100 / 100f;
+                                            var m = 100f;
+                                            if (firstItem.itemAttributes.Count > 0)
+                                            {
+                                                m = firstItem.itemAttributes[0].attributeValue;
+                                            }
+                                            a.multiplier = m / 100f;
                                             player.registerArmor(a);
                                         }
                     
@@ -417,7 +422,12 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                     {
                         PlayerBehaviour.armor a = new PlayerBehaviour.armor();
                         a.itemId = firstItem.itemID;
-                        a.multiplier = firstItem.itemAttributes[0]?.attributeValue ?? 100 / 100f;
+                        var m = 100f;
+                        if (firstItem.itemAttributes.Count > 0)
+                        {
+                            m = firstItem.itemAttributes[0].attributeValue;
+                        }
+                        a.multiplier = m / 100f;
                         player.registerArmor(a);
                     }
                     
@@ -598,7 +608,12 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                                     {
                                         PlayerBehaviour.armor a = new PlayerBehaviour.armor();
                                         a.itemId = firstItem.itemID;
-                                        a.multiplier = firstItem.itemAttributes[0]?.attributeValue ?? 100 / 100f;
+                                        var m = 100f;
+                                            if (firstItem.itemAttributes.Count > 0)
+                                            {
+                                                m = firstItem.itemAttributes[0].attributeValue;
+                                            }
+                                            a.multiplier = m / 100f;
                                         player.registerArmor(a);
                                     }
                     
