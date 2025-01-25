@@ -13,8 +13,7 @@ public class Tutorial1Script : MonoBehaviour
     [SerializeField] private Stage stage;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject wrapperPlayer;
-    [SerializeField] private GameObject loadingScreen;
-    [SerializeField] private GameObject cam;
+    private GameObject loadingScreen;
     [SerializeField] private AbstractEnemyBehaviour[] enemies;
     [SerializeField] private Inventory hotbarScript;
     [SerializeField] private Inventory equipmentScript;
@@ -38,7 +37,7 @@ public class Tutorial1Script : MonoBehaviour
     private VideoPlayer videoPlayer;
     void Start()
     {
-        
+        DontDestroyOnLoad(gameObject);
         worldMusicScript = FindAnyObjectByType<WorldMusicScript>();
         videoPlayer = GetComponent<VideoPlayer>();
         stage = Stage.start;
@@ -142,11 +141,18 @@ public class Tutorial1Script : MonoBehaviour
         source.clip = audioClips[6];
         source.Play();
         text.text = allEnemiesDead;
+        AsyncOperation loadVid = SceneManager.LoadSceneAsync(395, LoadSceneMode.Additive);
+        loadVid.allowSceneActivation = false;
         yield return new WaitUntil(() => !source.isPlaying);
-        cam.SetActive(true);
+        loadVid.allowSceneActivation = true;
+        source.Stop();
+        videoPlayer.SetDirectAudioVolume(0, ButtonHandler.settings.dialogueVolume * ButtonHandler.settings.masterVolume);
+        worldMusicScript.ToggleMute();
+        videoPlayer.Play();
+        yield return new WaitUntil(() => !videoPlayer.isPlaying);
+        loadingScreen = GameObject.FindGameObjectWithTag("Finish");
         loadingScreen.SetActive(true);
         yield return new WaitForSeconds(2);
-        Destroy(wrapperPlayer);
         AsyncOperation loadScene = SceneManager.LoadSceneAsync(392, LoadSceneMode.Additive);
         loadScene.allowSceneActivation = true;  //has to be set to false
         //ProgressBar
@@ -163,10 +169,6 @@ public class Tutorial1Script : MonoBehaviour
             }
 
             yield return new WaitForSeconds(5);
-            Time.timeScale = 0;
-            //PlayVideo
-            
-            Time.timeScale = 1;
             worldMusicScript.StartingGame();
             SceneManager.UnloadSceneAsync(393);
             

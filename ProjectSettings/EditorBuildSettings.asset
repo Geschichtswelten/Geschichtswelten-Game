@@ -1190,6 +1190,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VideoScene.unity
     guid: 462f4688cab683f49b82285941afec60
+  - enabled: 1
+    path: Assets/Scenes/VideoSceneAfterTut.unity
+    guid: f173b1fe24d35e4469c3fb1b6260b390
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

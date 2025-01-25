@@ -40,6 +40,7 @@ public class WorldMusicScript : MonoBehaviour
 
     public void StartingGame()
     {
+        source.mute = false;
         HandleSettingsChanged();
         source.clip = clips[1];
     }
