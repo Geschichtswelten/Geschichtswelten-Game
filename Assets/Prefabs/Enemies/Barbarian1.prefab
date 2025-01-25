@@ -1057,7 +1057,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 512
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1272,6 +1272,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4379442849854070, guid: cc7605c58a8807d48bc1b6b6a6032de3, type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65291326017205510, guid: cc7605c58a8807d48bc1b6b6a6032de3, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65598181857654874, guid: cc7605c58a8807d48bc1b6b6a6032de3, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 136674741435114950, guid: cc7605c58a8807d48bc1b6b6a6032de3, type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
