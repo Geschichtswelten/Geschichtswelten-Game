@@ -11,6 +11,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -116,6 +117,19 @@ public class PlayerBehaviour : MonoBehaviour
     
     [SerializeField] private Transform respawnPoint;
 
+    [SerializeField] private float walkCooldown;
+    [SerializeField] private float sprintCooldown;
+
+    
+    private float _wC = 0, _sC = 0;
+
+    [Header("Audio")] 
+    [SerializeField] private AudioSource _source;
+    [SerializeField] private AudioSource _combatSource;
+    [SerializeField] private AudioClip[] woodClips;
+    [SerializeField] private AudioClip[] grassClips;
+    
+
     #endregion
 
     private void OnEnable()
@@ -129,6 +143,7 @@ public class PlayerBehaviour : MonoBehaviour
         action2Key.action.Enable();
         pauseMenuKey.action.Enable();
         escKey.action.Enable();
+        ButtonHandler.OnSettingsChanged += HandleVolumeChange;
     }
 
     private void OnDisable()
@@ -142,12 +157,16 @@ public class PlayerBehaviour : MonoBehaviour
         action2Key.action.Disable();
         pauseMenuKey.action.Disable();
         escKey.action.Disable();
+        ButtonHandler.OnSettingsChanged -= HandleVolumeChange;
     }
     // Start is called before the first frame update
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        
+        _combatSource.volume = ButtonHandler.settings.dialogueVolume;
+        _source.volume = ButtonHandler.settings.masterVolume;
         
         startPosition = transform.position;
 
@@ -169,6 +188,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Update()
     {
+        _sC -= Time.deltaTime;
+        _wC -= Time.deltaTime;
         if (_inventoryOpen != Inventory.inventoryOpen)
         {
             if (_lastContainer != null) _lastContainer.closeInventory();
@@ -193,6 +214,12 @@ public class PlayerBehaviour : MonoBehaviour
     {
         MovePlayer();
         //Debug.Log(state + " " + moveSpeed);
+    }
+
+    private void HandleVolumeChange()
+    {
+            _source.volume = ButtonHandler.settings.masterVolume;
+            _combatSource.volume = ButtonHandler.settings.dialogueVolume;
     }
 
     public void resetPosition()
@@ -350,6 +377,55 @@ public class PlayerBehaviour : MonoBehaviour
                 rb.AddForce(moveDirection.normalized * (moveSpeed * 10f * airMultiplier), ForceMode.Force);
                 break;
         }
+
+        if (Physics.Raycast(gameObject.transform.position, Vector3.down, out RaycastHit hit, 4f,
+                LayerMask.GetMask("whatIsGround")))
+        {
+            if (grounded && moveDirection.magnitude != 0)
+            {
+                switch (state)
+                {
+                    case Movementstate.walking:
+                        if (_wC <= 0)
+                        {
+                            if (hit.collider.gameObject.CompareTag("Wood"))
+                            {
+                                _source.clip = woodClips[Random.Range(0, woodClips.Length)];
+                                _source.Play();
+                            }
+                            else
+                            {
+                                _source.clip = grassClips[Random.Range(0, grassClips.Length)];
+                                _source.Play();
+                            }
+                            _wC = walkCooldown;
+                        }
+                        break;
+                    case Movementstate.sprinting:
+                        if (_sC <= 0)
+                        {
+                            
+                                if (hit.collider.gameObject.CompareTag("Wood"))
+                                {
+                                    _source.clip = woodClips[Random.Range(0, woodClips.Length)];
+                                    _source.Play();
+                                    Debug.Log("played sprint clip");
+                                }
+                                else
+                                {
+                                    _source.clip = grassClips[Random.Range(0, grassClips.Length)];
+                                    _source.Play();
+                                    Debug.Log("played sprint clip");
+                                }
+                                _sC = sprintCooldown;
+                            
+                        }
+                        break;
+                }
+            }
+        }
+
+        
 
         rb.useGravity = !isOnSlope;
     }
