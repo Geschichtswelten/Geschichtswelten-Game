@@ -2091,7 +2091,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 24, y: -98}
-  m_SizeDelta: {x: 153, y: 335}
+  m_SizeDelta: {x: 457.22, y: 332}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &3299932411218494371
 CanvasRenderer:
@@ -10255,6 +10255,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8369441089452571159}
     m_Modifications:
+    - target: {fileID: 3254971706028213469, guid: 1688afe3894ad864ca984b9cf86eefa0, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3eac2d9cf2274624996dc47508457c04, type: 2}
+    - target: {fileID: 3254971706028213469, guid: 1688afe3894ad864ca984b9cf86eefa0, type: 3}
+      propertyPath: animations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3254971706028213469, guid: 1688afe3894ad864ca984b9cf86eefa0, type: 3}
+      propertyPath: 'animations.Array.data[0]'
+      value: Attack
+      objectReference: {fileID: 0}
     - target: {fileID: 7960789110634908141, guid: 1688afe3894ad864ca984b9cf86eefa0, type: 3}
       propertyPath: m_Name
       value: sword
