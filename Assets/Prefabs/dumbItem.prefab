@@ -56,7 +56,6 @@ MonoBehaviour:
   name: unnamed
   animationHandler: {fileID: 6988094990294907692}
   itemSfxHandler: {fileID: 5406448991151779169}
-  dPrefab: {fileID: 1274485333396126166}
 --- !u!95 &7966524195757174795
 Animator:
   serializedVersion: 7

@@ -200,23 +200,19 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
 
                                         if (player == null) 
                                             return;
-                                        if (firstItem != null)
+                                        
+                                        var m = 95f;
+                                        if (secondItem.itemAttributes.Count > 0)
                                         {
-                                            PlayerBehaviour.armor a = new PlayerBehaviour.armor();
-                                            a.itemId = firstItem.itemID;
-                                            var m = 100f;
-                                            if (firstItem.itemAttributes.Count > 0)
-                                            {
-                                                m = firstItem.itemAttributes[0].attributeValue;
-                                            }
-                                            a.multiplier = m / 100f;
-                                            player.registerArmor(a);
+                                            m = secondItem.itemAttributes[0].attributeValue;
                                         }
-                    
-                                        if (secondItem != null)
+                                        var a = new PlayerBehaviour.armor
                                         {
-                                            player.removeArmor(secondItem.itemID);
-                                        }
+                                            itemId = firstItem.itemID,
+                                            multiplier = m / 100f
+                                        };
+                                        player.registerArmor(a);
+                                        player.removeArmor(firstItem.itemID);
                                         
                                         newSlot.transform.parent.parent.parent.parent.GetComponent<Inventory>().UnEquipItem1(firstItem);
                                         oldSlot.transform.parent.parent.GetComponent<Inventory>().EquiptItem(secondItem);
@@ -264,7 +260,13 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                                 firstItemRectTransform.localPosition = Vector3.zero;
 
                                 if (newSlot.transform.parent.parent.GetComponent<EquipmentSystem>() == null && oldSlot.transform.parent.parent.GetComponent<EquipmentSystem>() != null)
+                                {var player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>();
+
+                                    if (player == null) 
+                                        return;
+                                    player.removeArmor(firstItem.itemID);
                                     oldSlot.transform.parent.parent.GetComponent<Inventory>().UnEquipItem1(firstItem);
+                                }
                             }
                         }
                     }
@@ -418,23 +420,16 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
 
                     if (player == null) 
                         return;
-                    if (firstItem != null)
+                    var m = 95f;
+                    if (firstItem.itemAttributes.Count > 0)
                     {
-                        PlayerBehaviour.armor a = new PlayerBehaviour.armor();
-                        a.itemId = firstItem.itemID;
-                        var m = 100f;
-                        if (firstItem.itemAttributes.Count > 0)
-                        {
-                            m = firstItem.itemAttributes[0].attributeValue;
-                        }
-                        a.multiplier = m / 100f;
-                        player.registerArmor(a);
+                        m = firstItem.itemAttributes[0].attributeValue;
                     }
-                    
-                    if (secondItem != null)
+                    var a = new PlayerBehaviour.armor
                     {
-                        player.removeArmor(secondItem.itemID);
-                    }
+                        itemId = firstItem.itemID,
+                        multiplier = m / 100f
+                    };
 
                     //dragging on a slot where already is an item on
                     if (newSlotChildCount != 0 && isOnSlot)
@@ -452,6 +447,8 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
 
                             if (!temp1.Equals(temp2))
                             {
+                                player.registerArmor(a);
+                                player.removeArmor(secondItem.itemID);
                                 if (firstItem.itemType == ItemType.UFPS_Weapon)
                                 {
                                     Inventory.GetComponent<Inventory>().UnEquipItem1(secondItem);
@@ -465,8 +462,8 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                                 }
                             }
 
-                            if (fromHot)
-                                createDuplication(secondItemGameObject);
+                            /*if (fromHot)
+                                createDuplication(secondItemGameObject);*/
 
                         }
                         //if they are not from the same Itemtype the dragged one getting placed back
@@ -475,8 +472,8 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                             firstItemGameObject.transform.SetParent(oldSlot.transform);
                             firstItemRectTransform.localPosition = Vector3.zero;
 
-                            if (fromHot)
-                                createDuplication(firstItemGameObject);
+                            /*if (fromHot)
+                                createDuplication(firstItemGameObject);*/
                         }
 
                     }
@@ -492,6 +489,8 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                                 {
                                     transform.SetParent(newSlot);
                                     rectTransform.localPosition = Vector3.zero;
+                                    
+                                    player.registerArmor(a);
 
                                     if (!oldSlot.transform.parent.parent.Equals(newSlot.transform.parent.parent))
                                         Inventory.GetComponent<Inventory>().EquiptItem(firstItem);
@@ -502,8 +501,8 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                                 {
                                     transform.SetParent(oldSlot.transform);
                                     rectTransform.localPosition = Vector3.zero;
-                                    if (fromHot)
-                                        createDuplication(firstItemGameObject);
+                                    /*if (fromHot)
+                                        createDuplication(firstItemGameObject);*/
                                 }
                             }
                         }
@@ -599,28 +598,23 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                                 //if you are dragging an item from equipmentsystem to the inventory and try to swap it with the same itemtype
                                 if (oldSlot.transform.parent.parent.GetComponent<EquipmentSystem>() != null && firstItem.itemType == secondItem.itemType)
                                 {                                  
-
                                     var player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>();
 
                                     if (player == null) 
                                         return;
-                                    if (firstItem != null)
+                                        
+                                    var m = 95f;
+                                    if (secondItem.itemAttributes.Count > 0)
                                     {
-                                        PlayerBehaviour.armor a = new PlayerBehaviour.armor();
-                                        a.itemId = firstItem.itemID;
-                                        var m = 100f;
-                                            if (firstItem.itemAttributes.Count > 0)
-                                            {
-                                                m = firstItem.itemAttributes[0].attributeValue;
-                                            }
-                                            a.multiplier = m / 100f;
-                                        player.registerArmor(a);
+                                        m = secondItem.itemAttributes[0].attributeValue;
                                     }
-                    
-                                    if (secondItem != null)
+                                    var a = new PlayerBehaviour.armor
                                     {
-                                        player.removeArmor(secondItem.itemID);
-                                    }
+                                        itemId = firstItem.itemID,
+                                        multiplier = m / 100f
+                                    };
+                                    player.registerArmor(a);
+                                    player.removeArmor(firstItem.itemID);
                                     
                                     firstItemGameObject.transform.SetParent(secondItemGameObject.transform.parent);
                                     secondItemGameObject.transform.SetParent(oldSlot.transform);
@@ -660,14 +654,26 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                             firstItemRectTransform.localPosition = Vector3.zero;
 
                             if (newSlot.transform.parent.parent.GetComponent<EquipmentSystem>() == null && oldSlot.transform.parent.parent.GetComponent<EquipmentSystem>() != null)
+                            {
+                                var player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>();
+
+                                if (player == null) 
+                                    return;
+                                player.removeArmor(firstItem.itemID);
                                 oldSlot.transform.parent.parent.GetComponent<Inventory>().UnEquipItem1(firstItem);
+                            }
                         }
                     }
                 }
             }
             else // drop item
             {
-                var iModel = GetComponent<ItemOnObject>().item.itemModel;
+                
+                if (!TryGetComponent<ItemOnObject>(out var itemOnObj))
+                {
+                    Debug.LogError("ItemOnObject not found");
+                }
+                var iModel = itemOnObj.item.itemModel;
                 if (iModel == null || iModel.GetComponentInChildren<MeshRenderer>() == null)
                 {
                     iModel = inventory.GetItemFromId(27).itemModel;
@@ -680,29 +686,37 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                     Destroy(itemBehaviour);
                 }
 
-                dropItem.AddComponent<PickUpItem>();
-                if (TryGetComponent<PickUpItem>(out var item))
+                var pickUpItem = dropItem.AddComponent<PickUpItem>();
+                pickUpItem.item = itemOnObj.item;
+
+                if (!dropItem.TryGetComponent<Rigidbody>(out var rb))
                 {
-                    dropItem.GetComponent<PickUpItem>().item = item.item;
+                    rb = dropItem.AddComponent<Rigidbody>();
                 }
-                Destroy(dropItem.TryGetComponent<Rigidbody>(out var rb) ? rb :
-                        dropItem.GetComponent<Rigidbody>(), 0.42f);
+                rb.useGravity = true;
+                rb.isKinematic = false;
+                rb.detectCollisions = true;
+                rb.excludeLayers = LayerMask.GetMask("Player");
+                Destroy(rb, 1.4f);
+                
                 if (dropItem.TryGetComponent<Collider>(out var coll))
                 {
                     coll.isTrigger = false;
-                    Destroy(coll, 0.42f);
-                } 
+                    coll.enabled = true;
+                    Destroy(coll, 1.4f);
+                }
                 else 
-                    Destroy(dropItem.AddComponent<SphereCollider>(), 0.42f);
+                    Destroy(dropItem.AddComponent<SphereCollider>(), 1.4f);
                 
                 var player = GameObject.FindGameObjectWithTag("Player");
                 var pos = Vector3.zero;
                 if (player != null)
                 {
-                    pos = player.transform.position;
+                    pos = player.transform.position + Vector3.up * player.GetComponent<PlayerBehaviour>().playerHeight * 0.5f;
                     player.GetComponent<PlayerBehaviour>().EquipItem(0);
                 }
-                dropItem.transform.localPosition = pos;
+                var offset = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-.2f, .2f), Random.Range(-1.0f, 1.0f));
+                dropItem.transform.localPosition = pos + offset;
                 inventory.OnUpdateItemList();
                 if (oldSlot.transform.parent.parent.GetComponent<EquipmentSystem>() != null)
                     inventory.GetComponent<Inventory>().UnEquipItem1(dropItem.GetComponent<PickUpItem>().item);
