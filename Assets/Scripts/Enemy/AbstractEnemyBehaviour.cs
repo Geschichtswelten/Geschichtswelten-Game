@@ -136,8 +136,11 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
     }
     protected void Idle()
     {
-        _behaviour = Behaviour.Idle;
-        _agent.isStopped = true;
+        if (_agent.isOnNavMesh)
+        {
+            _behaviour = Behaviour.Idle;
+            _agent.isStopped = true;
+        }
     }
     protected void Chasing()
     {
