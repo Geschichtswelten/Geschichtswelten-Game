@@ -13,7 +13,7 @@ public class FoodBehaviour : ItemBehaviour
         hotbarInv = player.GetHotbar();
     }
 
-    public override void action1()
+    public override void Action1()
     {
         Debug.Log("I am food");
         player.Eat(foodWorth);
@@ -24,7 +24,7 @@ public class FoodBehaviour : ItemBehaviour
         }
     }
 
-    public override void action2()
+    public override void Action2()
     {
         return;
     }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class dumbItemBehaviour : ItemBehaviour
 {
-    public override void action1()
+    public override void Action1()
     {
         
     }
 
-    public override void action2()
+    public override void Action2()
     {
         
     }

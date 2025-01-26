@@ -36,8 +36,8 @@ namespace DefaultNamespace
             if (itemSfxHandler == null) itemSfxHandler = GetComponent<ItemSfxHandler>();
         }
 
-        public abstract void action1();
-        public abstract void action2();
+        public abstract void Action1();
+        public abstract void Action2();
         
         public ushort Id { get => id; set => id = value; }
         public ushort Amt { get => amt; set => amt = value; }
