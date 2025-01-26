@@ -671,7 +671,8 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                 
                 if (!TryGetComponent<ItemOnObject>(out var itemOnObj))
                 {
-                    Debug.LogError("ItemOnObject not found");
+                    //Debug.LogError("ItemOnObject not found");
+                    return;
                 }
                 var iModel = itemOnObj.item.itemModel;
                 if (iModel == null || iModel.GetComponentInChildren<MeshRenderer>() == null)
@@ -718,6 +719,7 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                 }
                 var offset = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-.2f, .2f), Random.Range(-1.0f, 1.0f));
                 dropItem.transform.localPosition = pos + offset;
+                dropItem.transform.localScale = Vector3.one;
                 inventory.OnUpdateItemList();
                 if (oldSlot.transform.parent.parent.GetComponent<EquipmentSystem>() != null)
                     inventory.GetComponent<Inventory>().UnEquipItem1(dropItem.GetComponent<PickUpItem>().item);

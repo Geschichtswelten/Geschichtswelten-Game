@@ -112,7 +112,7 @@ MonoBehaviour:
   itemSfxHandler: {fileID: 5392971201141368203}
   hitbox: {fileID: 538155169646609821}
   damage: 10
-  envDamageMod: 0.5
+  attackCooldown: 1.1
 --- !u!82 &1402804328309984624
 AudioSource:
   m_ObjectHideFlags: 0
@@ -301,5 +301,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Radius: 0.6
+  m_Radius: 2.2
   m_Center: {x: 0.68, y: 1.2, z: 0.44}

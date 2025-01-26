@@ -111,8 +111,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0.72, y: 1.23, z: 0.27}
+  m_Size: {x: 2, y: 3, z: 2}
+  m_Center: {x: 0.72, y: 0, z: 0.4}
 --- !u!95 &8830734184492044707
 Animator:
   serializedVersion: 7
@@ -285,6 +285,7 @@ MonoBehaviour:
   itemSfxHandler: {fileID: 1486787314247272797}
   hitbox: {fileID: 8131853494674897497}
   damage: 10
+  attackCooldown: 1.1
   timberDistance: 10
   maxTimberAngle: 70
   treePrefab: {fileID: 0}

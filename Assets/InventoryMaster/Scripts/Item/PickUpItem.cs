@@ -22,7 +22,7 @@ public class PickUpItem : MonoBehaviour
         }
         else
         {
-            Debug.Log("Player is not.");
+            //Debug.Log("Player is not.");
         }
     }
 
