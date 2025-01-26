@@ -11,19 +11,18 @@ public class EnemyInfantryScript : AbstractEnemyBehaviour
     [SerializeField] private AudioClip[] clipsHit;
     [SerializeField] private AudioClip[] clipsFalling;
 
-
-    private float cd;
+    [SerializeField] private Collider hitbox;
+    private Coroutine _attackRoutine;
 
     private void Start()
     {
         StartCoroutine(EnemyMovement());
-        cd = _attackCooldown;
+        hitbox.enabled = false;
+        hitbox.isTrigger = true;
     }
 
     private void Update()
     {
-        cd -= Time.deltaTime;
-        if (cd < 0) cd = 0;
         if (_health < 0) Die();
         if (_target == gameObject && !tutorial)
         {
@@ -59,10 +58,9 @@ public class EnemyInfantryScript : AbstractEnemyBehaviour
             {
                 if (distance <= _attackRange)
                 {
-                    if (distance <= _attackRange && cd <= 0) 
+                    if (distance <= _attackRange && _attackRoutine == null) 
                     {
-                        cd = _attackCooldown;
-                        Attack();
+                        StartCoroutine(Attack());
                         _animator.ResetTrigger("enemyRun");
                         _animator.ResetTrigger("enemyWalk");
                         yield return new WaitForSeconds(2.5f);
@@ -97,18 +95,18 @@ public class EnemyInfantryScript : AbstractEnemyBehaviour
             }
         }
         Die();
-
     }
-
-
-
-
-    private void Attack()
+    
+    private IEnumerator Attack()
     {
         _animator.SetTrigger("enemyAttack");
         _agent.isStopped = true;
+        hitbox.enabled = true;
+        yield return new WaitForSeconds(0.3f);
+        hitbox.enabled = false;
+        yield return new WaitForSeconds(_attackCooldown);
+        _attackRoutine = null;
     }
-
 
     private void Die()
     {

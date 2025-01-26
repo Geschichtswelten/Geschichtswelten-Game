@@ -1042,6 +1042,7 @@ MonoBehaviour:
   clipsFalling:
   - {fileID: 8300000, guid: 672ee15daccdb814e862fa14d413bdee, type: 3}
   - {fileID: 8300000, guid: 4755b9f0490dbaf44bdd5033921a33e3, type: 3}
+  hitbox: {fileID: 8745049882322193658}
 --- !u!136 &8831805636373059608
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1294,5 +1295,10 @@ PrefabInstance:
 --- !u!4 &8698341390175820618 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4379442849854070, guid: cc7605c58a8807d48bc1b6b6a6032de3, type: 3}
+  m_PrefabInstance: {fileID: 8699046264360200508}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &8745049882322193658 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 136674741435114950, guid: cc7605c58a8807d48bc1b6b6a6032de3, type: 3}
   m_PrefabInstance: {fileID: 8699046264360200508}
   m_PrefabAsset: {fileID: 0}

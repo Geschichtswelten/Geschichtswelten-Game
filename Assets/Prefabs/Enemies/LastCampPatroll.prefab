@@ -6334,6 +6334,7 @@ MonoBehaviour:
   clipsFalling:
   - {fileID: 8300000, guid: 672ee15daccdb814e862fa14d413bdee, type: 3}
   - {fileID: 8300000, guid: 4755b9f0490dbaf44bdd5033921a33e3, type: 3}
+  hitbox: {fileID: 734542444408909315}
 --- !u!82 &1022701009594070831
 AudioSource:
   m_ObjectHideFlags: 0

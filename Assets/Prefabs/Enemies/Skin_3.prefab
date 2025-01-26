@@ -1102,6 +1102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5109137294562219741}
+  - component: {fileID: 7507003967353893530}
   m_Layer: 9
   m_Name: hand_r
   m_TagString: Untagged
@@ -1129,6 +1130,27 @@ Transform:
   - {fileID: 4850826588613719586}
   m_Father: {fileID: 2735091775708584244}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &7507003967353893530
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4660554979963729284}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4884640633906170627
 GameObject:
   m_ObjectHideFlags: 0
@@ -2592,6 +2614,7 @@ MonoBehaviour:
   clipsFalling:
   - {fileID: 8300000, guid: 672ee15daccdb814e862fa14d413bdee, type: 3}
   - {fileID: 8300000, guid: 4755b9f0490dbaf44bdd5033921a33e3, type: 3}
+  hitbox: {fileID: 7507003967353893530}
 --- !u!82 &3333710835172867376
 AudioSource:
   m_ObjectHideFlags: 0

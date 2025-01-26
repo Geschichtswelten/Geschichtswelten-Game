@@ -126,10 +126,10 @@ public class AxeScript : ItemBehaviour
                     {
                         coll.isTrigger = false;
                         coll.enabled = true;
-                        Destroy(coll, 1.4f);
+                        Destroy(coll, 44.4f);
                     }
                     else 
-                        Destroy(dropItem.AddComponent<SphereCollider>(), 1.4f);
+                        Destroy(dropItem.AddComponent<SphereCollider>(), 44.4f);
                     break;
                 }
             }
