@@ -22,13 +22,13 @@ namespace DefaultNamespace
             name = "Fists";
         }
         
-        public override void action1()
+        public override void Action1()
         {
             if (attackRoutine == null) 
                 attackRoutine = StartCoroutine(attack());
         }
         
-        public override void action2()
+        public override void Action2()
         {
             //Debug.Log("Interacting or smth");
         }

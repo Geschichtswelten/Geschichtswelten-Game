@@ -916,30 +916,29 @@ public class Inventory : MonoBehaviour
         return itemDatabase.getItemByID(id);
     }
 
+    // Returns whether amount > 0 / item is still present after consumption
     public bool ConsumeItemAtSlot(int slot)
     {
         if (slot is >= 5 or < 0) 
             return false;
         var items = getFlatItemGrid();
         items[slot].itemValue--;
-        if (items[slot].itemValue <= 0)
+        if (items[slot].itemValue > 0) 
+            return true;
+        for (int k = 0; k < SlotContainer.transform.childCount; k++)
         {
-            for (int k = 0; k < SlotContainer.transform.childCount; k++)
+            if (SlotContainer.transform.GetChild(k).childCount != 0)
             {
-                if (SlotContainer.transform.GetChild(k).childCount != 0)
+                GameObject itemGameObject = SlotContainer.transform.GetChild(k).GetChild(0).gameObject;
+                Item itemObject = itemGameObject.GetComponent<ItemOnObject>().item;
+                if (itemObject.Equals(items[slot]))
                 {
-                    GameObject itemGameObject = SlotContainer.transform.GetChild(k).GetChild(0).gameObject;
-                    Item itemObject = itemGameObject.GetComponent<ItemOnObject>().item;
-                    if (itemObject.Equals(items[slot]))
-                    {
-                        Destroy(itemGameObject);
-                        break;
-                    }
+                    Destroy(itemGameObject);
+                    break;
                 }
             }
-            return false;
         }
-        return true;
+        return false;
     }
     
     public void ConsumeItemWithID(ushort id)

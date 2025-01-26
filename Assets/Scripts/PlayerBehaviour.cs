@@ -112,7 +112,7 @@ public class PlayerBehaviour : MonoBehaviour
     
     private const float MaxHp = 100f;
     private float _hp = MaxHp;
-    private List<armor> _armor = new List<armor>();
+    private List<Armor> _armor = new List<Armor>();
 
     [SerializeField] private GameObject drop;
     
@@ -183,7 +183,7 @@ public class PlayerBehaviour : MonoBehaviour
         
         _inventoryOpen = Inventory.inventoryOpen;
         var dmgMul = 1f;
-        _armor.ForEach(x => dmgMul *= x.multiplier);
+        _armor.ForEach(x => dmgMul *= x.Multiplier);
         hp_label.text = _hp.ToString() + " / 100\t" + (1f - dmgMul).ToString() + "%";
     }
 
@@ -290,16 +290,18 @@ public class PlayerBehaviour : MonoBehaviour
                 break;
             case false when _inventoryOpen:
                 return;
+            case false when pauseMenu.isPaused:
+                return;
         }
         var action1Input = action1Key.action.WasPressedThisFrame();
         var action2Input = action2Key.action.WasPressedThisFrame();
         if (action1Input)
         {
-            _equippedItemBehaviour.action1();
+            _equippedItemBehaviour.Action1();
         }
         else if (action2Input)
         {
-            _equippedItemBehaviour.action2();
+            _equippedItemBehaviour.Action2();
         }
 
 
@@ -547,15 +549,15 @@ public class PlayerBehaviour : MonoBehaviour
         Debug.Log("Hit by " + other.name);
         if (other.TryGetComponent<AbstractEnemyBehaviour>(out var enemy))
         {
-            takeDamage(enemy._damage);
+            TakeDamage(enemy._damage);
         }else if(other.TryGetComponent<ArrowScript>(out var arrowScript)) {
-            takeDamage(arrowScript.archer._damage);
+            TakeDamage(arrowScript.archer._damage);
         }
         else
         {
             var e = other.transform.root.gameObject;
             enemy = e.GetComponentInChildren<AbstractEnemyBehaviour>();
-            takeDamage(enemy == null ? 0 : enemy._damage);
+            TakeDamage(enemy == null ? 0 : enemy._damage);
         }
     }
 
@@ -571,44 +573,44 @@ public class PlayerBehaviour : MonoBehaviour
         _hp += val;
         if (_hp > MaxHp) _hp = MaxHp;
         var dmgMul = 1f;
-        _armor.ForEach(x => dmgMul *= x.multiplier);
+        _armor.ForEach(x => dmgMul *= x.Multiplier);
         var res = $"{(1f - dmgMul) * 100f,6:##0.0}";
         hp_label.text = (int) _hp + " / 100\t" + res + "%";
     }
 
-    public struct armor
+    public struct Armor
     {
-        public int itemId;
+        public int ItemId;
         // in range of [0; 1] for reduction
-        public float multiplier;
+        public float Multiplier;
     }
 
-    public void registerArmor(armor a)
+    public void RegisterArmor(Armor a)
     {
-        Debug.Log("Registering armor [" + a.itemId + "]");
+        //Debug.Log("Registering armor [" + a.ItemId + "]");
         _armor.Add(a);
         var dmgMul = 1f;
-        _armor.ForEach(x => dmgMul *= x.multiplier);
+        _armor.ForEach(x => dmgMul *= x.Multiplier);
         var res = $"{(1f - dmgMul) * 100f,6:##0.0}";
         hp_label.text = (int) _hp + " / 100\t" + res + "%";
     }
     
-    public void removeArmor(int id)
+    public void RemoveArmor(int id)
     {
-        Debug.Log("Removing armor [" + id + "]");
-        _armor.RemoveAll(x => x.itemId == id);
+        //Debug.Log("Removing armor [" + id + "]");
+        _armor.RemoveAll(x => x.ItemId == id);
         var dmgMul = 1f;
-        _armor.ForEach(x => dmgMul *= x.multiplier);
+        _armor.ForEach(x => dmgMul *= x.Multiplier);
         var res = $"{(1f - dmgMul) * 100f,6:##0.0}";
         hp_label.text = (int) _hp + " / 100\t" + res + "%";
     }
 
-    public void takeDamage(float val)
+    public void TakeDamage(float val)
     {
         if (val <= 0) 
             return;
         var dmgMul = 1f;
-        _armor.ForEach(x => dmgMul *= x.multiplier);
+        _armor.ForEach(x => dmgMul *= x.Multiplier);
         Debug.Log("Incoming dmg " + val + ", after armor " + val*dmgMul);
         _hp -= val * dmgMul;
         if (_hp <= 0.05)
@@ -634,7 +636,7 @@ public class PlayerBehaviour : MonoBehaviour
     public void Respawn()
     {
         var dmgMul = 1f;
-        _armor.ForEach(x => dmgMul *= x.multiplier);
+        _armor.ForEach(x => dmgMul *= x.Multiplier);
         _hp = MaxHp;
         var res = $"{(1f - dmgMul) * 100f,6:##0.0}";
         hp_label.text = (int) _hp + " / 100\t" + res + "%";

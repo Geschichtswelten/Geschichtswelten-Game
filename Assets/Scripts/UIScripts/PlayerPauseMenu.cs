@@ -70,6 +70,7 @@ public class PlayerPauseMenu : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    public bool isPaused => _canvas.activeSelf;
     public void tooglePauseMenu()
     {
         if (_canvas.activeSelf)

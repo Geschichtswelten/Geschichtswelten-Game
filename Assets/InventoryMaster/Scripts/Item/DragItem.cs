@@ -206,13 +206,13 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                                         {
                                             m = secondItem.itemAttributes[0].attributeValue;
                                         }
-                                        var a = new PlayerBehaviour.armor
+                                        var a = new PlayerBehaviour.Armor
                                         {
-                                            itemId = firstItem.itemID,
-                                            multiplier = m / 100f
+                                            ItemId = firstItem.itemID,
+                                            Multiplier = m / 100f
                                         };
-                                        player.registerArmor(a);
-                                        player.removeArmor(firstItem.itemID);
+                                        player.RegisterArmor(a);
+                                        player.RemoveArmor(firstItem.itemID);
                                         
                                         newSlot.transform.parent.parent.parent.parent.GetComponent<Inventory>().UnEquipItem1(firstItem);
                                         oldSlot.transform.parent.parent.GetComponent<Inventory>().EquiptItem(secondItem);
@@ -264,7 +264,7 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
 
                                     if (player == null) 
                                         return;
-                                    player.removeArmor(firstItem.itemID);
+                                    player.RemoveArmor(firstItem.itemID);
                                     oldSlot.transform.parent.parent.GetComponent<Inventory>().UnEquipItem1(firstItem);
                                 }
                             }
@@ -425,10 +425,10 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                     {
                         m = firstItem.itemAttributes[0].attributeValue;
                     }
-                    var a = new PlayerBehaviour.armor
+                    var a = new PlayerBehaviour.Armor
                     {
-                        itemId = firstItem.itemID,
-                        multiplier = m / 100f
+                        ItemId = firstItem.itemID,
+                        Multiplier = m / 100f
                     };
 
                     //dragging on a slot where already is an item on
@@ -447,8 +447,8 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
 
                             if (!temp1.Equals(temp2))
                             {
-                                player.registerArmor(a);
-                                player.removeArmor(secondItem.itemID);
+                                player.RegisterArmor(a);
+                                player.RemoveArmor(secondItem.itemID);
                                 if (firstItem.itemType == ItemType.UFPS_Weapon)
                                 {
                                     Inventory.GetComponent<Inventory>().UnEquipItem1(secondItem);
@@ -490,7 +490,7 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                                     transform.SetParent(newSlot);
                                     rectTransform.localPosition = Vector3.zero;
                                     
-                                    player.registerArmor(a);
+                                    player.RegisterArmor(a);
 
                                     if (!oldSlot.transform.parent.parent.Equals(newSlot.transform.parent.parent))
                                         Inventory.GetComponent<Inventory>().EquiptItem(firstItem);
@@ -608,13 +608,13 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                                     {
                                         m = secondItem.itemAttributes[0].attributeValue;
                                     }
-                                    var a = new PlayerBehaviour.armor
+                                    var a = new PlayerBehaviour.Armor
                                     {
-                                        itemId = firstItem.itemID,
-                                        multiplier = m / 100f
+                                        ItemId = firstItem.itemID,
+                                        Multiplier = m / 100f
                                     };
-                                    player.registerArmor(a);
-                                    player.removeArmor(firstItem.itemID);
+                                    player.RegisterArmor(a);
+                                    player.RemoveArmor(firstItem.itemID);
                                     
                                     firstItemGameObject.transform.SetParent(secondItemGameObject.transform.parent);
                                     secondItemGameObject.transform.SetParent(oldSlot.transform);
@@ -659,7 +659,7 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
 
                                 if (player == null) 
                                     return;
-                                player.removeArmor(firstItem.itemID);
+                                player.RemoveArmor(firstItem.itemID);
                                 oldSlot.transform.parent.parent.GetComponent<Inventory>().UnEquipItem1(firstItem);
                             }
                         }

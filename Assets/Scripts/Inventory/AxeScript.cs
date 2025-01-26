@@ -9,6 +9,7 @@ public class AxeScript : ItemBehaviour
     private Coroutine attackRoutine;
     [SerializeField] private Collider hitbox;
     [SerializeField] private float damage;
+    [SerializeField] private float attackCooldown = 1.1f;
     [SerializeField] private float timberDistance;
     [SerializeField] private float maxTimberAngle;
     [SerializeField] private GameObject treePrefab;
@@ -62,13 +63,13 @@ public class AxeScript : ItemBehaviour
         }
     }
 
-    public override void action1() //attack
+    public override void Action1() //attack
     {
         if (attackRoutine == null)
             attackRoutine = StartCoroutine(attack());
     }
     
-    public override void action2()
+    public override void Action2()
     {
         Debug.Log("Blocking or smth");
     }
@@ -80,7 +81,7 @@ public class AxeScript : ItemBehaviour
         harvestTree();
         animationHandler.playAnimation((int)animationIds.attack1);
         itemSfxHandler.PlayAction1();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(attackCooldown);
         hitbox.enabled = false;
         attackRoutine = null;
     }
@@ -106,20 +107,29 @@ public class AxeScript : ItemBehaviour
                     
                     var dropItem = Instantiate(logPrefab, worldPosition + 3.5f * Vector3.up, Quaternion.Euler(90, 0, 0));
                     dropItem.transform.localScale = new Vector3(treeArray[i].heightScale, treeArray[i].heightScale, treeArray[i].heightScale);
-                    Debug.Log(dropItem.name);
                     if (dropItem.TryGetComponent<ItemBehaviour>(out var itemBehaviour))
                     {
                         Destroy(itemBehaviour);
                     }
                     
-                    Destroy(dropItem.TryGetComponent<Rigidbody>(out var rb) ? rb : 
-                        (rb = dropItem.AddComponent<Rigidbody>()), 0.42f);
+                    if (!dropItem.TryGetComponent<Rigidbody>(out var rb))
+                    {
+                        rb = dropItem.AddComponent<Rigidbody>();
+                    }
+                    rb.useGravity = true;
+                    rb.isKinematic = false;
+                    rb.detectCollisions = true;
+                    rb.excludeLayers = LayerMask.GetMask("Player");
+                    Destroy(rb, 1.4f);
+                
                     if (dropItem.TryGetComponent<Collider>(out var coll))
                     {
-                        coll.enabled = true;
                         coll.isTrigger = false;
-                        Destroy(coll, 0.42f);
+                        coll.enabled = true;
+                        Destroy(coll, 1.4f);
                     }
+                    else 
+                        Destroy(dropItem.AddComponent<SphereCollider>(), 1.4f);
                     break;
                 }
             }
