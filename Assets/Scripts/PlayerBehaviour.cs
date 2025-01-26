@@ -133,6 +133,9 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private AudioSource _combatSource;
     [SerializeField] private AudioClip[] woodClips;
     [SerializeField] private AudioClip[] grassClips;
+    [SerializeField] private AudioClip[] gruntClips;
+    [SerializeField] private AudioClip[] deathClips;
+    [SerializeField] private AudioClip eatClip;
     
 
     #endregion
@@ -571,6 +574,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void Eat(float val)
     {
+        _combatSource.clip = eatClip;
+        _combatSource.Play();
         Heal(val);
     }
 
@@ -615,6 +620,11 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void TakeDamage(float val)
     {
+        if (!_combatSource.isPlaying)
+        {
+            _combatSource.clip = gruntClips[Random.Range(0, gruntClips.Length)];
+            _combatSource.Play();
+        }
         if (val <= 0) 
             return;
         var dmgMul = 1f;
@@ -632,6 +642,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Die()
     {
+        _combatSource.clip = deathClips[Random.Range(0, deathClips.Length)];
+        _combatSource.Play();
         var pouchInv = Instantiate(drop, transform.position, Quaternion.identity).GetComponent<StorageInventory>();
         pouchInv.player = gameObject;
         pouchInv.inventory = storageInv;
