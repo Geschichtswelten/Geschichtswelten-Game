@@ -71,12 +71,12 @@ public class AxeScript : ItemBehaviour
     
     public override void Action2()
     {
-        Debug.Log("Blocking or smth");
+        //Debug.Log("Blocking or smth");
     }
 
     private IEnumerator attack()
     {
-        Debug.Log("Attacking maybe");
+        //Debug.Log("Attacking maybe");
         hitbox.enabled = true;
         harvestTree();
         animationHandler.playAnimation((int)animationIds.attack1);
@@ -139,7 +139,7 @@ public class AxeScript : ItemBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.gameObject.CompareTag("Enemy")) return;
-        Debug.Log("Hit [" + other.tag + "] " + other.name);
+        //Debug.Log("Hit [" + other.tag + "] " + other.name);
         if (other.TryGetComponent<AbstractEnemyBehaviour>(out var enemy))
         {
             enemy.AttackEnemy(damage);

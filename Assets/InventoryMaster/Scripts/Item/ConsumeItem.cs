@@ -27,7 +27,7 @@ public class ConsumeItem : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData data)
     {
-        Debug.Log("FUCK OFF");
+       //Debug.Log("FUCK OFF");
         return;/*
         if (this.gameObject.transform.parent.parent.parent.GetComponent<EquipmentSystem>() == null)
         {

@@ -426,13 +426,13 @@ public class PlayerBehaviour : MonoBehaviour
                                 {
                                     _source.clip = woodClips[Random.Range(0, woodClips.Length)];
                                     _source.Play();
-                                    Debug.Log("played sprint clip");
+                                    //Debug.Log("played sprint clip");
                                 }
                                 else
                                 {
                                     _source.clip = grassClips[Random.Range(0, grassClips.Length)];
                                     _source.Play();
-                                    Debug.Log("played sprint clip");
+                                    //Debug.Log("played sprint clip");
                                 }
                                 _sC = sprintCooldown;
                             
@@ -550,14 +550,14 @@ public class PlayerBehaviour : MonoBehaviour
     
     public void LoadPosition(Vector3 position, Quaternion rotation)
     {
-        Debug.Log("Loaded Position");
+        //Debug.Log("Loaded Position");
         transform.position = new Vector3(position.x, position.y + 3f, position.z);
         transform.rotation = rotation;
     }
     
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Hit by " + other.name);
+        //Debug.Log("Hit by " + other.name);
         if (other.TryGetComponent<AbstractEnemyBehaviour>(out var enemy))
         {
             TakeDamage(enemy._damage);
@@ -633,7 +633,7 @@ public class PlayerBehaviour : MonoBehaviour
             return;
         var dmgMul = 1f;
         _armor.ForEach(x => dmgMul *= x.Multiplier);
-        Debug.Log("Incoming dmg " + val + ", after armor " + val*dmgMul);
+        //Debug.Log("Incoming dmg " + val + ", after armor " + val*dmgMul);
         _hp -= val * dmgMul;
         if (_hp <= 0.05)
         {

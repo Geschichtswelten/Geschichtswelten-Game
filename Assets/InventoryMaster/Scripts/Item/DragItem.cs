@@ -671,7 +671,8 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                 
                 if (!TryGetComponent<ItemOnObject>(out var itemOnObj))
                 {
-                    Debug.LogError("ItemOnObject not found");
+                    //Debug.LogError("ItemOnObject not found");
+                    return;
                 }
                 var iModel = itemOnObj.item.itemModel;
                 if (iModel == null || iModel.GetComponentInChildren<MeshRenderer>() == null)
