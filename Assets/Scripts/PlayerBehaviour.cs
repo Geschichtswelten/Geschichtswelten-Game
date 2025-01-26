@@ -572,7 +572,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (_hp > MaxHp) _hp = MaxHp;
         var dmgMul = 1f;
         _armor.ForEach(x => dmgMul *= x.multiplier);
-        var res = $"{(1f - dmgMul) * 100f,6:##0.00}";
+        var res = $"{(1f - dmgMul) * 100f,6:##0.0}";
         hp_label.text = (int) _hp + " / 100\t" + res + "%";
     }
 
@@ -589,7 +589,7 @@ public class PlayerBehaviour : MonoBehaviour
         _armor.Add(a);
         var dmgMul = 1f;
         _armor.ForEach(x => dmgMul *= x.multiplier);
-        var res = $"{(1f - dmgMul) * 100f,6:##0.00}";
+        var res = $"{(1f - dmgMul) * 100f,6:##0.0}";
         hp_label.text = (int) _hp + " / 100\t" + res + "%";
     }
     
@@ -599,7 +599,7 @@ public class PlayerBehaviour : MonoBehaviour
         _armor.RemoveAll(x => x.itemId == id);
         var dmgMul = 1f;
         _armor.ForEach(x => dmgMul *= x.multiplier);
-        var res = $"{(1f - dmgMul) * 100f,6:##0.00}";
+        var res = $"{(1f - dmgMul) * 100f,6:##0.0}";
         hp_label.text = (int) _hp + " / 100\t" + res + "%";
     }
 
@@ -616,7 +616,7 @@ public class PlayerBehaviour : MonoBehaviour
             Die();
             _hp = 0;
         }
-        var res = $"{(1f - dmgMul) * 100f,6:##0.00}";
+        var res = $"{(1f - dmgMul) * 100f,6:##0.0}";
         hp_label.text = (int) _hp + " / 100\t" + res + "%";
     }
 
@@ -636,7 +636,7 @@ public class PlayerBehaviour : MonoBehaviour
         var dmgMul = 1f;
         _armor.ForEach(x => dmgMul *= x.multiplier);
         _hp = MaxHp;
-        var res = $"{(1f - dmgMul) * 100f,6:##0.00}";
+        var res = $"{(1f - dmgMul) * 100f,6:##0.0}";
         hp_label.text = (int) _hp + " / 100\t" + res + "%";
         LoadPosition(respawnPoint.position, respawnPoint.rotation);
     }
