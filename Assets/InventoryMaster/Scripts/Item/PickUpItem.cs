@@ -8,7 +8,7 @@ public class PickUpItem : MonoBehaviour
     public Item item;
     private Inventory _inventory;
     private GameObject _player;
-    [Range(1, float.PositiveInfinity)] [SerializeField] private static float _pickUpRange = 3;
+    [Range(1, float.PositiveInfinity)] [SerializeField] private static float _pickUpRange = 5;
 
     [SerializeField] private int initItemIdForEditor = 0;
     // Use this for initialization
@@ -63,8 +63,8 @@ public class PickUpItem : MonoBehaviour
 
     public void PickUpByPlayer()
     {
-        bool check = _inventory.checkIfItemAllreadyExist(item.itemID, item.itemValue);
-        /*if (check) 
+        /*bool check = _inventory.checkIfItemAllreadyExist(item.itemID, item.itemValue);
+        if (check) 
             Destroy(this.gameObject);
         else */if (_inventory.ItemsInInventory.Count < (_inventory.width * _inventory.height))
         {
