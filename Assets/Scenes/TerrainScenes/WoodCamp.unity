@@ -10100,6 +10100,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2163902859974509158, guid: 6976154783932854286f38d5dccd904a, type: 3}
+      propertyPath: drop
+      value: 
+      objectReference: {fileID: 1758336818755121674, guid: 66f6fb4e115e0564c9e6bd36b3d03e68, type: 3}
+    - target: {fileID: 2163902859974509158, guid: 6976154783932854286f38d5dccd904a, type: 3}
+      propertyPath: dropIds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2163902859974509158, guid: 6976154783932854286f38d5dccd904a, type: 3}
+      propertyPath: 'dropIds.Array.data[0]'
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4664886073753584717, guid: 6976154783932854286f38d5dccd904a, type: 3}
       propertyPath: m_Name
       value: Barbarian1

@@ -71,7 +71,7 @@ MonoBehaviour:
     amountOfFinalItem: 1
     timeToCraft: 0
   - ingredients: 1200000016000000
-    amount: 0a0000000a000000
+    amount: 0d0000000d000000
     finalItem:
       itemName: Sturdy leather helmet
       itemID: 10
@@ -91,7 +91,7 @@ MonoBehaviour:
     amountOfFinalItem: 1
     timeToCraft: 0
   - ingredients: 1200000016000000
-    amount: 0f0000000c000000
+    amount: 140000000f000000
     finalItem:
       itemName: Leather top
       itemID: 11
@@ -111,7 +111,7 @@ MonoBehaviour:
     amountOfFinalItem: 1
     timeToCraft: 0
   - ingredients: 1200000016000000
-    amount: 0500000006000000
+    amount: 0c00000009000000
     finalItem:
       itemName: Leather gloves
       itemID: 12
@@ -131,7 +131,7 @@ MonoBehaviour:
     amountOfFinalItem: 1
     timeToCraft: 0
   - ingredients: 1200000016000000
-    amount: 0500000005000000
+    amount: 0a0000000a000000
     finalItem:
       itemName: Leather boots
       itemID: 13

@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -11,6 +13,7 @@ public class ScatterStars : MonoBehaviour
     [SerializeField] private ParticleSystem starsParticleSystem;
     [SerializeField] private int starCount = 11000;
     [SerializeField] private StarBand[] spreads;
+    public bool toggle;
 
     private ParticleSystem.Particle[] particles;
     private byte[] alphas;
@@ -20,6 +23,7 @@ public class ScatterStars : MonoBehaviour
     private Vector3 position;
     void Start()
     {
+        toggle = true;
         alphas = new byte[starCount];
         particles = new ParticleSystem.Particle[starCount];
 
@@ -57,17 +61,26 @@ public class ScatterStars : MonoBehaviour
         starsParticleSystem.SetParticles(particles, starCount);
     }
 
-    
-    void Update()
+
+    public void Update()
     {
-        for (int i = 0; i < particles.Length; i++)
+        if (toggle)
         {
-            color32 = particles[i].startColor;
-            color32.a = (byte)Mathf.Clamp(
-                alphas[i] * (starsParticleSystem.transform.TransformPoint(particles[i].position).y - starsParticleSystem.transform.position.y) / radius, 0,
-                alphas[i]);
-            particles[i].startColor = color32;
+            for (int i = 0; i < particles.Length; i++)
+            {
+                color32 = particles[i].startColor;
+                color32.a = (byte)Mathf.Clamp(
+                    alphas[i] * (starsParticleSystem.transform.TransformPoint(particles[i].position).y -
+                                 starsParticleSystem.transform.position.y) / radius, 0,
+                    alphas[i]);
+                particles[i].startColor = color32;
+                if (color32.a <= 10 || color32.a >= 240)
+                {
+                    toggle = false;
+                }
+            }
+
+            starsParticleSystem.SetParticles(particles, particles.Length, 0);
         }
-        starsParticleSystem.SetParticles(particles, particles.Length, 0);
     }
 }

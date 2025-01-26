@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 
@@ -30,10 +31,18 @@ public class DayNightCycle : MonoBehaviour
     private Color tintColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);
     private Renderer starRenderer;
     [SerializeField] private float fade;
-    
-    
+    public ScatterStars scatterStars;
+    public List<List<Item>> items = new List<List<Item>>();
+    public StorageInventory[] inventorys;
     void Start()
     {
+        for (int i = 0; i< inventorys.Length; i++)
+        {
+            items[i] = inventorys[i].storageItems;
+        }
+        
+        
+        
         time = ButtonHandler.profile.time;
         sunSet = HMS_to_Time(hasSunSet.x, hasSunSet.y, hasSunSet.z);
         days = ButtonHandler.profile.day;
@@ -68,6 +77,10 @@ public class DayNightCycle : MonoBehaviour
         {
             days += 1;
             time -= 86400f;
+            for (int i = 0; i< inventorys.Length; i++)
+            {
+                inventorys[i].storageItems = items[i];
+            }
         }
 
         if (prev_moon_rotation == -1f)
@@ -95,6 +108,7 @@ public class DayNightCycle : MonoBehaviour
 
         if (time < sunRise)
         {
+            scatterStars.toggle = true;
             intensity = intensityAtSunSet * time / sunRise;
             if (act == 1 && time >= 18000f)
             {
@@ -103,11 +117,12 @@ public class DayNightCycle : MonoBehaviour
                 moon.gameObject.SetActive(false);
                 RenderSettings.skybox = skyboxDay;
                 RenderSettings.sun = sun;
+                
             }
+            
         }
         else if (time < 43200f)
         {
-            
 
             intensity = intensityAtSunSet +
                         (intensityAtNoon - intensityAtSunSet) * (time - sunRise) / (43200f - sunRise);
@@ -116,6 +131,7 @@ public class DayNightCycle : MonoBehaviour
             intensity = intensityAtNoon - (intensityAtNoon - intensityAtSunSet) * (time - 43200f) / (sunSet - 43200f);
         else
         {
+            scatterStars.toggle = true;
             intensity = intensityAtSunSet - (1f - intensityAtSunSet) * (time - sunSet) / (86400f - sunSet);
             if (act == 0 && time >= 68820f)
             {

@@ -13,6 +13,7 @@ public class ArminiusBehaviour : AbstractEnemyBehaviour
     [SerializeField] private AudioClip[] clipsAttack;
     [SerializeField] private AudioClip[] clipsHit;
     [SerializeField] private AudioClip[] clipsFalling;
+    public AudioClip story;
 
     [Header("Animators")]
     [SerializeField] private Animator[] animators;
@@ -24,6 +25,9 @@ public class ArminiusBehaviour : AbstractEnemyBehaviour
     private bool charge;
     [SerializeField] private Collider attackHitbox;
     private MainGameLoop mainGameLoop;
+
+
+    private bool _firstMeeting = true;
     
     [SerializeField] private bool isInFinalLevel = true;
     private void Start()
@@ -58,6 +62,17 @@ public class ArminiusBehaviour : AbstractEnemyBehaviour
             }
             else if (distance > chargeRange)
             {
+
+                if (_firstMeeting)
+                {
+                    Time.timeScale = 0f;
+                    _combatSource.clip = story;
+                    _combatSource.Play();
+                    yield return new WaitUntil(() => !_combatSource.isPlaying);
+                    Time.timeScale = 1f;
+                    _firstMeeting = false;
+                }
+                
                 block = false;
                 trigger("enemyRun");
                 _animator.SetTrigger("enemyRun");

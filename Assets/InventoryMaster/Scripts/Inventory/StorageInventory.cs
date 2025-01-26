@@ -16,7 +16,7 @@ public class StorageInventory : MonoBehaviour
     public GameObject inventory;
 
     [SerializeField]
-    public List<Item> storageItems = new List<Item>();
+    public List<Item> storageItems;
 
     [SerializeField]
     private ItemDataBaseList itemDatabase;
@@ -48,10 +48,11 @@ public class StorageInventory : MonoBehaviour
 
     public void addItemToStorage(int id, int value)
     {
+        if (storageItems == null) storageItems = new List<Item>();
         Item item = itemDatabase.getItemByID(id);
         item.itemValue = value;
         storageItems.Add(item);
-        EditorUtility.SetDirty(gameObject);
+        EditorUtility.SetDirty(this);
     }
 
 

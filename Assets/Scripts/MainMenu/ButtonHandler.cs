@@ -97,7 +97,7 @@ public class ButtonHandler : MonoBehaviour
                 videoPlayer.SetDirectAudioVolume(0, settings.masterVolume * settings.dialogueVolume);
                 worldMusicScript.source.Play();
                 videoPlayer.Play();
-                yield return new WaitUntil(()=>!videoPlayer.isPlaying);
+                yield return new WaitUntil(()=>!videoPlayer.isPlaying || Input.GetKeyDown(KeyCode.Space));
                 loadScene.allowSceneActivation = true;
             }
         }
