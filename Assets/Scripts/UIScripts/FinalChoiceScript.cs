@@ -23,9 +23,7 @@ public class FinalChoiceScript : MonoBehaviour
         _source.clip = clip;
         _source.PlayDelayed(2);
         loop.killedArminius = true;
-        loop.KilledArminius();
-        Time.timeScale = 1f;
-        Destroy(canv, 2);
+        loop.KilledArminius(canv);
     }
 
     public void SpareArminius()

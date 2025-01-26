@@ -67,7 +67,7 @@ public class ArminiusBehaviour : AbstractEnemyBehaviour
                 {
                     _combatSource.clip = story;
                     _combatSource.Play();
-                    Time.timeScale = .01f;
+                    Time.timeScale = 0f;
                     yield return new WaitUntil(() => !_combatSource.isPlaying);
                     Time.timeScale = 1f;
                     _firstMeeting = false;
@@ -157,6 +157,8 @@ public class ArminiusBehaviour : AbstractEnemyBehaviour
 
     private void Die()
     {
+        if (dead) return;
+        dead = true;
         if (isInFinalLevel)
             mainGameLoop.EndingSequence(gameObject);
         

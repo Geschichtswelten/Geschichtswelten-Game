@@ -33,9 +33,17 @@ public class MainGameLoop : MonoBehaviour
         Cursor.visible = true;
     }
 
-    public void KilledArminius()
+    public void KilledArminius(GameObject obj)
     {
         Destroy(_arminius);
+        StartCoroutine(del(obj));
+    }
+
+    IEnumerator del(GameObject obj)
+    {
+        yield return new WaitForSecondsRealtime(4f);
+        Time.timeScale = 1f;
+        Destroy(obj);
     }
 
     private void OnTriggerEnter(Collider other)

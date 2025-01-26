@@ -11,7 +11,7 @@ class StarBand
 public class ScatterStars : MonoBehaviour
 {
     [SerializeField] private ParticleSystem starsParticleSystem;
-    [SerializeField] private int starCount = 11000;
+    [SerializeField] private int starCount = 9000;
     [SerializeField] private StarBand[] spreads;
     public bool toggle;
 

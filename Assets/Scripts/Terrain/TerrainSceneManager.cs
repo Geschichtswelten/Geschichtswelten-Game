@@ -49,7 +49,7 @@ public class TerrainSceneManager : MonoBehaviour
 
                 float alpha = Random.Range(0f, 360f);
                 var spawnDir = new Vector3(Mathf.Cos(alpha), playerPosition.y, Mathf.Sin(alpha)).normalized;
-                var worldPos = playerPosition + spawnRadius * spawnDir;
+                var worldPos = playerPosition + spawnRadius * (playerPosition - spawnDir);
                 var instPoint = tC.gameObject.GetComponent<Terrain>().SampleHeight(worldPos);
                 var instPos = new Vector3(worldPos.x, instPoint, worldPos.z);
                 
