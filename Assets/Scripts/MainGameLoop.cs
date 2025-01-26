@@ -59,7 +59,7 @@ public class MainGameLoop : MonoBehaviour
         AsyncOperation loadScene = SceneManager.LoadSceneAsync(394, LoadSceneMode.Single);
         loadScene.allowSceneActivation = true;
         JsonHandler.DeleteGameProfile();
-        if (killedArminius)
+        if (killedArminius && videoClips.Length > 0)
         {
             videoPlayer.clip = videoClips[0];
         }

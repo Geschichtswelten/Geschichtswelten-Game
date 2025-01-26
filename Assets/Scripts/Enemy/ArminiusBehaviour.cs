@@ -56,7 +56,7 @@ public class ArminiusBehaviour : AbstractEnemyBehaviour
             float distance = Vector3.Distance(_target.transform.position, transform.position);
             if (distance > _alertRange)
             {
-                trigger("enemyBlock");
+                trigger("enemyBlockIdle");
                 _animator.SetTrigger("enemyBlockIdle");
                 Block();
             }
@@ -161,11 +161,9 @@ public class ArminiusBehaviour : AbstractEnemyBehaviour
         dead = true;
         if (isInFinalLevel)
             mainGameLoop.EndingSequence(gameObject);
-        
-        
-        trigger("enemyBlock");
+        StopAllCoroutines();
+        trigger("enemyBlockIdle");
         _animator.SetTrigger("enemyBlockIdle");
-        gameObject.GetComponent<Collider>().enabled = false;
     }
 
     //Audio Events
