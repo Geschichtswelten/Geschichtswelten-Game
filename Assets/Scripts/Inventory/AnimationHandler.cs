@@ -9,14 +9,14 @@ namespace DefaultNamespace
     {
         [SerializeField] private Animator animator;
         [SerializeField] private AnimatorController controller;
-        [SerializeField] private List<Animation> animations;
+        [SerializeField] private List<string> animations;
 
         public bool playAnimation(int id)
         {
             //Debug.Log("playing animation " + id);
             if (id >= animations.Count || animations[id] is null) return false; 
             
-            animator.SetTrigger(animations[id].name);
+            animator.SetTrigger(animations[id]);
             return true;
         }
     }
