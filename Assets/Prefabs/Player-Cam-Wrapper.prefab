@@ -2360,7 +2360,7 @@ MonoBehaviour:
     itemAttributes: []
   height: 5
   width: 5
-  stackable: 0
+  stackable: 1
   slotSize: 50
   iconSize: 100
   paddingBetweenX: 5

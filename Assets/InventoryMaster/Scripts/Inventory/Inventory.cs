@@ -77,9 +77,9 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     public int paddingTop;
     [SerializeField]
-    public int positionNumberX;
+    public int positionNumberX = -25;
     [SerializeField]
-    public int positionNumberY;
+    public int positionNumberY = 25;
 
     InputManager inputManagerDatabase;
 

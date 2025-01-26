@@ -421,3 +421,27 @@ MonoBehaviour:
     indexItemInList: 999
     rarity: 0
     itemAttributes: []
+  - itemName: Letter to ???
+    itemID: 28
+    itemDesc: '??? took armor of their hero. '
+    itemIcon: {fileID: 21300000, guid: 4b61215c56174cb489119b1357a5b77c, type: 3}
+    itemModel: {fileID: 7036994682659252193, guid: a85654a6bae36f64499d35a5585727d3, type: 3}
+    itemValue: 1
+    itemType: 3
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
+  - itemName: Notice to all troops
+    itemID: 29
+    itemDesc: Arminius has united the tribes. There will be a feast.
+    itemIcon: {fileID: 21300000, guid: 4b61215c56174cb489119b1357a5b77c, type: 3}
+    itemModel: {fileID: 7036994682659252193, guid: a85654a6bae36f64499d35a5585727d3, type: 3}
+    itemValue: 1
+    itemType: 3
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
