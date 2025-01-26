@@ -52,7 +52,6 @@ public class StorageInventory : MonoBehaviour
         Item item = itemDatabase.getItemByID(id);
         item.itemValue = value;
         storageItems.Add(item);
-        EditorUtility.SetDirty(this);
     }
 
 

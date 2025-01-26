@@ -29,7 +29,7 @@ public class ButtonHandler : MonoBehaviour
 
     private void LoadSettings()
     {
-        SettingsClass settingsClass = JsonHandler.ReadSettings("Assets/Settings/player_settings.asset");
+        SettingsClass settingsClass = JsonHandler.ReadSettings(Application.dataPath + "/Settings/settings.json");
         settingsClass ??= new SettingsClass(100f, 100f, 100f, 0);
         settings = settingsClass;
         OnSettingsChanged?.Invoke();
@@ -111,11 +111,10 @@ public class ButtonHandler : MonoBehaviour
         AsyncOperation loadScene = SceneManager.LoadSceneAsync(392, LoadSceneMode.Additive);
         loadScene.allowSceneActivation = false;
         //ProgressBar
-        profile = JsonHandler.readGameProfile("Assets/profile.asset");
+        profile = JsonHandler.readGameProfile("/Profiles/profile.json");
 
         if (profile == null)
         {
-            Debug.Log("No profile found, creating a new one");
             CreateNewGame();
             //Have to test that
             yield break;
@@ -137,7 +136,6 @@ public class ButtonHandler : MonoBehaviour
         {
             if (root.CompareTag("PlayerWrapper"))
             {
-                Debug.Log("FoundPlayer");
                 root.GetComponent<WrapperScript>().LoadProfile(profile);
                 yield return new WaitForSeconds(2);
                 root.GetComponent<WrapperScript>().LoadPosition(profile);

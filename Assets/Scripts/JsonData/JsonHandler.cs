@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Xml;
 using UnityEditor;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class JsonHandler : MonoBehaviour
     {
         try
         {
-            TextAsset file = AssetDatabase.LoadAssetAtPath(jsonString, typeof(TextAsset)) as TextAsset;
+            TextAsset file = Resources.Load(jsonString) as TextAsset;
             return JsonUtility.FromJson<SettingsClass>(file.text);
         }
         catch (NullReferenceException)
@@ -22,16 +23,23 @@ public class JsonHandler : MonoBehaviour
     public static void WriteSettings(SettingsClass settings)
     {
         string jsonString = JsonUtility.ToJson(settings);
-        TextAsset file = new TextAsset(jsonString);
-        AssetDatabase.DeleteAsset("Assets/Settings/player_settings.asset");
-        AssetDatabase.CreateAsset(file, "Assets/Settings/player_settings.asset");
+        if (Directory.Exists(Application.dataPath + "/Settings"))
+        {
+            File.WriteAllText(Application.dataPath + "/Settings/settings.json", jsonString);
+        }
+        else
+        {
+            Directory.CreateDirectory(Application.dataPath + "/Settings");
+            File.WriteAllText(Application.dataPath + "/Settings/settings.json", jsonString);
+        }
+        
     }
 
     public static GameProfile readGameProfile(string jsonString)
     {
         try
         {
-            TextAsset file = AssetDatabase.LoadAssetAtPath(jsonString, typeof(TextAsset)) as TextAsset;
+            TextAsset file = Resources.Load(jsonString) as TextAsset;
             return JsonUtility.FromJson<GameProfile>(file.text);
         }
         catch (NullReferenceException)
@@ -44,14 +52,20 @@ public class JsonHandler : MonoBehaviour
     public static void WriteGameProfile(GameProfile profile)
     {
         string jsonString = JsonUtility.ToJson(profile);
-        TextAsset file = new TextAsset(jsonString);
-        AssetDatabase.DeleteAsset("Assets/profile.asset");
-        AssetDatabase.CreateAsset(file, "Assets/profile.asset");
+        if (Directory.Exists(Application.dataPath + "/Profiles"))
+        {
+            File.WriteAllText(Application.dataPath + "/Profiles/profile.json", jsonString);
+        }
+        else
+        {
+            Directory.CreateDirectory(Application.dataPath + "/Profiles");
+            File.WriteAllText(Application.dataPath + "/Profiles/profile.json", jsonString);
+        }
     }
 
     public static void DeleteGameProfile()
     {
-        AssetDatabase.DeleteAsset("Assets/profile.asset");
+        Directory.Delete(Application.dataPath + "/Profiles", true);
     }
 
 

@@ -574,15 +574,15 @@ MonoBehaviour:
   _behaviour: 0
   _target: {fileID: 0}
   _patrollingTargets: []
-  movementPredictionTime: 0
-  movementPredictionThreshold: 0
-  _health: 20
-  _damage: 0
+  movementPredictionTime: 5
+  movementPredictionThreshold: 0.5
+  _health: 100
+  _damage: 10
   _walkSpeed: 5
   _runSpeed: 7
-  _armor: 0
-  _attackRange: 40
-  _alertRange: 70
+  _armor: 5
+  _attackRange: 35
+  _alertRange: 50
   _attackCooldown: 4
   _despawnTime: 50
   drop: {fileID: 1758336818755121674, guid: 66f6fb4e115e0564c9e6bd36b3d03e68, type: 3}

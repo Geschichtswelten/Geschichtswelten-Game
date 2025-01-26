@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -8,7 +7,6 @@ namespace DefaultNamespace
     public class AnimationHandler : MonoBehaviour
     {
         [SerializeField] private Animator animator;
-        [SerializeField] private AnimatorController controller;
         [SerializeField] private List<string> animations;
 
         public bool playAnimation(int id)

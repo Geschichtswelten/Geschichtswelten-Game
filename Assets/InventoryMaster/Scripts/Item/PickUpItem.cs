@@ -1,7 +1,5 @@
-﻿using System;
+﻿
 using UnityEngine;
-using System.Collections;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 
 public class PickUpItem : MonoBehaviour
 {

@@ -1382,11 +1382,11 @@ MonoBehaviour:
   _patrollingTargets: []
   movementPredictionTime: 5
   movementPredictionThreshold: 0.5
-  _health: 20
-  _damage: 0
+  _health: 50
+  _damage: 10
   _walkSpeed: 5
   _runSpeed: 8
-  _armor: 0
+  _armor: 5
   _attackRange: 4
   _alertRange: 100
   _attackCooldown: 4
