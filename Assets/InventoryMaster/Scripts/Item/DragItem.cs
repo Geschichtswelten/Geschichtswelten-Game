@@ -686,7 +686,8 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                     Destroy(itemBehaviour);
                 }
 
-                var pickUpItem = dropItem.AddComponent<PickUpItem>();
+                if (!dropItem.TryGetComponent<PickUpItem>(out var pickUpItem))
+                    pickUpItem = dropItem.AddComponent<PickUpItem>();
                 pickUpItem.item = itemOnObj.item;
 
                 if (!dropItem.TryGetComponent<Rigidbody>(out var rb))
@@ -720,7 +721,11 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                 inventory.OnUpdateItemList();
                 if (oldSlot.transform.parent.parent.GetComponent<EquipmentSystem>() != null)
                     inventory.GetComponent<Inventory>().UnEquipItem1(dropItem.GetComponent<PickUpItem>().item);
-                Destroy(this.gameObject);
+                
+                Debug.Log("Dropped x" + itemOnObj.item.itemValue + " [" + itemOnObj.item.itemName + " " +
+                          itemOnObj.item.itemID + "]");
+                
+                Destroy(gameObject);
             }
         }
         inventory.OnUpdateItemList();

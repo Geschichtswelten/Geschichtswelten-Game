@@ -40,7 +40,7 @@ public class ConsumeItem : MonoBehaviour, IPointerDownHandler
                 //item from craft system to inventory
                 if (transform.parent.GetComponent<CraftResultSlot>() != null)
                 {
-                    bool check = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>().inventory.GetComponent<Inventory>().checkIfItemAllreadyExist(item.itemID, item.itemValue);
+                    bool check = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>().inventory.GetComponent<Inventory>().TryAddItemsToExistingStack(item.itemID, item.itemValue);
 
                     if (!check)
                     {
