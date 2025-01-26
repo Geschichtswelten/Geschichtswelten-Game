@@ -18,7 +18,8 @@ public class FinalChoiceScript : MonoBehaviour
 
     public void KillArminius()
     {
-        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         _source.clip = clip;
         _source.PlayDelayed(2);
         loop.killedArminius = true;
@@ -29,6 +30,8 @@ public class FinalChoiceScript : MonoBehaviour
 
     public void SpareArminius()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         loop.killedArminius = false;
         Time.timeScale = 1f;
         Destroy(canv);

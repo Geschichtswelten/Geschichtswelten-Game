@@ -169,7 +169,8 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
                 pouchInv.addItemToStorage(dropIds[i], Random.Range(1, 5));
             }
         }
-        
+        var coll = gameObject.GetComponent<Collider>();
+        coll.enabled = false;
         
         _combatSource.clip = deathClips[Random.Range(0, deathClips.Length)];
         _combatSource.Play();

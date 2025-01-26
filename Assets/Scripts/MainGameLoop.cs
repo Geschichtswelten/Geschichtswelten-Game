@@ -29,6 +29,8 @@ public class MainGameLoop : MonoBehaviour
         endCollider.gameObject.SetActive(true);
         Instantiate(endingCanvas, Vector3.zero, Quaternion.identity);
         _arminius = obj;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
     }
 
     public void KilledArminius()

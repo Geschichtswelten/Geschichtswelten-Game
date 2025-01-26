@@ -65,9 +65,9 @@ public class ArminiusBehaviour : AbstractEnemyBehaviour
 
                 if (_firstMeeting)
                 {
-                    Time.timeScale = 0f;
                     _combatSource.clip = story;
                     _combatSource.Play();
+                    Time.timeScale = .01f;
                     yield return new WaitUntil(() => !_combatSource.isPlaying);
                     Time.timeScale = 1f;
                     _firstMeeting = false;
