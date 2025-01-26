@@ -8,6 +8,7 @@ namespace DefaultNamespace
         private Coroutine attackRoutine;
         [SerializeField] private Collider hitbox;
         [SerializeField] private float damage;
+        [SerializeField] private float attackCooldown = 1.1f;
         private enum animationIds
         {
             attack1,
@@ -38,7 +39,7 @@ namespace DefaultNamespace
             hitbox.enabled = true;
             animationHandler.playAnimation((int) animationIds.attack1);
             itemSfxHandler.PlayAction1();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(attackCooldown);
             hitbox.enabled = false;
             attackRoutine = null;
         }

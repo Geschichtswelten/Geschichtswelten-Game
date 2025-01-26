@@ -202,9 +202,9 @@ public class PlayerBehaviour : MonoBehaviour
         
         grounded = Physics.Raycast(transform.position, Vector3.down,
             playerHeight * 0.5f + 0.2f, whatIsGround);
-            HandleMovementState();
-            HandleInput();
-            SpeedControl();   
+        HandleMovementState();
+        HandleInput();
+        SpeedControl();   
         Interact();
 
         //handle drag
@@ -467,10 +467,12 @@ public class PlayerBehaviour : MonoBehaviour
 
     private bool OnSlope()
     {
-        if (!Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f)) 
+        return false;
+        /*
+        if (!Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
             return false;
         var angle = Vector3.Angle(Vector3.up, slopeHit.normal);   //slopehit.normal == normale vom boden, auf dem man steht
-        return angle != 0 && angle < maxSlopeAngle;
+        return angle != 0 && angle < maxSlopeAngle;*/
     }
 
     private Vector3 GetSlopeMoveDirection()
@@ -570,7 +572,8 @@ public class PlayerBehaviour : MonoBehaviour
         if (_hp > MaxHp) _hp = MaxHp;
         var dmgMul = 1f;
         _armor.ForEach(x => dmgMul *= x.multiplier);
-        hp_label.text = _hp.ToString() + " / 100\t" + (1f - dmgMul).ToString() + "%";
+        var res = $"{(1f - dmgMul) * 100f,6:##0.00}";
+        hp_label.text = (int) _hp + " / 100\t" + res + "%";
     }
 
     public struct armor
@@ -582,12 +585,22 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void registerArmor(armor a)
     {
+        Debug.Log("Registering armor [" + a.itemId + "]");
         _armor.Add(a);
+        var dmgMul = 1f;
+        _armor.ForEach(x => dmgMul *= x.multiplier);
+        var res = $"{(1f - dmgMul) * 100f,6:##0.00}";
+        hp_label.text = (int) _hp + " / 100\t" + res + "%";
     }
     
     public void removeArmor(int id)
     {
+        Debug.Log("Removing armor [" + id + "]");
         _armor.RemoveAll(x => x.itemId == id);
+        var dmgMul = 1f;
+        _armor.ForEach(x => dmgMul *= x.multiplier);
+        var res = $"{(1f - dmgMul) * 100f,6:##0.00}";
+        hp_label.text = (int) _hp + " / 100\t" + res + "%";
     }
 
     public void takeDamage(float val)
@@ -603,7 +616,8 @@ public class PlayerBehaviour : MonoBehaviour
             Die();
             _hp = 0;
         }
-        hp_label.text = (int) _hp + " / 100\t" + (1f - dmgMul).ToString() + "%";
+        var res = $"{(1f - dmgMul) * 100f,6:##0.00}";
+        hp_label.text = (int) _hp + " / 100\t" + res + "%";
     }
 
     private void Die()
@@ -622,7 +636,8 @@ public class PlayerBehaviour : MonoBehaviour
         var dmgMul = 1f;
         _armor.ForEach(x => dmgMul *= x.multiplier);
         _hp = MaxHp;
-        hp_label.text = (int)_hp + " / 100\t" + (1f - dmgMul).ToString() + "%";
+        var res = $"{(1f - dmgMul) * 100f,6:##0.00}";
+        hp_label.text = (int) _hp + " / 100\t" + res + "%";
         LoadPosition(respawnPoint.position, respawnPoint.rotation);
     }
 
