@@ -46,15 +46,12 @@ public class MainGameLoop : MonoBehaviour
         Destroy(obj);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.CompareTag("Player"))
-        {
+    public void Entered () {
 
             //playEndingVideo
             StartCoroutine(EndGame());
 
-        }
+        
     }
 
     private IEnumerator EndGame()
