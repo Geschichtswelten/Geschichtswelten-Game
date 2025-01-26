@@ -13,6 +13,7 @@ public class MainGameLoop : MonoBehaviour
     public bool killedArminius = true;
     public VideoClip[] videoClips;
     private VideoPlayer videoPlayer;
+    private GameObject _arminius;
 
     private void Start()
     {
@@ -20,12 +21,18 @@ public class MainGameLoop : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    public void EndingSequence()
+    public void EndingSequence(GameObject obj)
     {
         doorLeft.transform.Rotate(0, -89, 0);
         doorRight.transform.Rotate(0, 89, 0);
         endCollider.gameObject.SetActive(true);
         Instantiate(endingCanvas, Vector3.zero, Quaternion.identity);
+        _arminius = obj;
+    }
+
+    public void KilledArminius()
+    {
+        Destroy(_arminius);
     }
 
     private void OnTriggerEnter(Collider other)
