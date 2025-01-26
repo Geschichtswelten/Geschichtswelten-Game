@@ -558,7 +558,7 @@ public class Inventory : MonoBehaviour
     }
 
 
-    public bool checkIfItemAllreadyExist(int itemID, int itemValue)
+    public bool TryAddItemsToExistingStack(int itemID, int itemValue)
     {
         updateItemList();
         int stack;
