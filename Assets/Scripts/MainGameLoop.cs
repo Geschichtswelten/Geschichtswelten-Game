@@ -23,6 +23,7 @@ public class MainGameLoop : MonoBehaviour
 
     public void EndingSequence(GameObject obj)
     {
+        Time.timeScale = 0f;
         doorLeft.transform.Rotate(0, -89, 0);
         doorRight.transform.Rotate(0, 89, 0);
         endCollider.gameObject.SetActive(true);

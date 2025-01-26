@@ -151,6 +151,7 @@ public class Tutorial1Script : MonoBehaviour
         worldMusicScript.ToggleMute();
         videoPlayer.Play();
         yield return new WaitUntil(() => !videoPlayer.isPlaying || Input.GetKeyDown(KeyCode.Space));
+        videoPlayer.Stop();
         loadingScreen.SetActive(true);
         yield return new WaitForSeconds(2);
         AsyncOperation loadScene = SceneManager.LoadSceneAsync(392, LoadSceneMode.Additive);

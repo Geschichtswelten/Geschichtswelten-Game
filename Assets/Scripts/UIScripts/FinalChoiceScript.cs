@@ -18,16 +18,19 @@ public class FinalChoiceScript : MonoBehaviour
 
     public void KillArminius()
     {
+        
         _source.clip = clip;
         _source.PlayDelayed(2);
         loop.killedArminius = true;
         loop.KilledArminius();
+        Time.timeScale = 1f;
         Destroy(canv, 2);
     }
 
     public void SpareArminius()
     {
         loop.killedArminius = false;
+        Time.timeScale = 1f;
         Destroy(canv);
     }
     

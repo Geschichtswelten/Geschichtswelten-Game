@@ -3171,6 +3171,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -692589707067859167, guid: 8fbf4cab867cd5b4ea1312628b0c23ef, type: 3}
+      propertyPath: story
+      value: 
+      objectReference: {fileID: 8300000, guid: efcaee60f3a564040b404fc20195becb, type: 3}
     - target: {fileID: 2280418153868286602, guid: 8fbf4cab867cd5b4ea1312628b0c23ef, type: 3}
       propertyPath: m_Name
       value: Arminius
