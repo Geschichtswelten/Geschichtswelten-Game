@@ -908,7 +908,7 @@ MonoBehaviour:
   _attackRange: 4
   _alertRange: 15
   _attackCooldown: 4
-  _despawnTime: 0
+  _despawnTime: 120
   drop: {fileID: 0}
   dropIds: 
   _source: {fileID: 7027107161495603991}
