@@ -363,7 +363,7 @@ public class PlayerBehaviour : MonoBehaviour
     #region movement
     private void MovePlayer()
     {
-        if (_inventoryOpen || freeze || _consoleOpen)
+        if (_inventoryOpen || freeze)
         {
             verticalInput = 0;
             horizontalInput = 0;
