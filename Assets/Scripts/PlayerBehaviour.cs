@@ -561,8 +561,12 @@ public class PlayerBehaviour : MonoBehaviour
         if (other.TryGetComponent<AbstractEnemyBehaviour>(out var enemy))
         {
             TakeDamage(enemy._damage);
-        }else if(other.TryGetComponent<ArrowScript>(out var arrowScript)) {
+        }   
+        else if (other.TryGetComponent<ArrowScript>(out var arrowScript)) {
             TakeDamage(arrowScript.archer._damage);
+        }
+        else if (other.CompareTag("killbox")) {
+            Die();
         }
         else
         {

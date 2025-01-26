@@ -12,7 +12,7 @@ public class SplitItem : MonoBehaviour, IPointerDownHandler
 
     void Update()
     {
-        if (Input.GetKeyDown(inputManagerDatabase.SplitItem))                     //if we press right controll the ....
+        if (Input.GetKeyDown(inputManagerDatabase.SplitItem))                     //if we press right control the ....
             pressingButtonToSplit = true;                               //getting changed to true 
         if (Input.GetKeyUp(inputManagerDatabase.SplitItem))
             pressingButtonToSplit = false;                              //or false
@@ -27,15 +27,18 @@ public class SplitItem : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData data)                    //splitting the item now
     {
         inv = transform.parent.parent.parent.GetComponent<Inventory>();
-        if (transform.parent.parent.parent.GetComponent<Hotbar>() == null && data.button == PointerEventData.InputButton.Left && pressingButtonToSplit && inv.stackable && (inv.ItemsInInventory.Count < (inv.height * inv.width))) //if you press leftclick and and keycode
+        //if you press leftclick and keycode
+        if (/*transform.parent.parent.parent.GetComponent<Hotbar>() == null &&*/
+            data.button == PointerEventData.InputButton.Left && pressingButtonToSplit && inv.stackable
+            && inv.ItemsInInventory.Count < inv.height*inv.width) 
         {
             ItemOnObject itemOnObject = GetComponent<ItemOnObject>();                                                   //we take the ItemOnObject script of the item in the slot
 
-            if (itemOnObject.item.itemValue > 1)                                                                         //we split the item only when we have more than 1 in the stack
+            if (itemOnObject.item.itemValue > 1)                                                                        //we split the item only when we have more than 1 in the stack
             {
-                int splitPart = itemOnObject.item.itemValue;                                                           //we take the value and store it in there
-                itemOnObject.item.itemValue = (int)itemOnObject.item.itemValue / 2;                                     //calculate the new value for the splitted item
-                splitPart = splitPart - itemOnObject.item.itemValue;                                                   //take the different
+                int splitPart = itemOnObject.item.itemValue;                                                            //we take the value and store it in there
+                itemOnObject.item.itemValue /= 2;                                                                       //calculate the new value for the split item
+                splitPart = splitPart - itemOnObject.item.itemValue;                                                    //take the difference
 
                 inv.addItemToInventory(itemOnObject.item.itemID, splitPart);                                            //and add a new item to the inventory
                 inv.stackableSettings();

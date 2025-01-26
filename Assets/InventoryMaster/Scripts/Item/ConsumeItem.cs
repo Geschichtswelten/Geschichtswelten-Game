@@ -27,6 +27,8 @@ public class ConsumeItem : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData data)
     {
+        Debug.Log("FUCK OFF");
+        return;/*
         if (this.gameObject.transform.parent.parent.parent.GetComponent<EquipmentSystem>() == null)
         {
             bool gearable = false;
@@ -166,13 +168,9 @@ public class ConsumeItem : MonoBehaviour, IPointerDownHandler
                         inventory.deleteItemFromInventory(item);
                         Destroy(this.gameObject);                        
                     }
-
                 }
-                
             }
-            
-
-        }
+        }*/
     }    
 
     public void consumeIt()

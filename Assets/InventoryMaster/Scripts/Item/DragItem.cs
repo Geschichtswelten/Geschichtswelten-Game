@@ -722,8 +722,8 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                 if (oldSlot.transform.parent.parent.GetComponent<EquipmentSystem>() != null)
                     inventory.GetComponent<Inventory>().UnEquipItem1(dropItem.GetComponent<PickUpItem>().item);
                 
-                Debug.Log("Dropped x" + itemOnObj.item.itemValue + " [" + itemOnObj.item.itemName + " " +
-                          itemOnObj.item.itemID + "]");
+                /*Debug.Log("Dropped x" + itemOnObj.item.itemValue + " [" + itemOnObj.item.itemName + " " +
+                          itemOnObj.item.itemID + "]");*/
                 
                 Destroy(gameObject);
             }
