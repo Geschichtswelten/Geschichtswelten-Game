@@ -59,6 +59,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private InputActionReference action1Key;
     [SerializeField] private InputActionReference action2Key;
     [SerializeField] private InputActionReference pauseMenuKey;
+    [SerializeField] private InputActionReference consoleKey;
     [SerializeField] private InputActionReference escKey;
 
     float horizontalInput;
@@ -117,9 +118,12 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private GameObject drop;
     
     [SerializeField] private Transform respawnPoint;
+    
+    public bool _consoleOpen = false;
 
     [SerializeField] private float walkCooldown;
     [SerializeField] private float sprintCooldown;
+    
 
     
     private float _wC = 0, _sC = 0;
@@ -195,6 +199,12 @@ public class PlayerBehaviour : MonoBehaviour
         {
             if (_lastContainer != null) _lastContainer.closeInventory();
             toggleInventory();
+        }
+
+        if (consoleKey.action.WasPressedThisFrame())
+        {
+            _consoleOpen = !_consoleOpen;
+            pauseMenu.tooglePauseMenu();
         }
         
         var targetRotation = orientation.rotation;
@@ -285,12 +295,10 @@ public class PlayerBehaviour : MonoBehaviour
             case true when _inventoryOpen:
                 CloseInventory();
                 break;
-            case true:
+            case true when !_consoleOpen:
                 pauseMenu.tooglePauseMenu();
                 break;
-            case false when _inventoryOpen:
-                return;
-            case false when pauseMenu.isPaused:
+            case false when _inventoryOpen || pauseMenu.isPaused || _consoleOpen:
                 return;
         }
         var action1Input = action1Key.action.WasPressedThisFrame();
@@ -355,7 +363,7 @@ public class PlayerBehaviour : MonoBehaviour
     #region movement
     private void MovePlayer()
     {
-        if (_inventoryOpen || freeze)
+        if (_inventoryOpen || freeze || _consoleOpen)
         {
             verticalInput = 0;
             horizontalInput = 0;
@@ -640,7 +648,8 @@ public class PlayerBehaviour : MonoBehaviour
         _hp = MaxHp;
         var res = $"{(1f - dmgMul) * 100f,6:##0.0}";
         hp_label.text = (int) _hp + " / 100\t" + res + "%";
-        LoadPosition(respawnPoint.position, respawnPoint.rotation);
+        if (respawnPoint != null)
+            LoadPosition(respawnPoint.position, respawnPoint.rotation);
     }
 
     public Inventory GetHotbar() => hotbar;

@@ -6602,6 +6602,7 @@ MonoBehaviour:
   action1Key: {fileID: -3340670504527837983, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   action2Key: {fileID: 1891082760763246111, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   pauseMenuKey: {fileID: -6027623115092990204, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  consoleKey: {fileID: 5869515468944613488, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   escKey: {fileID: -4483243411539067711, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   fadenkreuz: {fileID: 995784407971113375}
   normal_fadenkreuz: {fileID: 71166343, guid: a5e24891713964841b5fae87ea25459f, type: 3}
@@ -6624,6 +6625,7 @@ MonoBehaviour:
   storageInv: {fileID: 5828316147656904170}
   drop: {fileID: 1758336818755121674, guid: 66f6fb4e115e0564c9e6bd36b3d03e68, type: 3}
   respawnPoint: {fileID: 0}
+  _consoleOpen: 0
   walkCooldown: 0.5
   sprintCooldown: 0.34
   _source: {fileID: 5186779445473973917}
