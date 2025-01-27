@@ -70,7 +70,8 @@ public class MainGameLoop : MonoBehaviour
         videoPlayer.SetDirectAudioVolume(0, ButtonHandler.settings.dialogueVolume * ButtonHandler.settings.masterVolume);
         yield return new WaitUntil(()=>loadScene.isDone);
         //start Video
-        //videoPlayer.Play();
+        videoPlayer.Play();
+        yield return new WaitForSecondsRealtime(3);
         yield return new WaitUntil(() => !videoPlayer.isPlaying);     //video.isDone
         var loadingScreen = GameObject.FindGameObjectWithTag("Finish");
         loadingScreen.SetActive(true);

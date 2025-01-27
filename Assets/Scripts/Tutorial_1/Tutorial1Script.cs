@@ -150,6 +150,7 @@ public class Tutorial1Script : MonoBehaviour
         videoPlayer.SetDirectAudioVolume(0, ButtonHandler.settings.dialogueVolume * ButtonHandler.settings.masterVolume);
         worldMusicScript.ToggleMute();
         videoPlayer.Play();
+        yield return new WaitForSecondsRealtime(3);
         yield return new WaitUntil(() => !videoPlayer.isPlaying || Input.GetKeyDown(KeyCode.Space));
         videoPlayer.Stop();
         loadingScreen.SetActive(true);

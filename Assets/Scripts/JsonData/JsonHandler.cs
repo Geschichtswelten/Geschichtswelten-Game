@@ -9,12 +9,12 @@ public class JsonHandler : MonoBehaviour
     {
         try
         {
-            TextAsset file = Resources.Load(jsonString) as TextAsset;
-            return JsonUtility.FromJson<SettingsClass>(file.text);
+            string settings = File.ReadAllText(jsonString);
+            if(settings == "") return null;
+            return JsonUtility.FromJson<SettingsClass>(settings);
         }
-        catch (NullReferenceException)
+        catch (Exception)
         {
-            Debug.Log("No settings file found");
             return null;
         }
     }
@@ -38,12 +38,12 @@ public class JsonHandler : MonoBehaviour
     {
         try
         {
-            TextAsset file = Resources.Load(jsonString) as TextAsset;
-            return JsonUtility.FromJson<GameProfile>(file.text);
+            string file = File.ReadAllText(jsonString);
+            if(file == "") return null;
+            return JsonUtility.FromJson<GameProfile>(file);
         }
-        catch (NullReferenceException)
+        catch (Exception)
         {
-            
             return null;
         }
     }
