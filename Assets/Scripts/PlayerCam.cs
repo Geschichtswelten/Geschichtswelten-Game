@@ -1,10 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerCam : MonoBehaviour
 {
-    public float sensX;
-    public float sensY;
+    private float sensX;
+    private float sensY;
 
     public Transform orientation;
 
@@ -13,14 +14,28 @@ public class PlayerCam : MonoBehaviour
 
     [SerializeField] private InputActionReference look;
 
+    private void Start()
+    {
+        sensX = ButtonHandler.settings.mouseSensitivity;
+        sensY = sensX;
+    }
+
     private void OnEnable()
     {
+        ButtonHandler.OnSettingsChanged += HandleSettingsChanged;
         look.action.Enable();
     }
 
     private void OnDisable()
     {
+        ButtonHandler.OnSettingsChanged -= HandleSettingsChanged;
         look.action.Disable();
+    }
+
+    private void HandleSettingsChanged()
+    {
+        sensX = ButtonHandler.settings.mouseSensitivity;
+        sensY = sensX;
     }
 
     private void Update()

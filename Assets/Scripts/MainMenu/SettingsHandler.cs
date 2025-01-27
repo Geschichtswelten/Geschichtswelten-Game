@@ -16,8 +16,8 @@ public class SettingsHandler : MonoBehaviour
     [SerializeField] private Slider dialogueVolume;
     [SerializeField] private Slider musicVolume;
 
-    [Space] [Header("Graphic Settings")] 
-    [SerializeField] private TMP_Dropdown resolution;
+    [Space] [Header("Quality Of Life")] 
+    [SerializeField] private Slider mouseSensitivity;
 
     [Space] [Header("Keybindings")] 
     public int PLACEHOLDER;
@@ -41,13 +41,13 @@ public class SettingsHandler : MonoBehaviour
 
     private void HandleSettingsChanged()
     {
-        if (masterVolume != null && dialogueVolume != null && musicVolume != null && resolution != null)
+        if (masterVolume != null && dialogueVolume != null && musicVolume != null && mouseSensitivity != null)
         {
             masterVolume.value = ButtonHandler.settings.masterVolume;
             dialogueVolume.value = ButtonHandler.settings.dialogueVolume;
             musicVolume.value = ButtonHandler.settings.musicVolume;
 
-            resolution.value = ButtonHandler.settings.resolution;
+            mouseSensitivity.value = ButtonHandler.settings.mouseSensitivity;
         }
 
     }
@@ -81,11 +81,11 @@ public class SettingsHandler : MonoBehaviour
             ButtonHandler.InvokeOnSettingsChanged();
         }
     }
-    public void ChangedResolution()
+    public void ChangedMouseSensitivity()
     {
-        if (resolution != null)
+        if (mouseSensitivity != null)
         {
-            ButtonHandler.settings.SetResolution(resolution.value);
+            ButtonHandler.settings.SetMouseSensitivity(mouseSensitivity.value);
             ButtonHandler.InvokeOnSettingsChanged();
         }
     }

@@ -8,7 +8,6 @@ public class AxeScript : ItemBehaviour
 {
     private Coroutine attackRoutine;
     [SerializeField] private Collider hitbox;
-    [SerializeField] private float damage;
     [SerializeField] private float attackCooldown = 1.1f;
     [SerializeField] private float timberDistance;
     [SerializeField] private float maxTimberAngle;

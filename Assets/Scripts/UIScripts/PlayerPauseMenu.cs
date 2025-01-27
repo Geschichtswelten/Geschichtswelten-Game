@@ -19,6 +19,7 @@ public class PlayerPauseMenu : MonoBehaviour
     [SerializeField] private Slider masterSlider;
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider dialogueSlider;
+    [SerializeField] private Slider mouseSensitivitySlider;
 
     //Player Script for items and camps missing
     private DayNightCycle _cycle;
@@ -40,12 +41,12 @@ public class PlayerPauseMenu : MonoBehaviour
 
     private void HandleSettingsChanged()
     {
-        if (masterSlider != null && dialogueSlider != null && musicSlider != null)
+        if (masterSlider != null && dialogueSlider != null && musicSlider != null && mouseSensitivitySlider != null)
         {
             masterSlider.value = ButtonHandler.settings.masterVolume;
             dialogueSlider.value = ButtonHandler.settings.dialogueVolume;
             musicSlider.value = ButtonHandler.settings.musicVolume;
-
+            mouseSensitivitySlider.value = ButtonHandler.settings.mouseSensitivity;
             
         }
 
@@ -57,6 +58,7 @@ public class PlayerPauseMenu : MonoBehaviour
         masterSlider.value = ButtonHandler.settings.masterVolume;
         musicSlider.value = ButtonHandler.settings.musicVolume;
         dialogueSlider.value = ButtonHandler.settings.dialogueVolume;
+        mouseSensitivitySlider.value = ButtonHandler.settings.mouseSensitivity;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 0;
@@ -179,6 +181,12 @@ public class PlayerPauseMenu : MonoBehaviour
     public void UpdateDialogueVolume()
     {
         ButtonHandler.settings.SetDialogueVolume(dialogueSlider.value);
+        ButtonHandler.InvokeOnSettingsChanged();
+    }
+
+    public void UpdateMouseSensitivity()
+    {
+        ButtonHandler.settings.SetMouseSensitivity(mouseSensitivitySlider.value);
         ButtonHandler.InvokeOnSettingsChanged();
     }
 

@@ -10,6 +10,7 @@ namespace DefaultNamespace
         [SerializeField] protected ushort amt;
         [SerializeField] protected itemType type;
         [SerializeField] protected string name;
+        public float damage;
         
         [SerializeField] protected AnimationHandler animationHandler;
         [SerializeField] protected ItemSfxHandler itemSfxHandler;

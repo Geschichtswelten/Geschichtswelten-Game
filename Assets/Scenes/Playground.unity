@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: d971c96a883f81f439264e6ebf6912bf, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: ba6cba86ccdbfc6458bb72e48df46552, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -2028,6 +2028,63 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 9410a4edb2801d54382eeaebfd3f775c, type: 2}
   m_BuildHeightMesh: 0
+--- !u!1001 &1270907277
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2482222647346435716, guid: b3fbddbd9519e42459f23662ce32caca, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -27.965508
+      objectReference: {fileID: 0}
+    - target: {fileID: 2482222647346435716, guid: b3fbddbd9519e42459f23662ce32caca, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.4485267
+      objectReference: {fileID: 0}
+    - target: {fileID: 2482222647346435716, guid: b3fbddbd9519e42459f23662ce32caca, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -47.411083
+      objectReference: {fileID: 0}
+    - target: {fileID: 2482222647346435716, guid: b3fbddbd9519e42459f23662ce32caca, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2482222647346435716, guid: b3fbddbd9519e42459f23662ce32caca, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2482222647346435716, guid: b3fbddbd9519e42459f23662ce32caca, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2482222647346435716, guid: b3fbddbd9519e42459f23662ce32caca, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2482222647346435716, guid: b3fbddbd9519e42459f23662ce32caca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2482222647346435716, guid: b3fbddbd9519e42459f23662ce32caca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2482222647346435716, guid: b3fbddbd9519e42459f23662ce32caca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2826294939595986310, guid: b3fbddbd9519e42459f23662ce32caca, type: 3}
+      propertyPath: m_Name
+      value: WoodSoldier
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b3fbddbd9519e42459f23662ce32caca, type: 3}
 --- !u!1 &1373440615
 GameObject:
   m_ObjectHideFlags: 0
@@ -3714,6 +3771,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1173400364625854114, guid: 7db62a633f034b74388d5a0b13bf8905, type: 3}
+      propertyPath: positionNumberX
+      value: -29
+      objectReference: {fileID: 0}
+    - target: {fileID: 1173400364625854114, guid: 7db62a633f034b74388d5a0b13bf8905, type: 3}
+      propertyPath: positionNumberY
+      value: 29
+      objectReference: {fileID: 0}
     - target: {fileID: 1289423393540274576, guid: 7db62a633f034b74388d5a0b13bf8905, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4581,6 +4646,14 @@ PrefabInstance:
     - target: {fileID: 4719876374576588936, guid: 7db62a633f034b74388d5a0b13bf8905, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4815274171344190455, guid: 7db62a633f034b74388d5a0b13bf8905, type: 3}
+      propertyPath: positionNumberX
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4815274171344190455, guid: 7db62a633f034b74388d5a0b13bf8905, type: 3}
+      propertyPath: positionNumberY
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 5018823382631620494, guid: 7db62a633f034b74388d5a0b13bf8905, type: 3}
       propertyPath: m_AnchorMax.y
@@ -5577,3 +5650,4 @@ SceneRoots:
   - {fileID: 7016909128739832145}
   - {fileID: 1567767262}
   - {fileID: 501044168}
+  - {fileID: 1270907277}

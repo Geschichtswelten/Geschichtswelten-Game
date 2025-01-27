@@ -900,11 +900,11 @@ MonoBehaviour:
   _patrollingTargets: []
   movementPredictionTime: 5
   movementPredictionThreshold: 0.5
-  _health: 100
+  _health: 320
   _damage: 16
   _walkSpeed: 5
   _runSpeed: 7
-  _armor: 20
+  _armor: 0
   _attackRange: 4
   _alertRange: 25
   _attackCooldown: 4
@@ -916,6 +916,7 @@ MonoBehaviour:
   patrollingAccuracy: 3
   tutorial: 0
   dead: 0
+  barbarian: 1
   deathClips:
   - {fileID: 8300000, guid: f7245dc350021be45842be4144a54225, type: 3}
   - {fileID: 8300000, guid: 794287b4f9590584c8975013a8a66522, type: 3}

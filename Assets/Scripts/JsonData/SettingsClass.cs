@@ -12,23 +12,24 @@ public class SettingsClass
 
     //UI
     //resolution: 0 = 16:9; 1 = 4:5
-    public int resolution;
+    public float mouseSensitivity;
 
     //Keybindings
     public SettingsClass(float masterVolume, float dialogueVolume,
-        float musicVolume, int resolution)
+        float musicVolume, float mouseSensitivity)
     {
         this.masterVolume = masterVolume;
         this.dialogueVolume = dialogueVolume;
         this.musicVolume = musicVolume;
-        this.resolution = resolution;
+        this.mouseSensitivity = mouseSensitivity;
     }
     public SettingsClass()
     {
         this.masterVolume = 0;
         this.dialogueVolume = 0;
         this.musicVolume = 0;
-        this.resolution = 0;
+        this.mouseSensitivity = 100;
+        
     }
 
     public void SetMasterVolume(float volume)
@@ -44,9 +45,9 @@ public class SettingsClass
         musicVolume = volume;
     }
 
-    public void SetResolution(int res)
+    public void SetMouseSensitivity(float mouseSensitivity)
     {
-        resolution = res;
+        this.mouseSensitivity = mouseSensitivity;
     }
 
 }

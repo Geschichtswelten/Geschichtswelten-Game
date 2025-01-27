@@ -20,6 +20,7 @@ public class ButtonHandler : MonoBehaviour
     public GameObject loadingScreen;
     public VideoPlayer videoPlayer;
     public AudioClip vidAudioClip;
+    public GameObject canvas;
     void Start()
     {
         Application.backgroundLoadingPriority = ThreadPriority.BelowNormal;
@@ -30,7 +31,7 @@ public class ButtonHandler : MonoBehaviour
     private void LoadSettings()
     {
         SettingsClass settingsClass = JsonHandler.ReadSettings(Application.dataPath + "/Settings/settings.json");
-        settingsClass ??= new SettingsClass(100f, 100f, 100f, 0);
+        settingsClass ??= new SettingsClass(100f, 100f, 100f, 100);
         settings = settingsClass;
         OnSettingsChanged?.Invoke();
     }
@@ -72,7 +73,7 @@ public class ButtonHandler : MonoBehaviour
 
     IEnumerator LoadNewGameAsync()
     {
-        
+          
         //ProgressBar
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -91,6 +92,7 @@ public class ButtonHandler : MonoBehaviour
                 {
                     obj.gameObject.SetActive(false);
                 }
+                canvas.SetActive(true); 
                 var worldMusicScript = FindAnyObjectByType<WorldMusicScript>();
                 worldMusicScript.source.clip = vidAudioClip;
                 worldMusicScript.source.volume = settings.masterVolume * settings.dialogueVolume;
@@ -107,9 +109,8 @@ public class ButtonHandler : MonoBehaviour
 
     IEnumerator LoadSceneAsync()
     {
-        yield return new WaitForSeconds(1);
-        AsyncOperation loadScene = SceneManager.LoadSceneAsync(392, LoadSceneMode.Additive);
-        loadScene.allowSceneActivation = false;
+        
+        
         //ProgressBar
         profile = JsonHandler.readGameProfile("/Profiles/profile.json");
 
@@ -119,7 +120,11 @@ public class ButtonHandler : MonoBehaviour
             //Have to test that
             yield break;
         }
+        
         SetLoadingScreenActive();
+        yield return new WaitForSeconds(1);
+        AsyncOperation loadScene = SceneManager.LoadSceneAsync(392, LoadSceneMode.Additive);
+        loadScene.allowSceneActivation = false;
         while (!loadScene.isDone)
         {
             yield return new WaitForSeconds(0.01f);

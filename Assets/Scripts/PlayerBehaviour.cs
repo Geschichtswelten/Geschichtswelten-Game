@@ -123,10 +123,12 @@ public class PlayerBehaviour : MonoBehaviour
 
     [SerializeField] private float walkCooldown;
     [SerializeField] private float sprintCooldown;
-    
+    [SerializeField] private Animator animator;
 
     
     private float _wC = 0, _sC = 0;
+
+    private bool _takeDamage = true;
 
     [Header("Audio")] 
     [SerializeField] private AudioSource _source;
@@ -535,6 +537,26 @@ public class PlayerBehaviour : MonoBehaviour
             Destroy(equippedItem.GetComponent<Rigidbody>());
         }
         _equippedItemBehaviour = equippedItem.GetComponent<ItemBehaviour>();
+
+        switch (id)
+        {
+            case 1:
+                _equippedItemBehaviour.Id = 1;
+                _equippedItemBehaviour.damage = 10;
+                break;
+            case 2:
+                _equippedItemBehaviour.Id = 2;
+                _equippedItemBehaviour.damage = 5;
+                break;
+            case 7:
+                _equippedItemBehaviour.Id = 7;
+                _equippedItemBehaviour.damage = 17;
+                break;
+            case 25:
+                _equippedItemBehaviour.Id = 25;
+                _equippedItemBehaviour.damage = 5;
+                break;
+        }
         _equippedItemId = _equippedItemBehaviour.Id;
         equipped_item_name.text = item.name;
         //possibly do some inventory logic here
@@ -624,6 +646,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void TakeDamage(float val)
     {
+        if (!_takeDamage) return;
+        
         if (!_combatSource.isPlaying)
         {
             _combatSource.clip = gruntClips[Random.Range(0, gruntClips.Length)];
@@ -646,6 +670,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Die()
     {
+        _takeDamage = false;
         _combatSource.clip = deathClips[Random.Range(0, deathClips.Length)];
         _combatSource.Play();
         var pouchInv = Instantiate(drop, transform.position, Quaternion.identity).GetComponent<StorageInventory>();
@@ -654,11 +679,14 @@ public class PlayerBehaviour : MonoBehaviour
         pouchInv.inv = pouchInv.inventory.GetComponent<Inventory>();
         inventory.ItemsInInventory.ForEach(x => pouchInv.addItemToStorage(x.itemID, x.itemValue));
         inventory.deleteAllItems();
-        Respawn();
+        Heal(float.MaxValue);
+        StartCoroutine(Respawn());
     }
     
-    public void Respawn()
+    public IEnumerator Respawn()
     {
+        animator.SetTrigger("FadeTrigger");
+        yield return new WaitForSecondsRealtime(4.4f);
         var dmgMul = 1f;
         _armor.ForEach(x => dmgMul *= x.Multiplier);
         _hp = MaxHp;
@@ -666,6 +694,8 @@ public class PlayerBehaviour : MonoBehaviour
         hp_label.text = (int) _hp + " / 100\t" + res + "%";
         if (respawnPoint != null)
             LoadPosition(respawnPoint.position, respawnPoint.rotation);
+
+        _takeDamage = true;
     }
 
     public Inventory GetHotbar() => hotbar;

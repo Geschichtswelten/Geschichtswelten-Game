@@ -10105,6 +10105,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1758336818755121674, guid: 66f6fb4e115e0564c9e6bd36b3d03e68, type: 3}
     - target: {fileID: 2163902859974509158, guid: 6976154783932854286f38d5dccd904a, type: 3}
+      propertyPath: _damage
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2163902859974509158, guid: 6976154783932854286f38d5dccd904a, type: 3}
+      propertyPath: _health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2163902859974509158, guid: 6976154783932854286f38d5dccd904a, type: 3}
       propertyPath: dropIds.Array.size
       value: 1
       objectReference: {fileID: 0}

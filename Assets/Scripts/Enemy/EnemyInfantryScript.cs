@@ -94,7 +94,6 @@ public class EnemyInfantryScript : AbstractEnemyBehaviour
                 yield return new WaitForSeconds(0.01f);
             }
         }
-        Die();
     }
     
     private IEnumerator Attack()

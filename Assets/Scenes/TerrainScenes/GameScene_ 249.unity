@@ -4244,6 +4244,7 @@ GameObject:
   - component: {fileID: 973840909}
   - component: {fileID: 973840908}
   - component: {fileID: 973840907}
+  - component: {fileID: 973840915}
   m_Layer: 7
   m_Name: Mushrooms(Clone)
   m_TagString: Untagged
@@ -4394,7 +4395,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 973840911}
-  controller: {fileID: 0}
   animations: []
 --- !u!95 &973840911
 Animator:
@@ -4483,6 +4483,22 @@ Transform:
   - {fileID: 1224623108}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &973840915
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973840906}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1027660453
 GameObject:
   m_ObjectHideFlags: 0
@@ -4744,6 +4760,7 @@ GameObject:
   - component: {fileID: 1051758185}
   - component: {fileID: 1051758184}
   - component: {fileID: 1051758183}
+  - component: {fileID: 1051758191}
   m_Layer: 7
   m_Name: Mushrooms(Clone)
   m_TagString: Untagged
@@ -4894,7 +4911,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1051758187}
-  controller: {fileID: 0}
   animations: []
 --- !u!95 &1051758187
 Animator:
@@ -4983,6 +4999,22 @@ Transform:
   - {fileID: 432627100}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &1051758191
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051758182}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1108206199
 GameObject:
   m_ObjectHideFlags: 0
@@ -6120,6 +6152,7 @@ GameObject:
   - component: {fileID: 1306886437}
   - component: {fileID: 1306886436}
   - component: {fileID: 1306886435}
+  - component: {fileID: 1306886443}
   m_Layer: 7
   m_Name: Mushrooms(Clone)
   m_TagString: Untagged
@@ -6270,7 +6303,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1306886439}
-  controller: {fileID: 0}
   animations: []
 --- !u!95 &1306886439
 Animator:
@@ -6359,6 +6391,22 @@ Transform:
   - {fileID: 327555741}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &1306886443
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306886434}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1312022746
 GameObject:
   m_ObjectHideFlags: 0
@@ -7876,6 +7924,7 @@ GameObject:
   - component: {fileID: 1627773847}
   - component: {fileID: 1627773846}
   - component: {fileID: 1627773845}
+  - component: {fileID: 1627773853}
   m_Layer: 7
   m_Name: Mushrooms(Clone)
   m_TagString: Untagged
@@ -8026,7 +8075,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1627773849}
-  controller: {fileID: 0}
   animations: []
 --- !u!95 &1627773849
 Animator:
@@ -8115,6 +8163,22 @@ Transform:
   - {fileID: 1903872616}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &1627773853
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627773844}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1634361632
 GameObject:
   m_ObjectHideFlags: 0
@@ -8577,6 +8641,7 @@ GameObject:
   - component: {fileID: 1748022982}
   - component: {fileID: 1748022981}
   - component: {fileID: 1748022980}
+  - component: {fileID: 1748022988}
   m_Layer: 7
   m_Name: Mushrooms(Clone)
   m_TagString: Untagged
@@ -8727,7 +8792,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1748022984}
-  controller: {fileID: 0}
   animations: []
 --- !u!95 &1748022984
 Animator:
@@ -8816,6 +8880,22 @@ Transform:
   - {fileID: 118997702}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &1748022988
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748022979}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1827132658
 GameObject:
   m_ObjectHideFlags: 0
@@ -9482,6 +9562,7 @@ GameObject:
   - component: {fileID: 1997560370}
   - component: {fileID: 1997560369}
   - component: {fileID: 1997560368}
+  - component: {fileID: 1997560376}
   m_Layer: 7
   m_Name: Mushrooms(Clone)
   m_TagString: Untagged
@@ -9632,7 +9713,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1997560372}
-  controller: {fileID: 0}
   animations: []
 --- !u!95 &1997560372
 Animator:
@@ -9721,6 +9801,22 @@ Transform:
   - {fileID: 1913059653}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &1997560376
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997560367}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &2015256200
 GameObject:
   m_ObjectHideFlags: 0

@@ -46,7 +46,7 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
     protected Vector3 lastPos;
     protected float timeSlice;
     protected bool block = false;
-    public bool tutorial = false, dead = false;
+    public bool tutorial = false, dead = false, barbarian = false;
     
     [SerializeField] protected AudioClip[] deathClips;
     
@@ -153,8 +153,10 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
     {
         if (dead) return;
         dead = true;
-        if (dropIds.Length > 0)
+        if (dropIds.Length > 0 )
         {
+            
+            
             
             int howManyItems = Random.Range(0, dropIds.Length);
             if (typeof(ArminiusBehaviour) == GetType())
@@ -166,10 +168,20 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
             pouchInv.player = _target;
             pouchInv.inventory = _target.GetComponent<PlayerBehaviour>().storageInv;
             pouchInv.inv = pouchInv.inventory.GetComponent<Inventory>();
-            for (int i = 0; i < howManyItems; i++)
+
+            if (barbarian)
+            {
+                pouchInv.addItemToStorage(dropIds[0], 1);
+            }
+            else
             {
 
-                pouchInv.addItemToStorage(dropIds[i], Random.Range(1, 5));
+
+                for (int i = 0; i < howManyItems; i++)
+                {
+
+                    pouchInv.addItemToStorage(dropIds[i], Random.Range(1, 5));
+                }
             }
         }
         var coll = gameObject.GetComponent<Collider>();
@@ -185,10 +197,10 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
     {
         if (block)
         {
-            _health -= (damage / _armor) / 2;
+            _health -= (damage * (1f - _armor / 100f)) / 2;
         }else
         {
-            _health -= (damage / _armor);
+            _health -= (damage * (1f - _armor / 100f));
         }
         _animator.SetTrigger("enemyHit");
     }
