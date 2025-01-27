@@ -78,7 +78,17 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
             canvasGroup.blocksRaycasts = true;
             Transform newSlot = null;
             if (data.pointerEnter != null)
+            {
                 newSlot = data.pointerEnter.transform;
+                if (newSlot.childCount > 0)
+                {
+                    var c = newSlot.GetChild(0);
+                    if (c.CompareTag("Item"))
+                    {
+                        newSlot = c.GetChild(0).transform;
+                    }
+                }
+            }
 
             if (newSlot != null)
             {
@@ -122,7 +132,7 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                     else
                     {
                         int newSlotChildCount = newSlot.transform.parent.childCount;
-                        bool isOnSlot = newSlot.transform.parent.GetChild(0).tag == "ItemIcon";
+                        var isOnSlot = newSlot.transform.parent.GetChild(0).CompareTag("ItemIcon") || newSlot.transform.parent.GetChild(0).CompareTag("Item");
                         //dragging on a slot where allready is an item on
                         if (newSlotChildCount != 0 && isOnSlot)
                         {
@@ -412,7 +422,7 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                 {
                     ItemType[] itemTypeOfSlots = GameObject.FindGameObjectWithTag("EquipmentSystem").GetComponent<EquipmentSystem>().itemTypeOfSlots;
                     int newSlotChildCount = newSlot.transform.parent.childCount;
-                    bool isOnSlot = newSlot.transform.parent.GetChild(0).tag == "ItemIcon";
+                    var isOnSlot = newSlot.transform.parent.GetChild(0).CompareTag("ItemIcon") || newSlot.transform.parent.GetChild(0).CompareTag("Item");
                     bool sameItemType = firstItem.itemType == secondItem.itemType;
                     bool fromHot = oldSlot.transform.parent.parent.GetComponent<Hotbar>() != null;
                     
@@ -516,8 +526,8 @@ public class DragItem : MonoBehaviour, IDragHandler, IPointerDownHandler, IEndDr
                     int newSlotChildCount = newSlot.transform.parent.childCount;
 
 
-                    bool isOnSlot = newSlot.transform.parent.GetChild(0).tag == "ItemIcon";
-                    //dragging on a slot where allready is an item on
+                    var isOnSlot = newSlot.transform.parent.GetChild(0).CompareTag("ItemIcon") || newSlot.transform.parent.GetChild(0).CompareTag("Item");
+                    //dragging on a slot where already is an item on
                     if (newSlotChildCount != 0 && isOnSlot)
                     {
                         //check if the items fits into the other item
