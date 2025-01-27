@@ -7,7 +7,6 @@ namespace DefaultNamespace
     {
         private Coroutine attackRoutine;
         [SerializeField] private Collider hitbox;
-        [SerializeField] private float damage;
         [SerializeField] private float attackCooldown = 1.1f;
         private enum animationIds
         {
@@ -18,6 +17,7 @@ namespace DefaultNamespace
         private void Awake()
         {
             id = 0;
+            damage = 2;
             type = itemType.weapon;
             name = "Fists";
         }

@@ -46,23 +46,26 @@ namespace DefaultNamespace
         {
             //Debug.Log("Blocking or smth");
             var player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>();
-
+            
             if (!player)
                 return;
             if (isBlocking)
             {
                 player.RemoveArmor(id);
+                isBlocking = false;
+                animationHandler.playAnimation((int)animationIds.block1);
+                return;
             }
-            else
+            if (attackRoutine != null) 
+                return;
+            var a = new PlayerBehaviour.Armor()
             {
-                var a = new PlayerBehaviour.Armor()
-                {
-                    ItemId = id,
-                    Multiplier = 0.4f
-                };
-                player.RegisterArmor(a);
-            }
-            isBlocking = !isBlocking;
+                ItemId = id,
+                Multiplier = 0.4f
+            };
+            player.RegisterArmor(a);
+            isBlocking = true;
+            animationHandler.playAnimation((int)animationIds.block1);
         }
 
         private void OnDisable()

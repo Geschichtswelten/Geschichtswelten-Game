@@ -11,7 +11,6 @@ namespace DefaultNamespace
 
         public bool playAnimation(int id)
         {
-            //Debug.Log("playing animation " + id);
             if (id >= animations.Count || animations[id] is null) return false; 
             
             animator.SetTrigger(animations[id]);

@@ -1,7 +1,5 @@
 using System;
 using System.IO;
-using System.Xml;
-using UnityEditor;
 using UnityEngine;
 
 public class JsonHandler : MonoBehaviour
@@ -16,6 +14,7 @@ public class JsonHandler : MonoBehaviour
         }
         catch (NullReferenceException)
         {
+            Debug.Log("No settings file found");
             return null;
         }
     }
@@ -23,14 +22,14 @@ public class JsonHandler : MonoBehaviour
     public static void WriteSettings(SettingsClass settings)
     {
         string jsonString = JsonUtility.ToJson(settings);
-        if (Directory.Exists(Application.dataPath + "/Settings"))
+        if (Directory.Exists(Application.persistentDataPath + "/Settings"))
         {
-            File.WriteAllText(Application.dataPath + "/Settings/settings.json", jsonString);
+            File.WriteAllText(Application.persistentDataPath + "/Settings/settings.json", jsonString);
         }
         else
         {
-            Directory.CreateDirectory(Application.dataPath + "/Settings");
-            File.WriteAllText(Application.dataPath + "/Settings/settings.json", jsonString);
+            Directory.CreateDirectory(Application.persistentDataPath + "/Settings");
+            File.WriteAllText(Application.persistentDataPath + "/Settings/settings.json", jsonString);
         }
         
     }
@@ -52,20 +51,20 @@ public class JsonHandler : MonoBehaviour
     public static void WriteGameProfile(GameProfile profile)
     {
         string jsonString = JsonUtility.ToJson(profile);
-        if (Directory.Exists(Application.dataPath + "/Profiles"))
+        if (Directory.Exists(Application.persistentDataPath + "/Profiles"))
         {
-            File.WriteAllText(Application.dataPath + "/Profiles/profile.json", jsonString);
+            File.WriteAllText(Application.persistentDataPath + "/Profiles/profile.json", jsonString);
         }
         else
         {
-            Directory.CreateDirectory(Application.dataPath + "/Profiles");
-            File.WriteAllText(Application.dataPath + "/Profiles/profile.json", jsonString);
+            Directory.CreateDirectory(Application.persistentDataPath + "/Profiles");
+            File.WriteAllText(Application.persistentDataPath + "/Profiles/profile.json", jsonString);
         }
     }
 
     public static void DeleteGameProfile()
     {
-        Directory.Delete(Application.dataPath + "/Profiles", true);
+        Directory.Delete(Application.persistentDataPath + "/Profiles", true);
     }
 
 

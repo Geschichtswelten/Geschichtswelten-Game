@@ -101,6 +101,9 @@ public class Inventory : MonoBehaviour
         updateItemList();
 
         inputManagerDatabase = (InputManager)Resources.Load("InputManager");
+        
+        positionNumberX = -25;
+        positionNumberY = 25;
     }
 
     public void sortItems()

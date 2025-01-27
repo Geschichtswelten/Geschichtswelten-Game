@@ -30,7 +30,7 @@ public class ButtonHandler : MonoBehaviour
 
     private void LoadSettings()
     {
-        SettingsClass settingsClass = JsonHandler.ReadSettings(Application.dataPath + "/Settings/settings.json");
+        SettingsClass settingsClass = JsonHandler.ReadSettings(Application.persistentDataPath + "/Settings/settings.json");
         settingsClass ??= new SettingsClass(100f, 100f, 100f, 100);
         settings = settingsClass;
         OnSettingsChanged?.Invoke();
@@ -112,7 +112,7 @@ public class ButtonHandler : MonoBehaviour
         
         
         //ProgressBar
-        profile = JsonHandler.readGameProfile("/Profiles/profile.json");
+        profile = JsonHandler.readGameProfile(Application.persistentDataPath + "/Profiles/profile.json");
 
         if (profile == null)
         {

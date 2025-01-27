@@ -17,12 +17,24 @@ public class AxeScript : ItemBehaviour
     private List<TreeInstance> treeArray;
     private TreePrototype[] prototypes;
     private TerrainData terrainData;
+    private bool isBlocking = false;
     
     [SerializeField] private GameObject logPrefab;
     private enum animationIds
     {
         attack1,
         block1
+    }
+    
+    private void OnDisable()
+    {
+        if (!isBlocking) 
+            return;
+        var player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>();
+        if (!player)
+            return;
+        player.RemoveArmor(id);
+        isBlocking = false;
     }
 
     private void Awake()
@@ -64,18 +76,39 @@ public class AxeScript : ItemBehaviour
 
     public override void Action1() //attack
     {
+        isBlocking = false;
         if (attackRoutine == null)
             attackRoutine = StartCoroutine(attack());
     }
     
     public override void Action2()
     {
-        //Debug.Log("Blocking or smth");
+
+        var player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>();
+
+        if (!player)
+            return;
+        if (isBlocking)
+        {
+            player.RemoveArmor(id);
+            isBlocking = false;
+            animationHandler.playAnimation((int)animationIds.block1);
+            return;
+        }
+        if (attackRoutine != null) 
+            return;
+        var a = new PlayerBehaviour.Armor()
+        {
+            ItemId = id,
+            Multiplier = 0.4f
+        };
+        player.RegisterArmor(a);
+        isBlocking = true;
+        animationHandler.playAnimation((int)animationIds.block1);
     }
 
     private IEnumerator attack()
     {
-        //Debug.Log("Attacking maybe");
         hitbox.enabled = true;
         harvestTree();
         animationHandler.playAnimation((int)animationIds.attack1);
@@ -138,7 +171,6 @@ public class AxeScript : ItemBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.gameObject.CompareTag("Enemy")) return;
-        //Debug.Log("Hit [" + other.tag + "] " + other.name);
         if (other.TryGetComponent<AbstractEnemyBehaviour>(out var enemy))
         {
             enemy.AttackEnemy(damage);

@@ -22,7 +22,7 @@ public class RaiseTerrainHeightmap : MonoBehaviour
         if (!myTerrain)
         {
             //myTerrain = Terrain.activeTerrain;
-            Debug.LogError(gameObject.name + " has no terrain assigned in the inspector");
+            //Debug.LogError(gameObject.name + " has no terrain assigned in the inspector");
         }
 
         terrainData = myTerrain.terrainData;
@@ -54,7 +54,7 @@ public class RaiseTerrainHeightmap : MonoBehaviour
 
         terrainData.SetHeights(0, 0, heightmapData);
 
-        Debug.Log("RaiseHeights() completed");
+        //Debug.Log("RaiseHeights() completed");
     }
 
 

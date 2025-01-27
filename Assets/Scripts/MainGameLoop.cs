@@ -41,7 +41,7 @@ public class MainGameLoop : MonoBehaviour
 
     IEnumerator del(GameObject obj)
     {
-        yield return new WaitForSecondsRealtime(4f);
+        yield return new WaitForSecondsRealtime(4.5f);
         Time.timeScale = 1f;
         Destroy(obj);
     }

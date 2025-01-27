@@ -15,7 +15,6 @@ public class FoodBehaviour : ItemBehaviour
 
     public override void Action1()
     {
-        Debug.Log("I am food");
         player.Eat(foodWorth);
         if (!hotbarInv.ConsumeItemAtSlot(player.activeHotbarSlot))
         {

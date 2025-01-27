@@ -150,6 +150,7 @@ MonoBehaviour:
   animator: {fileID: 8830734184492044707}
   animations:
   - Attack
+  - Block
 --- !u!82 &120193487216188361
 AudioSource:
   m_ObjectHideFlags: 0
@@ -280,10 +281,10 @@ MonoBehaviour:
   amt: 1
   type: 1
   name: Axe
+  damage: 10
   animationHandler: {fileID: 4421014091716076132}
   itemSfxHandler: {fileID: 1486787314247272797}
   hitbox: {fileID: 8131853494674897497}
-  damage: 10
   attackCooldown: 1.1
   timberDistance: 10
   maxTimberAngle: 70

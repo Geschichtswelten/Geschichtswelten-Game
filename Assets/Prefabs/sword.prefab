@@ -108,10 +108,10 @@ MonoBehaviour:
   amt: 1
   type: 1
   name: Sword
+  damage: 0
   animationHandler: {fileID: 3254971706028213469}
   itemSfxHandler: {fileID: 5392971201141368203}
   hitbox: {fileID: 538155169646609821}
-  damage: 0
   attackCooldown: 1.1
 --- !u!82 &1402804328309984624
 AudioSource:
@@ -265,6 +265,7 @@ MonoBehaviour:
   animator: {fileID: 3839327622314694529}
   animations:
   - Attack
+  - Block
 --- !u!114 &5392971201141368203
 MonoBehaviour:
   m_ObjectHideFlags: 0
