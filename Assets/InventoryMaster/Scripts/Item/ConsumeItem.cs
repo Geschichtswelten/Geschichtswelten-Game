@@ -27,8 +27,40 @@ public class ConsumeItem : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData data)
     {
-       //Debug.Log("FUCK OFF");
-        return;/*
+        if (data.button == PointerEventData.InputButton.Left)
+        {
+            bool gearable = false;
+            Inventory inventory = transform.parent.parent.parent.GetComponent<Inventory>();
+
+            if (eS != null)
+                itemTypeOfSlot = eS.itemTypeOfSlots;
+            //item from craft system to inventory
+            if (transform.parent.GetComponent<CraftResultSlot>() != null)
+            {
+                bool check = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>().inventory
+                    .GetComponent<Inventory>().TryAddItemsToExistingStack(item.itemID, item.itemValue);
+
+                if (!check)
+                {
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>().inventory
+                        .GetComponent<Inventory>().addItemToInventory(item.itemID, item.itemValue);
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>().inventory
+                        .GetComponent<Inventory>().stackableSettings();
+                }
+
+                CraftSystem cS = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>().craftSystem
+                    .GetComponent<CraftSystem>();
+                cS.deleteItems(item);
+                CraftResultSlot result = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>()
+                    .craftSystem.transform.GetChild(3).GetComponent<CraftResultSlot>();
+                result.temp = 0;
+                tooltip.deactivateTooltip();
+                gearable = true;
+                GameObject.FindGameObjectWithTag("MainInventory").GetComponent<Inventory>().updateItemList();
+            }
+        }
+
+        /*Debug.Log("FUCK OFF");
         if (this.gameObject.transform.parent.parent.parent.GetComponent<EquipmentSystem>() == null)
         {
             bool gearable = false;
