@@ -68,14 +68,13 @@ public class MainGameLoop : MonoBehaviour
             videoPlayer.clip = videoClips[1];
         }
         videoPlayer.SetDirectAudioVolume(0, ButtonHandler.settings.dialogueVolume * ButtonHandler.settings.masterVolume);
+        ButtonHandler.InvokeOnEndGame();
         yield return new WaitUntil(()=>loadScene.isDone);
         //start Video
+        videoPlayer.targetCamera = Camera.main;
         videoPlayer.Play();
         yield return new WaitForSecondsRealtime(3);
         yield return new WaitUntil(() => !videoPlayer.isPlaying);     //video.isDone
-        var loadingScreen = GameObject.FindGameObjectWithTag("Finish");
-        loadingScreen.SetActive(true);
-        yield return new WaitForSeconds(2f);
         loadScene = SceneManager.LoadSceneAsync(0, LoadSceneMode.Single);
         loadScene.allowSceneActivation = true;
         yield return new WaitUntil(()=>loadScene.isDone);

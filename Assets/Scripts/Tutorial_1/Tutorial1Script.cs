@@ -173,6 +173,7 @@ public class Tutorial1Script : MonoBehaviour
             yield return new WaitForSeconds(5);
             worldMusicScript.StartingGame();
             SceneManager.UnloadSceneAsync(395);
+            Destroy(this.gameObject);
             
     }
 

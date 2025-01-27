@@ -3360,7 +3360,7 @@ MonoBehaviour:
   _attackCooldown: 4
   _despawnTime: 30
   drop: {fileID: 1758336818755121674, guid: 66f6fb4e115e0564c9e6bd36b3d03e68, type: 3}
-  dropIds: 160000001200000014000000
+  dropIds: 1600000012000000140000000300000018000000
   _source: {fileID: 5850668633856591950}
   _combatSource: {fileID: 4907261117099781731}
   patrollingAccuracy: 3

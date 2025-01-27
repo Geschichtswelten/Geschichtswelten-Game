@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,14 +12,23 @@ public class WorldMusicScript : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
     
+    
+
     private void OnEnable()
     {
         ButtonHandler.OnSettingsChanged += HandleSettingsChanged;
+        ButtonHandler.OnEndGame += HandleEndGame;
     }
 
     private void OnDisable()
     {
         ButtonHandler.OnSettingsChanged -= HandleSettingsChanged;
+        ButtonHandler.OnEndGame -= HandleEndGame;
+    }
+
+    private void HandleEndGame()
+    {
+        Destroy(this.gameObject);
     }
     private void HandleSettingsChanged()
     {
@@ -43,5 +53,7 @@ public class WorldMusicScript : MonoBehaviour
         source.mute = false;
         HandleSettingsChanged();
         source.clip = clips[1];
+        source.loop = true;
+        source.Play();
     }
 }

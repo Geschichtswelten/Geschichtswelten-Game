@@ -16,6 +16,7 @@ public class ButtonHandler : MonoBehaviour
     public static SettingsClass settings = new SettingsClass();
     public static GameProfile profile = null;
     public static event Action OnSettingsChanged;
+    public static event Action OnEndGame;
 
     public GameObject loadingScreen;
     public VideoPlayer videoPlayer;
@@ -24,6 +25,7 @@ public class ButtonHandler : MonoBehaviour
     void Start()
     {
         Application.backgroundLoadingPriority = ThreadPriority.BelowNormal;
+        OnEndGame += HandleEndGame;
         DontDestroyOnLoad(this.gameObject);
         LoadSettings();
     }
@@ -34,6 +36,16 @@ public class ButtonHandler : MonoBehaviour
         settingsClass ??= new SettingsClass(100f, 100f, 100f, 100);
         settings = settingsClass;
         OnSettingsChanged?.Invoke();
+    }
+
+    public void HandleEndGame()
+    {
+        Destroy(this.gameObject);
+    }
+
+    public static void InvokeOnEndGame()
+    {
+        OnEndGame?.Invoke();
     }
 
     public static void InvokeOnSettingsChanged()

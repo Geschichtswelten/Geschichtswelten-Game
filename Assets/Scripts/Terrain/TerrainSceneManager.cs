@@ -7,9 +7,6 @@ public class TerrainSceneManager : MonoBehaviour
 {
     [Header("Player")]
     [SerializeField] private GameObject player;
-    [SerializeField] private float spawnRadius;
-    [SerializeField] private GameObject enemy;
-    [SerializeField] private float spawnInterval;
 
     [Header("Terrain Data")]
     [Header("Read only")]
@@ -27,31 +24,9 @@ public class TerrainSceneManager : MonoBehaviour
         scenesToBeLoaded = new int[25];
         lastScene = 0;
         Application.backgroundLoadingPriority = ThreadPriority.Low;
-        _spawnIntervalSlice = spawnInterval;
         StartCoroutine(nameof(cor));
     }
-
-    private void Update()
-    {
-        _spawnIntervalSlice -= Time.deltaTime;
-        if (_spawnIntervalSlice <= 0)
-        {
-            if (Physics.Raycast(player.transform.position, Vector3.down, out RaycastHit hitInfo, 5f,
-                    LayerMask.GetMask("whatIsGround")))
-            {
-                TerrainCollider tC = hitInfo.collider as TerrainCollider;
-
-                float alpha = Random.Range(0f, 360f);
-                var spawnDir = new Vector3(Mathf.Cos(alpha), playerPosition.y, Mathf.Sin(alpha)).normalized;
-                var worldPos = playerPosition + spawnRadius * (playerPosition - spawnDir);
-                var instPoint = tC.gameObject.GetComponent<Terrain>().SampleHeight(worldPos);
-                var instPos = new Vector3(worldPos.x, instPoint, worldPos.z);
-                
-                Instantiate(enemy, instPos, Quaternion.identity);
-            }
-            _spawnIntervalSlice = spawnInterval;
-        }
-    }
+    
 
 
     IEnumerator cor()

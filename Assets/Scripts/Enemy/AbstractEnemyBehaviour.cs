@@ -177,10 +177,10 @@ public abstract class AbstractEnemyBehaviour : MonoBehaviour
             {
 
 
-                for (int i = 0; i < howManyItems; i++)
+                for (int i = 0; i <= howManyItems; i++)
                 {
 
-                    pouchInv.addItemToStorage(dropIds[i], Random.Range(1, 5));
+                    pouchInv.addItemToStorage(dropIds[i], Random.Range(1, 3));
                 }
             }
         }

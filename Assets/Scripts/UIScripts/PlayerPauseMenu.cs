@@ -21,6 +21,8 @@ public class PlayerPauseMenu : MonoBehaviour
     [SerializeField] private Slider dialogueSlider;
     [SerializeField] private Slider mouseSensitivitySlider;
 
+    public bool isTutorial = false;
+
     //Player Script for items and camps missing
     private DayNightCycle _cycle;
     private void Start()
@@ -87,6 +89,7 @@ public class PlayerPauseMenu : MonoBehaviour
 
     public void SaveGame()
     {
+        if (isTutorial) return;
         List<Item> armorList = _characterSlots.ItemsInInventory;
         List<Item> hotbarList = _hotbar.ItemsInInventory;
         List<Item> inventoryList = _playerInventory.ItemsInInventory;

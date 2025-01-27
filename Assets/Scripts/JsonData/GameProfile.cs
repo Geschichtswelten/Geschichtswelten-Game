@@ -38,6 +38,10 @@ public class GameProfile
             playerItems.list[i].list.Add(-1);
             playerItems.list[i].list.Add(0);
         }
+
+        playerPosX = 1926.73f;
+        playerPosY = 51.58f;
+        playerPosZ = 915f;
     }
 
     public GameProfile(float playerPosX, float playerPosY, float playerPosZ, float playerRotX, float playerRotY, float playerRotZ, SerializedList<SerializedList<int>> playerItems, bool woodCampBeaten, bool copperCampBeaten, bool arminiusBeaten, float time, int day)
