@@ -71,9 +71,11 @@ public class MainGameLoop : MonoBehaviour
         ButtonHandler.InvokeOnEndGame();
         yield return new WaitUntil(()=>loadScene.isDone);
         //start Video
+        videoPlayer.Prepare();
+        yield return new WaitUntil(() => videoPlayer.isPrepared);
         videoPlayer.targetCamera = Camera.main;
         videoPlayer.Play();
-        yield return new WaitForSecondsRealtime(3);
+        yield return new WaitForSecondsRealtime(6);
         yield return new WaitUntil(() => !videoPlayer.isPlaying);     //video.isDone
         loadScene = SceneManager.LoadSceneAsync(0, LoadSceneMode.Single);
         loadScene.allowSceneActivation = true;

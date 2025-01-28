@@ -109,6 +109,8 @@ public class ButtonHandler : MonoBehaviour
                 worldMusicScript.source.clip = vidAudioClip;
                 worldMusicScript.source.volume = settings.masterVolume * settings.dialogueVolume;
                 videoPlayer.SetDirectAudioVolume(0, settings.masterVolume * settings.dialogueVolume);
+                videoPlayer.Prepare();
+                yield return new WaitUntil(() => videoPlayer.isPrepared);
                 worldMusicScript.source.Play();
                 videoPlayer.Play();
                 yield return new WaitUntil(()=>!videoPlayer.isPlaying || Input.GetKeyDown(KeyCode.Space));

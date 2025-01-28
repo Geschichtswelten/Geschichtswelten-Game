@@ -145,12 +145,14 @@ public class Tutorial1Script : MonoBehaviour
         source.Stop();
         yield return new WaitUntil(() => loadVid.isDone);
         loadingScreen = Instantiate(loadingScreen, Vector3.zero, Quaternion.identity);
-        loadingScreen.SetActive(false);
+        videoPlayer.Prepare();
+        yield return new WaitUntil(() => videoPlayer.isPrepared);
         videoPlayer.targetCamera = Camera.main;
         videoPlayer.SetDirectAudioVolume(0, ButtonHandler.settings.dialogueVolume * ButtonHandler.settings.masterVolume);
+        loadingScreen.SetActive(false);
         worldMusicScript.ToggleMute();
         videoPlayer.Play();
-        yield return new WaitForSecondsRealtime(3);
+        yield return new WaitForSecondsRealtime(6);
         yield return new WaitUntil(() => !videoPlayer.isPlaying || Input.GetKeyDown(KeyCode.Space));
         videoPlayer.Stop();
         loadingScreen.SetActive(true);
