@@ -696,6 +696,7 @@ public class PlayerBehaviour : MonoBehaviour
             LoadPosition(respawnPoint.position, respawnPoint.rotation);
 
         _takeDamage = true;
+        animator.SetTrigger("FadeTrigger");
     }
 
     public Inventory GetHotbar() => hotbar;
