@@ -1,4 +1,6 @@
 using System.Collections;
+using DefaultNamespace;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -57,9 +59,34 @@ public class LumberBehaviour : MonoBehaviour
         }
         Instantiate(woodItem, transform.position, Quaternion.identity);
         Destroy(gameObject);
-
     }
 
-
-
+    private void OnDestroy()
+    {
+        var dropItem = Instantiate(woodItem, transform.position + .3f * Vector3.up + transform.up * transform.lossyScale.y / 2, transform.rotation);
+        dropItem.transform.localScale = transform.localScale;
+        if (dropItem.TryGetComponent<ItemBehaviour>(out var itemBehaviour))
+        {
+            Destroy(itemBehaviour);
+        }
+                    
+        if (!dropItem.TryGetComponent<Rigidbody>(out var rb))
+        {
+            rb = dropItem.AddComponent<Rigidbody>();
+        }
+        rb.useGravity = true;
+        rb.isKinematic = false;
+        rb.detectCollisions = true;
+        rb.excludeLayers = LayerMask.GetMask("Player");
+        Destroy(rb, 1.4f);
+                
+        if (dropItem.TryGetComponent<Collider>(out var coll))
+        {
+            coll.isTrigger = false;
+            coll.enabled = true;
+            Destroy(coll, 44.4f);
+        }
+        else 
+            Destroy(dropItem.AddComponent<SphereCollider>(), 44.4f);
+    }
 }
