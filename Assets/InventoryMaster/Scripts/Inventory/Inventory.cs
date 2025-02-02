@@ -5,6 +5,7 @@ using UnityEditor;
 #endif
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Inventory : MonoBehaviour
 {
@@ -857,6 +858,30 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void DeleteAllItems()
+    {
+        updateItemList();
+        for (int i = 0; i < ItemsInInventory.Count(); i++)
+        {
+            ItemsInInventory.RemoveAt(i);
+        }
+        
+        for (int k = 0; k < SlotContainer.transform.childCount; k++)
+        {
+            if (SlotContainer.transform.GetChild(k).childCount != 0)
+            {
+                GameObject itemGameObject = SlotContainer.transform.GetChild(k).GetChild(0).gameObject;
+                Item itemObject = itemGameObject.GetComponent<ItemOnObject>().item;
+                if (itemObject != null)
+                {
+                    Destroy(itemGameObject);
+                }
+            }
+        }
+        updateItemList();
+        stackableSettings();
+    }
+
     public int getPositionOfItem(Item item)
     {
         for (int i = 0; i < SlotContainer.transform.childCount; i++)
@@ -876,21 +901,29 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; i < SlotContainer.transform.childCount; i++)
         {
-            if (SlotContainer.transform.GetChild(i).childCount == 0 && i != ignoreSlot)
+            if (SlotContainer.transform.GetChild(i).childCount == 0)
             {
-                GameObject item = (GameObject)Instantiate(prefabItem);
-                ItemOnObject itemOnObject = item.GetComponent<ItemOnObject>();
-                itemOnObject.item = itemDatabase.getItemByID(itemID);
-                if (itemOnObject.item.itemValue < itemOnObject.item.maxStack && itemValue <= itemOnObject.item.maxStack)
-                    itemOnObject.item.itemValue = itemValue;
+                if (ignoreSlot <= 0)
+                {
+                    GameObject item = (GameObject)Instantiate(prefabItem);
+                    ItemOnObject itemOnObject = item.GetComponent<ItemOnObject>();
+                    itemOnObject.item = itemDatabase.getItemByID(itemID);
+                    if (itemOnObject.item.itemValue < itemOnObject.item.maxStack &&
+                        itemValue <= itemOnObject.item.maxStack)
+                        itemOnObject.item.itemValue = itemValue;
+                    else
+                        itemOnObject.item.itemValue = 1;
+                    item.transform.SetParent(SlotContainer.transform.GetChild(i));
+                    item.GetComponent<RectTransform>().localPosition = Vector3.zero;
+                    itemOnObject.item.indexItemInList = 999;
+                    updateItemSize();
+                    stackableSettings();
+                    break;
+                }
                 else
-                    itemOnObject.item.itemValue = 1;
-                item.transform.SetParent(SlotContainer.transform.GetChild(i));
-                item.GetComponent<RectTransform>().localPosition = Vector3.zero;
-                itemOnObject.item.indexItemInList = 999;
-                updateItemSize();
-                stackableSettings();
-                break;
+                {
+                    ignoreSlot--;
+                }
             }
         }
         stackableSettings();
@@ -912,6 +945,12 @@ public class Inventory : MonoBehaviour
             return 0;
         var item = getFlatItemGrid()[slot];
         return item?.itemID ?? 0;
+    }
+
+    public Item GetItemForSlot(int slot)
+    {
+        return getFlatItemGrid()[slot];
+
     }
 
     public Item GetItemFromId(int id)

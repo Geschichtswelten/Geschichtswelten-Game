@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4033964170994324}
   - component: {fileID: 33553830683910954}
   - component: {fileID: 23309444090733188}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Conifer Bare BOTD LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 4657980456482902}
   - component: {fileID: 33559743796376114}
   - component: {fileID: 23933673824694470}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Conifer Bare BOTD LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4925666623870900}
   - component: {fileID: 227004396696467460}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Conifer Bare BOTD Billboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: -5826433378250079571}
   - component: {fileID: 1973822229839445527}
   - component: {fileID: 186219267393949464}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PF Conifer Bare BOTD URP
   m_TagString: Tree
   m_Icon: {fileID: 0}
@@ -282,7 +282,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5517971, y: 0.5517971, z: 0.5517971}
+  m_LocalScale: {x: 0.7181306, y: 0.7181306, z: 0.7181306}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4657980456482902}

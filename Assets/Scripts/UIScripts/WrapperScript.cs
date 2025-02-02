@@ -20,11 +20,12 @@ public class WrapperScript : MonoBehaviour
     }
     public void LoadProfile(GameProfile profile)
     {
+        inventory.DeleteAllItems();
         //Load Inventory
         int ignore = 0;
         for (int i = 0; i < 34; i++)
         {
-            if (i == 4 || i == 9)
+            if (i == 4)
             {
                 ignore = 0;
             }
@@ -33,6 +34,13 @@ public class WrapperScript : MonoBehaviour
                 if (profile.playerItems.list[i].list[0] != -1)
                 {
                     armor.addItemToInventory(ignore, profile.playerItems.list[i].list[0], profile.playerItems.list[i].list[1]);
+                    PlayerBehaviour.Armor arm = new PlayerBehaviour.Armor
+                    {
+                        ItemId = profile.playerItems.list[i].list[0],
+                        Multiplier = armor.GetItemFromId(profile.playerItems.list[i].list[0]).itemAttributes[0].attributeValue / 100f
+                    };
+                    playerBehaviour.RegisterArmor(arm);
+
                 }
                 else
                 {
@@ -55,11 +63,9 @@ public class WrapperScript : MonoBehaviour
             {
                 if (profile.playerItems.list[i].list[0] != -1)
                 {
-                    inventory.addItemToInventory(ignore, profile.playerItems.list[i].list[0], profile.playerItems.list[i].list[1]);
-                }
-                else
-                {
-                    ignore += 1;
+                    inventory.addItemToInventory(profile.playerItems.list[i].list[0], profile.playerItems.list[i].list[1]);
+                    inventory.updateItemList();
+                    inventory.stackableSettings();
                 }
             }
         }

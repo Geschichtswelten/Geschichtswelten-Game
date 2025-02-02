@@ -43,7 +43,8 @@ public class LumberBehaviour : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        isTimber = true;
+        if(!other.CompareTag("Tree"))
+            isTimber = true;
     }
 
     private IEnumerator TransformToTimber()

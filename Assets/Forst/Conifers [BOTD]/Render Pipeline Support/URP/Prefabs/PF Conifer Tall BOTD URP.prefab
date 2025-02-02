@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4033964170994324}
   - component: {fileID: 33553830683910954}
   - component: {fileID: 23309444090733188}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Conifer Tall BOTD LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 4657980456482902}
   - component: {fileID: 33559743796376114}
   - component: {fileID: 23933673824694470}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Conifer Tall BOTD LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4925666623870900}
   - component: {fileID: 227004396696467460}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Conifer Tall BOTD Billboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: -7771808893076711795}
   - component: {fileID: 2444192680051927834}
   - component: {fileID: 7286381394061177219}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PF Conifer Tall BOTD URP
   m_TagString: Tree
   m_Icon: {fileID: 0}

@@ -281,12 +281,12 @@ MonoBehaviour:
   amt: 1
   type: 1
   name: Axe
-  damage: 10
+  damage: 5
   animationHandler: {fileID: 4421014091716076132}
   itemSfxHandler: {fileID: 1486787314247272797}
   hitbox: {fileID: 8131853494674897497}
   attackCooldown: 1.1
-  timberDistance: 10
-  maxTimberAngle: 70
+  timberDistance: 4
+  maxTimberAngle: 30
   treePrefab: {fileID: 0}
   logPrefab: {fileID: 8490730202628204433, guid: 596e5475303e3a542b7c7acf5ab3a42c, type: 3}

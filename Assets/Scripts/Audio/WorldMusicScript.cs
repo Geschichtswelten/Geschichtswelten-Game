@@ -50,10 +50,8 @@ public class WorldMusicScript : MonoBehaviour
 
     public void StartingGame()
     {
-        source.mute = false;
+        source.mute = true;
         HandleSettingsChanged();
-        source.clip = clips[1];
-        source.loop = true;
-        source.Play();
+        source.Stop();
     }
 }

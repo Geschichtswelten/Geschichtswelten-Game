@@ -133,9 +133,11 @@ public class AxeScript : ItemBehaviour
                     treePrefab.transform.localScale = new Vector3(treeArray[i].heightScale, treeArray[i].heightScale, treeArray[i].heightScale);
                     treeArray.RemoveAt(i);
                     terrainData.treeInstances = treeArray.ToArray();
-                    terrain.GetComponent<TerrainCollider>().terrainData = terrainData;
                     var heights = terrainData.GetHeights(0, 0, 0, 0);
                     terrainData.SetHeights(0, 0, heights);
+                    //terrain.GetComponent<TerrainCollider>().terrainData = terrainData; 
+                    //var terrH = terrain.GetComponent<TerrainCollider>().terrainData.GetHeights(0, 0, 0, 0);
+                    //terrain.GetComponent<TerrainCollider>().terrainData.SetHeights(0, 0, terrH);
                     
                     var dropItem = Instantiate(treePrefab/*logPrefab*/, worldPosition/* + 3.5f * Vector3.up*/, tempRot/*Quaternion.Euler(90, 0, 0)*/);
                     dropItem.transform.localScale = new Vector3(treeArray[i].heightScale, treeArray[i].heightScale, treeArray[i].heightScale);
@@ -145,17 +147,18 @@ public class AxeScript : ItemBehaviour
                     }
                     rb.useGravity = true;
                     rb.isKinematic = false;
-                    rb.mass = 10;
+                    //rb.mass = 10;
                     rb.detectCollisions = true;
                     rb.excludeLayers = LayerMask.GetMask("Player");
+                    rb.excludeLayers = LayerMask.GetMask("Tree");
                 
-                    if (dropItem.TryGetComponent<Collider>(out var coll))
+                    /*if (dropItem.TryGetComponent<Collider>(out var coll))
                     {
                         coll.isTrigger = false;
                         coll.enabled = true;
                     }
                     else 
-                        dropItem.AddComponent<SphereCollider>();
+                        dropItem.AddComponent<SphereCollider>();*/
                     break;
                 }
             }

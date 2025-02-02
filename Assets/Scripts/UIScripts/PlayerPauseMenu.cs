@@ -90,9 +90,9 @@ public class PlayerPauseMenu : MonoBehaviour
     public void SaveGame()
     {
         if (isTutorial) return;
-        List<Item> armorList = _characterSlots.ItemsInInventory;
-        List<Item> hotbarList = _hotbar.ItemsInInventory;
-        List<Item> inventoryList = _playerInventory.ItemsInInventory;
+        _hotbar.updateItemList();
+        _characterSlots.updateItemList();
+        _playerInventory.updateItemList();
         //4 R�stung, 5 Hotbar, 25 Inventar
         SerializedList<SerializedList<int>> player_items = new SerializedList<SerializedList<int>>(new List<SerializedList<int>>());
         for (int i = 0; i < 34; i++) 
@@ -100,10 +100,9 @@ public class PlayerPauseMenu : MonoBehaviour
             player_items.list.Add(new SerializedList<int>(new List<int>()));
             if(i < 4)
             {
-                if(armorList.Count > 0)
+                Item item = _characterSlots.GetItemForSlot(i);
+                if(item != null)
                 {
-                    Item item = armorList[0];
-                    armorList.RemoveAt(0);
                     player_items.list[i].list.Add(item.itemID);
                     player_items.list[i].list.Add(item.itemValue);
                 }
@@ -115,10 +114,9 @@ public class PlayerPauseMenu : MonoBehaviour
                 
             }else if (i < 9)
             {
-                if (hotbarList.Count > 0)
+                Item item = _hotbar.GetItemForSlot(i-4);
+                if (item != null)
                 {
-                    Item item = hotbarList[0];
-                    hotbarList.RemoveAt(0);
                     player_items.list[i].list.Add(item.itemID);
                     player_items.list[i].list.Add(item.itemValue);
                 }
@@ -130,10 +128,9 @@ public class PlayerPauseMenu : MonoBehaviour
             }
             else
             {
-                if (inventoryList.Count > 0)
+                Item item = _playerInventory.GetItemForSlot(i - 9);
+                if (item != null)
                 {
-                    Item item = inventoryList[0];
-                    inventoryList.RemoveAt(0);
                     player_items.list[i].list.Add(item.itemID);
                     player_items.list[i].list.Add(item.itemValue);
                 }
