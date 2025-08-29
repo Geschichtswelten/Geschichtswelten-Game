@@ -1,0 +1,9 @@
+Tab für console: console command ShowAllRecipes
+
+'E': Einsammeln / Kisten öffnen
+'I': Inventar öffnen
+'Right Click': Blocken
+'Left Click' : Angreifen / Essen / Item craften
+'LShift': sprinten
+'strg': schleichen
+'Space': springen
